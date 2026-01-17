@@ -4,7 +4,13 @@
 
 body {
   margin: 0;
-  font-family: Georgia, serif;
+ body {
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Libre Baskerville', serif;
+  letter-spacing: 0; /* QUAN TRỌNG: không giãn chữ */
   background: #f5f1eb;
   color: #3a3a3a;
 }
