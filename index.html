@@ -1,117 +1,90 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Hành trình lớp 11L</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: #f6f7fb;
-      color: #333;
-    }
-
-    h1 {
-      text-align: center;
-      padding: 40px 20px;
-      color: #3f51b5;
-    }
-
-    .timeline {
-      width: 80%;
-      max-width: 800px;
-      margin: auto;
-      position: relative;
-      padding-left: 30px;
-    }
-
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 10px;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: #3f51b5;
-    }
-
-    .event {
-      background: #fff;
-      padding: 20px;
-      margin-bottom: 30px;
-      border-radius: 10px;
-      position: relative;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    }
-
-    .event::before {
-      content: "";
-      position: absolute;
-      left: -38px;
-      top: 20px;
-      width: 18px;
-      height: 18px;
-      background: #3f51b5;
-      border-radius: 50%;
-    }
-
-    .event h3 {
-      margin: 0;
-      color: #3f51b5;
-    }
-
-    .event p {
-      margin: 10px 0 0;
-      line-height: 1.6;
-    }
-
-    .event img {
-      width: 100%;
-      max-height: 220px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-top: 12px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <title>Hành trình thanh xuân – 11L</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<h1>🌸 Hành trình lớp 11L 🌸</h1>
-
-<div class="timeline">
-
-  <div class="event">
-    <h3>19/11 – Hoạt động tri ân</h3>
-    <p>Những khoảnh khắc chuẩn bị, trang trí và gửi lời cảm ơn đến thầy cô.</p>
-    <!-- <img src="19-11.jpg"> -->
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>HÀNH TRÌNH THANH XUÂN – 11L</h1>
+      <p>Chúng ta đã cùng nhau đi qua những năm tháng ấy</p>
+    </div>
   </div>
 
-  <div class="event">
-    <h3>20/11 – Ngày Nhà giáo Việt Nam</h3>
-    <p>Buổi lễ đầy cảm xúc, tiếng cười và những kỷ niệm khó quên.</p>
-  </div>
+  <!-- TIMELINE -->
+  <div class="timeline">
 
-  <div class="event">
-    <h3>Giai điệu tuổi hồng & Thanh lịch</h3>
-    <p>Sân khấu rực rỡ, tự tin và là nơi lớp mình tỏa sáng.</p>
-  </div>
+    <div class="timeline-item">
+      <div class="timeline-image">
+        <img src="https://images.unsplash.com/photo-1500534314209-a26db0f5f0d1">
+      </div>
+      <div class="timeline-content">
+        <h2>19/11 – Những ngày đầu gắn kết</h2>
+        <p>Khoảnh khắc cả lớp bắt đầu trở thành một tập thể thật sự.</p>
+        <a href="1911.html">Xem chi tiết →</a>
+      </div>
+    </div>
 
-  <div class="event">
-    <h3>Chuyến đi Đà Lạt</h3>
-    <p>Chuyến đi thanh xuân với sương mù, tiếng cười và tình bạn.</p>
-  </div>
+    <div class="timeline-item">
+      <div class="timeline-image">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
+      </div>
+      <div class="timeline-content">
+        <h2>20/11 – Tri ân thầy cô</h2>
+        <p>Một ngày đầy cảm xúc và lòng biết ơn.</p>
+        <a href="2011.html">Xem chi tiết →</a>
+      </div>
+    </div>
 
-  <div class="event">
-    <h3>Làm bánh chưng – Giỗ Tổ</h3>
-    <p>Cùng nhau gói bánh, giữ gìn nét đẹp truyền thống dân tộc.</p>
-  </div>
+    <div class="timeline-item">
+      <div class="timeline-image">
+        <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d">
+      </div>
+      <div class="timeline-content">
+        <h2>Giai điệu tuổi hồng & Thanh lịch</h2>
+        <p>Nơi tài năng và sự tự tin của 11L được tỏa sáng.</p>
+        <a href="giaidieu.html">Xem chi tiết →</a>
+      </div>
+    </div>
 
-  <div class="event">
-    <h3>8/3 – Ngày của yêu thương</h3>
-    <p>Những lời chúc giản dị nhưng đầy ấm áp dành cho các bạn nữ.</p>
-  </div>
+    <div class="timeline-item">
+      <div class="timeline-image">
+        <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6">
+      </div>
+      <div class="timeline-content">
+        <h2>Chuyến đi Đà Lạt</h2>
+        <p>Những ngày rong ruổi, cười nói và nhớ mãi.</p>
+        <a href="dalat.html">Xem chi tiết →</a>
+      </div>
+    </div>
 
-</div>
+    <div class="timeline-item">
+      <div class="timeline-image">
+        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba">
+      </div>
+      <div class="timeline-content">
+        <h2>Làm bánh chưng – Giỗ Tổ</h2>
+        <p>Truyền thống, đoàn kết và ấm áp.</p>
+        <a href="banhchung.html">Xem chi tiết →</a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-image">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+      </div>
+      <div class="timeline-content">
+        <h2>8/3 – Những nụ cười rạng rỡ</h2>
+        <p>Một ngày nhẹ nhàng nhưng rất đáng nhớ.</p>
+        <a href="83.html">Xem chi tiết →</a>
+      </div>
+    </div>
+
+  </div>
 
 </body>
 </html>
