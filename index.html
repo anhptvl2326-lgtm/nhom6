@@ -1,144 +1,130 @@
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Hành trình lớp 11L</title>
 
-/* BODY */
-body {
-  font-family: 'Be Vietnam Pro', sans-serif;
-  background: #f4efe8;
-  color: #333;
-  line-height: 1.6;
-}
+  <!-- FONT CHUẨN TIẾNG VIỆT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Be+Vietnam+Pro:wght@300;400;500&display=swap" rel="stylesheet">
 
-/* HERO */
-.hero {
-  height: 80vh;
-  background: url("https://images.unsplash.com/photo-1500534314209-a26db0f5f0d1") center/cover no-repeat;
-  position: relative;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background: #f6f7fb;
+      color: #333;
+    }
 
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-}
+    h1 {
+      text-align: center;
+      padding: 40px 20px;
+      font-family: 'Libre Baskerville', serif;
+      color: #3f51b5;
+      font-size: 38px;
+    }
 
-.hero-content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  text-align: center;
-  z-index: 2;
-}
+    .timeline {
+      width: 80%;
+      max-width: 800px;
+      margin: auto;
+      position: relative;
+      padding-left: 30px;
+    }
 
-.hero-content h1 {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 42px;
-  letter-spacing: 0; /* KHÔNG GIÃN CHỮ */
-  margin-bottom: 14px;
-}
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #3f51b5;
+    }
 
-.hero-content p {
-  font-size: 16px;
-  opacity: 0.9;
-}
+    .event {
+      background: #fff;
+      padding: 22px;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
 
-/* TIMELINE */
-.timeline {
-  width: 80%;
-  max-width: 1100px;
-  margin: 100px auto;
-}
+    .event::before {
+      content: "";
+      position: absolute;
+      left: -38px;
+      top: 22px;
+      width: 18px;
+      height: 18px;
+      background: #3f51b5;
+      border-radius: 50%;
+    }
 
-/* ITEM */
-.timeline-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 120px;
-}
+    .event h3 {
+      margin: 0;
+      font-family: 'Libre Baskerville', serif;
+      color: #3f51b5;
+      font-size: 22px;
+    }
 
-.timeline-item:nth-child(even) {
-  flex-direction: row-reverse;
-}
+    .event p {
+      margin: 10px 0 0;
+      line-height: 1.7;
+      font-size: 15.5px;
+      color: #444;
+    }
 
-/* IMAGE */
-.timeline-image {
-  width: 45%;
-}
+    .event img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-top: 14px;
+    }
+  </style>
+</head>
 
-.timeline-image img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-}
+<body>
 
-/* CONTENT */
-.timeline-content {
-  width: 55%;
-  background: #fff;
-  padding: 45px 60px;
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  margin-left: -60px;
-}
+<h1>🌸 Hành trình lớp 11L 🌸</h1>
 
-.timeline-item:nth-child(even) .timeline-content {
-  margin-left: 0;
-  margin-right: -60px;
-}
+<div class="timeline">
 
-.timeline-content h2 {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 28px;
-  color: #6a4b3c;
-  margin-bottom: 14px;
-  letter-spacing: 0;
-}
+  <div class="event">
+    <h3>19/11 – Hoạt động tri ân</h3>
+    <p>Những khoảnh khắc chuẩn bị, trang trí và gửi lời cảm ơn đến thầy cô.</p>
+    <!-- <img src="19-11.jpg"> -->
+  </div>
 
-.timeline-content p {
-  font-size: 15.5px;
-  color: #555;
-  margin-bottom: 18px;
-}
+  <div class="event">
+    <h3>20/11 – Ngày Nhà giáo Việt Nam</h3>
+    <p>Buổi lễ đầy cảm xúc, tiếng cười và những kỷ niệm khó quên.</p>
+  </div>
 
-/* LINK */
-.timeline-content a {
-  text-decoration: none;
-  color: #6a4b3c;
-  font-weight: 500;
-  transition: color 0.3s;
-}
+  <div class="event">
+    <h3>Giai điệu tuổi hồng & Thanh lịch</h3>
+    <p>Sân khấu rực rỡ, tự tin và là nơi lớp mình tỏa sáng.</p>
+  </div>
 
-.timeline-content a:hover {
-  color: #b07a5a;
-}
+  <div class="event">
+    <h3>Chuyến đi Đà Lạt</h3>
+    <p>Chuyến đi thanh xuân với sương mù, tiếng cười và tình bạn.</p>
+  </div>
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .timeline-item,
-  .timeline-item:nth-child(even) {
-    flex-direction: column;
-  }
+  <div class="event">
+    <h3>Làm bánh chưng – Giỗ Tổ</h3>
+    <p>Cùng nhau gói bánh, giữ gìn nét đẹp truyền thống dân tộc.</p>
+  </div>
 
-  .timeline-image,
-  .timeline-content {
-    width: 100%;
-  }
+  <div class="event">
+    <h3>8/3 – Ngày của yêu thương</h3>
+    <p>Những lời chúc giản dị nhưng đầy ấm áp dành cho các bạn nữ.</p>
+  </div>
 
-  .timeline-content {
-    margin: 30px 0 0 0;
-    padding: 35px;
-  }
+</div>
 
-  .hero-content h1 {
-    font-size: 32px;
-  }
-}
+</body>
+</html>
