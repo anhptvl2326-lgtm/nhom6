@@ -15,7 +15,7 @@ body {
 .hero {
   position: relative;
   height: 70vh;
-  background: img("2.jpg")
+  background: url("2.jpg")
     center/cover no-repeat;
 }
 
