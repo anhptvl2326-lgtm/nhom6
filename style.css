@@ -4,9 +4,11 @@
 
 body {
   margin: 0;
-  font-family: Georgia, serif;
+  font-family: 'Inter', Arial, sans-serif;
   background: #f5f1eb;
   color: #3a3a3a;
+  font-size: 16px;
+  line-height: 1.7;
 }
 
 /* HERO */
@@ -33,13 +35,16 @@ body {
 }
 
 .hero-content h1 {
-  font-size: 48px;
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 600;
   margin: 0;
 }
 
 .hero-content p {
   font-style: italic;
   margin-top: 10px;
+  opacity: 0.9;
 }
 
 /* TIMELINE */
@@ -78,13 +83,14 @@ body {
 }
 
 .timeline-content h2 {
+  font-family: 'Playfair Display', serif;
   color: #5b4636;
-  font-size: 26px;
+  font-size: 28px;
+  font-weight: 600;
 }
 
 .timeline-content p {
   margin-top: 10px;
-  line-height: 1.6;
 }
 
 .timeline-content a {
@@ -92,7 +98,7 @@ body {
   margin-top: 14px;
   color: #8b6f4e;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .timeline-image {
@@ -116,4 +122,3 @@ body {
   border-radius: 50%;
   transform: translateX(-50%);
 }
-
