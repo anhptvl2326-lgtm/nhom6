@@ -12,7 +12,7 @@ body {
 }
 
 /* HERO */
-.hero {
+.hero { 
   position: relative;
   height: 70vh;
   background: url("2.jpg")
