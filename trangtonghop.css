@@ -1,6 +1,10 @@
         body {
-            background-color: #e0f2fe    ;
-            font-family:  Palatino Linotype;
+            background-image: url("https://i.pinimg.com/1200x/b3/d9/3e/b3d93eaa3f22483c72b6ba4eb9e16a44.jpg");
+    background-size: cover;        
+    background-position: center;   
+    background-repeat: no-repeat;  
+    background-attachment: fixed;  
+ font-family:  Palatino Linotype;
             margin: 0;
             padding: 0;
         }
@@ -233,3 +237,4 @@
             align-items: center; 
             text-align: center; }   
 .title2 { font-size: 28px; font-weight: bold; text-align: center;color: #1D2A62;display:block;margin-bottom:-10px;}
+
