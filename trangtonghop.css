@@ -1,5 +1,5 @@
-        body body {
-            background-image: url("https://i.pinimg.com/736x/81/94/5d/81945d20b5b9b187d027105be3ba8b49.jpg");
+       body {
+            background-image: #f4efe8 url("https://i.pinimg.com/736x/81/94/5d/81945d20b5b9b187d027105be3ba8b49.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -238,6 +238,7 @@
             align-items: center; 
             text-align: center; }   
 .title2 { font-size: 28px; font-weight: bold; text-align: center;color: #1D2A62;display:block;margin-bottom:-10px;}
+
 
 
 
