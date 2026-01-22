@@ -1,16 +1,12 @@
        body {
-         font-family: "Palatino Linotype", serif;
          margin: 0;
-         padding: 0;
+         font-family: 'Inter', sans-serif;
+         color: #3b332c;
 
-         background:
-           linear-gradient(
-             rgba(224, 242, 254, 0.55),
-             rgba(224, 242, 254, 0.55)
-           ),
-           url("nen.png") center / cover no-repeat fixed;
+         background: 
+           url("https://i.pinimg.com/1200x/a7/7c/fd/a77cfd9e3137f40f881df4843b2447fb.jpg")
+           center / cover no-repeat fixed;
        }
-
 
         .header {
             background-color: #002147;
@@ -241,6 +237,7 @@
             align-items: center; 
             text-align: center; }   
 .title2 { font-size: 28px; font-weight: bold; text-align: center;color: #1D2A62;display:block;margin-bottom:-10px;}
+
 
 
 
