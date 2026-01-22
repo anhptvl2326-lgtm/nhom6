@@ -4,7 +4,7 @@
               padding: 0;
               
               background: 
-                  url("https://i.pinimg.com/736x/81/94/5d/81945d20b5b9b187d027105be3ba8b49.jpg")
+                  url("nen.png")
                   center / cover no-repeat fixed;
        }
         .header {
@@ -236,6 +236,7 @@
             align-items: center; 
             text-align: center; }   
 .title2 { font-size: 28px; font-weight: bold; text-align: center;color: #1D2A62;display:block;margin-bottom:-10px;}
+
 
 
 
