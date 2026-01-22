@@ -3,13 +3,14 @@
          margin: 0;
          padding: 0;
 
-         background-color: #e0f2fe;
-         background-image: url("nen.png");
-         background-position: center;
-         background-size: cover;
-         background-repeat: no-repeat;
-         background-attachment: fixed;
+         background:
+           linear-gradient(
+             rgba(224, 242, 254, 0.55),
+             rgba(224, 242, 254, 0.55)
+           ),
+           url("nen.png") center / cover no-repeat fixed;
        }
+
 
         .header {
             background-color: #002147;
@@ -240,6 +241,7 @@
             align-items: center; 
             text-align: center; }   
 .title2 { font-size: 28px; font-weight: bold; text-align: center;color: #1D2A62;display:block;margin-bottom:-10px;}
+
 
 
 
