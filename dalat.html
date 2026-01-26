@@ -9,140 +9,162 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * {margin:0;padding:0;box-sizing:border-box}
 
     body {
       font-family: "Inter", sans-serif;
-      background: linear-gradient(180deg, #020617, #020617);
+      background: #020617;
       color: #e5e7eb;
       line-height: 1.7;
     }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .hero {
       height: 100vh;
       background:
-        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.85)),
+        linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.9)),
         url("https://images.unsplash.com/photo-1501785888041-af3ef285b470");
       background-size: cover;
       background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
     }
 
     .hero h1 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(38px, 6vw, 64px);
-      margin-bottom: 20px;
-      animation: fadeDown 1.2s ease;
+      font-family:"Playfair Display",serif;
+      font-size:clamp(40px,6vw,64px);
+      margin-bottom:20px;
+      animation:fadeDown 1.2s ease;
     }
 
     .hero p {
-      max-width: 850px;
-      font-size: 18px;
-      opacity: .9;
-      animation: fadeUp 1.2s ease;
+      max-width:850px;
+      font-size:18px;
+      opacity:.9;
+      animation:fadeUp 1.2s ease;
     }
 
-    /* ===== SECTION ===== */
     section {
-      padding: 90px 8%;
+      padding:90px 8%;
     }
 
     .section-title {
-      font-family: "Playfair Display", serif;
-      font-size: 40px;
-      margin-bottom: 60px;
-      text-align: center;
+      font-family:"Playfair Display",serif;
+      font-size:40px;
+      text-align:center;
+      margin-bottom:60px;
     }
 
-    /* ===== DAY ===== */
+    /* DAY */
     .day {
-      background: rgba(255,255,255,0.06);
-      border-radius: 28px;
-      padding: 40px;
-      margin-bottom: 50px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 30px 60px rgba(0,0,0,.35);
-      animation: fadeUp 1s ease both;
+      background:rgba(255,255,255,.06);
+      border-radius:28px;
+      padding:40px;
+      margin-bottom:60px;
+      backdrop-filter:blur(12px);
+      box-shadow:0 30px 60px rgba(0,0,0,.4);
+      animation:fadeUp 1s ease both;
     }
 
     .day h2 {
-      font-size: 26px;
-      margin-bottom: 30px;
-      color: #93c5fd;
+      color:#93c5fd;
+      font-size:26px;
+      margin-bottom:30px;
     }
 
-    /* ===== CARD ===== */
+    /* CARDS */
     .places {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 28px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:28px;
     }
 
     .place {
-      background: rgba(255,255,255,0.08);
-      border-radius: 22px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform .4s ease, box-shadow .4s ease;
+      background:rgba(255,255,255,.08);
+      border-radius:22px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:.4s;
     }
 
     .place:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 50px rgba(0,0,0,.45);
+      transform:translateY(-10px);
+      box-shadow:0 25px 50px rgba(0,0,0,.45);
     }
 
     .place img {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
+      width:100%;
+      height:190px;
+      object-fit:cover;
     }
 
     .place .content {
-      padding: 20px;
+      padding:20px;
     }
 
     .place h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
+      font-size:18px;
+      margin-bottom:8px;
     }
 
-    .place .short {
-      font-size: 14px;
-      opacity: .85;
-    }
-
-    /* ===== DETAIL (CLICK TO OPEN) ===== */
-    .detail {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: all .5s ease;
-      margin-top: 14px;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .place.active .detail {
-      max-height: 400px;
-      opacity: 1;
+    .place p {
+      font-size:14px;
+      opacity:.85;
     }
 
     .hint {
-      margin-top: 10px;
-      font-size: 12px;
-      opacity: .6;
+      margin-top:10px;
+      font-size:12px;
+      opacity:.6;
     }
 
-    /* ===== ANIMATION ===== */
+    /* MODAL */
+    .modal {
+      position:fixed;
+      inset:0;
+      background:rgba(2,6,23,.8);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:999;
+      padding:20px;
+    }
+
+    .modal.active {
+      display:flex;
+      animation:fadeUp .4s ease;
+    }
+
+    .modal-box {
+      background:#020617;
+      border-radius:26px;
+      max-width:700px;
+      width:100%;
+      padding:40px;
+      box-shadow:0 40px 80px rgba(0,0,0,.6);
+      position:relative;
+    }
+
+    .modal-box h3 {
+      font-family:"Playfair Display",serif;
+      font-size:28px;
+      margin-bottom:20px;
+    }
+
+    .close {
+      position:absolute;
+      top:20px;
+      right:24px;
+      font-size:22px;
+      cursor:pointer;
+      opacity:.7;
+    }
+
+    .close:hover {opacity:1}
+
     @keyframes fadeUp {
       from {opacity:0; transform:translateY(40px)}
       to {opacity:1; transform:translateY(0)}
@@ -157,125 +179,115 @@
 
 <body>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div>
-      <h1>Hành trình Đà Lạt – Lớp 11L</h1>
-      <p>
-        Một chuyến tham quan học tập không chỉ mở rộng tri thức,
-        mà còn lưu giữ những khoảnh khắc gắn kết và ký ức thanh xuân
-        đáng nhớ của tập thể lớp 11L giữa thành phố mộng mơ.
-      </p>
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>Hành trình Đà Lạt – Lớp 11L</h1>
+    <p>
+      Một chuyến tham quan học tập không chỉ mở rộng tri thức,
+      mà còn lưu giữ những khoảnh khắc gắn kết và ký ức thanh xuân
+      đáng nhớ giữa thành phố mộng mơ.
+    </p>
+  </div>
+</div>
+
+<section>
+  <h1 class="section-title">Lịch trình tham quan</h1>
+
+  <!-- DAY 1 -->
+  <div class="day">
+    <h2>Ngày 1 – Khởi hành & lịch sử</h2>
+    <div class="places">
+      <div class="place" onclick="openModal('laothieunhi')">
+        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35">
+        <div class="content">
+          <h3>Nhà lao thiếu nhi Đà Lạt</h3>
+          <p>Địa chỉ đỏ mang giá trị lịch sử.</p>
+          <div class="hint">Nhấp để xem chi tiết</div>
+        </div>
+      </div>
+
+      <div class="place" onclick="openModal('domain')">
+        <img src="https://images.unsplash.com/photo-1586769852044-692d6e3703f2">
+        <div class="content">
+          <h3>Nhà thờ Domaine de Marie</h3>
+          <p>Kiến trúc đặc trưng của Đà Lạt.</p>
+          <div class="hint">Nhấp để xem chi tiết</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- CONTENT -->
-  <section>
-    <h1 class="section-title">Lịch trình tham quan</h1>
-
-    <!-- DAY 1 -->
-    <div class="day">
-      <h2>Ngày 1 – Khởi hành & tìm hiểu lịch sử</h2>
-
-      <div class="places">
-        <div class="place" onclick="toggle(this)">
-          <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35">
-          <div class="content">
-            <h3>Nhà lao thiếu nhi Đà Lạt</h3>
-            <p class="short">Địa chỉ đỏ mang giá trị lịch sử sâu sắc.</p>
-
-            <div class="detail">
-              <p>
-                Nhà lao thiếu nhi Đà Lạt là nơi giam giữ nhiều thiếu niên yêu nước
-                trong thời kỳ kháng chiến. Tại đây, học sinh được nghe thuyết minh,
-                quan sát hiện vật lịch sử và hiểu rõ hơn về tinh thần kiên cường,
-                bất khuất của thế hệ cha anh.
-              </p>
-            </div>
-
-            <div class="hint">Nhấp để xem chi tiết</div>
-          </div>
-        </div>
-
-        <div class="place" onclick="toggle(this)">
-          <img src="https://images.unsplash.com/photo-1586769852044-692d6e3703f2">
-          <div class="content">
-            <h3>Nhà thờ Domaine de Marie</h3>
-            <p class="short">Công trình kiến trúc đặc trưng của Đà Lạt.</p>
-
-            <div class="detail">
-              <p>
-                Nhà thờ Domaine de Marie gây ấn tượng với kiến trúc châu Âu
-                kết hợp nét văn hóa bản địa. Không gian yên bình nơi đây
-                giúp học sinh cảm nhận rõ nét vẻ đẹp cổ kính và thanh lịch
-                của thành phố cao nguyên.
-              </p>
-            </div>
-
-            <div class="hint">Nhấp để xem chi tiết</div>
-          </div>
+  <!-- DAY 2 -->
+  <div class="day">
+    <h2>Ngày 2 – Trải nghiệm & gắn kết</h2>
+    <div class="places">
+      <div class="place" onclick="openModal('trainghiem')">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+        <div class="content">
+          <h3>Hoạt động trải nghiệm</h3>
+          <p>Học tập thông qua thực tế.</p>
+          <div class="hint">Nhấp để xem chi tiết</div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- DAY 2 -->
-    <div class="day">
-      <h2>Ngày 2 – Trải nghiệm & gắn kết tập thể</h2>
-
-      <div class="places">
-        <div class="place" onclick="toggle(this)">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-          <div class="content">
-            <h3>Hoạt động trải nghiệm thực tế</h3>
-            <p class="short">Học tập thông qua quan sát và thực hành.</p>
-
-            <div class="detail">
-              <p>
-                Các hoạt động trải nghiệm giúp học sinh vận dụng kiến thức
-                đã học vào thực tế, đồng thời rèn luyện kỹ năng làm việc nhóm,
-                tinh thần hợp tác và sự chủ động trong học tập.
-              </p>
-            </div>
-
-            <div class="hint">Nhấp để xem chi tiết</div>
-          </div>
+  <!-- DAY 3 -->
+  <div class="day">
+    <h2>Ngày 3 – Thu dọn & Dinh Bảo Đại</h2>
+    <div class="places">
+      <div class="place" onclick="openModal('baodai')">
+        <img src="https://images.unsplash.com/photo-1589634749000-1e72f6c3b53a">
+        <div class="content">
+          <h3>Dinh Bảo Đại</h3>
+          <p>Khép lại hành trình ý nghĩa.</p>
+          <div class="hint">Nhấp để xem chi tiết</div>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- DAY 3 -->
-    <div class="day">
-      <h2>Ngày 3 – Thu dọn & tham quan Dinh Bảo Đại</h2>
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="close" onclick="closeModal()">✕</div>
+    <h3 id="modalTitle"></h3>
+    <p id="modalContent"></p>
+  </div>
+</div>
 
-      <div class="places">
-        <div class="place" onclick="toggle(this)">
-          <img src="https://images.unsplash.com/photo-1589634749000-1e72f6c3b53a">
-          <div class="content">
-            <h3>Dinh Bảo Đại</h3>
-            <p class="short">Điểm đến lịch sử khép lại hành trình.</p>
-
-            <div class="detail">
-              <p>
-                Sau khi thu dọn hành lý và lên xe, đoàn ghé tham quan Dinh Bảo Đại –
-                nơi gắn liền với nhiều dấu ấn lịch sử quan trọng.
-                Đây là điểm dừng chân ý nghĩa, khép lại chuyến đi
-                bằng những trải nghiệm giàu giá trị văn hóa.
-              </p>
-            </div>
-
-            <div class="hint">Nhấp để xem chi tiết</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <script>
-    function toggle(card) {
-      card.classList.toggle("active");
+<script>
+  const data = {
+    laothieunhi: {
+      title: "Nhà lao thiếu nhi Đà Lạt",
+      content: "Đây là nơi giam giữ nhiều thiếu niên yêu nước trong thời kỳ kháng chiến. Qua việc tham quan và nghe thuyết minh, học sinh hiểu rõ hơn về tinh thần kiên cường, bất khuất của thế hệ cha anh."
+    },
+    domain: {
+      title: "Nhà thờ Domaine de Marie",
+      content: "Công trình mang phong cách kiến trúc châu Âu kết hợp nét văn hóa bản địa. Không gian yên bình và cổ kính giúp học sinh cảm nhận vẻ đẹp thanh lịch của Đà Lạt."
+    },
+    trainghiem: {
+      title: "Hoạt động trải nghiệm thực tế",
+      content: "Các hoạt động trải nghiệm giúp học sinh vận dụng kiến thức vào thực tế, rèn luyện kỹ năng làm việc nhóm và tăng cường sự gắn kết tập thể."
+    },
+    baodai: {
+      title: "Dinh Bảo Đại",
+      content: "Sau khi thu dọn hành lý và lên xe, đoàn ghé tham quan Dinh Bảo Đại – nơi lưu giữ nhiều dấu ấn lịch sử, khép lại chuyến đi bằng những trải nghiệm giàu giá trị văn hóa."
     }
-  </script>
+  };
+
+  function openModal(key) {
+    document.getElementById("modalTitle").innerText = data[key].title;
+    document.getElementById("modalContent").innerText = data[key].content;
+    document.getElementById("modal").classList.add("active");
+  }
+
+  function closeModal() {
+    document.getElementById("modal").classList.remove("active");
+  }
+</script>
 
 </body>
-  </html>
+</html>
