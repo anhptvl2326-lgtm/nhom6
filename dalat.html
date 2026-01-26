@@ -1,221 +1,269 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Kỷ yếu 11L – Chuyến tham quan Đà Lạt</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hành trình Đà Lạt – Thanh xuân 11L</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: linear-gradient(180deg, #f5f7f6, #e9f0ec);
+      color: #2f3e3a;
+    }
 
-<style>
-/* ===== RESET ===== */
-* {
-  box-sizing: border-box;
-}
+    header {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url("hero.jpg") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 40px;
+    }
 
-/* ===== BODY + NỀN ===== */
-body {
-  margin: 0;
-  font-family: "Palatino Linotype", Georgia, serif;
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
 
-  /* NỀN ẢNH */
-  background: 
-    linear-gradient(
-      rgba(224, 242, 254, 0.75),
-      rgba(224, 242, 254, 0.75)
-    ),
-    url("https://i.pinimg.com/736x/81/94/5d/81945d20b5b9b187d027105be3ba8b49.jpg")
-    center / cover no-repeat fixed;
+    header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      line-height: 1.7;
+    }
 
-  color: #2f2f2f;
-}
+    section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 80px 20px;
+    }
 
-/* ===== KHUNG CHÍNH ===== */
-.trip {
-  max-width: 900px;
-  margin: 60px auto;
-  padding: 50px 60px;
+    section h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 50px;
+      position: relative;
+    }
 
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
+    section h2::after {
+      content: "";
+      width: 80px;
+      height: 4px;
+      background: #6fa48f;
+      display: block;
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
 
-/* ===== TIÊU ĐỀ ===== */
-.trip h1 {
-  text-align: center;
-  font-size: 38px;
-  margin-bottom: 10px;
-  color: #1e3a8a;
-}
+    .intro {
+      text-align: center;
+      line-height: 1.9;
+      font-size: 1.05rem;
+    }
 
-.trip h2 {
-  text-align: center;
-  font-size: 24px;
-  font-weight: normal;
-  margin-bottom: 40px;
-  color: #374151;
-}
+    /* ACCORDION */
+    .day {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.08);
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
 
-.trip h3 {
-  font-size: 22px;
-  margin-top: 50px;
-  color: #1f2937;
-}
+    .day-header {
+      padding: 25px 30px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #7fb8a2, #5f9c87);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.trip h4 {
-  font-size: 20px;
-  margin-top: 30px;
-  color: #374151;
-}
+    .day-header span {
+      font-size: 1.5rem;
+      transition: transform .4s;
+    }
 
-/* ===== ĐOẠN VĂN ===== */
-.trip p {
-  font-size: 18px;
-  line-height: 1.9;
-  margin: 18px 0;
-  text-align: justify;
-}
+    .day.active .day-header span {
+      transform: rotate(180deg);
+    }
 
-/* ===== ẢNH ===== */
-.full-img {
-  width: 100%;
-  border-radius: 14px;
-  margin: 28px 0;
-  display: block;
+    .day-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .6s ease;
+      background: #fff;
+    }
 
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
+    .day.active .day-content {
+      max-height: 4000px;
+    }
 
-.full-img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
-}
+    .detail {
+      padding: 30px;
+      border-bottom: 1px solid #eee;
+    }
 
-/* ===== ĐƯỜNG PHÂN CÁCH ===== */
-hr {
-  border: none;
-  border-top: 2px dashed #9ca3af;
-  margin: 60px 0;
-}
+    .detail:last-child { border-bottom: none; }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .trip {
-    padding: 35px 25px;
-    margin: 30px 15px;
-  }
+    .detail h3 {
+      margin-top: 0;
+      color: #4f7f6d;
+    }
 
-  .trip h1 {
-    font-size: 30px;
-  }
+    .detail p {
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
 
-  .trip p {
-    font-size: 16.5px;
-  }
-}
-</style>
+    .img-box {
+      width: 100%;
+      height: 260px;
+      border-radius: 14px;
+      background: #ccc;
+      margin: 15px 0 25px;
+    }
+
+    footer {
+      background: #2f3e3a;
+      color: #e0ebe6;
+      text-align: center;
+      padding: 60px 20px;
+      line-height: 1.8;
+    }
+  </style>
 </head>
-
 <body>
 
-<section class="trip">
+<header>
+  <div>
+    <h1>Chuyến Tham Quan Học Tập Đà Lạt</h1>
+    <p>Dấu ấn thanh xuân – Hoài bão tuổi học trò của tập thể lớp 11L</p>
+  </div>
+</header>
 
-<h1>🌿 CHUYẾN THAM QUAN HỌC TẬP ĐÀ LẠT</h1>
-<h2>DẤU ẤN KHÓ QUÊN CỦA TẬP THỂ LỚP 11L</h2>
+<section>
+  <h2>Ý nghĩa chuyến đi</h2>
+  <p class="intro">
+    Đà Lạt không chỉ là điểm đến du lịch, mà còn là không gian để lớp 11L trải nghiệm,
+    trưởng thành, gắn kết và lưu giữ những ký ức trong trẻo nhất của tuổi học trò.
+  </p>
+</section>
 
-<img class="full-img" src="link-anh-toan-canh.jpg" alt="Đà Lạt">
+<section>
+  <h2>Hành trình Đà Lạt</h2>
 
-<p>
-Đà Lạt là nơi sương sớm giăng nhẹ trên những triền đồi, nơi rừng thông thì thầm trong gió
-và nhịp sống chậm rãi mở ra những khoảng lặng bình yên giữa bộn bề thường nhật.
-Không chỉ mang vẻ đẹp thơ mộng đặc trưng của thành phố cao nguyên,
-Đà Lạt còn là vùng đất giàu giá trị văn hóa, lịch sử và giáo dục.
-</p>
+  <!-- DAY 1 -->
+  <div class="day">
+    <div class="day-header">🗓️ Ngày 01 – Khởi hành & làm quen <span>⌄</span></div>
+    <div class="day-content">
+      <div class="detail">
+        <h3>Trường Đại học Đà Lạt</h3>
+        <div class="img-box"></div>
+        <p>
+          Điểm đến học tập đầu tiên – nơi các bạn học sinh được tìm hiểu về môi trường
+          đào tạo, kiến trúc và tinh thần học thuật giữa lòng thành phố cao nguyên.
+        </p>
+      </div>
 
-<p>
-Chính vì thế, chuyến tham quan học tập tại Đà Lạt của tập thể lớp 11L
-không đơn thuần là một chuyến đi xa,
-mà còn là hành trình trải nghiệm, khám phá,
-gắn kết và lưu giữ những dấu ấn thanh xuân đáng nhớ của tuổi học trò.
-</p>
+      <div class="detail">
+        <h3>Buổi tối – Buffet rau</h3>
+        <div class="img-box"></div>
+        <p>
+          Bữa tối ấm áp khép lại ngày đầu tiên, mở ra những tiếng cười và khoảnh khắc
+          gần gũi của tập thể 11L.
+        </p>
+      </div>
+    </div>
+  </div>
 
-<hr>
+  <!-- DAY 2 -->
+  <div class="day">
+    <div class="day-header">🗓️ Ngày 02 – Trải nghiệm & gắn kết <span>⌄</span></div>
+    <div class="day-content">
+      <div class="detail">
+        <h3>Săn mây Cầu Gỗ</h3>
+        <div class="img-box"></div>
+        <p>
+          Buổi sáng trong lành giữa mây trời và đồi chè xanh mướt – những khung hình
+          đẹp nhất của tuổi học trò.
+        </p>
+      </div>
 
-<h3>🌱 Ý NGHĨA CỦA CHUYẾN THAM QUAN HỌC TẬP</h3>
+      <div class="detail">
+        <h3>Puppy Farm Đà Lạt</h3>
+        <div class="img-box"></div>
+        <p>
+          Không gian nông trại công nghệ cao, vườn hoa và những chú cún đáng yêu mang
+          đến niềm vui và sự thư giãn.
+        </p>
+      </div>
 
-<img class="full-img" src="link-anh-sinh-hoat.jpg" alt="Sinh hoạt tập thể">
+      <div class="detail">
+        <h3>Nhà lao thiếu nhi Đà Lạt & Domaine de Marie</h3>
+        <div class="img-box"></div>
+        <p>
+          Lắng đọng cùng lịch sử dân tộc và kiến trúc Pháp cổ kính – nơi cảm xúc và
+          lòng biết ơn được khơi dậy.
+        </p>
+      </div>
 
-<p>
-Trong suốt hành trình, lớp 11L đã có cơ hội tham quan nhiều địa điểm
-mang giá trị giáo dục, văn hóa và lịch sử.
-Mỗi điểm đến đều mở ra những bài học thực tế sinh động,
-giúp học sinh mở rộng hiểu biết và gắn kiến thức sách vở với đời sống.
-</p>
+      <div class="detail">
+        <h3>Đêm Gala</h3>
+        <div class="img-box"></div>
+        <p>
+          Đêm hội chan chứa cảm xúc – nơi tiếng cười, sự sẻ chia và ký ức thanh xuân
+          hòa làm một.
+        </p>
+      </div>
+    </div>
+  </div>
 
-<p>
-Bên cạnh đó, chuyến đi còn là dịp để các thành viên trong lớp
-thêm gắn bó, sẻ chia và thấu hiểu nhau hơn
-qua từng hoạt động tập thể và những khoảnh khắc giản dị nhưng đầy ý nghĩa.
-</p>
+  <!-- DAY 3 -->
+  <div class="day">
+    <div class="day-header">🗓️ Ngày 03 – Tạm biệt Đà Lạt <span>⌄</span></div>
+    <div class="day-content">
+      <div class="detail">
+        <h3>Dinh III – Dinh Bảo Đại</h3>
+        <div class="img-box"></div>
+        <p>
+          Điểm dừng chân cuối cùng – khép lại hành trình bằng những cảm xúc lắng đọng
+          giữa rừng thông xanh mát.
+        </p>
+      </div>
 
-<hr>
-
-<h3>📍 HÀNH TRÌNH THAM QUAN – HỌC TẬP</h3>
-
-<h4>🗓️ NGÀY 01: KHỞI HÀNH – LÀM QUEN ĐÀ LẠT</h4>
-
-<img class="full-img" src="link-anh-dh-da-lat.jpg" alt="Đại học Đà Lạt">
-
-<p>
-Điểm đến đầu tiên là Trường Đại học Đà Lạt –
-nơi các bạn được tìm hiểu về lịch sử hình thành,
-kiến trúc và môi trường đào tạo của một cơ sở giáo dục tiêu biểu
-giữa lòng thành phố cao nguyên.
-</p>
-
-<hr>
-
-<h4>🗓️ NGÀY 02: TRẢI NGHIỆM – GẮN KẾT</h4>
-
-<img class="full-img" src="link-anh-cau-go.jpg" alt="Cầu Gỗ săn mây">
-
-<p>
-Giữa không gian bồng bềnh của mây trời và sắc xanh của đồi chè,
-những khoảnh khắc hồn nhiên của tuổi học trò
-đã được lưu giữ trọn vẹn qua từng khung hình.
-</p>
-
-<hr>
-
-<h4>🗓️ NGÀY 03: TẠM BIỆT ĐÀ LẠT</h4>
-
-<img class="full-img" src="link-anh-dinh-bao-dai.jpg" alt="Dinh Bảo Đại">
-
-<p>
-Dinh III – Dinh Bảo Đại là điểm dừng chân cuối cùng,
-khép lại hành trình tham quan học tập
-bằng những cảm xúc lắng đọng và khó quên.
-</p>
-
-<hr>
-
-<h3>🌸 ĐÀ LẠT – NƠI LƯU DẤU THANH XUÂN 11L</h3>
-
-<img class="full-img" src="link-anh-tap-the.jpg" alt="Ảnh tập thể">
-
-<p>
-Chuyến đi không chỉ mang đến kiến thức và trải nghiệm thực tế,
-mà còn là hành trình trưởng thành,
-nơi mỗi thành viên học cách sẻ chia,
-gắn bó và trân trọng những năm tháng học trò.
-</p>
-
-<p>
-Khi bánh xe lăn xa thành phố cao nguyên,
-Đà Lạt vẫn ở lại – trong những bức ảnh,
-những câu chuyện chưa kể hết
-và trong ký ức chung của tập thể lớp 11L.
-</p>
+      <div class="detail">
+        <h3>Rời Đà Lạt</h3>
+        <div class="img-box"></div>
+        <p>
+          Chuyến xe lăn bánh rời thành phố sương mù, mang theo những ký ức đẹp sẽ còn
+          ở lại mãi với thanh xuân 11L.
+        </p>
+      </div>
+    </div>
+  </div>
 
 </section>
+
+<footer>
+  <p>🌸 Đà Lạt – Nơi lưu dấu thanh xuân lớp 11L</p>
+  <p>Một hành trình học tập, trải nghiệm và trưởng thành</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.day-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.parentElement.classList.toggle('active');
+    });
+  });
+</script>
 
 </body>
 </html>
