@@ -1,268 +1,175 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hành trình Đà Lạt – Thanh xuân 11L</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      background: linear-gradient(180deg, #f5f7f6, #e9f0ec);
-      color: #2f3e3a;
-    }
+<meta charset="UTF-8">
+<title>Hành trình Đà Lạt – Thanh xuân 11L</title>
 
-    header {
-      height: 100vh;
-      background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url("hero.jpg") center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      padding: 40px;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: "Palatino Linotype", Georgia, serif;
+  background: #f4efe9;
+  color: #3b3b3b;
+  line-height: 1.7;
+}
 
-    header h1 {
-      font-size: 3rem;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-    }
+/* HERO */
+.hero {
+  height: 85vh;
+  background: url("dalat-hero.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    header p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      line-height: 1.7;
-    }
+.hero-box {
+  background: rgba(255,255,255,0.78);
+  padding: 60px 80px;
+  text-align: center;
+  max-width: 900px;
+}
 
-    section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 80px 20px;
-    }
+.hero-box h1 {
+  font-size: 46px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
 
-    section h2 {
-      text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 50px;
-      position: relative;
-    }
+.hero-box p {
+  font-size: 18px;
+}
 
-    section h2::after {
-      content: "";
-      width: 80px;
-      height: 4px;
-      background: #6fa48f;
-      display: block;
-      margin: 15px auto 0;
-      border-radius: 2px;
-    }
+/* CONTENT */
+.container {
+  max-width: 1000px;
+  margin: 80px auto;
+  padding: 0 30px;
+}
 
-    .intro {
-      text-align: center;
-      line-height: 1.9;
-      font-size: 1.05rem;
-    }
+.intro {
+  font-size: 18px;
+  margin-bottom: 60px;
+}
 
-    /* ACCORDION */
-    .day {
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 20px 40px rgba(0,0,0,.08);
-      margin-bottom: 30px;
-      overflow: hidden;
-    }
+/* DAY BLOCK */
+.day {
+  border-top: 1px solid #cfc6bc;
+  padding: 25px 0;
+}
 
-    .day-header {
-      padding: 25px 30px;
-      font-size: 1.3rem;
-      font-weight: 600;
-      cursor: pointer;
-      background: linear-gradient(135deg, #7fb8a2, #5f9c87);
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.day-title {
+  font-size: 28px;
+  cursor: pointer;
+  position: relative;
+}
 
-    .day-header span {
-      font-size: 1.5rem;
-      transition: transform .4s;
-    }
+.day-title::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  font-size: 30px;
+}
 
-    .day.active .day-header span {
-      transform: rotate(180deg);
-    }
+.day.active .day-title::after {
+  content: "–";
+}
 
-    .day-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .6s ease;
-      background: #fff;
-    }
+.day-content {
+  display: none;
+  padding-top: 20px;
+  font-size: 17px;
+}
 
-    .day.active .day-content {
-      max-height: 4000px;
-    }
+.day.active .day-content {
+  display: block;
+}
 
-    .detail {
-      padding: 30px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .detail:last-child { border-bottom: none; }
-
-    .detail h3 {
-      margin-top: 0;
-      color: #4f7f6d;
-    }
-
-    .detail p {
-      line-height: 1.8;
-      margin-bottom: 15px;
-    }
-
-    .img-box {
-      width: 100%;
-      height: 260px;
-      border-radius: 14px;
-      background: #ccc;
-      margin: 15px 0 25px;
-    }
-
-    footer {
-      background: #2f3e3a;
-      color: #e0ebe6;
-      text-align: center;
-      padding: 60px 20px;
-      line-height: 1.8;
-    }
-  </style>
+/* FOOT */
+.end {
+  margin-top: 80px;
+  font-style: italic;
+  text-align: center;
+  font-size: 18px;
+}
+</style>
 </head>
+
 <body>
 
-<header>
-  <div>
-    <h1>Chuyến Tham Quan Học Tập Đà Lạt</h1>
-    <p>Dấu ấn thanh xuân – Hoài bão tuổi học trò của tập thể lớp 11L</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-box">
+    <h1>HÀNH TRÌNH TRẢI NGHIỆM – ĐÀ LẠT</h1>
+    <p>Nơi lưu giữ những kỷ niệm đẹp của thanh xuân lớp 11L</p>
   </div>
-</header>
-
-<section>
-  <h2>Ý nghĩa chuyến đi</h2>
-  <p class="intro">
-    Đà Lạt không chỉ là điểm đến du lịch, mà còn là không gian để lớp 11L trải nghiệm,
-    trưởng thành, gắn kết và lưu giữ những ký ức trong trẻo nhất của tuổi học trò.
-  </p>
 </section>
 
-<section>
-  <h2>Hành trình Đà Lạt</h2>
+<!-- CONTENT -->
+<div class="container">
+
+  <div class="intro">
+    Chuyến tham quan, trải nghiệm tại Đà Lạt không chỉ là một hành trình học tập
+    mà còn là khoảng thời gian để tập thể lớp 11L cùng nhau gắn kết, sẻ chia
+    và lưu giữ những kỷ niệm đẹp của tuổi học trò.
+  </div>
 
   <!-- DAY 1 -->
   <div class="day">
-    <div class="day-header">🗓️ Ngày 01 – Khởi hành & làm quen <span>⌄</span></div>
+    <div class="day-title">Ngày 01 – Khởi hành & khám phá</div>
     <div class="day-content">
-      <div class="detail">
-        <h3>Trường Đại học Đà Lạt</h3>
-        <div class="img-box"></div>
-        <p>
-          Điểm đến học tập đầu tiên – nơi các bạn học sinh được tìm hiểu về môi trường
-          đào tạo, kiến trúc và tinh thần học thuật giữa lòng thành phố cao nguyên.
-        </p>
-      </div>
-
-      <div class="detail">
-        <h3>Buổi tối – Buffet rau</h3>
-        <div class="img-box"></div>
-        <p>
-          Bữa tối ấm áp khép lại ngày đầu tiên, mở ra những tiếng cười và khoảnh khắc
-          gần gũi của tập thể 11L.
-        </p>
-      </div>
+      <p>
+        Chuyến xe bắt đầu lăn bánh, mang theo sự háo hức, mong chờ của cả lớp.
+        Trên suốt hành trình, những tiếng cười nói rộn ràng đã xua tan mệt mỏi.
+      </p>
+      <p>
+        Khi đặt chân đến Đà Lạt, chúng tôi bắt đầu khám phá thành phố ngàn hoa
+        với những địa điểm nổi tiếng và không khí se lạnh đặc trưng.
+      </p>
     </div>
   </div>
 
   <!-- DAY 2 -->
   <div class="day">
-    <div class="day-header">🗓️ Ngày 02 – Trải nghiệm & gắn kết <span>⌄</span></div>
+    <div class="day-title">Ngày 02 – Trải nghiệm & gắn kết</div>
     <div class="day-content">
-      <div class="detail">
-        <h3>Săn mây Cầu Gỗ</h3>
-        <div class="img-box"></div>
-        <p>
-          Buổi sáng trong lành giữa mây trời và đồi chè xanh mướt – những khung hình
-          đẹp nhất của tuổi học trò.
-        </p>
-      </div>
-
-      <div class="detail">
-        <h3>Puppy Farm Đà Lạt</h3>
-        <div class="img-box"></div>
-        <p>
-          Không gian nông trại công nghệ cao, vườn hoa và những chú cún đáng yêu mang
-          đến niềm vui và sự thư giãn.
-        </p>
-      </div>
-
-      <div class="detail">
-        <h3>Nhà lao thiếu nhi Đà Lạt & Domaine de Marie</h3>
-        <div class="img-box"></div>
-        <p>
-          Lắng đọng cùng lịch sử dân tộc và kiến trúc Pháp cổ kính – nơi cảm xúc và
-          lòng biết ơn được khơi dậy.
-        </p>
-      </div>
-
-      <div class="detail">
-        <h3>Đêm Gala</h3>
-        <div class="img-box"></div>
-        <p>
-          Đêm hội chan chứa cảm xúc – nơi tiếng cười, sự sẻ chia và ký ức thanh xuân
-          hòa làm một.
-        </p>
-      </div>
+      <p>
+        Ngày thứ hai là khoảng thời gian đáng nhớ nhất với nhiều hoạt động trải nghiệm,
+        tham quan và vui chơi tập thể.
+      </p>
+      <p>
+        Mỗi địa điểm đi qua đều để lại những ấn tượng riêng, góp phần làm nên
+        một bức tranh thanh xuân rực rỡ của lớp 11L.
+      </p>
     </div>
   </div>
 
   <!-- DAY 3 -->
   <div class="day">
-    <div class="day-header">🗓️ Ngày 03 – Tạm biệt Đà Lạt <span>⌄</span></div>
+    <div class="day-title">Ngày 03 – Tạm biệt Đà Lạt</div>
     <div class="day-content">
-      <div class="detail">
-        <h3>Dinh III – Dinh Bảo Đại</h3>
-        <div class="img-box"></div>
-        <p>
-          Điểm dừng chân cuối cùng – khép lại hành trình bằng những cảm xúc lắng đọng
-          giữa rừng thông xanh mát.
-        </p>
-      </div>
-
-      <div class="detail">
-        <h3>Rời Đà Lạt</h3>
-        <div class="img-box"></div>
-        <p>
-          Chuyến xe lăn bánh rời thành phố sương mù, mang theo những ký ức đẹp sẽ còn
-          ở lại mãi với thanh xuân 11L.
-        </p>
-      </div>
+      <p>
+        Chuyến đi khép lại trong sự luyến tiếc. Đà Lạt để lại trong lòng mỗi người
+        những cảm xúc khó quên.
+      </p>
+      <p>
+        Dù phải nói lời chia tay, nhưng những kỷ niệm đẹp của chuyến đi
+        sẽ mãi là một phần của thanh xuân lớp 11L.
+      </p>
     </div>
   </div>
 
-</section>
+  <div class="end">
+    Đà Lạt – nơi lưu dấu thanh xuân, nơi những kỷ niệm tuổi học trò mãi còn nguyên vẹn.
+  </div>
 
-<footer>
-  <p>🌸 Đà Lạt – Nơi lưu dấu thanh xuân lớp 11L</p>
-  <p>Một hành trình học tập, trải nghiệm và trưởng thành</p>
-</footer>
+</div>
 
 <script>
-  document.querySelectorAll('.day-header').forEach(header => {
-    header.addEventListener('click', () => {
-      header.parentElement.classList.toggle('active');
-    });
+document.querySelectorAll(".day-title").forEach(title => {
+  title.addEventListener("click", () => {
+    title.parentElement.classList.toggle("active");
   });
+});
 </script>
 
 </body>
