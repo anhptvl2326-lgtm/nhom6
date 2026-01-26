@@ -1,87 +1,201 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <title>Thanh xuân 11L – Đà Lạt</title>
-  <link rel="stylesheet" href="dalat.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Hành trình thanh xuân 11L – Đà Lạt</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: #f4f1ec;
+  color: #3b3b3b;
+  line-height: 1.7;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+              url("hero.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero-content {
+  max-width: 800px;
+  color: #fff;
+  animation: fadeIn 1.5s ease;
+}
+
+.hero h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 3.5rem;
+  letter-spacing: 2px;
+}
+
+.hero p {
+  margin-top: 20px;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.scroll {
+  margin-top: 40px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* INTRO */
+.intro {
+  max-width: 900px;
+  margin: 90px auto;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.intro h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+}
+
+.intro p {
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+/* TIMELINE */
+.timeline {
+  max-width: 1000px;
+  margin: 0 auto 120px;
+  padding: 0 20px;
+}
+
+.day {
+  background: #fff;
+  border-radius: 22px;
+  padding: 35px;
+  margin-bottom: 50px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.08);
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.day:hover {
+  transform: translateY(-6px);
+}
+
+.day span {
+  font-size: 0.85rem;
+  color: #7a8a6d;
+}
+
+.day h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
+
+.day p {
+  opacity: 0.85;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
 </head>
+
 <body>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="overlay"></div>
-  <div class="hero-content fade-in">
-    <h1>Thanh xuân 11L</h1>
-    <p class="subtitle">Sáu hành trình – Một thanh xuân đáng nhớ</p>
-    <p class="desc">
-      Đà Lạt – nơi những kỷ niệm tuổi học trò được thắp sáng,
-      nơi hoài bão âm thầm lớn lên cùng chúng ta.
+  <div class="hero-content">
+    <h1>HÀNH TRÌNH THANH XUÂN 11L</h1>
+    <p>
+      Giữa sáu hành trình của tuổi học trò, Đà Lạt hiện lên như một khoảng lặng đẹp  
+      – nơi kỷ niệm được giữ lại và hoài bão bắt đầu lớn lên.
     </p>
-    <a href="#journey" class="btn">Khám phá hành trình</a>
+    <div class="scroll">cuộn xuống để tiếp tục ↓</div>
   </div>
 </section>
 
-<!-- GIỚI THIỆU -->
-<section class="intro fade-up">
-  <h2>Hành trình của kỷ niệm và hoài bão</h2>
+<!-- INTRO -->
+<section class="intro">
+  <h2>Một trong sáu hành trình đáng nhớ</h2>
   <p>
-    Chuyến tham quan học tập Đà Lạt không chỉ là một chuyến đi xa,
-    mà còn là hành trình của những trải nghiệm quý giá, những bài học
-    thực tế sinh động và những ký ức không thể nào quên của thanh xuân 11L.
+    Chuyến tham quan học tập tại Đà Lạt không chỉ là một chuyến đi,
+    mà còn là hành trình của trải nghiệm, trưởng thành và gắn kết.
+    Ở đó, chúng tôi học được những bài học ngoài trang sách,
+    lắng nghe lịch sử và viết tiếp những ước mơ của chính mình.
   </p>
 </section>
 
-<!-- HÀNH TRÌNH -->
-<section class="timeline" id="journey">
-  <div class="day fade-left">
-    <span class="day-label">Ngày 01</span>
-    <h3>Khởi hành & khám phá Đà Lạt</h3>
-    <ul>
-      <li>Khởi hành đến thành phố Đà Lạt</li>
-      <li>Làm quen với không gian cao nguyên</li>
-      <li>Gắn kết tập thể – mở đầu hành trình</li>
-    </ul>
+<!-- TIMELINE -->
+<section class="timeline">
+
+  <div class="day">
+    <span>Ngày 01</span>
+    <h3>Khởi hành – Bắt đầu hành trình</h3>
+    <p>
+      Rời xa lớp học quen thuộc, chúng tôi cùng nhau đặt chân đến Đà Lạt,
+      mở ra một hành trình mới – nơi những kỷ niệm đầu tiên của chuyến đi
+      được hình thành.
+    </p>
   </div>
 
-  <div class="day fade-right">
-    <span class="day-label">Ngày 02</span>
-    <h3>Lịch sử & văn hóa</h3>
-    <ul>
-      <li>Tham quan Nhà lao Thiếu nhi Đà Lạt</li>
-      <li>Nhà thờ Domaine de Marie</li>
-      <li>Hiểu thêm về lịch sử – trân trọng hiện tại</li>
-    </ul>
+  <div class="day">
+    <span>Ngày 02</span>
+    <h3>Lịch sử – Văn hóa – Trân trọng</h3>
+    <p>
+      Tham quan Nhà lao Thiếu nhi Đà Lạt và Nhà thờ Domaine de Marie,
+      chúng tôi hiểu hơn về quá khứ, để biết trân trọng hiện tại
+      và sống có trách nhiệm hơn với tương lai.
+    </p>
   </div>
 
-  <div class="day fade-left">
-    <span class="day-label">Ngày 03</span>
-    <h3>Khép lại hành trình</h3>
-    <ul>
-      <li>Tham quan Dinh Bảo Đại</li>
-      <li>Viết nhật ký – lưu giữ thanh xuân</li>
-      <li>Mang theo hoài bão trở về</li>
-    </ul>
+  <div class="day">
+    <span>Ngày 03</span>
+    <h3>Khép lại – Mang theo hoài bão</h3>
+    <p>
+      Thu dọn hành lý, ghé thăm Dinh Bảo Đại trước khi rời Đà Lạt.
+      Hành trình khép lại, nhưng ký ức và những ước mơ
+      vẫn tiếp tục theo chúng tôi trên con đường phía trước.
+    </p>
   </div>
+
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>Thanh xuân 11L © Một thời để nhớ</p>
+  Thanh xuân 11L – Một thời để nhớ
 </footer>
-
-<script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-      }
-    });
-  });
-
-  document.querySelectorAll('.fade-in, .fade-up, .fade-left, .fade-right')
-    .forEach(el => observer.observe(el));
-</script>
 
 </body>
 </html>
