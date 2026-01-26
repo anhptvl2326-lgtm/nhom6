@@ -1,1 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chuyến tham quan học tập Đà Lạt – Lớp 11L</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Palatino Linotype", Georgia, serif;
+      background: #f5f2ec;
+      color: #3a3a3a;
+      line-height: 1.7;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: 
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url("hero.jpg") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      font-size: 18px;
+      margin: 0 auto 30px;
+    }
+
+    .hero a {
+      display: inline-block;
+      padding: 12px 30px;
+      background: #2f5f4f;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .hero a:hover {
+      background: #244b3f;
+    }
+
+    /* SECTION */
+    section {
+      padding: 70px 10%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      color: #2f5f4f;
+      margin-bottom: 10px;
+    }
+
+    /* Ý NGHĨA */
+    .meaning {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .meaning img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    .meaning p {
+      grid-column: 1 / -1;
+      margin-top: 20px;
+      text-align: center;
+      font-size: 17px;
+    }
+
+    /* NGÀY */
+    .day {
+      margin-bottom: 70px;
+    }
+
+    .day h3 {
+      font-size: 26px;
+      color: #8b5e3c;
+      margin-bottom: 20px;
+    }
+
+    .day-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .day-content img {
+      width: 100%;
+      border-radius: 18px;
+    }
+
+    .day-content ul {
+      list-style: none;
+    }
+
+    .day-content li {
+      margin-bottom: 12px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .day-content li::before {
+      content: "🌿";
+      position: absolute;
+      left: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #2f5f4f;
+      color: #fff;
+      text-align: center;
+      padding: 25px 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <h1>Chuyến tham quan học tập Đà Lạt</h1>
+      <p>
+        Dấu ấn khó quên của tập thể lớp 11L –  
+        hành trình học tập, trải nghiệm và lưu giữ những kỷ niệm thanh xuân tươi đẹp.
+      </p>
+      <a href="#hanhtrinh">Khám phá hành trình</a>
+    </div>
+  </div>
+
+  <!-- Ý NGHĨA -->
+  <section>
+    <div class="section-title">
+      <h2>Ý nghĩa của chuyến tham quan học tập</h2>
+    </div>
+
+    <div class="meaning">
+      <img src="meaning1.jpg" alt="">
+      <img src="meaning2.jpg" alt="">
+      <img src="meaning3.jpg" alt="">
+
+      <p>
+        Chuyến tham quan học tập Đà Lạt không chỉ mang đến những trải nghiệm thực tế sinh động,
+        mà còn giúp học sinh mở rộng kiến thức, nuôi dưỡng tinh thần đoàn kết và gắn bó.
+        Giữa thiên nhiên trong lành và những điểm đến giàu giá trị văn hóa – lịch sử,
+        mỗi khoảnh khắc đều trở thành một phần ký ức đẹp của tuổi học trò.
+      </p>
+    </div>
+  </section>
+
+  <!-- HÀNH TRÌNH -->
+  <section id="hanhtrinh">
+
+    <!-- NGÀY 1 -->
+    <div class="day">
+      <h3>Ngày 01: Khởi hành – Làm quen với thành phố cao nguyên</h3>
+      <div class="day-content">
+        <img src="day1.jpg" alt="">
+        <ul>
+          <li>Khởi hành đến Đà Lạt</li>
+          <li>Tham quan, làm quen với không khí cao nguyên</li>
+          <li>Nghỉ ngơi, sinh hoạt tập thể</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- NGÀY 2 -->
+    <div class="day">
+      <h3>Ngày 02: Trải nghiệm – Học tập – Gắn kết</h3>
+      <div class="day-content">
+        <img src="day2.jpg" alt="">
+        <ul>
+          <li>Tham quan Nhà lao thiếu nhi</li>
+          <li>Tham quan Nhà thờ Domaine de Marie</li>
+          <li>Hoạt động trải nghiệm và sinh hoạt nhóm</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- NGÀY 3 -->
+    <div class="day">
+      <h3>Ngày 03: Thu dọn hành lý – Dinh Bảo Đại – Trở về</h3>
+      <div class="day-content">
+        <img src="day3.jpg" alt="">
+        <ul>
+          <li>Thu dọn đồ đạc, hành lý</li>
+          <li>Tham quan Dinh Bảo Đại</li>
+          <li>Lên xe trở về, kết thúc hành trình</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 • Chuyến tham quan học tập Đà Lạt • Tập thể lớp 11L
+  </footer>
+
+</body>
+</html>
