@@ -1,292 +1,86 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Hành trình Đà Lạt – Lớp 11L</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- FONT -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <style>
-    * {margin:0;padding:0;box-sizing:border-box}
-
-    body {
-      font-family: "Inter", sans-serif;
-      background: #020617;
-      color: #e5e7eb;
-      line-height: 1.7;
-    }
-
-    /* HERO */
-    .hero {
-      height: 100vh;
-      background:
-        linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.9)),
-        url("https://images.unsplash.com/photo-1501785888041-af3ef285b470");
-      background-size: cover;
-      background-position: center;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:20px;
-    }
-
-    .hero h1 {
-      font-family:"Playfair Display",serif;
-      font-size:clamp(40px,6vw,64px);
-      margin-bottom:20px;
-      animation:fadeDown 1.2s ease;
-    }
-
-    .hero p {
-      max-width:850px;
-      font-size:18px;
-      opacity:.9;
-      animation:fadeUp 1.2s ease;
-    }
-
-    section {
-      padding:90px 8%;
-    }
-
-    .section-title {
-      font-family:"Playfair Display",serif;
-      font-size:40px;
-      text-align:center;
-      margin-bottom:60px;
-    }
-
-    /* DAY */
-    .day {
-      background:rgba(255,255,255,.06);
-      border-radius:28px;
-      padding:40px;
-      margin-bottom:60px;
-      backdrop-filter:blur(12px);
-      box-shadow:0 30px 60px rgba(0,0,0,.4);
-      animation:fadeUp 1s ease both;
-    }
-
-    .day h2 {
-      color:#93c5fd;
-      font-size:26px;
-      margin-bottom:30px;
-    }
-
-    /* CARDS */
-    .places {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:28px;
-    }
-
-    .place {
-      background:rgba(255,255,255,.08);
-      border-radius:22px;
-      overflow:hidden;
-      cursor:pointer;
-      transition:.4s;
-    }
-
-    .place:hover {
-      transform:translateY(-10px);
-      box-shadow:0 25px 50px rgba(0,0,0,.45);
-    }
-
-    .place img {
-      width:100%;
-      height:190px;
-      object-fit:cover;
-    }
-
-    .place .content {
-      padding:20px;
-    }
-
-    .place h3 {
-      font-size:18px;
-      margin-bottom:8px;
-    }
-
-    .place p {
-      font-size:14px;
-      opacity:.85;
-    }
-
-    .hint {
-      margin-top:10px;
-      font-size:12px;
-      opacity:.6;
-    }
-
-    /* MODAL */
-    .modal {
-      position:fixed;
-      inset:0;
-      background:rgba(2,6,23,.8);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:999;
-      padding:20px;
-    }
-
-    .modal.active {
-      display:flex;
-      animation:fadeUp .4s ease;
-    }
-
-    .modal-box {
-      background:#020617;
-      border-radius:26px;
-      max-width:700px;
-      width:100%;
-      padding:40px;
-      box-shadow:0 40px 80px rgba(0,0,0,.6);
-      position:relative;
-    }
-
-    .modal-box h3 {
-      font-family:"Playfair Display",serif;
-      font-size:28px;
-      margin-bottom:20px;
-    }
-
-    .close {
-      position:absolute;
-      top:20px;
-      right:24px;
-      font-size:22px;
-      cursor:pointer;
-      opacity:.7;
-    }
-
-    .close:hover {opacity:1}
-
-    @keyframes fadeUp {
-      from {opacity:0; transform:translateY(40px)}
-      to {opacity:1; transform:translateY(0)}
-    }
-
-    @keyframes fadeDown {
-      from {opacity:0; transform:translateY(-40px)}
-      to {opacity:1; transform:translateY(0)}
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <title>Thanh xuân 11L – Đà Lạt</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
 <!-- HERO -->
-<div class="hero">
-  <div>
-    <h1>Hành trình Đà Lạt – Lớp 11L</h1>
-    <p>
-      Một chuyến tham quan học tập không chỉ mở rộng tri thức,
-      mà còn lưu giữ những khoảnh khắc gắn kết và ký ức thanh xuân
-      đáng nhớ giữa thành phố mộng mơ.
+<section class="hero">
+  <div class="overlay"></div>
+  <div class="hero-content fade-in">
+    <h1>Thanh xuân 11L</h1>
+    <p class="subtitle">Sáu hành trình – Một thanh xuân đáng nhớ</p>
+    <p class="desc">
+      Đà Lạt – nơi những kỷ niệm tuổi học trò được thắp sáng,
+      nơi hoài bão âm thầm lớn lên cùng chúng ta.
     </p>
-  </div>
-</div>
-
-<section>
-  <h1 class="section-title">Lịch trình tham quan</h1>
-
-  <!-- DAY 1 -->
-  <div class="day">
-    <h2>Ngày 1 – Khởi hành & lịch sử</h2>
-    <div class="places">
-      <div class="place" onclick="openModal('laothieunhi')">
-        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35">
-        <div class="content">
-          <h3>Nhà lao thiếu nhi Đà Lạt</h3>
-          <p>Địa chỉ đỏ mang giá trị lịch sử.</p>
-          <div class="hint">Nhấp để xem chi tiết</div>
-        </div>
-      </div>
-
-      <div class="place" onclick="openModal('domain')">
-        <img src="https://images.unsplash.com/photo-1586769852044-692d6e3703f2">
-        <div class="content">
-          <h3>Nhà thờ Domaine de Marie</h3>
-          <p>Kiến trúc đặc trưng của Đà Lạt.</p>
-          <div class="hint">Nhấp để xem chi tiết</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- DAY 2 -->
-  <div class="day">
-    <h2>Ngày 2 – Trải nghiệm & gắn kết</h2>
-    <div class="places">
-      <div class="place" onclick="openModal('trainghiem')">
-        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-        <div class="content">
-          <h3>Hoạt động trải nghiệm</h3>
-          <p>Học tập thông qua thực tế.</p>
-          <div class="hint">Nhấp để xem chi tiết</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- DAY 3 -->
-  <div class="day">
-    <h2>Ngày 3 – Thu dọn & Dinh Bảo Đại</h2>
-    <div class="places">
-      <div class="place" onclick="openModal('baodai')">
-        <img src="https://images.unsplash.com/photo-1589634749000-1e72f6c3b53a">
-        <div class="content">
-          <h3>Dinh Bảo Đại</h3>
-          <p>Khép lại hành trình ý nghĩa.</p>
-          <div class="hint">Nhấp để xem chi tiết</div>
-        </div>
-      </div>
-    </div>
+    <a href="#journey" class="btn">Khám phá hành trình</a>
   </div>
 </section>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <div class="close" onclick="closeModal()">✕</div>
-    <h3 id="modalTitle"></h3>
-    <p id="modalContent"></p>
+<!-- GIỚI THIỆU -->
+<section class="intro fade-up">
+  <h2>Hành trình của kỷ niệm và hoài bão</h2>
+  <p>
+    Chuyến tham quan học tập Đà Lạt không chỉ là một chuyến đi xa,
+    mà còn là hành trình của những trải nghiệm quý giá, những bài học
+    thực tế sinh động và những ký ức không thể nào quên của thanh xuân 11L.
+  </p>
+</section>
+
+<!-- HÀNH TRÌNH -->
+<section class="timeline" id="journey">
+  <div class="day fade-left">
+    <span class="day-label">Ngày 01</span>
+    <h3>Khởi hành & khám phá Đà Lạt</h3>
+    <ul>
+      <li>Khởi hành đến thành phố Đà Lạt</li>
+      <li>Làm quen với không gian cao nguyên</li>
+      <li>Gắn kết tập thể – mở đầu hành trình</li>
+    </ul>
   </div>
-</div>
+
+  <div class="day fade-right">
+    <span class="day-label">Ngày 02</span>
+    <h3>Lịch sử & văn hóa</h3>
+    <ul>
+      <li>Tham quan Nhà lao Thiếu nhi Đà Lạt</li>
+      <li>Nhà thờ Domaine de Marie</li>
+      <li>Hiểu thêm về lịch sử – trân trọng hiện tại</li>
+    </ul>
+  </div>
+
+  <div class="day fade-left">
+    <span class="day-label">Ngày 03</span>
+    <h3>Khép lại hành trình</h3>
+    <ul>
+      <li>Tham quan Dinh Bảo Đại</li>
+      <li>Viết nhật ký – lưu giữ thanh xuân</li>
+      <li>Mang theo hoài bão trở về</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Thanh xuân 11L © Một thời để nhớ</p>
+</footer>
 
 <script>
-  const data = {
-    laothieunhi: {
-      title: "Nhà lao thiếu nhi Đà Lạt",
-      content: "Đây là nơi giam giữ nhiều thiếu niên yêu nước trong thời kỳ kháng chiến. Qua việc tham quan và nghe thuyết minh, học sinh hiểu rõ hơn về tinh thần kiên cường, bất khuất của thế hệ cha anh."
-    },
-    domain: {
-      title: "Nhà thờ Domaine de Marie",
-      content: "Công trình mang phong cách kiến trúc châu Âu kết hợp nét văn hóa bản địa. Không gian yên bình và cổ kính giúp học sinh cảm nhận vẻ đẹp thanh lịch của Đà Lạt."
-    },
-    trainghiem: {
-      title: "Hoạt động trải nghiệm thực tế",
-      content: "Các hoạt động trải nghiệm giúp học sinh vận dụng kiến thức vào thực tế, rèn luyện kỹ năng làm việc nhóm và tăng cường sự gắn kết tập thể."
-    },
-    baodai: {
-      title: "Dinh Bảo Đại",
-      content: "Sau khi thu dọn hành lý và lên xe, đoàn ghé tham quan Dinh Bảo Đại – nơi lưu giữ nhiều dấu ấn lịch sử, khép lại chuyến đi bằng những trải nghiệm giàu giá trị văn hóa."
-    }
-  };
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  });
 
-  function openModal(key) {
-    document.getElementById("modalTitle").innerText = data[key].title;
-    document.getElementById("modalContent").innerText = data[key].content;
-    document.getElementById("modal").classList.add("active");
-  }
-
-  function closeModal() {
-    document.getElementById("modal").classList.remove("active");
-  }
+  document.querySelectorAll('.fade-in, .fade-up, .fade-left, .fade-right')
+    .forEach(el => observer.observe(el));
 </script>
 
 </body>
