@@ -9,69 +9,73 @@
 
 <style>
 :root{
-  --paper:#f6f1ea;
-  --ink:#3f3a32;
-  --olive:#5f6f52;
+  --paper:#f3eee7;
+  --ink:#3b362f;
+  --olive:#5c6f52;
 }
 
 *{box-sizing:border-box}
 body{
   margin:0;
   font-family:"Cormorant Garamond",serif;
-  color:var(--ink);
   background:var(--paper);
+  color:var(--ink);
 }
 
 /* HERO */
 .hero{
   position:relative;
-  height:65vh;
+  height:62vh;
   background:
-    linear-gradient(to bottom, rgba(246,241,234,.25), rgba(246,241,234,.65)),
+    linear-gradient(to bottom, rgba(243,238,231,.15), rgba(243,238,231,.55)),
     url("YOUR_HERO_IMAGE.jpg") center/cover no-repeat;
 }
 .hero .tag{
   position:absolute;
-  top:18px;
-  left:28px;
-  font-size:15px;
+  top:16px;
+  left:26px;
+  font-size:14px;
   letter-spacing:1px;
 }
 .hero-content{
   position:absolute;
-  bottom:55px;
+  bottom:40px;
   width:100%;
   text-align:center;
 }
 .hero h1{
   font-family:"Playfair Display",serif;
-  font-size:56px;
-  letter-spacing:2px;
+  font-size:54px;
   margin:0;
+  letter-spacing:2px;
 }
 .hero h2{
-  font-size:18px;
-  margin:8px 0 22px;
+  margin:6px 0 18px;
+  font-size:17px;
   letter-spacing:2px;
 }
+
 .paper-box{
   display:inline-block;
-  background:rgba(255,255,255,.7);
-  padding:22px 38px;
-  max-width:760px;
-  border-radius:14px;
-  box-shadow:0 6px 20px rgba(0,0,0,.08);
+  background:
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
+    rgba(255,255,255,.75);
+  padding:20px 34px;
+  max-width:680px;
+  border-radius:18px 14px 20px 16px;
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
 }
 .paper-box p{
   font-size:18px;
   line-height:1.6;
   margin:0;
 }
+
 .hero button{
-  margin-top:18px;
-  padding:12px 36px;
+  margin-top:16px;
+  padding:11px 34px;
   border:none;
-  border-radius:30px;
+  border-radius:28px;
   background:var(--olive);
   color:#fff;
   font-size:16px;
@@ -80,65 +84,69 @@ body{
 
 /* SECTION */
 .section{
-  padding:90px 8%;
+  padding:80px 8%;
   text-align:center;
-  position:relative;
 }
 .section h3{
   font-family:"Playfair Display",serif;
-  font-size:34px;
-  margin-bottom:18px;
+  font-size:32px;
+  margin-bottom:14px;
+}
+.decor{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin-bottom:26px;
+}
+.decor span{
+  width:60px;
+  height:1px;
+  background:#b6ad9a;
 }
 .section p{
-  max-width:900px;
+  max-width:880px;
   margin:0 auto;
-  font-size:20px;
+  font-size:19px;
   line-height:1.7;
 }
 
 /* TABS */
-.tabs{
-  margin-top:60px;
-}
+.tabs{margin-top:55px}
 .tab-buttons{
   display:flex;
   justify-content:center;
-  gap:18px;
+  gap:10px;
 }
 .tab-buttons button{
-  background:rgba(255,255,255,.7);
+  background:rgba(255,255,255,.65);
   border:none;
-  padding:12px 30px;
-  border-radius:22px;
-  font-size:18px;
+  padding:12px 28px;
+  font-size:17px;
+  border-radius:14px 14px 0 0;
   cursor:pointer;
 }
 .tab-buttons button.active{
-  background:var(--olive);
-  color:#fff;
+  background:rgba(255,255,255,.9);
+  font-weight:600;
 }
 .tab-content{
-  margin-top:50px;
   display:none;
 }
-.tab-content.active{
-  display:block;
-}
+.tab-content.active{display:block}
 
 /* TIMELINE */
 .timeline{
-  max-width:1000px;
+  max-width:980px;
   margin:0 auto;
-  text-align:left;
+  background:rgba(255,255,255,.75);
+  padding:34px;
+  border-radius:0 0 22px 22px;
 }
 .event{
   display:flex;
-  gap:26px;
-  background:rgba(255,255,255,.7);
-  padding:22px;
-  border-radius:18px;
-  margin-bottom:26px;
-  box-shadow:0 6px 18px rgba(0,0,0,.06);
+  gap:24px;
+  margin-bottom:28px;
 }
 .event img{
   width:260px;
@@ -148,23 +156,13 @@ body{
 }
 .event h4{
   font-size:22px;
-  margin:0 0 8px;
+  margin:0 0 6px;
 }
 .event ul{
-  margin:0;
   padding-left:18px;
   font-size:18px;
 }
 .event li{margin-bottom:6px}
-
-/* FADE */
-.fade{
-  animation:fadeUp .8s ease forwards;
-}
-@keyframes fadeUp{
-  from{opacity:0; transform:translateY(25px)}
-  to{opacity:1; transform:none}
-}
 
 @media(max-width:768px){
   .hero h1{font-size:40px}
@@ -176,7 +174,6 @@ body{
 
 <body>
 
-<!-- HERO -->
 <section class="hero">
   <div class="tag">Thanh xuân 11L · Đà Lạt</div>
   <div class="hero-content">
@@ -190,19 +187,20 @@ body{
         bao hoài bão của tuổi học trò.
       </p>
     </div><br>
-    <button onclick="scrollToJourney()">Khám phá hành trình</button>
+    <button onclick="document.getElementById('journey').scrollIntoView({behavior:'smooth'})">
+      Khám phá hành trình
+    </button>
   </div>
 </section>
 
-<!-- INTRO -->
 <section class="section" id="journey">
   <h3>HÀNH TRÌNH CỦA KÝ NIỆM VÀ HOÀI BÃO</h3>
+  <div class="decor"><span></span>🌿<span></span></div>
   <p>
-    Chuyến tham quan học tập Đà Lạt là một trong sáu hành trình đẹp nhất
-    của thanh xuân 11L – nơi trải nghiệm, tri thức và tình bạn cùng song hành.
+    Chuyến tham quan học tập Đà Lạt là một trong sáu hành trình đẹp nhất của
+    thanh xuân 11L – nơi trải nghiệm, tri thức và tình bạn cùng song hành.
   </p>
 
-  <!-- TABS -->
   <div class="tabs">
     <div class="tab-buttons">
       <button class="active" onclick="openTab(0)">Ngày 01</button>
@@ -210,11 +208,10 @@ body{
       <button onclick="openTab(2)">Ngày 03</button>
     </div>
 
-    <!-- DAY 1 -->
-    <div class="tab-content active fade">
+    <div class="tab-content active">
       <div class="timeline">
         <div class="event">
-          <img src="YOUR_DAY1_IMAGE1.jpg">
+          <img src="YOUR_DAY1.jpg">
           <div>
             <h4>⏰ Khởi hành & khám phá Đà Lạt</h4>
             <ul>
@@ -227,11 +224,10 @@ body{
       </div>
     </div>
 
-    <!-- DAY 2 -->
-    <div class="tab-content fade">
+    <div class="tab-content">
       <div class="timeline">
         <div class="event">
-          <img src="YOUR_DAY2_IMAGE.jpg">
+          <img src="YOUR_DAY2.jpg">
           <div>
             <h4>📍 Trải nghiệm & lịch sử</h4>
             <ul>
@@ -244,11 +240,10 @@ body{
       </div>
     </div>
 
-    <!-- DAY 3 -->
-    <div class="tab-content fade">
+    <div class="tab-content">
       <div class="timeline">
         <div class="event">
-          <img src="YOUR_DAY3_IMAGE.jpg">
+          <img src="YOUR_DAY3.jpg">
           <div>
             <h4>🏛️ Khép lại hành trình</h4>
             <ul>
@@ -270,11 +265,8 @@ function openTab(i){
   const btns=document.querySelectorAll(".tab-buttons button");
   tabs.forEach(t=>t.classList.remove("active"));
   btns.forEach(b=>b.classList.remove("active"));
-  tabs[i].classList.add("active","fade");
+  tabs[i].classList.add("active");
   btns[i].classList.add("active");
-}
-function scrollToJourney(){
-  document.getElementById("journey").scrollIntoView({behavior:"smooth"});
 }
 </script>
 
