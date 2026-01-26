@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Hành trình Đà Lạt – Lớp 11L</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --green: #2f5f4f;
-      --brown: #8b5e3c;
-      --bg: #f6f3ef;
-      --text: #3a3a3a;
-    }
-
     * {
       margin: 0;
       padding: 0;
@@ -20,100 +16,141 @@
     }
 
     body {
-      font-family: "Palatino Linotype", Georgia, serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.9;
+      font-family: "Inter", sans-serif;
+      background: linear-gradient(180deg, #020617, #020617);
+      color: #e5e7eb;
+      line-height: 1.7;
     }
 
-    /* HERO */
+    /* ===== HERO ===== */
     .hero {
       height: 100vh;
       background:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-        url("hero.jpg") center/cover no-repeat;
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.85)),
+        url("https://images.unsplash.com/photo-1501785888041-af3ef285b470");
+      background-size: cover;
+      background-position: center;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: #fff;
       padding: 20px;
     }
 
     .hero h1 {
-      font-size: 46px;
-      margin-bottom: 15px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(38px, 6vw, 64px);
+      margin-bottom: 20px;
+      animation: fadeDown 1.2s ease;
     }
 
     .hero p {
-      max-width: 750px;
+      max-width: 850px;
       font-size: 18px;
-      opacity: 0.95;
+      opacity: .9;
+      animation: fadeUp 1.2s ease;
     }
 
-    /* SECTION */
+    /* ===== SECTION ===== */
     section {
       padding: 90px 8%;
     }
 
-    .title {
-      text-align: center;
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: 40px;
       margin-bottom: 60px;
-    }
-
-    .title h2 {
-      font-size: 34px;
-      color: var(--green);
-    }
-
-    .title span {
-      display: block;
-      margin-top: 8px;
-      color: #777;
-      font-size: 15px;
-    }
-
-    .intro {
-      max-width: 900px;
-      margin: auto;
       text-align: center;
-      font-size: 18px;
     }
 
-    /* DAY */
+    /* ===== DAY ===== */
     .day {
-      margin-bottom: 90px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 28px;
+      padding: 40px;
+      margin-bottom: 50px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 30px 60px rgba(0,0,0,.35);
+      animation: fadeUp 1s ease both;
     }
 
-    .day h3 {
-      font-size: 30px;
-      color: var(--brown);
+    .day h2 {
+      font-size: 26px;
       margin-bottom: 30px;
+      color: #93c5fd;
     }
 
-    .card {
-      background: #fff;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 14px 35px rgba(0,0,0,0.08);
+    /* ===== CARD ===== */
+    .places {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
     }
 
-    .card img {
+    .place {
+      background: rgba(255,255,255,0.08);
+      border-radius: 22px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .4s ease, box-shadow .4s ease;
+    }
+
+    .place:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(0,0,0,.45);
+    }
+
+    .place img {
       width: 100%;
-      height: 100%;
+      height: 190px;
       object-fit: cover;
     }
 
-    .card-content {
-      padding: 40px;
-      font-size: 17px;
+    .place .content {
+      padding: 20px;
     }
 
-    .card-content p {
-      margin-bottom: 18px;
-      text-align: justify;
+    .place h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .place .short {
+      font-size: 14px;
+      opacity: .85;
+    }
+
+    /* ===== DETAIL (CLICK TO OPEN) ===== */
+    .detail {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all .5s ease;
+      margin-top: 14px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .place.active .detail {
+      max-height: 400px;
+      opacity: 1;
+    }
+
+    .hint {
+      margin-top: 10px;
+      font-size: 12px;
+      opacity: .6;
+    }
+
+    /* ===== ANIMATION ===== */
+    @keyframes fadeUp {
+      from {opacity:0; transform:translateY(40px)}
+      to {opacity:1; transform:translateY(0)}
+    }
+
+    @keyframes fadeDown {
+      from {opacity:0; transform:translateY(-40px)}
+      to {opacity:1; transform:translateY(0)}
     }
   </style>
 </head>
@@ -123,110 +160,122 @@
   <!-- HERO -->
   <div class="hero">
     <div>
-      <h1>Hành Trình Đà Lạt</h1>
+      <h1>Hành trình Đà Lạt – Lớp 11L</h1>
       <p>
-        Chuyến tham quan học tập của tập thể lớp 11L –  
-        nơi những bước chân tuổi trẻ hòa cùng thiên nhiên, tri thức  
-        và lưu giữ những ký ức thanh xuân tươi đẹp.
+        Một chuyến tham quan học tập không chỉ mở rộng tri thức,
+        mà còn lưu giữ những khoảnh khắc gắn kết và ký ức thanh xuân
+        đáng nhớ của tập thể lớp 11L giữa thành phố mộng mơ.
       </p>
     </div>
   </div>
 
-  <!-- INTRO -->
+  <!-- CONTENT -->
   <section>
-    <div class="title">
-      <h2>Dấu ấn thanh xuân 11L</h2>
-      <span>Học tập – Trải nghiệm – Gắn kết</span>
+    <h1 class="section-title">Lịch trình tham quan</h1>
+
+    <!-- DAY 1 -->
+    <div class="day">
+      <h2>Ngày 1 – Khởi hành & tìm hiểu lịch sử</h2>
+
+      <div class="places">
+        <div class="place" onclick="toggle(this)">
+          <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35">
+          <div class="content">
+            <h3>Nhà lao thiếu nhi Đà Lạt</h3>
+            <p class="short">Địa chỉ đỏ mang giá trị lịch sử sâu sắc.</p>
+
+            <div class="detail">
+              <p>
+                Nhà lao thiếu nhi Đà Lạt là nơi giam giữ nhiều thiếu niên yêu nước
+                trong thời kỳ kháng chiến. Tại đây, học sinh được nghe thuyết minh,
+                quan sát hiện vật lịch sử và hiểu rõ hơn về tinh thần kiên cường,
+                bất khuất của thế hệ cha anh.
+              </p>
+            </div>
+
+            <div class="hint">Nhấp để xem chi tiết</div>
+          </div>
+        </div>
+
+        <div class="place" onclick="toggle(this)">
+          <img src="https://images.unsplash.com/photo-1586769852044-692d6e3703f2">
+          <div class="content">
+            <h3>Nhà thờ Domaine de Marie</h3>
+            <p class="short">Công trình kiến trúc đặc trưng của Đà Lạt.</p>
+
+            <div class="detail">
+              <p>
+                Nhà thờ Domaine de Marie gây ấn tượng với kiến trúc châu Âu
+                kết hợp nét văn hóa bản địa. Không gian yên bình nơi đây
+                giúp học sinh cảm nhận rõ nét vẻ đẹp cổ kính và thanh lịch
+                của thành phố cao nguyên.
+              </p>
+            </div>
+
+            <div class="hint">Nhấp để xem chi tiết</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="intro">
-      Giữa thành phố cao nguyên mờ sương, chuyến tham quan học tập Đà Lạt của lớp 11L
-      không chỉ là một chuyến đi xa, mà còn là hành trình trưởng thành của tuổi học trò.
-      Mỗi điểm đến, mỗi khoảnh khắc đều mang theo những bài học thực tế,
-      những trải nghiệm đáng nhớ và sự gắn bó bền chặt của tập thể dưới mái trường thân yêu.
+    <!-- DAY 2 -->
+    <div class="day">
+      <h2>Ngày 2 – Trải nghiệm & gắn kết tập thể</h2>
+
+      <div class="places">
+        <div class="place" onclick="toggle(this)">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+          <div class="content">
+            <h3>Hoạt động trải nghiệm thực tế</h3>
+            <p class="short">Học tập thông qua quan sát và thực hành.</p>
+
+            <div class="detail">
+              <p>
+                Các hoạt động trải nghiệm giúp học sinh vận dụng kiến thức
+                đã học vào thực tế, đồng thời rèn luyện kỹ năng làm việc nhóm,
+                tinh thần hợp tác và sự chủ động trong học tập.
+              </p>
+            </div>
+
+            <div class="hint">Nhấp để xem chi tiết</div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- DAY 3 -->
+    <div class="day">
+      <h2>Ngày 3 – Thu dọn & tham quan Dinh Bảo Đại</h2>
+
+      <div class="places">
+        <div class="place" onclick="toggle(this)">
+          <img src="https://images.unsplash.com/photo-1589634749000-1e72f6c3b53a">
+          <div class="content">
+            <h3>Dinh Bảo Đại</h3>
+            <p class="short">Điểm đến lịch sử khép lại hành trình.</p>
+
+            <div class="detail">
+              <p>
+                Sau khi thu dọn hành lý và lên xe, đoàn ghé tham quan Dinh Bảo Đại –
+                nơi gắn liền với nhiều dấu ấn lịch sử quan trọng.
+                Đây là điểm dừng chân ý nghĩa, khép lại chuyến đi
+                bằng những trải nghiệm giàu giá trị văn hóa.
+              </p>
+            </div>
+
+            <div class="hint">Nhấp để xem chi tiết</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
 
-  <!-- HÀNH TRÌNH -->
-  <section>
-
-    <!-- NGÀY 1 -->
-    <div class="day">
-      <h3>Ngày 01 – Khởi hành và làm quen với thành phố cao nguyên</h3>
-      <div class="card">
-        <img src="day1.jpg" alt="">
-        <div class="card-content">
-          <p>
-            Sau hành trình dài, tập thể lớp 11L chính thức đặt chân đến Đà Lạt
-            trong không khí se lạnh đặc trưng của thành phố cao nguyên.
-            Những con dốc quanh co, rừng thông xanh mát và làn sương mờ
-            đã để lại ấn tượng đầu tiên đầy nhẹ nhàng và yên bình.
-          </p>
-          <p>
-            Ngày đầu tiên là khoảng thời gian để các bạn làm quen với nhịp sống nơi đây,
-            nghỉ ngơi, sinh hoạt tập thể và tận hưởng bầu không khí trong lành.
-            Chuyến đi dần mở ra bằng những câu chuyện rôm rả,
-            những nụ cười hồn nhiên và cảm giác háo hức cho hành trình phía trước.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- NGÀY 2 -->
-    <div class="day">
-      <h3>Ngày 02 – Trải nghiệm, học tập và gắn kết</h3>
-      <div class="card">
-        <img src="day2.jpg" alt="">
-        <div class="card-content">
-          <p>
-            Ngày thứ hai của hành trình mang đậm ý nghĩa học tập và trải nghiệm.
-            Lớp 11L tham quan Di tích Quốc gia Nhà lao thiếu nhi Đà Lạt –
-            nơi lưu giữ những trang sử hào hùng của dân tộc.
-            Những câu chuyện lịch sử tại đây đã giúp các bạn hiểu hơn
-            về tinh thần kiên cường, ý chí bất khuất của thế hệ đi trước.
-          </p>
-          <p>
-            Tiếp nối hành trình, đoàn ghé thăm Nhà thờ Domaine de Marie –
-            công trình kiến trúc cổ kính mang đậm dấu ấn Pháp.
-            Không gian thanh bình nơi đây mang đến những phút giây lắng đọng,
-            giúp chuyến đi cân bằng giữa học tập, cảm xúc và sự thư thái.
-          </p>
-          <p>
-            Những hoạt động tập thể trong ngày đã góp phần gắn kết các thành viên,
-            để mỗi bạn học sinh không chỉ học thêm kiến thức,
-            mà còn thêm trân trọng tình bạn và tinh thần tập thể.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- NGÀY 3 -->
-    <div class="day">
-      <h3>Ngày 03 – Thu dọn hành lý và tạm biệt Đà Lạt</h3>
-      <div class="card">
-        <img src="day3.jpg" alt="">
-        <div class="card-content">
-          <p>
-            Sáng ngày cuối cùng, lớp 11L thu dọn đồ đạc, hành lý và chuẩn bị rời Đà Lạt.
-            Dù chuyến đi sắp khép lại, nhưng trong mỗi ánh mắt
-            vẫn còn đọng lại nhiều lưu luyến và kỷ niệm khó quên.
-          </p>
-          <p>
-            Trước khi trở về, đoàn ghé thăm Dinh III – Dinh Bảo Đại,
-            công trình mang đậm dấu ấn lịch sử giữa rừng thông xanh mát.
-            Không gian cổ kính nơi đây như một dấu lặng nhẹ nhàng,
-            khép lại hành trình tham quan học tập đầy ý nghĩa.
-          </p>
-          <p>
-            Chuyến xe rời thành phố cao nguyên, nhưng những trải nghiệm,
-            bài học và ký ức đẹp của tập thể lớp 11L
-            sẽ còn theo mãi trong hành trang thanh xuân của mỗi người.
-          </p>
-        </div>
-      </div>
-    </div>
-
-  </section>
+  <script>
+    function toggle(card) {
+      card.classList.toggle("active");
+    }
+  </script>
 
 </body>
-</html>
+  </html>
