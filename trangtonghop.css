@@ -179,6 +179,18 @@ footer {
 }
          
 body {font-family:  Palatino Linotype;}
+}
+
+.handwrite {
+
+font-family: 'Dancing Script', cursive;
+
+font-size: 20px;
+
+color: #8b6f4e;
+
+}
+
 
 .noidunghanhtrinh{font-size:16px; color:#343a40; text-align: justify; margin-right:20px; line-height:1.6; }
                   
@@ -266,6 +278,7 @@ body {font-family:  Palatino Linotype;}
   height: 100%;
   border-radius: 16px;
 }
+
 
 
 
