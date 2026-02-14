@@ -110,8 +110,8 @@ body{
 
 /* fixed portrait width — optimized size */
 .book-wrap{
-  width:540px;
-  max-width:calc(100vw - 60px);
+  width:720px; 
+  max-width:calc(100vw - 80px);
   position:relative;
   flex-shrink:0;
 }
@@ -220,7 +220,7 @@ body{
 }
 .cov-quote{
   font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:1.12rem;line-height:1.95;color:rgba(255,255,255,.72);
+  font-size:1.22rem;line-height:1.95;color:rgba(255,255,255,.72);
   max-width:560px;margin:0 auto 40px;
   animation:fU 1.2s ease .82s both;
 }
@@ -228,7 +228,7 @@ body{
   display:inline-flex;align-items:center;gap:12px;padding:20px 58px;
   background:linear-gradient(130deg,var(--g5) 0%,var(--b7) 100%);
   color:#fff;font-family:'Playfair Display',serif;font-weight:700;
-  font-size:1.12rem;letter-spacing:.06em;border-radius:50px;
+  font-size:1.2rem;letter-spacing:.06em;border-radius:50px;
   border:2px solid rgba(255,255,255,.18);cursor:pointer;
   position:relative;overflow:hidden;
   box-shadow:0 14px 42px rgba(36,72,104,.40),0 5px 16px rgba(62,114,73,.34);
@@ -267,8 +267,9 @@ body{
 ══════════════════════════════════════════════ */
 #diary{
   display:none;
-  width:540px;
-  max-width:calc(100vw - 60px);
+  #diary{
+  width:720px;
+  max-width:calc(100vw - 80px);
   margin:0 auto;
   padding:50px 0 110px;
   position:relative;z-index:10;
@@ -342,7 +343,9 @@ body{
 }
 
 /* portrait page body — generous vertical padding */
-.pg-body{padding:62px 52px 58px;}
+.pg-body{
+  padding:74px 68px 64px;
+}
 
 /* ── FLOATING LEAF (pg 1 & 3) ── */
 .leaf-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
@@ -408,7 +411,7 @@ body{
 .pg-intro{
   text-align:center;margin:30px auto 40px;
   font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:1.14rem;line-height:1.90;color:var(--tx3);
+  font-size:1.22rem;line-height:1.90;color:var(--tx3);
 }
 
 /* ══════════════════════════════════════════════
@@ -438,7 +441,7 @@ body{
 .spair:hover .simg::before{opacity:.58;}
 @keyframes bAn{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
 
-.stxt{font-size:1.12rem;line-height:2.0;color:var(--tx1);}
+.stxt{font-size:1.2rem;line-height:2.0;color:var(--tx1);}
 .stxt p{margin-bottom:14px;}.stxt p:last-child{margin-bottom:0;}
 .stxt .lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.24rem;color:var(--tx0);margin-bottom:18px;}
 
@@ -628,7 +631,7 @@ body{
 .ci img{width:100%;height:100%;object-fit:cover;cursor:pointer;
   transition:all .74s cubic-bezier(.16,.84,.44,1);filter:saturate(1.05);}
 .ccard:hover .ci img{transform:scale(1.08);filter:saturate(1.16);}
-.ct p{font-size:1.12rem;line-height:1.96;color:var(--tx1);margin-bottom:14px;}
+.ct p{font-size:1.2rem;line-height:1.96;color:var(--tx1);margin-bottom:14px;}
 .ct p:last-child{margin-bottom:0;}
 
 /* ── decorative ── */
@@ -678,7 +681,7 @@ body{
 @media(min-width:1400px){
   .book-wrap{max-width:540px;}
   #diary{max-width:660px;}
-  .book-face{padding:90px 66px 80px;}
+  .book-face{ padding:100px 80px 90px;}
   .pg-body{padding:64px 56px 56px;}
   .mcard{min-height:420px;padding:52px 44px;}
 }
@@ -762,6 +765,20 @@ body{
   .cov-sub{font-size:1.6rem;margin-bottom:18px;}
   .cov-quote{margin-bottom:28px;font-size:1.0rem;}
   .mcard{min-height:320px;}
+}
+   @media(min-width:1024px){
+  .book-wrap,
+  #diary{
+    width:760px;
+  }
+
+  .pg-body{
+    padding:80px 76px 70px;
+  }
+
+  .stxt{
+    font-size:1.22rem;
+  }
 }
 </style>
 </head>
