@@ -321,6 +321,37 @@ body::after{
   box-shadow:0 8px 32px rgba(30,68,48,.25),inset 0 0 0 8px rgba(250,246,240,.8),inset 0 0 0 10px rgba(30,68,48,.3);
   border:3px solid var(--beige);
 }
+
+/* Stamp on story image */
+.story-image .stamp {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(142deg, #d44e36, #c44536, #b83d2d);
+  border: 4px dashed rgba(255,255,255,0.75);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  transform: rotate(18deg);
+  box-shadow: 0 5px 15px rgba(196,69,54,0.5);
+  z-index: 5;
+  animation: stampBounce 6s ease-in-out infinite;
+}
+
+@keyframes stampBounce {
+  0%, 100% { 
+    transform: rotate(18deg) scale(1);
+    box-shadow: 0 5px 15px rgba(196,69,54,0.5);
+  }
+  50% { 
+    transform: rotate(16deg) scale(1.1);
+    box-shadow: 0 7px 22px rgba(196,69,54,0.7);
+  }
+}
 .story-image img{width:100%;height:100%;object-fit:cover;transition:all .8s cubic-bezier(.4,0,.2,1);filter:sepia(.05) contrast(1.05);cursor:pointer;}
 .story-card:hover .story-image img{transform:scale(1.08) rotate(-1deg);filter:sepia(.12) contrast(1.1);}
 .story-text{font-size:1.15rem;line-height:1.9;color:var(--ink-dark);font-family:'Lora',serif;}
@@ -413,7 +444,7 @@ body::after{
 .journey-text p{font-size:1.1rem;line-height:1.85;color:var(--ink-dark);font-family:'Lora',serif;}
 
 /* ═══════════════════════════════════════════════════════════
-   ── MEANING CARDS – KHUNG TRÒN LỚN, KHÔNG CHE CHỮ ──
+   ── MEANING CARDS – KHUNG OVAL QUAY ĐẸP HƠN ──
    ═══════════════════════════════════════════════════════════ */
 .meaning-grid{
   display:flex;
@@ -425,10 +456,8 @@ body::after{
 }
 
 .meaning-card{
-  /* Bỏ overflow:hidden và width/height cố định.
-     Dùng aspect-ratio + min-width để giữ hình tròn nhưng tự giãn theo nội dung */
   background:
-    radial-gradient(circle at center,rgba(249,247,240,.98),rgba(232,215,195,.85)),
+    radial-gradient(ellipse at center,rgba(249,247,240,.98),rgba(232,215,195,.85)),
     repeating-linear-gradient(45deg,transparent,transparent 5px,rgba(30,68,48,.02) 5px,rgba(30,68,48,.02) 10px);
   padding:55px 50px;
   border-radius:50%;
@@ -438,61 +467,92 @@ body::after{
   transition:all .6s cubic-bezier(.4,0,.2,1);
   animation:cardFlip 1s ease;
 
-  /* Kích thước: đủ rộng để chứa text, giữ tỷ lệ vuông để circle hoạt động */
   width:380px;
   min-height:380px;
-  height:auto;           /* tự giãn chiều cao nếu cần */
+  height:auto;
 
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   position:relative;
-  overflow:visible;      /* KHÔNG cắt nội dung */
+  overflow:visible;
 }
 
-/* Rotating ornamental border – dùng outline thay vì pseudo che text */
+/* Khung oval quay bên ngoài - gradient xoay */
 .meaning-card::before{
   content:'';
   position:absolute;
-  inset:-6px;
-  background:conic-gradient(from 0deg,#2d5a40,#3e7249,#2d5a40,#3e7249,#2d5a40);
+  inset:-8px;
+  background:conic-gradient(
+    from 0deg,
+    #2d5a40 0deg,
+    #3e7249 60deg,
+    #568c62 120deg,
+    #2d5a40 180deg,
+    #3e7249 240deg,
+    #568c62 300deg,
+    #2d5a40 360deg
+  );
   border-radius:50%;
   z-index:-1;
   opacity:0;
-  animation:rotateMedallion 6s linear infinite;
+  animation:rotateBorder 8s linear infinite;
   transition:opacity .5s ease;
 }
-.meaning-card:hover::before{ opacity:.6; }
+.meaning-card:hover::before{ 
+  opacity:.75;
+  box-shadow:0 0 40px rgba(62,114,73,.5);
+}
 
-/* Radial glow – z-index âm để không che text */
+/* Khung oval quay bên trong - đổi chiều */
 .meaning-card::after{
   content:'';
   position:absolute;
-  inset:0;
-  background:radial-gradient(circle at center,rgba(62,114,73,.12),transparent 70%);
+  inset:8px;
+  background:conic-gradient(
+    from 180deg,
+    rgba(201,169,97,.4) 0deg,
+    rgba(62,114,73,.3) 90deg,
+    rgba(201,169,97,.4) 180deg,
+    rgba(62,114,73,.3) 270deg,
+    rgba(201,169,97,.4) 360deg
+  );
   border-radius:50%;
   opacity:0;
   transition:opacity .5s ease;
   z-index:-1;
-  animation:radialPulse 2s ease-in-out infinite;
+  animation:rotateBorderReverse 6s linear infinite;
 }
-.meaning-card:hover::after{ opacity:1; }
+.meaning-card:hover::after{ 
+  opacity:.6;
+}
 
-@keyframes rotateMedallion{
+/* Animation xoay thuận */
+@keyframes rotateBorder{
   from{transform:rotate(0deg);}
   to{transform:rotate(360deg);}
 }
-@keyframes radialPulse{
-  0%,100%{transform:scale(.9);opacity:.3;}
-  50%{transform:scale(1.1);opacity:.6;}
-}
-@keyframes cardFlip{from{opacity:0;transform:rotateY(-100deg);}to{opacity:1;transform:rotateY(0);}}
 
+/* Animation xoay ngược */
+@keyframes rotateBorderReverse{
+  from{transform:rotate(360deg);}
+  to{transform:rotate(0deg);}
+}
+
+/* Hiệu ứng ánh sáng chạy */
 .meaning-card:hover{
-  transform:translateY(-16px) scale(1.04) rotate(3deg);
-  box-shadow:0 30px 70px rgba(30,68,48,.35);
-  border-color:rgba(30,68,48,.7);
+  transform:translateY(-16px) scale(1.04);
+  box-shadow:
+    0 30px 70px rgba(30,68,48,.35),
+    0 0 60px rgba(62,114,73,.3),
+    inset 0 0 40px rgba(249,247,240,.5);
+  border-color:rgba(62,114,73,.8);
+}
+
+@keyframes cardFlip{
+  from{opacity:0;transform:rotateY(-100deg) scale(.8);}
+  to{opacity:1;transform:rotateY(0) scale(1);}
 }
 
 .meaning-icon{
@@ -505,14 +565,32 @@ body::after{
   z-index:2;
   flex-shrink:0;
 }
-.meaning-card:hover .meaning-icon{ animation:iconSpin 1.5s ease-in-out infinite; }
-.meaning-card:nth-child(2) .meaning-icon{ animation-delay:1s; }
-.meaning-card:nth-child(3) .meaning-icon{ animation-delay:2s; }
+.meaning-card:hover .meaning-icon{ 
+  animation:iconSpinFloat 1.5s ease-in-out infinite;
+  filter:drop-shadow(0 10px 25px rgba(62,114,73,.6));
+}
 
-@keyframes iconBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
-@keyframes iconSpin{
-  0%,100%{transform:rotate(0deg) scale(1);filter:drop-shadow(0 6px 15px rgba(30,68,48,.3));}
-  50%{transform:rotate(15deg) scale(1.15);filter:drop-shadow(0 8px 20px rgba(62,114,73,.6));}
+.meaning-card:nth-child(2) .meaning-icon{ animation-delay:.5s; }
+.meaning-card:nth-child(3) .meaning-icon{ animation-delay:1s; }
+
+@keyframes iconBounce{
+  0%,100%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(-14px) scale(1.05);}
+}
+
+@keyframes iconSpinFloat{
+  0%,100%{
+    transform:rotate(0deg) scale(1) translateY(0);
+  }
+  25%{
+    transform:rotate(10deg) scale(1.1) translateY(-8px);
+  }
+  50%{
+    transform:rotate(0deg) scale(1.15) translateY(-12px);
+  }
+  75%{
+    transform:rotate(-10deg) scale(1.1) translateY(-8px);
+  }
 }
 
 .meaning-card h4{
@@ -524,6 +602,12 @@ body::after{
   position:relative;
   z-index:2;
   line-height:1.3;
+  text-shadow:0 2px 8px rgba(30,68,48,.1);
+}
+
+.meaning-card:hover h4{
+  color:var(--forest-green);
+  text-shadow:0 3px 12px rgba(30,68,48,.2);
 }
 
 .meaning-card p{
@@ -534,7 +618,7 @@ body::after{
   z-index:2;
   font-family:'Lora',serif;
   font-weight:500;
-  max-width:280px;   /* giới hạn chiều rộng text bên trong tròn */
+  max-width:280px;
 }
 
 /* ── QUOTE BOX ── */
@@ -700,20 +784,29 @@ body::after{
       <div class="leaf-layer" id="lf1"></div>
       <div class="page-content">
         <div class="dclouds">☁️ &nbsp;&nbsp; ☁️ &nbsp;&nbsp;&nbsp;&nbsp; ☁️</div>
-        <h3 class="section-title grad-h">🌿 Chuyến Tham Quan Học Tập Đà Lạt</h3>
-        <p class="section-intro">Dấu ấn không phai trong miền ký ức lớp 11L</p>
+        <h3 class="section-title grad-h">🌿 Miền Ký Ức Mở Ra</h3>
+        <p class="section-intro">
+          Có những miền đất ta chỉ ghé qua một lần trong đời, nhưng lại ở lại rất lâu trong ký ức.<br>
+          Đà Lạt của lớp 11L là một miền như thế.
+        </p>
+        
         <div class="story-grid">
           <div class="story-card">
-            <div class="story-image"><img src="images/tongthe.jpg" alt="Toàn cảnh Đà Lạt" loading="lazy"></div>
-            <div class="story-text">
-              <p class="lead">Có những miền đất ta chỉ ghé qua một lần trong đời, nhưng lại ở lại rất lâu trong ký ức. Có những chuyến đi tưởng chừng ngắn ngủi, nhưng khi ngoảnh lại, mới chợt nhận ra: đó là một phần tuổi trẻ đã lặng lẽ khép lại.</p>
-              <p>Đà Lạt của lớp 11L là một miền như thế.</p>
+            <div class="story-image">
+              <div class="stamp">🏔️</div>
+              <img src="images/tongthe.jpg" alt="Toàn cảnh Đà Lạt" loading="lazy">
             </div>
-          </div>
-          <div class="story-card">
-            <div class="story-image"><img src="images/tapthe.jpg" alt="Tập thể lớp 11L" loading="lazy"></div>
             <div class="story-text">
               <p>Đó là nơi sương sớm giăng mờ trên những triền đồi, nơi rừng thông thì thầm trong gió, nơi nhịp sống chậm rãi mở ra những khoảng lặng hiếm hoi giữa những ngày học tập vội vã.</p>
+            </div>
+          </div>
+          
+          <div class="story-card">
+            <div class="story-image">
+              <div class="stamp">👥</div>
+              <img src="images/tapthe.jpg" alt="Tập thể lớp 11L" loading="lazy">
+            </div>
+            <div class="story-text">
               <p>Đà Lạt không chỉ hiện lên trong vẻ đẹp thơ mộng của phố núi, mà còn là không gian của tri thức, của lịch sử, của những giá trị bền bỉ được bồi đắp qua năm tháng.</p>
               <p>Và trong một khoảnh khắc rất đẹp của tuổi học trò, lớp 11L đã đặt dấu chân mình lên miền đất ấy – bằng tất cả sự háo hức, trong veo và khát khao khám phá.</p>
             </div>
@@ -773,80 +866,96 @@ body::after{
     <!-- ══ PAGE 3 ══ -->
     <div class="page" id="page3" style="display:none;">
       <div class="leaf-layer" id="lf3"></div>
-      <div style="position:absolute;top:10%;left:5%;font-size:3rem;opacity:.15;animation:floatSlow 12s ease-in-out infinite;">🌲</div>
-      <div style="position:absolute;top:25%;right:8%;font-size:2.5rem;opacity:.12;animation:floatSlow 15s ease-in-out infinite 2s;">☁️</div>
-      <div style="position:absolute;bottom:20%;left:10%;font-size:2rem;opacity:.18;animation:floatSlow 10s ease-in-out infinite 4s;">🍃</div>
-      <div style="position:absolute;top:60%;right:12%;font-size:2.8rem;opacity:.14;animation:floatSlow 13s ease-in-out infinite 1s;">🌿</div>
       <div class="page-content">
         <h3 class="section-title grad-h">📍 Hành Trình Ba Ngày – Một Miền Ký Ức</h3>
+        
         <div class="journey-tabs">
           <div class="journey-tab active" data-day="day1">🗓️ Ngày 01</div>
           <div class="journey-tab" data-day="day2">🗓️ Ngày 02</div>
           <div class="journey-tab" data-day="day3">🗓️ Ngày 03</div>
         </div>
+        
+        <!-- Day 1 -->
         <div id="day1" class="day-content active">
-          <div class="journey-card">
-            <div class="journey-image"><img src="images/lenxe.jpg" alt="Lên xe" loading="lazy"></div>
-            <div class="journey-text">
-              <h4>🚌 Khởi hành – Chạm ngõ cao nguyên</h4>
-              <p>Sau chặng đường dài từ Bình Dương, lớp 11L bắt đầu hành trình trong sự háo hức và mong chờ. Bữa sáng trên đường đi như tiếp thêm năng lượng cho cả đoàn, mở đầu cho một chuyến đi tràn đầy cảm xúc.</p>
+          <div class="album-container">
+            <div class="album-arrow left" data-album="album1">‹</div>
+            <div class="album-scroll" id="album1">
+              <div class="polaroid wide">
+                <img src="images/lenxe.jpg" alt="Lên xe">
+                <div class="polaroid-caption">🚌 Khởi hành từ Bình Dương</div>
+              </div>
+              <div class="polaroid">
+                <img src="images/truongdh.jpg" alt="Trường ĐH Đà Lạt">
+                <div class="polaroid-caption">🏛️ ĐH Đà Lạt</div>
+              </div>
+              <div class="polaroid">
+                <img src="images/khachsan.jpg" alt="Khách sạn">
+                <div class="polaroid-caption">🏨 Nhận phòng</div>
+              </div>
             </div>
+            <div class="album-arrow right" data-album="album1">›</div>
           </div>
-          <div class="photo-grid">
-            <div class="polaroid">
-              <img src="images/truongdh.jpg" alt="Trường ĐH Đà Lạt" loading="lazy">
-              <div class="img-text-overlay"><div class="img-text-content">Nơi tri thức và kiến trúc giao hòa, gieo vào lòng chúng tôi niềm kính trọng với con đường học vấn</div></div>
-              <div class="polaroid-caption">Trường ĐH Đà Lạt</div>
-            </div>
-            <div class="polaroid">
-              <img src="images/khachsan.jpg" alt="Khách sạn" loading="lazy">
-              <div class="img-text-overlay"><div class="img-text-content">Góc nhỏ ấm cúng, nơi chúng tôi nghỉ chân và lưu giữ những khoảnh khắc đầu tiên tại Đà Lạt</div></div>
-              <div class="polaroid-caption">Nơi nghỉ chân</div>
-            </div>
+          
+          <div class="journal-note">
+            <span class="note-label">☀️ Ngày đầu tiên — Khởi hành</span>
+            <p class="note-text">Sau chặng đường dài từ Bình Dương, lớp 11L bắt đầu hành trình trong sự háo hức và mong chờ. Điểm dừng chân đầu tiên là Trường Đại học Đà Lạt – nơi tri thức và kiến trúc giao hòa, gieo vào lòng chúng tôi niềm kính trọng đối với con đường học vấn.</p>
           </div>
         </div>
+        
+        <!-- Day 2 -->
         <div id="day2" class="day-content">
-          <div class="journey-card">
-            <div class="journey-image"><img src="images/caugo.jpg" alt="Cầu Gỗ" loading="lazy"></div>
-            <div class="journey-text">
-              <h4>☁️ Săn mây Cầu Gỗ – Hòa mình vào thiên nhiên</h4>
-              <p>Buổi sáng, Cầu Gỗ đón chúng tôi bằng biển mây trắng xóa, mang đến cảm giác như chạm tay vào bầu trời. Tại Puppy Farm, tiếng cười hòa cùng ánh nắng và những chú cún nhỏ, đưa chúng tôi trở về với sự hồn nhiên thuần khiết.</p>
+          <div class="album-container">
+            <div class="album-arrow left" data-album="album2">‹</div>
+            <div class="album-scroll" id="album2">
+              <div class="polaroid wide">
+                <img src="images/caugo.jpg" alt="Cầu Gỗ">
+                <div class="polaroid-caption">☁️ Biển mây Cầu Gỗ</div>
+              </div>
+              <div class="polaroid">
+                <img src="images/puppy.jpg" alt="Puppy Farm">
+                <div class="polaroid-caption">🐕 Puppy Farm</div>
+              </div>
+              <div class="polaroid">
+                <img src="images/quangtruong.jpg" alt="Quảng trường">
+                <div class="polaroid-caption">🏙️ Lâm Viên</div>
+              </div>
             </div>
+            <div class="album-arrow right" data-album="album2">›</div>
           </div>
-          <div class="photo-grid">
-            <div class="polaroid">
-              <img src="images/puppy.jpg" alt="Puppy Farm" loading="lazy">
-              <div class="img-text-overlay"><div class="img-text-content">Tiếng cười trong veo hòa cùng ánh nắng, nơi tuổi thơ như trở lại trong từng khoảnh khắc vui vẻ</div></div>
-              <div class="polaroid-caption">Puppy Farm vui vẻ</div>
-            </div>
-            <div class="polaroid">
-              <img src="images/quangtruong.jpg" alt="Lâm Viên" loading="lazy">
-              <div class="img-text-overlay"><div class="img-text-content">Trái tim của thành phố, nơi nhịp sống trẻ trung và năng động của cao nguyên hiện lên rõ nét</div></div>
-              <div class="polaroid-caption">Quảng trường Lâm Viên</div>
-            </div>
+          
+          <div class="journal-note">
+            <span class="note-label">☁️ Ngày thứ hai — Trải nghiệm</span>
+            <p class="note-text">Buổi sáng, Cầu Gỗ đón chúng tôi bằng biển mây trắng xóa, mang đến cảm giác như chạm tay vào bầu trời. Tại Puppy Farm, tiếng cười hòa cùng ánh nắng và những chú cún nhỏ, đưa chúng tôi trở về với sự hồn nhiên thuần khiết.</p>
           </div>
         </div>
+        
+        <!-- Day 3 -->
         <div id="day3" class="day-content">
-          <div class="journey-card">
-            <div class="journey-image"><img src="images/ansang.jpg" alt="Ăn sáng" loading="lazy"></div>
-            <div class="journey-text">
-              <h4>🌄 Buổi sáng cuối cùng – Lưu giữ khoảnh khắc</h4>
-              <p>Buổi sáng cuối cùng trôi qua chậm rãi trong sự lưu luyến khó gọi tên. Dinh III – Dinh Bảo Đại khép lại hành trình bằng vẻ đẹp trầm mặc, cổ kính giữa rừng thông xanh mát.</p>
+          <div class="album-container">
+            <div class="album-arrow left" data-album="album3">‹</div>
+            <div class="album-scroll" id="album3">
+              <div class="polaroid">
+                <img src="images/ansang.jpg" alt="Ăn sáng">
+                <div class="polaroid-caption">☕ Bữa sáng cuối</div>
+              </div>
+              <div class="polaroid wide">
+                <img src="images/dinh3.jpg" alt="Dinh Bảo Đại">
+                <div class="polaroid-caption">🏯 Dinh III</div>
+              </div>
+              <div class="polaroid">
+                <img src="images/roidal.jpg" alt="Rời Đà Lạt">
+                <div class="polaroid-caption">👋 Tạm biệt!</div>
+              </div>
             </div>
+            <div class="album-arrow right" data-album="album3">›</div>
           </div>
-          <div class="photo-grid">
-            <div class="polaroid">
-              <img src="images/dinh3.jpg" alt="Dinh Bảo Đại" loading="lazy">
-              <div class="img-text-overlay"><div class="img-text-content">Nơi lịch sử lắng đọng giữa rừng thông, vẻ đẹp trầm mặc của kiến trúc Pháp cổ kính</div></div>
-              <div class="polaroid-caption">Dinh III – Bảo Đại</div>
-            </div>
-            <div class="polaroid">
-              <img src="images/roidal.jpg" alt="Rời Đà Lạt" loading="lazy">
-              <div class="img-text-overlay"><div class="img-text-content">Khoảnh khắc tạm biệt, nhưng ký ức sẽ mãi ở lại trong trái tim mỗi người</div></div>
-              <div class="polaroid-caption">Tạm biệt Đà Lạt</div>
-            </div>
+          
+          <div class="journal-note">
+            <span class="note-label">🌅 Ngày cuối — Tạm biệt</span>
+            <p class="note-text">Buổi sáng cuối cùng trôi qua chậm rãi trong sự lưu luyến khó gọi tên. Dinh III – Dinh Bảo Đại khép lại hành trình bằng vẻ đẹp trầm mặc, cổ kính giữa rừng thông xanh mát. Khi bánh xe lăn bánh, thành phố dần lùi xa, nhưng ký ức thì ở lại.</p>
           </div>
         </div>
+        
         <div class="quote-box">
           <p class="quote-text">Đó là một phần thanh xuân mang tên 11L...</p>
         </div>
@@ -861,24 +970,31 @@ body::after{
     <!-- ══ PAGE 4 ══ -->
     <div class="page" id="page4" style="display:none;">
       <div class="page-content">
-        <div class="dclouds">☁️ &nbsp;&nbsp; ☁️ &nbsp;&nbsp;&nbsp;&nbsp; ☁️</div>
+        <div class="dclouds">☁️ &nbsp;&nbsp; ☁️ &nbsp;&nbsp;&nbsp; ☁️</div>
         <h3 class="section-title">🌸 Đà Lạt – Miền Ký Ức Của 11L</h3>
-        <div class="story-grid">
-          <div class="story-card">
-            <div class="story-image"><img src="images/final.jpg" alt="Tập thể 11L" loading="lazy"></div>
-            <div class="story-text">
+        
+        <div class="closing-layout">
+          <div class="closing-card">
+            <div class="closing-img">
+              <img src="images/final.jpg" alt="Tập thể 11L" loading="lazy">
+            </div>
+            <div class="closing-text">
               <p>Chuyến tham quan học tập tại Đà Lạt không chỉ mang đến kiến thức và trải nghiệm, mà còn đánh dấu một đoạn đẹp trong hành trình trưởng thành của lớp 11L.</p>
               <p>Ở đó, chúng tôi đã cùng nhau học cách sống chậm, học cách lắng nghe, học cách trân trọng hiện tại và học cách giữ gìn những điều nhỏ bé nhưng quý giá.</p>
             </div>
           </div>
-          <div class="story-card">
-            <div class="story-image"><img src="images/memory.jpg" alt="Kỷ niệm" loading="lazy"></div>
-            <div class="story-text">
+          
+          <div class="closing-card reverse">
+            <div class="closing-img">
+              <img src="images/memory.jpg" alt="Kỷ niệm" loading="lazy">
+            </div>
+            <div class="closing-text">
               <p>Nhiều năm sau, khi những con đường đời đã rẽ sang nhiều hướng khác nhau, có thể chúng tôi sẽ quên đi vài chi tiết nhỏ, nhưng chắc chắn Đà Lạt vẫn còn ở lại.</p>
               <p>Trong những bức ảnh cũ, trong những câu chuyện được kể lại và trong một góc rất sâu của ký ức tuổi học trò – nơi rừng thông vẫn mãi xanh tươi.</p>
             </div>
           </div>
         </div>
+        
         <div class="quote-box">
           <p class="quote-text">
             Bởi đó không chỉ là một chuyến đi,<br>
@@ -886,6 +1002,7 @@ body::after{
             đó là miền nhớ mang tên lớp 11L 🌲
           </p>
         </div>
+        
         <div class="rdiv"><span>🌲</span><span>☁️</span><span>🌿</span></div>
         <div class="sig">🌲 ~ Hết ~ 🌲</div>
       </div>
@@ -977,6 +1094,45 @@ document.querySelectorAll('.journey-tab').forEach(tab=>{
     document.querySelectorAll('.day-content').forEach(c=>c.classList.remove('active'));
     tab.classList.add('active');
     document.getElementById(tab.dataset.day).classList.add('active');
+  });
+});
+
+// Album scroll arrows
+document.addEventListener('click', e => {
+  const arrow = e.target.closest('.album-arrow');
+  if (!arrow) return;
+  const album = document.getElementById(arrow.dataset.album);
+  const scrollAmount = arrow.classList.contains('left') ? -380 : 380;
+  album.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+});
+
+// Album drag to scroll
+document.querySelectorAll('.album-scroll').forEach(album => {
+  let isDown = false, startX, scrollLeft;
+  
+  album.addEventListener('mousedown', e => {
+    isDown = true;
+    album.style.cursor = 'grabbing';
+    startX = e.pageX - album.offsetLeft;
+    scrollLeft = album.scrollLeft;
+  });
+  
+  album.addEventListener('mouseleave', () => {
+    isDown = false;
+    album.style.cursor = 'grab';
+  });
+  
+  album.addEventListener('mouseup', () => {
+    isDown = false;
+    album.style.cursor = 'grab';
+  });
+  
+  album.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - album.offsetLeft;
+    const walk = (x - startX) * 2.8;
+    album.scrollLeft = scrollLeft - walk;
   });
 });
 
