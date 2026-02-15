@@ -298,10 +298,10 @@ body::after{
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 .section-intro{
-  text-align:center;max-width:850px;margin:0 auto 60px;
+  text-align:center;max-width:950px;margin:0 auto 60px;
   font-size:1.75rem;line-height:2.2;color:var(--forest-green);font-style:italic;
   font-family:'EB Garamond',serif;animation:fU 1s ease .5s both;
-  font-weight:500;
+  font-weight:400;
 }
 
 /* ── STORY CARDS ── */
@@ -356,10 +356,10 @@ body::after{
 }
 .story-image img{width:100%;height:100%;object-fit:cover;transition:all .8s cubic-bezier(.4,0,.2,1);filter:sepia(.05) contrast(1.05);cursor:pointer;}
 .story-card:hover .story-image img{transform:scale(1.08) rotate(-1deg);filter:sepia(.12) contrast(1.1);}
-.story-text{font-size:1.5rem;line-height:2.1;color:var(--ink-dark);font-family:'EB Garamond',serif;font-weight:500;}
+.story-text{font-size:1.5rem;line-height:2.1;color:var(--ink-dark);font-family:'EB Garamond',serif;font-weight:400;}
 .story-text p{margin-bottom:18px;font-family:'EB Garamond',serif;}
 .story-text p:last-child{margin-bottom:0;}
-.story-text .lead{font-size:1.65rem;font-style:italic;font-family:'EB Garamond',serif;color:var(--ink-dark);margin-bottom:22px;line-height:2.1;font-weight:600;}
+.story-text .lead{font-size:1.65rem;font-style:italic;font-family:'EB Garamond',serif;color:var(--ink-dark);margin-bottom:22px;line-height:2.1;font-weight:400;}
 
 /* ── POLAROID PHOTOS ── */
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:50px;margin:60px 0;}
@@ -484,7 +484,7 @@ body::after{
 @keyframes stTw{0%,100%{opacity:.40;transform:scale(1) rotate(0);}50%{opacity:1;transform:scale(1.6) rotate(28deg);}}
 .dnote:hover{transform:translateX(10px);border-left-color:var(--g6);}
 .nlbl{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--g6);margin-bottom:12px;display:block;font-weight:600;}
-.ntxt{font-size:1.55rem;line-height:2.1;color:var(--ink-dark);font-family:'EB Garamond',serif;font-weight:500;}
+.ntxt{font-size:1.55rem;line-height:2.1;color:var(--ink-dark);font-family:'EB Garamond',serif;font-weight:400;}
 
 /* ── MEANING CARDS ── */
 .meaning-grid{
@@ -626,7 +626,7 @@ body::after{
   position:relative;
   z-index:2;
   font-family:'EB Garamond',serif;
-  font-weight:500;
+  font-weight:400;
   max-width:280px;
 }
 
@@ -639,13 +639,13 @@ body::after{
 }
 @keyframes quoteReveal{from{opacity:0;transform:scale(.92);}to{opacity:1;transform:scale(1);}}
 .quote-box::before{content:'"';position:absolute;top:-30px;left:30px;font-size:10rem;line-height:1;font-family:'Playfair Display',serif;color:#3e7249;opacity:.3;}
-.quote-text{font-family:'EB Garamond',serif;font-size:2.6rem;color:var(--forest-dark);line-height:2;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:500;}
+.quote-text{font-family:'EB Garamond',serif;font-size:2.6rem;color:var(--forest-dark);line-height:2;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:400;}
 
 .callout{
-  padding:26px 38px;margin:32px 0;
+  padding:26px 38px;margin:32px auto;max-width:920px;
   background:rgba(62,114,73,.18);border-left:6px solid #2d5a40;border-radius:0 14px 14px 0;
   font-family:'EB Garamond',serif;font-size:2.1rem;line-height:2;
-  color:var(--forest-dark);font-style:italic;font-weight:500;
+  color:var(--forest-dark);font-style:italic;font-weight:400;
 }
 
 /* ── CLOSING CARDS (doc2 style) ── */
@@ -669,7 +669,7 @@ body::after{
 .ci img{width:100%;height:100%;object-fit:cover;cursor:pointer;
   transition:all .74s cubic-bezier(.16,.84,.44,1);filter:saturate(1.05);}
 .ccard:hover .ci img{transform:scale(1.08);filter:saturate(1.16);}
-.ct p{font-size:1.5rem;line-height:2.2;color:var(--ink-dark);margin-bottom:16px;font-family:'EB Garamond',serif;font-weight:500;}
+.ct p{font-size:1.5rem;line-height:2.2;color:var(--ink-dark);margin-bottom:16px;font-family:'EB Garamond',serif;font-weight:400;}
 .ct p:last-child{margin-bottom:0;}
 
 /* ── PAGE NAV ── */
