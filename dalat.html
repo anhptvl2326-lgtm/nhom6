@@ -20,10 +20,10 @@
 html{scroll-behavior:smooth;}
 
 body{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'EB Garamond',serif;
   background:
-    radial-gradient(ellipse at 50% 0%,rgba(139,111,71,.15),transparent 70%),
-    linear-gradient(180deg,#e8dcc8 0%,#d4c4a8 50%,#c9b99d 100%);
+    radial-gradient(ellipse at 50% 0%,rgba(30,68,48,.18),transparent 70%),
+    linear-gradient(180deg,#1a3c28 0%,#204e34 35%,#2d5a40 65%,#1e4430 100%);
   min-height:100vh;
   display:flex;flex-direction:column;align-items:center;
   padding:40px 20px;
@@ -32,10 +32,10 @@ body{
 body::before{
   content:'';position:fixed;inset:0;
   background-image:
-    repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(107,68,35,.015) 2px,rgba(107,68,35,.015) 4px),
-    repeating-linear-gradient(90deg,transparent,transparent 2px,rgba(139,111,71,.02) 2px,rgba(139,111,71,.02) 4px),
-    radial-gradient(circle at 20% 30%,rgba(107,68,35,.03),transparent 40%),
-    radial-gradient(circle at 80% 70%,rgba(139,111,71,.03),transparent 40%);
+    repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(122,170,136,.015) 2px,rgba(122,170,136,.015) 4px),
+    repeating-linear-gradient(90deg,transparent,transparent 2px,rgba(122,170,136,.02) 2px,rgba(122,170,136,.02) 4px),
+    radial-gradient(circle at 20% 30%,rgba(62,114,73,.05),transparent 40%),
+    radial-gradient(circle at 80% 70%,rgba(62,114,73,.05),transparent 40%);
   opacity:.8;pointer-events:none;z-index:0;
   animation:paperGrain 10s ease-in-out infinite;
 }
@@ -43,12 +43,12 @@ body::before{
 body::after{
   content:'';position:fixed;inset:0;
   background-image:
-    radial-gradient(1px 1px at 15% 25%,rgba(30,68,48,.25),transparent),
-    radial-gradient(1px 1px at 35% 55%,rgba(201,169,97,.20),transparent),
-    radial-gradient(2px 2px at 65% 15%,rgba(30,68,48,.30),transparent),
-    radial-gradient(1px 1px at 85% 75%,rgba(201,169,97,.25),transparent),
-    radial-gradient(1px 1px at 25% 85%,rgba(30,68,48,.20),transparent),
-    radial-gradient(2px 2px at 75% 45%,rgba(201,169,97,.30),transparent);
+    radial-gradient(1px 1px at 15% 25%,rgba(201,169,97,.20),transparent),
+    radial-gradient(1px 1px at 35% 55%,rgba(255,255,255,.08),transparent),
+    radial-gradient(2px 2px at 65% 15%,rgba(201,169,97,.25),transparent),
+    radial-gradient(1px 1px at 85% 75%,rgba(255,255,255,.10),transparent),
+    radial-gradient(1px 1px at 25% 85%,rgba(201,169,97,.18),transparent),
+    radial-gradient(2px 2px at 75% 45%,rgba(255,255,255,.12),transparent);
   animation:particlesDrift 30s linear infinite;
   pointer-events:none;opacity:.4;z-index:1;
 }
@@ -201,7 +201,7 @@ body::after{
 /* ── BOOK PAGES ── */
 .book-pages{
   position:relative;
-  background:var(--page-white);
+  background:linear-gradient(135deg,#f9f7f0 0%,#f5f2ea 50%,#ede8dc 100%);
   border-radius:12px;
   box-shadow:0 25px 70px rgba(30,68,48,.35),inset 0 0 120px rgba(249,247,240,.6);
   overflow:hidden;
@@ -210,15 +210,15 @@ body::after{
 /* ── PAGE ── */
 .page{
   background:
-    repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(139,111,71,.08) 31px,rgba(139,111,71,.08) 32px),
-    linear-gradient(135deg,#f5ebe0 0%,#e8dcc8 50%,#dcceb8 100%);
+    repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(201,169,97,.06) 31px,rgba(201,169,97,.06) 32px),
+    linear-gradient(135deg,#f9f7f0 0%,#f5ebe0 50%,#ede8dc 100%);
   padding:90px 110px;
   min-height:700px;
   position:relative;
-  border-left:70px solid rgba(212,184,150,.15);
+  border-left:70px solid rgba(30,68,48,.08);
   animation:pageTurn 1s cubic-bezier(.4,0,.2,1);
   transform-origin:left center;
-  box-shadow:inset 0 0 100px rgba(107,68,35,.08);
+  box-shadow:inset 0 0 100px rgba(30,68,48,.05);
 }
 @keyframes pageTurn{
   0%  {transform:perspective(2000px) rotateY(-100deg);opacity:0;filter:blur(10px);}
@@ -228,10 +228,10 @@ body::after{
 .page::before{
   content:'';position:absolute;inset:0;
   background-image:
-    radial-gradient(ellipse at 15% 20%,rgba(139,111,71,.12),transparent 35%),
-    radial-gradient(ellipse at 85% 80%,rgba(107,68,35,.1),transparent 40%),
+    radial-gradient(ellipse at 15% 20%,rgba(62,114,73,.08),transparent 35%),
+    radial-gradient(ellipse at 85% 80%,rgba(30,68,48,.06),transparent 40%),
     radial-gradient(circle at 50% 10%,rgba(201,169,97,.08),transparent 30%),
-    radial-gradient(circle at 30% 70%,rgba(139,111,71,.06),transparent 25%);
+    radial-gradient(circle at 30% 70%,rgba(62,114,73,.05),transparent 25%);
   pointer-events:none;animation:agingSpots 15s ease-in-out infinite;
 }
 @keyframes agingSpots{0%,100%{opacity:.6;}50%{opacity:.8;}}
@@ -239,9 +239,9 @@ body::after{
   content:'';position:absolute;left:30px;top:50%;transform:translateY(-50%);
   width:12px;height:85%;
   background:
-    radial-gradient(circle,rgba(107,68,35,.3) 40%,rgba(0,0,0,.1) 40%,transparent 45%),
-    radial-gradient(circle,rgba(107,68,35,.3) 40%,rgba(0,0,0,.1) 40%,transparent 45%),
-    radial-gradient(circle,rgba(107,68,35,.3) 40%,rgba(0,0,0,.1) 40%,transparent 45%);
+    radial-gradient(circle,rgba(30,68,48,.25) 40%,rgba(0,0,0,.08) 40%,transparent 45%),
+    radial-gradient(circle,rgba(30,68,48,.25) 40%,rgba(0,0,0,.08) 40%,transparent 45%),
+    radial-gradient(circle,rgba(30,68,48,.25) 40%,rgba(0,0,0,.08) 40%,transparent 45%);
   background-size:12px 12px;
   background-position:0 0,0 50%,0 100%;
   background-repeat:no-repeat;
@@ -266,10 +266,10 @@ body::after{
 .page-number{
   position:absolute;bottom:35px;right:55px;
   font-family:'Caveat',cursive;font-size:1.8rem;
-  color:var(--forest-green);
+  color:var(--g5);
   background:rgba(249,247,240,.6);
   padding:8px 20px;border-radius:50px;
-  border:2px solid rgba(30,68,48,.2);
+  border:2px solid rgba(62,114,73,.25);
   box-shadow:0 4px 12px rgba(30,68,48,.15);
   animation:pageNumPulse 3s ease-in-out infinite;
 }
@@ -279,7 +279,7 @@ body::after{
 }
 
 .section-title{
-  font-family:'Dancing Script',cursive;font-size:4rem;
+  font-family:'Playfair Display',serif;font-size:4rem;font-weight:700;
   color:var(--forest-dark);text-align:center;margin-bottom:35px;
   position:relative;display:inline-block;width:100%;
   animation:writeIn 1.2s ease-out;
@@ -298,8 +298,8 @@ body::after{
 }
 .section-intro{
   text-align:center;max-width:750px;margin:0 auto 60px;
-  font-size:1.4rem;line-height:2;color:var(--forest-green);font-style:italic;
-  font-family:'Lora',serif;animation:fU 1s ease .5s both;
+  font-size:1.35rem;line-height:2;color:var(--forest-green);font-style:italic;
+  font-family:'EB Garamond',serif;animation:fU 1s ease .5s both;
 }
 
 /* ── STORY CARDS ── */
@@ -354,10 +354,10 @@ body::after{
 }
 .story-image img{width:100%;height:100%;object-fit:cover;transition:all .8s cubic-bezier(.4,0,.2,1);filter:sepia(.05) contrast(1.05);cursor:pointer;}
 .story-card:hover .story-image img{transform:scale(1.08) rotate(-1deg);filter:sepia(.12) contrast(1.1);}
-.story-text{font-size:1.15rem;line-height:1.9;color:var(--ink-dark);font-family:'Lora',serif;}
-.story-text p{margin-bottom:16px;font-family:'Lora',serif;}
+.story-text{font-size:1.15rem;line-height:1.9;color:var(--ink-dark);font-family:'EB Garamond',serif;}
+.story-text p{margin-bottom:16px;font-family:'EB Garamond',serif;}
 .story-text p:last-child{margin-bottom:0;}
-.story-text .lead{font-size:1.3rem;font-style:italic;font-family:'EB Garamond',serif;color:var(--ink-dark);margin-bottom:20px;line-height:1.9;}
+.story-text .lead{font-size:1.3rem;font-style:italic;font-family:'EB Garamond',serif;color:var(--ink-dark);margin-bottom:20px;line-height:1.9;font-weight:500;}
 
 /* ── POLAROID PHOTOS ── */
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:50px;margin:60px 0;}
@@ -482,7 +482,7 @@ body::after{
 @keyframes stTw{0%,100%{opacity:.40;transform:scale(1) rotate(0);}50%{opacity:1;transform:scale(1.6) rotate(28deg);}}
 .dnote:hover{transform:translateX(10px);border-left-color:var(--g5);}
 .nlbl{font-family:'Dancing Script',cursive;font-size:1.10rem;color:var(--g6);margin-bottom:10px;display:block;font-weight:600;}
-.ntxt{font-size:1.16rem;line-height:1.92;color:var(--ink-dark);}
+.ntxt{font-size:1.16rem;line-height:1.92;color:var(--ink-dark);font-family:'EB Garamond',serif;}
 
 /* ── MEANING CARDS ── */
 .meaning-grid{
@@ -650,7 +650,7 @@ body::after{
   color:var(--ink-dark);
   position:relative;
   z-index:2;
-  font-family:'Lora',serif;
+  font-family:'EB Garamond',serif;
   font-weight:500;
   max-width:280px;
 }
@@ -664,7 +664,7 @@ body::after{
 }
 @keyframes quoteReveal{from{opacity:0;transform:scale(.92);}to{opacity:1;transform:scale(1);}}
 .quote-box::before{content:'"';position:absolute;top:-30px;left:30px;font-size:10rem;line-height:1;font-family:'Playfair Display',serif;color:#3e7249;opacity:.3;}
-.quote-text{font-family:'Dancing Script',cursive;font-size:2.2rem;color:var(--forest-dark);line-height:1.8;text-align:center;position:relative;z-index:1;}
+.quote-text{font-family:'EB Garamond',serif;font-size:2.2rem;color:var(--forest-dark);line-height:1.8;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:500;}
 
 .callout{
   padding:22px 34px;margin:28px 0;
@@ -694,7 +694,7 @@ body::after{
 .ci img{width:100%;height:100%;object-fit:cover;cursor:pointer;
   transition:all .74s cubic-bezier(.16,.84,.44,1);filter:saturate(1.05);}
 .ccard:hover .ci img{transform:scale(1.08);filter:saturate(1.16);}
-.ct p{font-size:1.12rem;line-height:1.96;color:var(--ink-dark);margin-bottom:14px;}
+.ct p{font-size:1.12rem;line-height:1.96;color:var(--ink-dark);margin-bottom:14px;font-family:'EB Garamond',serif;}
 .ct p:last-child{margin-bottom:0;}
 
 /* ── PAGE NAV ── */
