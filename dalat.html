@@ -258,6 +258,11 @@ body::after{
 .leaf-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
 .lf{position:absolute;font-size:var(--lsz);pointer-events:none;
   animation:lfDrift var(--ldur) var(--ldel) ease-in-out infinite;opacity:0;}
+@keyframes floatSlow{
+  0%,100%{transform:translateY(0) rotate(0deg);opacity:.15;}
+  50%{transform:translateY(-30px) rotate(10deg);opacity:.25;}
+}
+
 @keyframes lfDrift{
   0%  {opacity:0;transform:translateY(20px) translateX(0) rotate(0deg) scale(1);}
   18% {opacity:.52;}82%{opacity:.25;}
@@ -329,9 +334,25 @@ body::after{
 }
 .story-image img{width:100%;height:100%;object-fit:cover;transition:all .8s cubic-bezier(.4,0,.2,1);filter:sepia(.05) contrast(1.05);cursor:pointer;}
 .story-card:hover .story-image img{transform:scale(1.08) rotate(-1deg);filter:sepia(.12) contrast(1.1);}
-.story-text{font-size:1.15rem;line-height:1.9;color:var(--ink-dark);font-family:'Lora',serif;}
-.story-text p{margin-bottom:16px;}.story-text p:last-child{margin-bottom:0;}
-.story-text .lead{font-size:1.3rem;font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--tx0);margin-bottom:20px;}
+.story-text{
+  font-size:1.15rem;
+  line-height:1.9;
+  color:var(--ink-dark);
+  font-family:'Lora',serif;
+}
+.story-text p{
+  margin-bottom:16px;
+  font-family:'Lora',serif;
+}
+.story-text p:last-child{margin-bottom:0;}
+.story-text .lead{
+  font-size:1.3rem;
+  font-style:italic;
+  font-family:'EB Garamond',serif;
+  color:var(--tx0);
+  margin-bottom:20px;
+  line-height:1.9;
+}
 
 /* ── POLAROID PHOTOS ── */
 .photo-grid{
@@ -349,12 +370,47 @@ body::after{
 .polaroid:hover{transform:rotate(0) scale(1.08) translateY(-15px)!important;box-shadow:0 25px 60px rgba(30,68,48,.4);z-index:10;}
 .polaroid img{width:100%;height:270px;object-fit:cover;display:block;filter:sepia(.05) contrast(1.05);transition:filter .6s;cursor:pointer;}
 .polaroid:hover img{filter:sepia(.12) contrast(1.1);}
-.polaroid-caption{margin-top:18px;text-align:center;font-family:'Caveat',cursive;font-size:1.4rem;color:var(--forest-green);position:absolute;bottom:18px;left:0;right:0;font-weight:600;}
+.polaroid-caption{
+  margin-top:18px;text-align:center;font-family:'Caveat',cursive;
+  font-size:1.4rem;color:var(--forest-green);
+  position:absolute;bottom:18px;left:0;right:0;font-weight:600;
+}
 .polaroid::before{
   content:'';position:absolute;top:-12px;left:50%;transform:translateX(-50%);
   width:90px;height:28px;
   background:repeating-linear-gradient(45deg,rgba(30,68,48,.5),rgba(30,68,48,.5) 5px,rgba(255,255,255,.3) 5px,rgba(255,255,255,.3) 10px);
   border:1px solid rgba(30,68,48,.2);box-shadow:0 3px 8px rgba(0,0,0,.15);opacity:.8;
+}
+
+/* Image text overlay */
+.img-text-overlay{
+  position:absolute;
+  top:0;left:0;right:0;bottom:70px;
+  background:linear-gradient(to bottom,rgba(30,68,48,.85),rgba(30,68,48,.65));
+  opacity:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  transition:opacity .5s ease;
+  pointer-events:none;
+}
+.polaroid:hover .img-text-overlay{
+  opacity:1;
+}
+.img-text-content{
+  color:#fff;
+  text-align:center;
+  font-family:'EB Garamond',serif;
+  font-size:1.15rem;
+  line-height:1.7;
+  font-style:italic;
+  transform:translateY(20px);
+  transition:transform .5s ease;
+  text-shadow:0 2px 8px rgba(0,0,0,.3);
+}
+.polaroid:hover .img-text-content{
+  transform:translateY(0);
 }
 
 /* ── JOURNEY TABS ── */
@@ -400,8 +456,19 @@ body::after{
 }
 .journey-image img{width:100%;height:100%;object-fit:cover;transition:all .8s ease;cursor:pointer;filter:sepia(.08) contrast(1.05);}
 .journey-card:hover .journey-image img{transform:scale(1.06) rotate(1deg);filter:sepia(.15) contrast(1.1);}
-.journey-text h4{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--forest-dark);margin-bottom:16px;font-weight:600;}
-.journey-text p{font-size:1.1rem;line-height:1.85;color:var(--ink-dark);font-family:'Lora',serif;}
+.journey-text h4{
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;
+  color:var(--forest-dark);
+  margin-bottom:16px;
+  font-weight:600;
+}
+.journey-text p{
+  font-size:1.1rem;
+  line-height:1.85;
+  color:var(--ink-dark);
+  font-family:'Lora',serif;
+}
 
 /* ── MEANING CARDS - CIRCULAR WITH EFFECTS ── */
 .meaning-grid{
@@ -522,6 +589,7 @@ body::after{
   color:var(--ink-dark);
   position:relative;
   z-index:1;
+  font-family:'Lora',serif;
 }
 
 /* ── QUOTE BOX ── */
@@ -538,7 +606,11 @@ body::after{
 .callout{
   padding:22px 34px;margin:28px 0;
   background:rgba(62,114,73,.18);border-left:6px solid #2d5a40;border-radius:0 14px 14px 0;
-  font-family:'Dancing Script',cursive;font-size:2rem;line-height:1.8;color:var(--forest-dark);
+  font-family:'EB Garamond',serif;
+  font-size:1.8rem;
+  line-height:1.8;
+  color:var(--forest-dark);
+  font-style:italic;
 }
 
 /* ── PAGE NAV ── */
@@ -756,6 +828,13 @@ body::after{
     <!-- ══ PAGE 3 ══ -->
     <div class="page" id="page3" style="display:none;">
       <div class="leaf-layer" id="lf3"></div>
+      
+      <!-- Animated background elements for page 3 -->
+      <div style="position:absolute;top:10%;left:5%;font-size:3rem;opacity:.15;animation:floatSlow 12s ease-in-out infinite;">🌲</div>
+      <div style="position:absolute;top:25%;right:8%;font-size:2.5rem;opacity:.12;animation:floatSlow 15s ease-in-out infinite 2s;">☁️</div>
+      <div style="position:absolute;bottom:20%;left:10%;font-size:2rem;opacity:.18;animation:floatSlow 10s ease-in-out infinite 4s;">🍃</div>
+      <div style="position:absolute;top:60%;right:12%;font-size:2.8rem;opacity:.14;animation:floatSlow 13s ease-in-out infinite 1s;">🌿</div>
+      
       <div class="page-content">
         <h3 class="section-title grad-h">📍 Hành Trình Ba Ngày – Một Miền Ký Ức</h3>
 
@@ -774,8 +853,20 @@ body::after{
             </div>
           </div>
           <div class="photo-grid">
-            <div class="polaroid"><img src="images/truongdh.jpg" alt="Trường ĐH Đà Lạt" loading="lazy"><div class="polaroid-caption">Trường ĐH Đà Lạt</div></div>
-            <div class="polaroid"><img src="images/khachsan.jpg" alt="Khách sạn" loading="lazy"><div class="polaroid-caption">Nơi nghỉ chân</div></div>
+            <div class="polaroid">
+              <img src="images/truongdh.jpg" alt="Trường ĐH Đà Lạt" loading="lazy">
+              <div class="img-text-overlay">
+                <div class="img-text-content">Nơi tri thức và kiến trúc giao hòa, gieo vào lòng chúng tôi niềm kính trọng với con đường học vấn</div>
+              </div>
+              <div class="polaroid-caption">Trường ĐH Đà Lạt</div>
+            </div>
+            <div class="polaroid">
+              <img src="images/khachsan.jpg" alt="Khách sạn" loading="lazy">
+              <div class="img-text-overlay">
+                <div class="img-text-content">Góc nhỏ ấm cúng, nơi chúng tôi nghỉ chân và lưu giữ những khoảnh khắc đầu tiên tại Đà Lạt</div>
+              </div>
+              <div class="polaroid-caption">Nơi nghỉ chân</div>
+            </div>
           </div>
         </div>
 
@@ -788,8 +879,20 @@ body::after{
             </div>
           </div>
           <div class="photo-grid">
-            <div class="polaroid"><img src="images/puppy.jpg" alt="Puppy Farm" loading="lazy"><div class="polaroid-caption">Puppy Farm vui vẻ</div></div>
-            <div class="polaroid"><img src="images/quangtruong.jpg" alt="Lâm Viên" loading="lazy"><div class="polaroid-caption">Quảng trường Lâm Viên</div></div>
+            <div class="polaroid">
+              <img src="images/puppy.jpg" alt="Puppy Farm" loading="lazy">
+              <div class="img-text-overlay">
+                <div class="img-text-content">Tiếng cười trong veo hòa cùng ánh nắng, nơi tuổi thơ như trở lại trong từng khoảnh khắc vui vẻ</div>
+              </div>
+              <div class="polaroid-caption">Puppy Farm vui vẻ</div>
+            </div>
+            <div class="polaroid">
+              <img src="images/quangtruong.jpg" alt="Lâm Viên" loading="lazy">
+              <div class="img-text-overlay">
+                <div class="img-text-content">Trái tim của thành phố, nơi nhịp sống trẻ trung và năng động của cao nguyên hiện lên rõ nét</div>
+              </div>
+              <div class="polaroid-caption">Quảng trường Lâm Viên</div>
+            </div>
           </div>
         </div>
 
@@ -802,8 +905,20 @@ body::after{
             </div>
           </div>
           <div class="photo-grid">
-            <div class="polaroid"><img src="images/dinh3.jpg" alt="Dinh Bảo Đại" loading="lazy"><div class="polaroid-caption">Dinh III – Bảo Đại</div></div>
-            <div class="polaroid"><img src="images/roidal.jpg" alt="Rời Đà Lạt" loading="lazy"><div class="polaroid-caption">Tạm biệt Đà Lạt</div></div>
+            <div class="polaroid">
+              <img src="images/dinh3.jpg" alt="Dinh Bảo Đại" loading="lazy">
+              <div class="img-text-overlay">
+                <div class="img-text-content">Nơi lịch sử lắng đọng giữa rừng thông, vẻ đẹp trầm mặc của kiến trúc Pháp cổ kính</div>
+              </div>
+              <div class="polaroid-caption">Dinh III – Bảo Đại</div>
+            </div>
+            <div class="polaroid">
+              <img src="images/roidal.jpg" alt="Rời Đà Lạt" loading="lazy">
+              <div class="img-text-overlay">
+                <div class="img-text-content">Khoảnh khắc tạm biệt, nhưng ký ức sẽ mãi ở lại trong trái tim mỗi người</div>
+              </div>
+              <div class="polaroid-caption">Tạm biệt Đà Lạt</div>
+            </div>
           </div>
         </div>
 
