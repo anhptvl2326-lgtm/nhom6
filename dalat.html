@@ -16,7 +16,10 @@
   --g5:#3e7249; --g4:#568c62; --g3:#7aaa88; --g2:#aeceba;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+
+/* Custom Cursor Trail Effect */
+body{cursor:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="8" fill="%233e7249" opacity="0.3"/></svg>') 10 10, auto;}
 
 body{
   font-family:'EB Garamond',serif;
@@ -49,15 +52,22 @@ body::after{
     radial-gradient(2px 2px at 58% 12%,rgba(201,169,97,.28),transparent),
     radial-gradient(1px 1px at 78% 68%,rgba(255,255,255,.14),transparent),
     radial-gradient(1px 1px at 22% 82%,rgba(201,169,97,.20),transparent),
-    radial-gradient(2px 2px at 88% 38%,rgba(255,255,255,.16),transparent);
-  animation:particlesDrift 35s linear infinite;
+    radial-gradient(2px 2px at 88% 38%,rgba(255,255,255,.16),transparent),
+    radial-gradient(1px 1px at 45% 55%,rgba(201,169,97,.18),transparent),
+    radial-gradient(2px 2px at 65% 75%,rgba(255,255,255,.12),transparent);
+  animation:particlesDrift 35s linear infinite, particlesTwinkle 4s ease-in-out infinite;
   pointer-events:none;opacity:.5;z-index:1;
 }
 @keyframes particlesDrift{from{transform:translateY(0) translateX(0);}to{transform:translateY(-90px) translateX(50px);}}
-
+@keyframes particlesTwinkle{0%,100%{opacity:.5;}50%{opacity:.7;}}
 .book-container{
   position:relative;max-width:1200px;width:100%;
   perspective:2000px;z-index:10;
+  animation:containerFadeIn 1.5s cubic-bezier(.4,0,.2,1);
+}
+@keyframes containerFadeIn{
+  from{opacity:0;transform:translateY(60px) scale(.95);}
+  to{opacity:1;transform:translateY(0) scale(1);}
 }
 
 /* ── BOOK COVER ── */
@@ -74,6 +84,10 @@ body::after{
   transform-style:preserve-3d;
   animation:bookEntrance 1.8s cubic-bezier(.4,0,.2,1);
   overflow:visible;
+  transition:transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s ease;
+}
+.book-cover:hover{
+  box-shadow:0 35px 90px rgba(0,0,0,.65),inset 0 0 160px rgba(0,0,0,.45),inset 2px 2px 10px rgba(255,255,255,.15),inset -2px -2px 10px rgba(0,0,0,.45);
 }
 @keyframes bookEntrance{
   0%  {opacity:0;transform:rotateX(-40deg) translateY(-150px) scale(.8);}
@@ -174,10 +188,16 @@ body::after{
   animation:fU 1.2s ease 1s both,btnPulse 3s ease-in-out infinite,btnShimmer 4s linear infinite;
   font-family:'Playfair Display',serif;letter-spacing:.06em;
   border:3px solid rgba(62,114,73,.6);position:relative;overflow:hidden;cursor:pointer;
+  transform-style:preserve-3d;
 }
 .open-book-btn.opening{
   pointer-events:none;
   opacity:0.7;
+}
+.open-book-btn:hover{
+  transform:translateY(-8px) scale(1.1);
+  box-shadow:0 20px 60px rgba(30,68,48,.8),0 0 60px rgba(62,114,73,.9),0 0 100px rgba(201,169,97,.6);
+  letter-spacing:.08em;
 }
 @keyframes btnShimmer{0%{background-position:0% 0%,0% 0%;}100%{background-position:0% 0%,200% 200%;}}
 .open-book-btn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;
@@ -193,9 +213,7 @@ body::after{
   50% {opacity:1;}
   100%{transform:translateX(100%) rotate(45deg);opacity:0;}
 }
-.open-book-btn:hover::before{width:500px;height:500px;}
-.open-book-btn:hover{transform:translateY(-6px) scale(1.08);
-  box-shadow:0 18px 55px rgba(30,68,48,.8),0 0 50px rgba(62,114,73,.8),0 0 80px rgba(201,169,97,.5);}
+
 @keyframes btnPulse{
   0%,100%{box-shadow:0 12px 35px rgba(30,68,48,.6),inset 0 2px 0 rgba(255,255,255,.5),0 0 40px rgba(62,114,73,.4);}
   50%    {box-shadow:0 15px 45px rgba(30,68,48,.8),inset 0 2px 0 rgba(255,255,255,.7),0 0 60px rgba(62,114,73,.7);}
@@ -210,6 +228,11 @@ body::after{
   border-radius:12px;
   box-shadow:0 25px 70px rgba(30,68,48,.35),inset 0 0 120px rgba(249,247,240,.6);
   overflow:hidden;
+  animation:bookPagesOpen 1s cubic-bezier(.4,0,.2,1);
+}
+@keyframes bookPagesOpen{
+  from{opacity:0;transform:perspective(1000px) rotateY(-15deg) scale(.95);}
+  to{opacity:1;transform:perspective(1000px) rotateY(0) scale(1);}
 }
 
 /* ── PAGE ── */
@@ -319,10 +342,21 @@ body::after{
   border-radius:16px;transition:all .6s cubic-bezier(.4,0,.2,1);
   border:2px solid rgba(30,68,48,.3);position:relative;overflow:hidden;
   box-shadow:0 8px 32px rgba(30,68,48,.12);
+  transform-style:preserve-3d;
 }
+.story-card::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(122,170,136,.1), transparent 50%);
+  opacity:0;transition:opacity .4s ease;pointer-events:none;
+}
+.story-card:hover::after{opacity:1;}
 .story-card:nth-child(even) .story-image{order:2;}
 .story-card:nth-child(even) .story-text{order:1;}
-.story-card:hover{transform:translateY(-10px) rotate(.5deg);box-shadow:0 20px 60px rgba(30,68,48,.2);border-color:rgba(30,68,48,.5);}
+.story-card:hover{
+  transform:translateY(-12px) rotate(.3deg) scale(1.02);
+  box-shadow:0 25px 70px rgba(30,68,48,.2),0 10px 30px rgba(62,114,73,.15);
+  border-color:rgba(62,114,73,.5);
+}
 .story-image{
   position:relative;border-radius:8px;overflow:hidden;aspect-ratio:4/3;
   box-shadow:0 8px 32px rgba(30,68,48,.25),inset 0 0 0 8px rgba(250,246,240,.8),inset 0 0 0 10px rgba(30,68,48,.3);
@@ -358,8 +392,16 @@ body::after{
     box-shadow: 0 7px 22px rgba(196,69,54,0.7);
   }
 }
-.story-image img{width:100%;height:100%;object-fit:cover;transition:all .8s cubic-bezier(.4,0,.2,1);filter:sepia(.05) contrast(1.05);cursor:pointer;}
-.story-card:hover .story-image img{transform:scale(1.08) rotate(-1deg);filter:sepia(.12) contrast(1.1);}
+.story-image img{
+  width:100%;height:100%;object-fit:cover;
+  transition:all .8s cubic-bezier(.4,0,.2,1);
+  filter:sepia(.05) contrast(1.05) brightness(1);
+  cursor:pointer;
+}
+.story-card:hover .story-image img{
+  transform:scale(1.12) rotate(-1deg);
+  filter:sepia(.12) contrast(1.1) brightness(1.05);
+}
 .story-text{font-size:1.5rem;line-height:2.1;color:var(--ink-dark);font-family:'EB Garamond',serif;font-weight:400;}
 .story-text p{margin-bottom:18px;font-family:'EB Garamond',serif;}
 .story-text p:last-child{margin-bottom:0;}
@@ -370,12 +412,20 @@ body::after{
 .polaroid{
   background:#fff;padding:18px 18px 70px;
   box-shadow:0 12px 35px rgba(30,68,48,.3);
-  transform:rotate(-3deg);transition:all .6s cubic-bezier(.4,0,.2,1);cursor:pointer;
-  animation:photoAppear 1s ease-out;position:relative;
+  transform:rotate(-3deg);
+  transition:all .6s cubic-bezier(.4,0,.2,1);
+  cursor:pointer;
+  animation:photoAppear 1s ease-out;
+  position:relative;
+  transform-style:preserve-3d;
 }
 @keyframes photoAppear{from{opacity:0;transform:rotate(-15deg) scale(.7);}to{opacity:1;transform:rotate(-3deg) scale(1);}}
 .polaroid:nth-child(even){transform:rotate(3deg);}
-.polaroid:hover{transform:rotate(0) scale(1.08) translateY(-15px)!important;box-shadow:0 25px 60px rgba(30,68,48,.4);z-index:10;}
+.polaroid:hover{
+  transform:rotate(0) scale(1.1) translateY(-18px)!important;
+  box-shadow:0 30px 70px rgba(30,68,48,.45),0 0 40px rgba(122,170,136,.2);
+  z-index:10;
+}
 .polaroid img{width:100%;height:270px;object-fit:cover;display:block;filter:sepia(.05) contrast(1.05);transition:filter .6s;cursor:pointer;}
 .polaroid:hover img{filter:sepia(.12) contrast(1.1);}
 .polaroid-caption{
@@ -410,14 +460,22 @@ body::after{
   border:2px solid rgba(62,114,73,.25);border-radius:50px;
   font-family:'Playfair Display',serif;font-weight:600;font-size:1.15rem;
   cursor:pointer;position:relative;overflow:hidden;
-  backdrop-filter:blur(10px);box-shadow:0 2px 10px rgba(14,30,20,.07);
-  transition:all .34s cubic-bezier(.16,.84,.44,1);
+  backdrop-filter:blur(10px);
+  box-shadow:0 2px 10px rgba(14,30,20,.07);
+  transition:all .4s cubic-bezier(.4,0,.2,1);
+  transform-style:preserve-3d;
 }
-.journey-tab::after{content:'';position:absolute;inset:0;
+.journey-tab::after{
+  content:'';position:absolute;inset:0;
   background:linear-gradient(45deg,transparent,rgba(122,170,136,.20),transparent);
-  transform:translateX(-100%);transition:transform .55s;}
+  transform:translateX(-100%);transition:transform .55s;
+}
 .journey-tab:hover::after{transform:translateX(100%);}
-.journey-tab:hover{border-color:var(--g5);transform:translateY(-4px);}
+.journey-tab:hover{
+  border-color:var(--g5);
+  transform:translateY(-5px) scale(1.05);
+  box-shadow:0 8px 20px rgba(14,30,20,.12);
+}
 .journey-tab.active{
   background:linear-gradient(130deg,var(--g7),var(--g5));color:#fff;border-color:transparent;
   box-shadow:0 12px 32px rgba(30,68,48,.40),0 0 28px rgba(62,114,73,.22);
@@ -647,9 +705,19 @@ body::after{
   background:linear-gradient(135deg,rgba(249,247,240,.9),rgba(249,247,240,.7));
   border-left:6px solid #2d5a40;border-right:6px solid #3e7249;
   padding:50px 60px;margin:60px 0;position:relative;
-  animation:quoteReveal 1.2s ease;border-radius:8px;box-shadow:0 8px 25px rgba(30,68,48,.15);
+  animation:quoteReveal 1.2s ease;
+  border-radius:8px;
+  box-shadow:0 8px 25px rgba(30,68,48,.15);
+  transition:all .5s cubic-bezier(.4,0,.2,1);
 }
-@keyframes quoteReveal{from{opacity:0;transform:scale(.92);}to{opacity:1;transform:scale(1);}}
+.quote-box:hover{
+  box-shadow:0 12px 35px rgba(30,68,48,.2);
+  transform:translateY(-4px);
+}
+@keyframes quoteReveal{
+  from{opacity:0;transform:scale(.92) translateY(30px);}
+  to{opacity:1;transform:scale(1) translateY(0);}
+}
 .quote-box::before{content:'"';position:absolute;top:-30px;left:30px;font-size:10rem;line-height:1;font-family:'Playfair Display',serif;color:#3e7249;opacity:.3;}
 .quote-text{font-family:'EB Garamond',serif;font-size:2.6rem;color:var(--forest-dark);line-height:2;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:400;}
 
@@ -1245,7 +1313,37 @@ window.addEventListener('load',()=>{
       img.addEventListener('error',()=>{img.style.opacity='.3';});
     }
   });
+  
+  // Smooth parallax scroll effect
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.story-card, .meaning-card, .polaroid');
+        parallaxElements.forEach((el, index) => {
+          const speed = 0.5 + (index % 3) * 0.1;
+          const yPos = -(scrolled * speed / 100);
+          el.style.transform = `translateY(${yPos}px)`;
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+  
+  // Add smooth page indicator pulse
+  const dots = document.querySelectorAll('.pdot');
+  setInterval(() => {
+    dots.forEach(dot => {
+      if(dot.classList.contains('on')) {
+        dot.style.transform = 'scale(1.15)';
+        setTimeout(() => dot.style.transform = 'scale(1)', 300);
+      }
+    });
+  }, 3000);
 });
+
 </script>
 </body>
 </html>
