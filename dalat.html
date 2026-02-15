@@ -21,8 +21,10 @@ html{scroll-behavior:smooth;}
 body{
   font-family:'EB Garamond',serif;
   background:
-    radial-gradient(ellipse at 50% 0%,rgba(30,68,48,.18),transparent 70%),
-    linear-gradient(180deg,#1a3c28 0%,#204e34 35%,#2d5a40 65%,#1e4430 100%);
+    radial-gradient(ellipse at 50% 20%, rgba(62,114,73,.12), transparent 60%),
+    radial-gradient(ellipse at 80% 70%, rgba(30,68,48,.08), transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(45,90,64,.1), transparent 55%),
+    linear-gradient(180deg, #e8f4ed 0%, #d4e8dc 25%, #c5ddd0 50%, #d0e3d8 75%, #ddeee5 100%);
   min-height:100vh;
   display:flex;flex-direction:column;align-items:center;
   padding:40px 20px;
@@ -31,27 +33,27 @@ body{
 body::before{
   content:'';position:fixed;inset:0;
   background-image:
-    repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(122,170,136,.015) 2px,rgba(122,170,136,.015) 4px),
-    repeating-linear-gradient(90deg,transparent,transparent 2px,rgba(122,170,136,.02) 2px,rgba(122,170,136,.02) 4px),
-    radial-gradient(circle at 20% 30%,rgba(62,114,73,.05),transparent 40%),
-    radial-gradient(circle at 80% 70%,rgba(62,114,73,.05),transparent 40%);
-  opacity:.8;pointer-events:none;z-index:0;
-  animation:paperGrain 10s ease-in-out infinite;
+    repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(122,170,136,.018) 3px,rgba(122,170,136,.018) 6px),
+    repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(122,170,136,.022) 3px,rgba(122,170,136,.022) 6px),
+    radial-gradient(circle at 15% 25%,rgba(62,114,73,.04),transparent 45%),
+    radial-gradient(circle at 85% 75%,rgba(62,114,73,.04),transparent 45%);
+  opacity:.85;pointer-events:none;z-index:0;
+  animation:paperGrain 12s ease-in-out infinite;
 }
-@keyframes paperGrain{0%,100%{opacity:.8;}50%{opacity:.6;}}
+@keyframes paperGrain{0%,100%{opacity:.85;}50%{opacity:.65;}}
 body::after{
   content:'';position:fixed;inset:0;
   background-image:
-    radial-gradient(1px 1px at 15% 25%,rgba(201,169,97,.20),transparent),
-    radial-gradient(1px 1px at 35% 55%,rgba(255,255,255,.08),transparent),
-    radial-gradient(2px 2px at 65% 15%,rgba(201,169,97,.25),transparent),
-    radial-gradient(1px 1px at 85% 75%,rgba(255,255,255,.10),transparent),
-    radial-gradient(1px 1px at 25% 85%,rgba(201,169,97,.18),transparent),
-    radial-gradient(2px 2px at 75% 45%,rgba(255,255,255,.12),transparent);
-  animation:particlesDrift 30s linear infinite;
-  pointer-events:none;opacity:.4;z-index:1;
+    radial-gradient(2px 2px at 12% 18%,rgba(201,169,97,.22),transparent),
+    radial-gradient(1px 1px at 28% 45%,rgba(255,255,255,.12),transparent),
+    radial-gradient(2px 2px at 58% 12%,rgba(201,169,97,.28),transparent),
+    radial-gradient(1px 1px at 78% 68%,rgba(255,255,255,.14),transparent),
+    radial-gradient(1px 1px at 22% 82%,rgba(201,169,97,.20),transparent),
+    radial-gradient(2px 2px at 88% 38%,rgba(255,255,255,.16),transparent);
+  animation:particlesDrift 35s linear infinite;
+  pointer-events:none;opacity:.5;z-index:1;
 }
-@keyframes particlesDrift{from{transform:translateY(0) translateX(0);}to{transform:translateY(-80px) translateX(40px);}}
+@keyframes particlesDrift{from{transform:translateY(0) translateX(0);}to{transform:translateY(-90px) translateX(50px);}}
 
 .book-container{
   position:relative;max-width:1200px;width:100%;
@@ -154,10 +156,10 @@ body::after{
   animation:fU 1.2s ease .66s both;
 }
 .cover-quote{
-  font-size:1.65rem;line-height:2.2;max-width:850px;margin:0 auto 60px;
-  opacity:.92;font-style:italic;font-family:'EB Garamond',serif;
+  font-size:1.4rem;line-height:2;max-width:750px;margin:0 auto 60px;
+  opacity:.92;font-style:italic;font-family:'Cormorant Garamond',serif;
   text-shadow:0 2px 10px rgba(0,0,0,.5);
-  animation:fU 1.2s ease .82s both;font-weight:500;
+  animation:fU 1.2s ease .82s both;
 }
 
 .open-book-btn{
@@ -296,9 +298,10 @@ body::after{
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 .section-intro{
-  text-align:center;max-width:750px;margin:0 auto 60px;
-  font-size:1.5rem;line-height:2.1;color:var(--forest-green);font-style:italic;
+  text-align:center;max-width:850px;margin:0 auto 60px;
+  font-size:1.75rem;line-height:2.2;color:var(--forest-green);font-style:italic;
   font-family:'EB Garamond',serif;animation:fU 1s ease .5s both;
+  font-weight:500;
 }
 
 /* ── STORY CARDS ── */
@@ -353,10 +356,10 @@ body::after{
 }
 .story-image img{width:100%;height:100%;object-fit:cover;transition:all .8s cubic-bezier(.4,0,.2,1);filter:sepia(.05) contrast(1.05);cursor:pointer;}
 .story-card:hover .story-image img{transform:scale(1.08) rotate(-1deg);filter:sepia(.12) contrast(1.1);}
-.story-text{font-size:1.25rem;line-height:2;color:var(--ink-dark);font-family:'EB Garamond',serif;}
-.story-text p{margin-bottom:16px;font-family:'EB Garamond',serif;}
+.story-text{font-size:1.5rem;line-height:2.1;color:var(--ink-dark);font-family:'EB Garamond',serif;font-weight:500;}
+.story-text p{margin-bottom:18px;font-family:'EB Garamond',serif;}
 .story-text p:last-child{margin-bottom:0;}
-.story-text .lead{font-size:1.4rem;font-style:italic;font-family:'EB Garamond',serif;color:var(--ink-dark);margin-bottom:20px;line-height:2;font-weight:500;}
+.story-text .lead{font-size:1.65rem;font-style:italic;font-family:'EB Garamond',serif;color:var(--ink-dark);margin-bottom:22px;line-height:2.1;font-weight:600;}
 
 /* ── POLAROID PHOTOS ── */
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:50px;margin:60px 0;}
@@ -471,7 +474,7 @@ body::after{
 
 /* diary note (doc2 style) */
 .dnote{
-  padding:28px 36px;
+  padding:32px 40px;
   background:linear-gradient(135deg,rgba(174,206,186,.28),rgba(178,222,192,.20));
   border-left:5px solid var(--g5);border-radius:0 16px 16px 0;
   margin-bottom:18px;position:relative;overflow:hidden;transition:all .42s ease;
@@ -480,8 +483,8 @@ body::after{
   font-size:1.2rem;color:var(--g5);animation:stTw 3.2s ease-in-out infinite;}
 @keyframes stTw{0%,100%{opacity:.40;transform:scale(1) rotate(0);}50%{opacity:1;transform:scale(1.6) rotate(28deg);}}
 .dnote:hover{transform:translateX(10px);border-left-color:var(--g6);}
-.nlbl{font-family:'Dancing Script',cursive;font-size:1.25rem;color:var(--g6);margin-bottom:10px;display:block;font-weight:600;}
-.ntxt{font-size:1.28rem;line-height:2;color:var(--ink-dark);font-family:'EB Garamond',serif;}
+.nlbl{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--g6);margin-bottom:12px;display:block;font-weight:600;}
+.ntxt{font-size:1.55rem;line-height:2.1;color:var(--ink-dark);font-family:'EB Garamond',serif;font-weight:500;}
 
 /* ── MEANING CARDS ── */
 .meaning-grid{
@@ -617,8 +620,8 @@ body::after{
 }
 
 .meaning-card p{
-  font-size:1.2rem;
-  line-height:1.85;
+  font-size:1.35rem;
+  line-height:1.95;
   color:var(--ink-dark);
   position:relative;
   z-index:2;
@@ -636,13 +639,13 @@ body::after{
 }
 @keyframes quoteReveal{from{opacity:0;transform:scale(.92);}to{opacity:1;transform:scale(1);}}
 .quote-box::before{content:'"';position:absolute;top:-30px;left:30px;font-size:10rem;line-height:1;font-family:'Playfair Display',serif;color:#3e7249;opacity:.3;}
-.quote-text{font-family:'EB Garamond',serif;font-size:2.4rem;color:var(--forest-dark);line-height:1.9;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:500;}
+.quote-text{font-family:'EB Garamond',serif;font-size:2.6rem;color:var(--forest-dark);line-height:2;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:500;}
 
 .callout{
-  padding:22px 34px;margin:28px 0;
+  padding:26px 38px;margin:32px 0;
   background:rgba(62,114,73,.18);border-left:6px solid #2d5a40;border-radius:0 14px 14px 0;
-  font-family:'EB Garamond',serif;font-size:1.95rem;line-height:1.9;
-  color:var(--forest-dark);font-style:italic;
+  font-family:'EB Garamond',serif;font-size:2.1rem;line-height:2;
+  color:var(--forest-dark);font-style:italic;font-weight:500;
 }
 
 /* ── CLOSING CARDS (doc2 style) ── */
@@ -666,7 +669,7 @@ body::after{
 .ci img{width:100%;height:100%;object-fit:cover;cursor:pointer;
   transition:all .74s cubic-bezier(.16,.84,.44,1);filter:saturate(1.05);}
 .ccard:hover .ci img{transform:scale(1.08);filter:saturate(1.16);}
-.ct p{font-size:1.25rem;line-height:2.1;color:var(--ink-dark);margin-bottom:14px;font-family:'EB Garamond',serif;}
+.ct p{font-size:1.5rem;line-height:2.2;color:var(--ink-dark);margin-bottom:16px;font-family:'EB Garamond',serif;font-weight:500;}
 .ct p:last-child{margin-bottom:0;}
 
 /* ── PAGE NAV ── */
@@ -739,14 +742,18 @@ body::after{
 /* ── RESPONSIVE ── */
 @media(max-width:1200px){
   .meaning-card{width:340px;min-height:340px;padding:50px 45px;}
-  .meaning-card p{max-width:250px;}
+  .meaning-card p{max-width:250px;font-size:1.25rem;}
 }
 @media(max-width:1024px){
   .page{padding:70px 70px;}
   .section-title{font-size:3.3rem;}
+  .section-intro{font-size:1.55rem;}
+  .story-text{font-size:1.35rem;}
   .meaning-grid{gap:30px;}
   .meaning-card{width:310px;min-height:310px;padding:45px 40px;}
-  .meaning-card p{font-size:1.05rem;max-width:230px;}
+  .meaning-card p{font-size:1.15rem;max-width:230px;}
+  .ntxt{font-size:1.4rem;}
+  .ct p{font-size:1.35rem;}
 }
 @media(max-width:768px){
   body{padding:25px 12px;}
@@ -755,22 +762,31 @@ body::after{
   .cover-subtitle{font-size:1.8rem;}
   .page{padding:60px 35px;border-left:40px solid rgba(30,68,48,.08);}
   .section-title{font-size:3rem;}
+  .section-intro{font-size:1.4rem;}
   .story-card{grid-template-columns:1fr!important;gap:32px;}
   .story-card:nth-child(even) .story-image{order:0;}
+  .story-text{font-size:1.25rem;}
   .photo-grid{grid-template-columns:1fr;}
   .journey-tabs{flex-direction:column;}
   .journey-tab{width:100%;}
   .meaning-grid{flex-direction:column;align-items:center;}
   .meaning-card{border-radius:24px;width:100%;max-width:420px;min-height:auto;height:auto;padding:40px 35px;}
-  .meaning-card p{max-width:100%;}
+  .meaning-card p{max-width:100%;font-size:1.2rem;}
   .cgrid{gap:24px;}
+  .ct p{font-size:1.25rem;}
+  .ntxt{font-size:1.35rem;}
 }
 @media(max-width:480px){
   .page{padding:44px 22px;}
   .section-title{font-size:2.4rem;}
+  .section-intro{font-size:1.25rem;}
+  .story-text{font-size:1.15rem;}
   .quote-box{padding:36px 26px;}
-  .quote-text{font-size:1.7rem;}
+  .quote-text{font-size:1.9rem;}
+  .callout{font-size:1.75rem;}
   .sig{font-size:2.5rem;}
+  .ct p{font-size:1.15rem;}
+  .ntxt{font-size:1.25rem;}
 }
 </style>
 </head>
