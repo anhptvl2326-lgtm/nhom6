@@ -2,382 +2,944 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Hành trình thanh xuân 11L</title> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thư viện ký ức 11L - Hành trình thanh xuân</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Raleway:wght@400;500;600&family=Caveat:wght@600;700&family=Special+Elite&display=swap" rel="stylesheet">
+
 <style>
-  body {
+:root {
+  --cream: #FAF7F2;
+  --sage: #C9DAD3;
+  --blush: #E8CFC4;
+  --vintage-brown: #8B7E74;
+  --deep-brown: #6B5D52;
+  --soft-shadow: rgba(107, 93, 82, 0.15);
+  
+  /* Book colors */
+  --book1: #D4A574; /* 20/10 - Vàng ấm */
+  --book2: #7B9EA8; /* 19/11 - Xanh dương nhạt */
+  --book3: #C97B7B; /* 20/11 - Đỏ gạch */
+  --book4: #9B8B7E; /* Giai điệu - Nâu xám */
+  --book5: #6B9E78; /* Đà Lạt - Xanh lá */
+  --book6: #C19A6B; /* Giỗ Tổ - Vàng nâu */
+}
+
+* {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  color: #3b332c;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  font-family: 'Raleway', sans-serif;
+  background: linear-gradient(135deg, 
+    var(--cream) 0%, 
+    #F5F2EE 25%,
+    var(--sage) 50%,
+    #E8E5E1 75%,
+    var(--cream) 100%
+  );
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  color: var(--vintage-brown);
+}
+
+/* Paper texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Soft light effect from corner */
+body::after {
+  content: '';
+  position: fixed;
+  top: -20%;
+  right: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(ellipse at center, 
+    rgba(255, 250, 240, 0.6), 
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 2;
+  animation: lightPulse 8s ease-in-out infinite;
+}
+
+@keyframes lightPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.85; }
+}
+
+/* Floating dust particles */
+.dust-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.dust {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: radial-gradient(circle, rgba(255, 245, 220, 0.8), transparent);
+  border-radius: 50%;
+  animation: dustFloat var(--duration) linear infinite;
+  opacity: 0;
+}
+
+@keyframes dustFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(0) scale(0);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) translateX(var(--drift)) scale(1.5);
+  }
+}
+
+/* Main container */
+.library-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 40px;
+  z-index: 10;
+}
+
+/* Header section */
+.library-header {
+  text-align: center;
+  margin-bottom: 80px;
+  animation: fadeInDown 1.2s ease both;
+}
+
+.library-title {
+  font-family: 'Caveat', cursive;
+  font-size: 4.5rem;
+  color: var(--deep-brown);
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  letter-spacing: 0.02em;
+}
+
+.library-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--vintage-brown);
+  max-width: 600px;
+  line-height: 1.8;
+  opacity: 0.85;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Books shelf */
+.books-shelf {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 30px;
+  max-width: 1400px;
+  width: 100%;
+  margin-bottom: 80px;
+  perspective: 2000px;
+}
+
+/* Individual book */
+.book {
+  position: relative;
+  height: 420px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: bookAppear 0.8s ease both;
+  animation-delay: calc(var(--index) * 0.1s);
+}
+
+@keyframes bookAppear {
+  from {
+    opacity: 0;
+    transform: translateY(50px) rotateX(-15deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+.book:hover {
+  transform: translateY(-20px) rotateY(-8deg) scale(1.05);
+  z-index: 20;
+}
+
+/* Book cover */
+.book-cover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--book-color);
+  border-radius: 0 8px 8px 0;
+  box-shadow: 
+    -5px 0 15px rgba(0,0,0,0.1),
+    0 10px 40px var(--soft-shadow),
+    inset 0 0 50px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  overflow: hidden;
+  border-left: 3px solid rgba(0,0,0,0.2);
+  transition: all 0.4s ease;
+}
+
+.book:hover .book-cover {
+  box-shadow: 
+    -8px 0 20px rgba(0,0,0,0.15),
+    0 15px 60px var(--soft-shadow),
+    inset 0 0 60px rgba(255,255,255,0.2);
+  filter: brightness(1.1);
+}
+
+/* Book spine effect */
+.book-spine {
+  position: absolute;
+  left: -20px;
+  top: 5%;
+  bottom: 5%;
+  width: 25px;
+  background: linear-gradient(90deg, 
+    rgba(0,0,0,0.4) 0%,
+    var(--book-color) 30%,
+    var(--book-color) 70%,
+    rgba(0,0,0,0.3) 100%
+  );
+  border-radius: 4px 0 0 4px;
+  box-shadow: inset 2px 0 8px rgba(0,0,0,0.3);
+  transform-origin: right center;
+  transform: rotateY(-20deg);
+}
+
+/* Spine text */
+.spine-text {
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+  z-index: 5;
+}
+
+/* Book icon */
+.book-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+  animation: iconFloat 3s ease-in-out infinite;
+  animation-delay: calc(var(--index) * 0.2s);
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Book title on cover */
+.book-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.95);
+  text-align: center;
+  line-height: 1.4;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  margin-bottom: 15px;
+  padding: 0 10px;
+}
+
+/* Book date */
+.book-date {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+  letter-spacing: 0.05em;
+}
+
+/* Decorative elements on cover */
+.book-decoration {
+  position: absolute;
+  border: 2px solid rgba(255,255,255,0.3);
+  pointer-events: none;
+}
+
+.book-decoration.top {
+  top: 20px;
+  left: 15px;
+  right: 15px;
+  height: 40px;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+}
+
+.book-decoration.bottom {
+  bottom: 20px;
+  left: 15px;
+  right: 15px;
+  height: 40px;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+}
+
+/* Paper clip decoration */
+.paper-clip {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  width: 25px;
+  height: 35px;
+  border: 2.5px solid rgba(200, 200, 200, 0.9);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(240,240,240,0.7));
+  box-shadow: 
+    0 4px 10px rgba(0,0,0,0.2),
+    inset 1px 1px 2px rgba(255,255,255,0.8);
+  z-index: 10;
+  animation: clipShine 3s ease-in-out infinite;
+  animation-delay: calc(var(--index) * 0.3s);
+}
+
+@keyframes clipShine {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
+}
+
+/* Pages effect */
+.book-pages {
+  position: absolute;
+  right: -6px;
+  top: 10px;
+  bottom: 10px;
+  width: 8px;
   background: 
-    url("https://i.pinimg.com/1200x/b1/c9/7e/b1c97ee2dd305e372f2ffd11f70be687.jpg")
-    center / cover no-repeat fixed;
+    repeating-linear-gradient(
+      0deg,
+      #fff 0px,
+      #fff 2px,
+      #f5f5f5 2px,
+      #f5f5f5 4px
+    );
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  border-radius: 0 4px 4px 0;
 }
 
-/* HERO PAPER */
-
-.hero-paper {
-
-max-width: 1000px;
-
-margin: 70px auto 120px;
-
-background: #fff;
-
-padding: 25px;
-
-box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-
-text-align: center;
-
-position: relative;
-
+/* Timeline navigation */
+.timeline-nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
+  animation: fadeInUp 1.5s ease 0.8s both;
 }
 
-.hero-img {
-
-width: 100%;
-
-border-radius: 3px;
-
-}
-
-.hero-paper h1 {
-
-font-family: 'Playfair Display', serif;
-
-margin-top: 25px;
-
-font-size: 40px;
-
-}
-
-.handwrite {
-
-font-family: 'Dancing Script', cursive;
-
-font-size: 20px;
-
-color: #8b6f4e;
-
-}
-
-/* WASHI TAPE */
-
-.tape {
-
-position: absolute;
-
-top: -14px;
-
-left: 50%;
-
-width: 120px;
-
-height: 32px;
-
-background: rgba(200,180,140,0.7);
-
-transform: translateX(-50%) rotate(-3deg);
-
-}
-
-/* SCRAPBOOK */
-
-.scrapbook {
-
-max-width: 1100px;
-
-margin: auto;
-
-display: flex;
-
-flex-direction: column;
-
-gap: 110px;
-
-}
-
-.scrapbook {
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--vintage-brown);
+  opacity: 0.3;
+  cursor: pointer;
+  transition: all 0.3s ease;
   position: relative;
 }
 
-.scrapbook::before {
-  content: "";
+.timeline-dot::before {
+  content: attr(data-label);
   position: absolute;
-  top: 0;
+  bottom: -30px;
   left: 50%;
-  width: 2px;
-  height: 100%;
-  background: repeating-linear-gradient(
-    to bottom,
-    #cbb89d,
-    #cbb89d 6px,
-    transparent 6px,
-    transparent 14px
-  );
   transform: translateX(-50%);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: var(--vintage-brown);
+  font-family: 'Special Elite', monospace;
 }
 
-/* CARD */
-
-.card {
-
-background: #fff;
-
-padding: 28px;
-
-display: flex;
-
-gap: 35px;
-
-position: relative;
-
-box-shadow: 0 18px 40px rgba(0,0,0,0.14);
-
-transition: 0.5s ease;
-
+.timeline-dot:hover::before {
+  opacity: 1;
 }
 
-.card {
-  background: #fffdf8;
-  border-radius: 6px;
-  width: 85%;
+.timeline-dot.active {
+  opacity: 1;
+  transform: scale(1.5);
+  box-shadow: 0 0 15px var(--vintage-brown);
 }
 
-.card.left {
-  align-self: flex-start;
-  margin-left: 40px;
+.timeline-dot:hover {
+  opacity: 0.7;
+  transform: scale(1.3);
 }
 
-.card.right {
-  align-self: flex-end;
-  margin-right: 40px;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.card:hover {
-
-transform: translateY(-8px) rotate(0.4deg);
-
+/* Decorative tape SVG */
+.tape-decoration {
+  position: fixed;
+  width: 120px;
+  height: 40px;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      rgba(230, 220, 200, 0.6),
+      rgba(230, 220, 200, 0.6) 10px,
+      rgba(240, 230, 210, 0.5) 10px,
+      rgba(240, 230, 210, 0.5) 20px
+    );
+  border: 1px solid rgba(200, 190, 170, 0.4);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  z-index: 5;
+  pointer-events: none;
 }
 
-/* IMAGE */
-
-.card img {
-
-width: 360px;
-
-height: 240px;
-
-object-fit: cover;
-
-transform: none;
-
-box-shadow: 0 12px 25px rgba(0,0,0,0.25);
-
-}
-
-/* CONTENT */
-
-.content h2 {
-
-font-family: 'Playfair Display', serif;
-
-font-size: 22px;
-
-}
-
-.content p {
-
-font-size: 15px;
-
-color: #555;
-
-}
-
-.content a {
-
-text-decoration: none;
-
-color: #8b5e3c;
-
-font-weight: 500;
-
-}
-
-/* LEFT RIGHT */
-
-.card.right {
-
-flex-direction: row-reverse;
-
-}
-
-.card.right img {
-
-transform: rotate(2deg);
-
-}
-
-/* PAPER CLIP */
-
-.clip {
-
-position: absolute;
-
-top: -14px;
-
-left: 30px;
-
-width: 26px;
-
-height: 40px;
-
-border: 3px solid #777;
-
-border-bottom: none;
-
-border-radius: 12px;
-
-background: #fffdf6;
-
-box-shadow: 0 4px 6px rgba(0,0,0,0.25);
-
-z-index: 5;
-
-}
-
-/* clip nằm TRÊN ẢNH */
-.card.left .clip {
-  left: 140px;
-}
-
-.card.right .clip {
-  right: 140px;
-}
-
-/* FLOWER */
-
-.flower {
-
-position: absolute;
-
-bottom: -20px;
-
-right: -20px;
-
-width: 60px;
-
-height: 60px;
-
-background: url("https://i.pinimg.com/736x/1e/48/55/1e4855b1dcf3eec1b9d00b8b2c9dbd60.jpg") center/cover no-repeat;
-
-opacity: 0.85;
-
-}
-
-.flower {
-  opacity: 0.6;
+.tape-decoration.top-left {
+  top: 40px;
+  left: 40px;
   transform: rotate(-8deg);
+}
+
+.tape-decoration.top-right {
+  top: 60px;
+  right: 60px;
+  transform: rotate(12deg);
+}
+
+/* Book modal overlay */
+.book-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(250, 247, 242, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  animation: modalFadeIn 0.5s ease;
+}
+
+.book-modal.active {
+  display: flex;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  height: 90vh;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  animation: pageFlip 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+@keyframes pageFlip {
+  0% {
+    transform: perspective(2000px) rotateY(-90deg) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: perspective(2000px) rotateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: rgba(139, 126, 116, 0.9);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.modal-close:hover {
+  background: var(--deep-brown);
+  transform: rotate(90deg) scale(1.1);
+}
+
+.modal-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(139, 126, 116, 0.2);
+  border-top-color: var(--vintage-brown);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .books-shelf {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+  
+  .book {
+    height: 380px;
+  }
+}
+
+@media (max-width: 768px) {
+  .library-title {
+    font-size: 3rem;
+  }
+  
+  .library-quote {
+    font-size: 1.1rem;
+  }
+  
+  .books-shelf {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .book {
+    height: 340px;
+  }
+  
+  .book-title {
+    font-size: 1.1rem;
+  }
+  
+  .book-icon {
+    font-size: 2.5rem;
+  }
+  
+  .timeline-nav {
+    gap: 10px;
+  }
+  
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .library-container {
+    padding: 40px 20px;
+  }
+  
+  .library-header {
+    margin-bottom: 50px;
+  }
+  
+  .library-title {
+    font-size: 2.5rem;
+  }
+  
+  .library-quote {
+    font-size: 1rem;
+  }
+  
+  .books-shelf {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .book {
+    height: 320px;
+  }
+  
+  .book:hover {
+    transform: translateY(-10px) scale(1.02);
+  }
+  
+  .tape-decoration {
+    display: none;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vintage-brown);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--deep-brown);
 }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<section class="hero-paper">
-  <div class="tape"></div>
-  <img src="2.jpg" class="hero-img">
-  <h1>HÀNH TRÌNH THANH XUÂN 11L</h1>
-  <p class="handwrite">Chúng ta đã cùng nhau đi qua những năm tháng đẹp đẽ ấy, để rồi nhận ra những điều bình dị nhất lại là điều đáng nhớ nhất.</p>
-</section>
+<!-- Dust particles -->
+<div class="dust-container" id="dustContainer"></div>
 
-<!-- TIMELINE -->
-<section class="scrapbook">
+<!-- Decorative tapes -->
+<div class="tape-decoration top-left"></div>
+<div class="tape-decoration top-right"></div>
 
-  <div class="card left">
-    <span class="clip"></span>
-    <img src="ảnh1.jpg">
-    <div class="content">
-      <h2>20/10 – Ngày Phụ nữ Việt Nam</h2>
-      <p>Những năm tháng cuối cấp trôi qua rất nhanh, nhưng có những kỉ niệm vẫn
-        ở lại nguyên vẹn trong tim mỗi người. Ngày Phụ nữ Việt Nam 20/10 năm lớp 11 là một trong 
-        những khoảnh khắc như thế – giản dị thôi nhưng đầy ắp yêu thương, tiếng cười và sự gắn kết 
-        của cả tập thể lớp chúng mình</p>
-      <a href="2010.html">Xem chi tiết →</a>
+<!-- Main library container -->
+<div class="library-container">
+  <!-- Header -->
+  <header class="library-header">
+    <h1 class="library-title">Thư viện ký ức 11L</h1>
+    <p class="library-quote">
+      "Mỗi cuốn nhật ký là một mảnh ghép của thanh xuân,<br>
+      cùng nhau tạo nên bức tranh trọn vẹn của những năm tháng học trò."
+    </p>
+  </header>
+
+  <!-- Books shelf -->
+  <div class="books-shelf">
+    <!-- Book 1: 20/10 -->
+    <div class="book" style="--index: 0; --book-color: var(--book1);" data-page="2010.html">
+      <div class="book-spine"></div>
+      <div class="spine-text">20/10</div>
+      <div class="paper-clip"></div>
+      <div class="book-cover">
+        <div class="book-decoration top"></div>
+        <div class="book-icon">🌸</div>
+        <h3 class="book-title">Ngày Phụ nữ<br>Việt Nam</h3>
+        <p class="book-date">20.10</p>
+        <div class="book-decoration bottom"></div>
+      </div>
+      <div class="book-pages"></div>
     </div>
-    <span class="flower"></span>
+
+    <!-- Book 2: 19/11 -->
+    <div class="book" style="--index: 1; --book-color: var(--book2);" data-page="1911.html">
+      <div class="book-spine"></div>
+      <div class="spine-text">19/11</div>
+      <div class="paper-clip"></div>
+      <div class="book-cover">
+        <div class="book-decoration top"></div>
+        <div class="book-icon">👔</div>
+        <h3 class="book-title">Ngày Quốc tế<br>Đàn Ông</h3>
+        <p class="book-date">19.11</p>
+        <div class="book-decoration bottom"></div>
+      </div>
+      <div class="book-pages"></div>
+    </div>
+
+    <!-- Book 3: 20/11 -->
+    <div class="book" style="--index: 2; --book-color: var(--book3);" data-page="2011.html">
+      <div class="book-spine"></div>
+      <div class="spine-text">20/11</div>
+      <div class="paper-clip"></div>
+      <div class="book-cover">
+        <div class="book-decoration top"></div>
+        <div class="book-icon">📚</div>
+        <h3 class="book-title">Ngày Nhà giáo<br>Việt Nam</h3>
+        <p class="book-date">20.11</p>
+        <div class="book-decoration bottom"></div>
+      </div>
+      <div class="book-pages"></div>
+    </div>
+
+    <!-- Book 4: Giai điệu -->
+    <div class="book" style="--index: 3; --book-color: var(--book4);" data-page="giaidieu.html">
+      <div class="book-spine"></div>
+      <div class="spine-text">GIAI ĐIỆU</div>
+      <div class="paper-clip"></div>
+      <div class="book-cover">
+        <div class="book-decoration top"></div>
+        <div class="book-icon">🎵</div>
+        <h3 class="book-title">Giai điệu tuổi hồng<br>& Thanh lịch</h3>
+        <p class="book-date">2024-2025</p>
+        <div class="book-decoration bottom"></div>
+      </div>
+      <div class="book-pages"></div>
+    </div>
+
+    <!-- Book 5: Đà Lạt -->
+    <div class="book" style="--index: 4; --book-color: var(--book5);" data-page="dalat.html">
+      <div class="book-spine"></div>
+      <div class="spine-text">ĐÀ LẠT</div>
+      <div class="paper-clip"></div>
+      <div class="book-cover">
+        <div class="book-decoration top"></div>
+        <div class="book-icon">🌲</div>
+        <h3 class="book-title">Chuyến tham quan<br>Đà Lạt</h3>
+        <p class="book-date">Ba ngày</p>
+        <div class="book-decoration bottom"></div>
+      </div>
+      <div class="book-pages"></div>
+    </div>
+
+    <!-- Book 6: Giỗ Tổ -->
+    <div class="book" style="--index: 5; --book-color: var(--book6);" data-page="banhchung.html">
+      <div class="book-spine"></div>
+      <div class="spine-text">GIỖ TỔ</div>
+      <div class="paper-clip"></div>
+      <div class="book-cover">
+        <div class="book-decoration top"></div>
+        <div class="book-icon">🎋</div>
+        <h3 class="book-title">Giỗ Tổ<br>Hùng Vương</h3>
+        <p class="book-date">10.03</p>
+        <div class="book-decoration bottom"></div>
+      </div>
+      <div class="book-pages"></div>
+    </div>
   </div>
 
-  <div class="card right">
-    <span class="clip"></span>
-    <img src="19.11 3.jpg">
-    <div class="content">
-      <h2>19/11 – Ngày Quốc tế Đàn Ông</h2>
-      <p>Có những ngày đến rất nhẹ, nhưng khi đi qua rồi mới nhận ra mình 
-        đã lưu giữ được thêm một kỷ niệm đẹp.</p>
-      <a href="1911.html">Xem chi tiết →</a>
-    </div>
-    <span class="flower"></span>
-  </div>
+  <!-- Timeline navigation -->
+  <nav class="timeline-nav">
+    <div class="timeline-dot active" data-label="20/10"></div>
+    <div class="timeline-dot" data-label="19/11"></div>
+    <div class="timeline-dot" data-label="20/11"></div>
+    <div class="timeline-dot" data-label="Giai điệu"></div>
+    <div class="timeline-dot" data-label="Đà Lạt"></div>
+    <div class="timeline-dot" data-label="Giỗ Tổ"></div>
+  </nav>
+</div>
 
-  <div class="card left">
-    <span class="clip"></span>
-    <img src="tSuyen.jpg">
-    <div class="content">
-      <h2>20/11 – Ngày Nhà giáo Việt Nam</h2>
-      <p>Đối với đời học sinh, ngày 20/11 không chỉ là một dịp lễ quen thuộc mà còn là ngày để mỗi chúng em lắng lòng, nhớ về công ơn to lớn của thầy cô giáo. 
-        Thầy cô là những người đã âm thầm gieo từng con chữ, nâng đỡ từng ước mơ và kiên nhẫn dìu dắt chúng em trên con đường tri thức. Dù chặng đường học tập 
-        có nhiều khó khăn, thầy cô vẫn luôn ở đó, tận tụy giảng dạy bằng cả trái tim và trách nhiệm. Ngày Nhà giáo Việt Nam vì thế trở thành ngày của sự biết ơn,
-        là dịp để học sinh bày tỏ lòng kính trọng, tình cảm chân thành đối với những người đã và đang thắp sáng tương lai cho bao thế hệ.</p>
-      <a href="2011.html">Xem chi tiết →</a>
-    </div>
-    <span class="flower"></span>
+<!-- Book modal -->
+<div class="book-modal" id="bookModal">
+  <button class="modal-close" id="modalClose">×</button>
+  <div class="modal-content">
+    <div class="loading-spinner"></div>
+    <iframe class="modal-iframe" id="modalIframe"></iframe>
   </div>
+</div>
 
-  <div class="card right">
-    <span class="clip"></span>
-    <img src="thanhlich3.jpg">
-    <div class="content">
-      <h2>Giai điệu tuổi hồng & Thanh lịch</h2>
-      <p>Một năm học với thật nhiều cung bậc cảm xúc và những trải nghiệm khó quên!
-        Lớp chúng mình đã cùng nhau tạo nên dấu ấn riêng qua sân chơi lớn đầy ý nghĩa: "Giai Điệu Tuổi Hồng" và "Hùng Vương Những Mùa Nhớ". 
-        Đó là hành trình của sự đoàn kết, sáng tạo và những nỗ lực không ngừng để mang đến những phần thi tuyệt vời nhất. 
-        Cùng nhìn lại những khoảnh khắc đáng nhớ ấy nhé!</p>
-      <a href="giaidieu.html">Xem chi tiết →</a>
-    </div>
-    <span class="flower"></span>
-  </div>
+<script>
+// Create floating dust particles
+function createDust() {
+  const container = document.getElementById('dustContainer');
+  const dustCount = 30;
+  
+  for (let i = 0; i < dustCount; i++) {
+    const dust = document.createElement('div');
+    dust.className = 'dust';
+    dust.style.left = Math.random() * 100 + '%';
+    dust.style.setProperty('--duration', (15 + Math.random() * 15) + 's');
+    dust.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+    dust.style.animationDelay = Math.random() * 10 + 's';
+    container.appendChild(dust);
+  }
+}
 
-  <div class="card left">
-    <span class="clip"></span>
-    <img src="thanh-pho-da-lat.jpg">
-    <div class="content">
-      <h2>Chuyến tham quan Đà Lạt</h2>
-      <p>Không chỉ là một chuyến đi, hành trình Đà Lạt của tập thể lớp 11L là sự kết hợp giữa học tập, trải nghiệm và gắn kết – nơi những ký ức thanh xuân được lưu giữ trọn vẹn.</p>
-      <a href="dalat.html">Xem chi tiết →</a>
-    </div>
-    <span class="flower"></span>
-  </div>
+createDust();
 
-  <div class="card right">
-    <span class="clip"></span>
-    <img src="bc4.jpg">
-    <div class="content">
-      <h2>Giỗ Tổ Hùng Vương</h2>
-      <p>Giỗ Tổ hôm ấy là ngày của sự biết ơn công lao dựng nước của Vua Hùng, 
-        là ngày của những đứa trẻ vẫn quen nghịch ngợm 11L nháo nhào chuẩn bị cho cuộc thi gói bánh chưng, 
-        là ngày đã giữ cho chúng mình những kỉ niệm đẹp đẽ chẳng thể quên.</p>
-      <a href="banhchung.html">Xem chi tiết →</a>
-    </div>
-    <span class="flower"></span>
-  </div>
+// Book click handling
+const books = document.querySelectorAll('.book');
+const modal = document.getElementById('bookModal');
+const modalClose = document.getElementById('modalClose');
+const modalIframe = document.getElementById('modalIframe');
+const timelineDots = document.querySelectorAll('.timeline-dot');
 
-</section>
+books.forEach((book, index) => {
+  book.addEventListener('click', () => {
+    const page = book.getAttribute('data-page');
+    
+    // Update active dot
+    timelineDots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+    
+    // Open modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Load page in iframe
+    setTimeout(() => {
+      modalIframe.src = page;
+    }, 400);
+  });
+});
+
+// Timeline dots click
+timelineDots.forEach((dot, index) => {
+  dot.addEventListener('click', (e) => {
+    e.stopPropagation();
+    books[index].click();
+  });
+});
+
+// Close modal
+modalClose.addEventListener('click', () => {
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+  modalIframe.src = '';
+});
+
+// Close on backdrop click
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modalClose.click();
+  }
+});
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.classList.contains('active')) {
+    modalClose.click();
+  }
+});
+
+// Book hover 3D effect
+books.forEach(book => {
+  book.addEventListener('mousemove', (e) => {
+    const rect = book.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 20;
+    const rotateY = (centerX - x) / 20;
+    
+    book.style.transform = `
+      translateY(-20px) 
+      rotateX(${rotateX}deg) 
+      rotateY(${rotateY}deg) 
+      scale(1.05)
+    `;
+  });
+  
+  book.addEventListener('mouseleave', () => {
+    book.style.transform = '';
+  });
+});
+
+// Smooth page load
+window.addEventListener('load', () => {
+  document.body.style.opacity = '0';
+  setTimeout(() => {
+    document.body.style.transition = 'opacity 1s ease';
+    document.body.style.opacity = '1';
+  }, 100);
+});
+
+// Parallax effect on scroll
+let scrollY = 0;
+window.addEventListener('scroll', () => {
+  scrollY = window.pageYOffset;
+  const tapes = document.querySelectorAll('.tape-decoration');
+  tapes.forEach((tape, index) => {
+    const speed = 0.3 + index * 0.1;
+    tape.style.transform = `
+      translateY(${scrollY * speed}px) 
+      rotate(${index === 0 ? -8 : 12}deg)
+    `;
+  });
+});
+
+// Add continuous dust creation
+setInterval(() => {
+  const container = document.getElementById('dustContainer');
+  if (container.children.length > 50) {
+    container.removeChild(container.firstChild);
+  }
+  
+  const dust = document.createElement('div');
+  dust.className = 'dust';
+  dust.style.left = Math.random() * 100 + '%';
+  dust.style.setProperty('--duration', (15 + Math.random() * 15) + 's');
+  dust.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+  container.appendChild(dust);
+}, 5000);
+</script>
 
 </body>
 </html>
