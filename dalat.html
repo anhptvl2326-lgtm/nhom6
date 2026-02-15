@@ -18,7 +18,6 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 
-/* ── BODY: vintage paper desk ── */
 body{
   font-family:'Cormorant Garamond',serif;
   background:
@@ -95,7 +94,6 @@ body::after{
   50%    {opacity:1; box-shadow:inset 0 0 60px rgba(201,169,97,.3),0 0 40px rgba(201,169,97,.5);}
 }
 
-/* firefly particles */
 .ff-wrap{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
 .ff{position:absolute;border-radius:50%;pointer-events:none;
   animation:ffRise var(--dur) var(--del) ease-in-out infinite;opacity:0;}
@@ -105,7 +103,6 @@ body::after{
   100%{opacity:0;transform:translateY(-120px) translateX(var(--dx)) scale(.3);}
 }
 
-/* leaf bookmark */
 .bookmark{
   position:absolute;top:0;right:12%;width:60px;height:180px;
   background:linear-gradient(135deg,#2d5a40,#3e7249);
@@ -177,7 +174,6 @@ body::after{
   border:3px solid rgba(62,114,73,.6);position:relative;overflow:hidden;cursor:pointer;
 }
 @keyframes btnShimmer{0%{background-position:0% 0%,0% 0%;}100%{background-position:0% 0%,200% 200%;}}
-
 .open-book-btn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;
   background:radial-gradient(circle,rgba(255,255,255,.6),transparent 70%);
   border-radius:50%;transform:translate(-50%,-50%);transition:width .7s,height .7s;}
@@ -191,7 +187,6 @@ body::after{
   50% {opacity:1;}
   100%{transform:translateX(100%) rotate(45deg);opacity:0;}
 }
-
 .open-book-btn:hover::before{width:500px;height:500px;}
 .open-book-btn:hover{transform:translateY(-6px) scale(1.08);
   box-shadow:0 18px 55px rgba(30,68,48,.8),0 0 50px rgba(62,114,73,.8),0 0 80px rgba(201,169,97,.5);}
@@ -200,7 +195,6 @@ body::after{
   50%    {box-shadow:0 15px 45px rgba(30,68,48,.8),inset 0 2px 0 rgba(255,255,255,.7),0 0 60px rgba(62,114,73,.7);}
 }
 @keyframes fU{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
-
 .open-book-btn span{position:relative;z-index:1;}
 
 /* ── BOOK PAGES ── */
@@ -228,8 +222,8 @@ body::after{
 @keyframes pageTurn{
   0%  {transform:perspective(2000px) rotateY(-100deg);opacity:0;filter:blur(10px);}
   60% {transform:perspective(2000px) rotateY(10deg);  opacity:1;filter:blur(0);}
-  100%{transform:perspective(2000px) rotateY(0);      opacity:1;filter:blur(0);}}
-
+  100%{transform:perspective(2000px) rotateY(0);      opacity:1;filter:blur(0);}
+}
 .page::before{
   content:'';position:absolute;inset:0;
   background-image:
@@ -240,7 +234,6 @@ body::after{
   pointer-events:none;animation:agingSpots 15s ease-in-out infinite;
 }
 @keyframes agingSpots{0%,100%{opacity:.6;}50%{opacity:.8;}}
-
 .page::after{
   content:'';position:absolute;left:30px;top:50%;transform:translateY(-50%);
   width:12px;height:85%;
@@ -257,12 +250,10 @@ body::after{
 .leaf-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
 .lf{position:absolute;font-size:var(--lsz);pointer-events:none;
   animation:lfDrift var(--ldur) var(--ldel) ease-in-out infinite;opacity:0;}
-
 @keyframes floatSlow{
   0%,100%{transform:translateY(0) rotate(0deg);opacity:.15;}
   50%{transform:translateY(-30px) rotate(10deg);opacity:.25;}
 }
-
 @keyframes lfDrift{
   0%  {opacity:0;transform:translateY(20px) translateX(0) rotate(0deg) scale(1);}
   18% {opacity:.52;}82%{opacity:.25;}
@@ -271,7 +262,6 @@ body::after{
 
 .page-content{position:relative;z-index:1;}
 
-/* PAGE NUMBER */
 .page-number{
   position:absolute;bottom:35px;right:55px;
   font-family:'Caveat',cursive;font-size:1.8rem;
@@ -301,7 +291,6 @@ body::after{
   animation:lineDraw 2s ease-out forwards;box-shadow:0 2px 15px rgba(30,68,48,.4);
 }
 @keyframes lineDraw{from{width:0;}to{width:250px;}}
-
 .section-title.grad-h{
   background:linear-gradient(118deg,var(--g7) 0%,var(--g5) 45%,var(--forest-dark) 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
@@ -334,31 +323,13 @@ body::after{
 }
 .story-image img{width:100%;height:100%;object-fit:cover;transition:all .8s cubic-bezier(.4,0,.2,1);filter:sepia(.05) contrast(1.05);cursor:pointer;}
 .story-card:hover .story-image img{transform:scale(1.08) rotate(-1deg);filter:sepia(.12) contrast(1.1);}
-.story-text{
-  font-size:1.15rem;
-  line-height:1.9;
-  color:var(--ink-dark);
-  font-family:'Lora',serif;
-}
-.story-text p{
-  margin-bottom:16px;
-  font-family:'Lora',serif;
-}
+.story-text{font-size:1.15rem;line-height:1.9;color:var(--ink-dark);font-family:'Lora',serif;}
+.story-text p{margin-bottom:16px;font-family:'Lora',serif;}
 .story-text p:last-child{margin-bottom:0;}
-.story-text .lead{
-  font-size:1.3rem;
-  font-style:italic;
-  font-family:'EB Garamond',serif;
-  color:var(--ink-dark);
-  margin-bottom:20px;
-  line-height:1.9;
-}
+.story-text .lead{font-size:1.3rem;font-style:italic;font-family:'EB Garamond',serif;color:var(--ink-dark);margin-bottom:20px;line-height:1.9;}
 
 /* ── POLAROID PHOTOS ── */
-.photo-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:50px;margin:60px 0;
-}
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:50px;margin:60px 0;}
 .polaroid{
   background:#fff;padding:18px 18px 70px;
   box-shadow:0 12px 35px rgba(30,68,48,.3);
@@ -381,37 +352,19 @@ body::after{
   background:repeating-linear-gradient(45deg,rgba(30,68,48,.5),rgba(30,68,48,.5) 5px,rgba(255,255,255,.3) 5px,rgba(255,255,255,.3) 10px);
   border:1px solid rgba(30,68,48,.2);box-shadow:0 3px 8px rgba(0,0,0,.15);opacity:.8;
 }
-
-/* Image text overlay */
 .img-text-overlay{
-  position:absolute;
-  top:0;left:0;right:0;bottom:70px;
+  position:absolute;top:0;left:0;right:0;bottom:70px;
   background:linear-gradient(to bottom,rgba(30,68,48,.88),rgba(30,68,48,.75));
-  opacity:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  transition:opacity .5s ease;
-  pointer-events:none;
+  opacity:0;display:flex;align-items:center;justify-content:center;padding:20px;
+  transition:opacity .5s ease;pointer-events:none;
 }
-.polaroid:hover .img-text-overlay{
-  opacity:1;
-}
+.polaroid:hover .img-text-overlay{opacity:1;}
 .img-text-content{
-  color:#fff;
-  text-align:center;
-  font-family:'EB Garamond',serif;
-  font-size:1.15rem;
-  line-height:1.7;
-  font-style:italic;
-  transform:translateY(20px);
-  transition:transform .5s ease;
+  color:#fff;text-align:center;font-family:'EB Garamond',serif;font-size:1.15rem;
+  line-height:1.7;font-style:italic;transform:translateY(20px);transition:transform .5s ease;
   text-shadow:0 2px 8px rgba(0,0,0,.3);
 }
-.polaroid:hover .img-text-content{
-  transform:translateY(0);
-}
+.polaroid:hover .img-text-content{transform:translateY(0);}
 
 /* ── JOURNEY TABS ── */
 .journey-tabs{display:flex;justify-content:center;gap:25px;margin:60px 0;flex-wrap:wrap;}
@@ -456,56 +409,53 @@ body::after{
 }
 .journey-image img{width:100%;height:100%;object-fit:cover;transition:all .8s ease;cursor:pointer;filter:sepia(.08) contrast(1.05);}
 .journey-card:hover .journey-image img{transform:scale(1.06) rotate(1deg);filter:sepia(.15) contrast(1.1);}
-.journey-text h4{
-  font-family:'Playfair Display',serif;
-  font-size:1.8rem;
-  color:var(--forest-dark);
-  margin-bottom:16px;
-  font-weight:600;
-}
-.journey-text p{
-  font-size:1.1rem;
-  line-height:1.85;
-  color:var(--ink-dark);
-  font-family:'Lora',serif;
-}
+.journey-text h4{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--forest-dark);margin-bottom:16px;font-weight:600;}
+.journey-text p{font-size:1.1rem;line-height:1.85;color:var(--ink-dark);font-family:'Lora',serif;}
 
-/* ── MEANING CARDS - CIRCULAR, CENTERED, BOLD ── */
+/* ═══════════════════════════════════════════════════════════
+   ── MEANING CARDS – KHUNG TRÒN LỚN, KHÔNG CHE CHỮ ──
+   ═══════════════════════════════════════════════════════════ */
 .meaning-grid{
   display:flex;
   justify-content:center;
-  align-items:center;
-  gap:50px;
+  align-items:stretch;
+  gap:40px;
   margin:60px 0;
   flex-wrap:wrap;
 }
 
 .meaning-card{
+  /* Bỏ overflow:hidden và width/height cố định.
+     Dùng aspect-ratio + min-width để giữ hình tròn nhưng tự giãn theo nội dung */
   background:
     radial-gradient(circle at center,rgba(249,247,240,.98),rgba(232,215,195,.85)),
     repeating-linear-gradient(45deg,transparent,transparent 5px,rgba(30,68,48,.02) 5px,rgba(30,68,48,.02) 10px);
-  padding:50px 40px;
+  padding:55px 50px;
   border-radius:50%;
   text-align:center;
   border:4px solid rgba(30,68,48,.4);
   box-shadow:0 12px 40px rgba(30,68,48,.2);
   transition:all .6s cubic-bezier(.4,0,.2,1);
   animation:cardFlip 1s ease;
-  width:340px;
-  height:340px;
+
+  /* Kích thước: đủ rộng để chứa text, giữ tỷ lệ vuông để circle hoạt động */
+  width:380px;
+  min-height:380px;
+  height:auto;           /* tự giãn chiều cao nếu cần */
+
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   position:relative;
-  overflow:hidden;
+  overflow:visible;      /* KHÔNG cắt nội dung */
 }
 
-/* Rotating ornamental border */
+/* Rotating ornamental border – dùng outline thay vì pseudo che text */
 .meaning-card::before{
   content:'';
   position:absolute;
-  inset:-4px;
+  inset:-6px;
   background:conic-gradient(from 0deg,#2d5a40,#3e7249,#2d5a40,#3e7249,#2d5a40);
   border-radius:50%;
   z-index:-1;
@@ -513,64 +463,53 @@ body::after{
   animation:rotateMedallion 6s linear infinite;
   transition:opacity .5s ease;
 }
+.meaning-card:hover::before{ opacity:.6; }
 
-.meaning-card:hover::before{
-  opacity:.6;
-}
-
-/* Radial glow pulse */
+/* Radial glow – z-index âm để không che text */
 .meaning-card::after{
   content:'';
   position:absolute;
   inset:0;
-  background:radial-gradient(circle at center,rgba(62,114,73,.15),transparent 70%);
+  background:radial-gradient(circle at center,rgba(62,114,73,.12),transparent 70%);
   border-radius:50%;
   opacity:0;
   transition:opacity .5s ease;
+  z-index:-1;
   animation:radialPulse 2s ease-in-out infinite;
 }
-
-.meaning-card:hover::after{
-  opacity:1;
-}
+.meaning-card:hover::after{ opacity:1; }
 
 @keyframes rotateMedallion{
   from{transform:rotate(0deg);}
   to{transform:rotate(360deg);}
 }
-
 @keyframes radialPulse{
   0%,100%{transform:scale(.9);opacity:.3;}
   50%{transform:scale(1.1);opacity:.6;}
 }
-
 @keyframes cardFlip{from{opacity:0;transform:rotateY(-100deg);}to{opacity:1;transform:rotateY(0);}}
 
 .meaning-card:hover{
-  transform:translateY(-20px) scale(1.05) rotate(5deg);
+  transform:translateY(-16px) scale(1.04) rotate(3deg);
   box-shadow:0 30px 70px rgba(30,68,48,.35);
   border-color:rgba(30,68,48,.7);
 }
 
 .meaning-icon{
-  font-size:4.5rem;
-  margin-bottom:25px;
+  font-size:5rem;
+  margin-bottom:22px;
   display:inline-block;
   animation:iconBounce 3s ease-in-out infinite;
   filter:drop-shadow(0 6px 15px rgba(30,68,48,.3));
   position:relative;
-  z-index:1;
+  z-index:2;
+  flex-shrink:0;
 }
+.meaning-card:hover .meaning-icon{ animation:iconSpin 1.5s ease-in-out infinite; }
+.meaning-card:nth-child(2) .meaning-icon{ animation-delay:1s; }
+.meaning-card:nth-child(3) .meaning-icon{ animation-delay:2s; }
 
-.meaning-card:hover .meaning-icon{
-  animation:iconSpin 1.5s ease-in-out infinite;
-}
-
-.meaning-card:nth-child(2) .meaning-icon{animation-delay:1s;}
-.meaning-card:nth-child(3) .meaning-icon{animation-delay:2s;}
-
-@keyframes iconBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-18px);}}
-
+@keyframes iconBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
 @keyframes iconSpin{
   0%,100%{transform:rotate(0deg) scale(1);filter:drop-shadow(0 6px 15px rgba(30,68,48,.3));}
   50%{transform:rotate(15deg) scale(1.15);filter:drop-shadow(0 8px 20px rgba(62,114,73,.6));}
@@ -578,22 +517,24 @@ body::after{
 
 .meaning-card h4{
   font-family:'Playfair Display',serif;
-  font-size:1.9rem;
+  font-size:1.75rem;
   color:var(--forest-dark);
-  margin-bottom:18px;
+  margin-bottom:16px;
   font-weight:800;
   position:relative;
-  z-index:1;
+  z-index:2;
+  line-height:1.3;
 }
 
 .meaning-card p{
-  font-size:1.18rem;
+  font-size:1.1rem;
   line-height:1.75;
   color:var(--ink-dark);
   position:relative;
-  z-index:1;
+  z-index:2;
   font-family:'Lora',serif;
   font-weight:500;
+  max-width:280px;   /* giới hạn chiều rộng text bên trong tròn */
 }
 
 /* ── QUOTE BOX ── */
@@ -610,11 +551,8 @@ body::after{
 .callout{
   padding:22px 34px;margin:28px 0;
   background:rgba(62,114,73,.18);border-left:6px solid #2d5a40;border-radius:0 14px 14px 0;
-  font-family:'EB Garamond',serif;
-  font-size:1.8rem;
-  line-height:1.8;
-  color:var(--forest-dark);
-  font-style:italic;
+  font-family:'EB Garamond',serif;font-size:1.8rem;line-height:1.8;
+  color:var(--forest-dark);font-style:italic;
 }
 
 /* ── PAGE NAV ── */
@@ -633,7 +571,6 @@ body::after{
 .nav-btn:hover{transform:translateY(-4px);box-shadow:0 10px 25px rgba(30,68,48,.7);}
 .nav-btn.disabled{opacity:.3;pointer-events:none;}
 
-/* progress dots */
 .prog{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:20px;}
 .pdot{width:9px;height:9px;border-radius:50%;cursor:pointer;background:rgba(30,68,48,.22);border:1.5px solid rgba(30,68,48,.30);transition:all .32s;}
 .pdot.on{width:30px;border-radius:5px;background:linear-gradient(90deg,#2d5a40,#3e7249);border-color:transparent;box-shadow:0 2px 10px rgba(30,68,48,.30);}
@@ -686,11 +623,16 @@ body::after{
 @keyframes spinnerRotate{to{transform:translate(-50%,-50%) rotate(360deg);}}
 
 /* ── RESPONSIVE ── */
+@media(max-width:1200px){
+  .meaning-card{width:340px;min-height:340px;padding:50px 45px;}
+  .meaning-card p{max-width:250px;}
+}
 @media(max-width:1024px){
   .page{padding:70px 70px;}
   .section-title{font-size:3.3rem;}
-  .meaning-grid{flex-direction:row;}
-  .meaning-card{width:300px;height:300px;}
+  .meaning-grid{gap:30px;}
+  .meaning-card{width:310px;min-height:310px;padding:45px 40px;}
+  .meaning-card p{font-size:1.05rem;max-width:230px;}
 }
 @media(max-width:768px){
   body{padding:25px 12px;}
@@ -704,8 +646,9 @@ body::after{
   .photo-grid{grid-template-columns:1fr;}
   .journey-tabs{flex-direction:column;}
   .journey-tab{width:100%;}
-  .meaning-grid{flex-direction:column;}
-  .meaning-card{border-radius:24px;width:100%;height:auto;aspect-ratio:auto;}
+  .meaning-grid{flex-direction:column;align-items:center;}
+  .meaning-card{border-radius:24px;width:100%;max-width:420px;min-height:auto;height:auto;padding:40px 35px;}
+  .meaning-card p{max-width:100%;}
 }
 @media(max-width:480px){
   .page{padding:44px 22px;}
@@ -726,7 +669,6 @@ body::after{
   <div class="book-cover" id="bookCover">
     <div class="bookmark"></div>
     <div class="ff-wrap" id="ffWrap"></div>
-
     <div class="cover-content">
       <div class="cover-badge">✦ &nbsp;Mốc Kỷ Niệm Thứ 5 / 6&nbsp; ✦</div>
       <div class="cover-icon">🌲</div>
@@ -746,7 +688,6 @@ body::after{
   <!-- ══ PAGES ══ -->
   <div class="book-pages" id="bookPages" style="display:none;">
 
-    <!-- progress dots -->
     <div class="prog" style="padding-top:24px;">
       <div class="pdot on" data-p="1"></div>
       <div class="pdot" data-p="2"></div>
@@ -761,7 +702,6 @@ body::after{
         <div class="dclouds">☁️ &nbsp;&nbsp; ☁️ &nbsp;&nbsp;&nbsp;&nbsp; ☁️</div>
         <h3 class="section-title grad-h">🌿 Chuyến Tham Quan Học Tập Đà Lạt</h3>
         <p class="section-intro">Dấu ấn không phai trong miền ký ức lớp 11L</p>
-
         <div class="story-grid">
           <div class="story-card">
             <div class="story-image"><img src="images/tongthe.jpg" alt="Toàn cảnh Đà Lạt" loading="lazy"></div>
@@ -833,23 +773,17 @@ body::after{
     <!-- ══ PAGE 3 ══ -->
     <div class="page" id="page3" style="display:none;">
       <div class="leaf-layer" id="lf3"></div>
-      
-      <!-- Animated background elements for page 3 -->
       <div style="position:absolute;top:10%;left:5%;font-size:3rem;opacity:.15;animation:floatSlow 12s ease-in-out infinite;">🌲</div>
       <div style="position:absolute;top:25%;right:8%;font-size:2.5rem;opacity:.12;animation:floatSlow 15s ease-in-out infinite 2s;">☁️</div>
       <div style="position:absolute;bottom:20%;left:10%;font-size:2rem;opacity:.18;animation:floatSlow 10s ease-in-out infinite 4s;">🍃</div>
       <div style="position:absolute;top:60%;right:12%;font-size:2.8rem;opacity:.14;animation:floatSlow 13s ease-in-out infinite 1s;">🌿</div>
-      
       <div class="page-content">
         <h3 class="section-title grad-h">📍 Hành Trình Ba Ngày – Một Miền Ký Ức</h3>
-
         <div class="journey-tabs">
           <div class="journey-tab active" data-day="day1">🗓️ Ngày 01</div>
           <div class="journey-tab" data-day="day2">🗓️ Ngày 02</div>
           <div class="journey-tab" data-day="day3">🗓️ Ngày 03</div>
         </div>
-
-        <!-- Day 1 -->
         <div id="day1" class="day-content active">
           <div class="journey-card">
             <div class="journey-image"><img src="images/lenxe.jpg" alt="Lên xe" loading="lazy"></div>
@@ -861,22 +795,16 @@ body::after{
           <div class="photo-grid">
             <div class="polaroid">
               <img src="images/truongdh.jpg" alt="Trường ĐH Đà Lạt" loading="lazy">
-              <div class="img-text-overlay">
-                <div class="img-text-content">Nơi tri thức và kiến trúc giao hòa, gieo vào lòng chúng tôi niềm kính trọng với con đường học vấn</div>
-              </div>
+              <div class="img-text-overlay"><div class="img-text-content">Nơi tri thức và kiến trúc giao hòa, gieo vào lòng chúng tôi niềm kính trọng với con đường học vấn</div></div>
               <div class="polaroid-caption">Trường ĐH Đà Lạt</div>
             </div>
             <div class="polaroid">
               <img src="images/khachsan.jpg" alt="Khách sạn" loading="lazy">
-              <div class="img-text-overlay">
-                <div class="img-text-content">Góc nhỏ ấm cúng, nơi chúng tôi nghỉ chân và lưu giữ những khoảnh khắc đầu tiên tại Đà Lạt</div>
-              </div>
+              <div class="img-text-overlay"><div class="img-text-content">Góc nhỏ ấm cúng, nơi chúng tôi nghỉ chân và lưu giữ những khoảnh khắc đầu tiên tại Đà Lạt</div></div>
               <div class="polaroid-caption">Nơi nghỉ chân</div>
             </div>
           </div>
         </div>
-
-        <!-- Day 2 -->
         <div id="day2" class="day-content">
           <div class="journey-card">
             <div class="journey-image"><img src="images/caugo.jpg" alt="Cầu Gỗ" loading="lazy"></div>
@@ -888,22 +816,16 @@ body::after{
           <div class="photo-grid">
             <div class="polaroid">
               <img src="images/puppy.jpg" alt="Puppy Farm" loading="lazy">
-              <div class="img-text-overlay">
-                <div class="img-text-content">Tiếng cười trong veo hòa cùng ánh nắng, nơi tuổi thơ như trở lại trong từng khoảnh khắc vui vẻ</div>
-              </div>
+              <div class="img-text-overlay"><div class="img-text-content">Tiếng cười trong veo hòa cùng ánh nắng, nơi tuổi thơ như trở lại trong từng khoảnh khắc vui vẻ</div></div>
               <div class="polaroid-caption">Puppy Farm vui vẻ</div>
             </div>
             <div class="polaroid">
               <img src="images/quangtruong.jpg" alt="Lâm Viên" loading="lazy">
-              <div class="img-text-overlay">
-                <div class="img-text-content">Trái tim của thành phố, nơi nhịp sống trẻ trung và năng động của cao nguyên hiện lên rõ nét</div>
-              </div>
+              <div class="img-text-overlay"><div class="img-text-content">Trái tim của thành phố, nơi nhịp sống trẻ trung và năng động của cao nguyên hiện lên rõ nét</div></div>
               <div class="polaroid-caption">Quảng trường Lâm Viên</div>
             </div>
           </div>
         </div>
-
-        <!-- Day 3 -->
         <div id="day3" class="day-content">
           <div class="journey-card">
             <div class="journey-image"><img src="images/ansang.jpg" alt="Ăn sáng" loading="lazy"></div>
@@ -915,21 +837,16 @@ body::after{
           <div class="photo-grid">
             <div class="polaroid">
               <img src="images/dinh3.jpg" alt="Dinh Bảo Đại" loading="lazy">
-              <div class="img-text-overlay">
-                <div class="img-text-content">Nơi lịch sử lắng đọng giữa rừng thông, vẻ đẹp trầm mặc của kiến trúc Pháp cổ kính</div>
-              </div>
+              <div class="img-text-overlay"><div class="img-text-content">Nơi lịch sử lắng đọng giữa rừng thông, vẻ đẹp trầm mặc của kiến trúc Pháp cổ kính</div></div>
               <div class="polaroid-caption">Dinh III – Bảo Đại</div>
             </div>
             <div class="polaroid">
               <img src="images/roidal.jpg" alt="Rời Đà Lạt" loading="lazy">
-              <div class="img-text-overlay">
-                <div class="img-text-content">Khoảnh khắc tạm biệt, nhưng ký ức sẽ mãi ở lại trong trái tim mỗi người</div>
-              </div>
+              <div class="img-text-overlay"><div class="img-text-content">Khoảnh khắc tạm biệt, nhưng ký ức sẽ mãi ở lại trong trái tim mỗi người</div></div>
               <div class="polaroid-caption">Tạm biệt Đà Lạt</div>
             </div>
           </div>
         </div>
-
         <div class="quote-box">
           <p class="quote-text">Đó là một phần thanh xuân mang tên 11L...</p>
         </div>
@@ -946,7 +863,6 @@ body::after{
       <div class="page-content">
         <div class="dclouds">☁️ &nbsp;&nbsp; ☁️ &nbsp;&nbsp;&nbsp;&nbsp; ☁️</div>
         <h3 class="section-title">🌸 Đà Lạt – Miền Ký Ức Của 11L</h3>
-
         <div class="story-grid">
           <div class="story-card">
             <div class="story-image"><img src="images/final.jpg" alt="Tập thể 11L" loading="lazy"></div>
@@ -963,7 +879,6 @@ body::after{
             </div>
           </div>
         </div>
-
         <div class="quote-box">
           <p class="quote-text">
             Bởi đó không chỉ là một chuyến đi,<br>
@@ -971,7 +886,6 @@ body::after{
             đó là miền nhớ mang tên lớp 11L 🌲
           </p>
         </div>
-
         <div class="rdiv"><span>🌲</span><span>☁️</span><span>🌿</span></div>
         <div class="sig">🌲 ~ Hết ~ 🌲</div>
       </div>
@@ -994,7 +908,6 @@ body::after{
 <script>
 let currentPage = 1;
 
-/* fireflies */
 function buildFireflies(){
   const w=document.getElementById('ffWrap');
   for(let i=0;i<24;i++){
@@ -1006,7 +919,6 @@ function buildFireflies(){
   }
 }
 
-/* leaf particles */
 const LEAVES=['🍃','🌿','🍂','🌱','🍀'];
 function buildLeaves(id){
   const el=document.getElementById(id); if(!el)return;
@@ -1019,13 +931,11 @@ function buildLeaves(id){
   }
 }
 
-/* progress dots sync */
 function syncDots(n){
   document.querySelectorAll('.pdot').forEach(d=>d.classList.toggle('on',+d.dataset.p===n));
 }
 document.querySelectorAll('.pdot').forEach(d=>d.addEventListener('click',()=>turnPage(+d.dataset.p)));
 
-/* open */
 document.getElementById('openBookBtn').addEventListener('click',function(e){
   e.preventDefault();
   document.getElementById('loadingSpinner').classList.add('active');
@@ -1038,7 +948,6 @@ document.getElementById('openBookBtn').addEventListener('click',function(e){
   },1000);
 });
 
-/* turn page */
 function turnPage(n){
   if(n<1||n>4) return;
   document.getElementById('loadingSpinner').classList.add('active');
@@ -1051,7 +960,6 @@ function turnPage(n){
   },600);
 }
 
-/* close */
 function closePage(){
   document.getElementById('loadingSpinner').classList.add('active');
   setTimeout(()=>{
@@ -1063,7 +971,6 @@ function closePage(){
   },600);
 }
 
-/* day tabs */
 document.querySelectorAll('.journey-tab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     document.querySelectorAll('.journey-tab').forEach(t=>t.classList.remove('active'));
@@ -1073,7 +980,6 @@ document.querySelectorAll('.journey-tab').forEach(tab=>{
   });
 });
 
-/* image modal */
 const modal=document.getElementById('imageModal'), modalImg=document.getElementById('modalImg');
 function closeModal(){modal.classList.remove('active');document.body.style.overflow='';}
 document.querySelectorAll('.polaroid img,.story-image img,.journey-image img').forEach(img=>{
@@ -1081,7 +987,6 @@ document.querySelectorAll('.polaroid img,.story-image img,.journey-image img').f
 });
 document.getElementById('imageModal').addEventListener('click',e=>{if(e.target===modal)closeModal();});
 
-/* keyboard */
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape')closeModal();
   if(document.getElementById('bookPages').style.display!=='block')return;
@@ -1089,7 +994,6 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft' &&currentPage>1)turnPage(currentPage-1);
 });
 
-/* 3D parallax on cover */
 window.addEventListener('mousemove',e=>{
   const c=document.getElementById('bookCover'); if(c.style.display==='none')return;
   const x=(window.innerWidth/2-e.pageX)/40, y=(window.innerHeight/2-e.pageY)/40;
@@ -1097,12 +1001,10 @@ window.addEventListener('mousemove',e=>{
 });
 document.getElementById('bookCover').addEventListener('mouseleave',function(){this.style.transform='perspective(1000px) rotateY(0) rotateX(0)';});
 
-/* scroll top */
 const scrollTopBtn=document.getElementById('scrollTop');
 window.addEventListener('scroll',()=>scrollTopBtn.classList.toggle('visible',window.scrollY>400));
 function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
 
-/* scroll reveal */
 const rv=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});
 },{threshold:.06,rootMargin:'0px 0px -36px 0px'});
@@ -1112,7 +1014,6 @@ document.querySelectorAll('.story-card,.meaning-card,.polaroid,.journey-card,.qu
   rv.observe(el);
 });
 
-/* init */
 window.addEventListener('load',()=>{
   buildFireflies(); buildLeaves('lf1'); buildLeaves('lf3');
   document.querySelectorAll('img').forEach(img=>{
