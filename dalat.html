@@ -121,8 +121,8 @@ body::after{
 .cover-badge{
   display:inline-flex;align-items:center;gap:10px;
   background:rgba(62,114,73,.14);border:1px solid rgba(62,114,73,.34);
-  color:var(--g2);padding:7px 24px;border-radius:50px;
-  font-size:.77rem;font-family:'Playfair Display',serif;letter-spacing:.20em;
+  color:var(--g2);padding:10px 32px;border-radius:50px;
+  font-size:.95rem;font-family:'Playfair Display',serif;letter-spacing:.20em;
   margin-bottom:26px;animation:fU 1.2s ease .12s both;
 }
 .cover-icon{
@@ -174,6 +174,10 @@ body::after{
   animation:fU 1.2s ease 1s both,btnPulse 3s ease-in-out infinite,btnShimmer 4s linear infinite;
   font-family:'Playfair Display',serif;letter-spacing:.06em;
   border:3px solid rgba(62,114,73,.6);position:relative;overflow:hidden;cursor:pointer;
+}
+.open-book-btn.opening{
+  pointer-events:none;
+  opacity:0.7;
 }
 @keyframes btnShimmer{0%{background-position:0% 0%,0% 0%;}100%{background-position:0% 0%,200% 200%;}}
 .open-book-btn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;
@@ -1102,6 +1106,13 @@ document.querySelectorAll('.pdot').forEach(d=>d.addEventListener('click',()=>tur
 
 document.getElementById('openBookBtn').addEventListener('click',function(e){
   e.preventDefault();
+  e.stopPropagation();
+  
+  // Disable button to prevent double click
+  const btn = this;
+  if(btn.classList.contains('opening')) return;
+  btn.classList.add('opening');
+  
   document.getElementById('loadingSpinner').classList.add('active');
   setTimeout(()=>{
     document.getElementById('bookCover').style.display='none';
@@ -1109,6 +1120,7 @@ document.getElementById('openBookBtn').addEventListener('click',function(e){
     document.getElementById('page1').style.display='block';
     document.getElementById('loadingSpinner').classList.remove('active');
     currentPage=1; syncDots(1);
+    btn.classList.remove('opening');
   },1000);
 });
 
