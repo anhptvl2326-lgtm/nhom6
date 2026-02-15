@@ -14,6 +14,7 @@
   --ink-dark:#2c3e2c; --gold-accent:#c9a961; --beige:#d4b896;
   --g9:#162c1e; --g8:#1c3826; --g7:#24482e; --g6:#305c3a;
   --g5:#3e7249; --g4:#568c62; --g3:#7aaa88; --g2:#aeceba;
+  --b9:#182c42; --b7:#244868; --b5:#3870a0; --b3:#6aa0c8; --b1:#b8d8ec;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -322,7 +323,6 @@ body::after{
   border:3px solid var(--beige);
 }
 
-/* Stamp on story image */
 .story-image .stamp {
   position: absolute;
   top: 28px;
@@ -397,55 +397,94 @@ body::after{
 }
 .polaroid:hover .img-text-content{transform:translateY(0);}
 
-/* ── JOURNEY TABS ── */
-.journey-tabs{display:flex;justify-content:center;gap:25px;margin:60px 0;flex-wrap:wrap;}
+/* ── JOURNEY TABS (doc2 style) ── */
+.journey-tabs{display:flex;gap:14px;justify-content:center;margin-bottom:36px;flex-wrap:wrap;}
 .journey-tab{
-  padding:18px 40px;
-  background:linear-gradient(135deg,rgba(249,247,240,.9),rgba(255,255,255,.7));
-  color:var(--forest-green);border:3px solid #2d5a40;border-radius:50px;
-  font-weight:700;font-size:1.15rem;cursor:pointer;
-  transition:all .5s cubic-bezier(.4,0,.2,1);font-family:'Playfair Display',serif;
-  box-shadow:0 6px 18px rgba(30,68,48,.2);
+  padding:13px 32px;background:rgba(255,255,255,.65);color:var(--ink-dark);
+  border:2px solid rgba(48,92,58,.22);border-radius:50px;
+  font-family:'Playfair Display',serif;font-weight:600;font-size:.94rem;
+  cursor:pointer;position:relative;overflow:hidden;
+  backdrop-filter:blur(10px);box-shadow:0 2px 10px rgba(14,30,20,.07);
+  transition:all .34s cubic-bezier(.16,.84,.44,1);
 }
-.journey-tab:hover{transform:translateY(-6px) scale(1.05);box-shadow:0 12px 30px rgba(30,68,48,.3);}
+.journey-tab::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(45deg,transparent,rgba(86,140,98,.20),transparent);
+  transform:translateX(-100%);transition:transform .55s;}
+.journey-tab:hover::after{transform:translateX(100%);}
+.journey-tab:hover{border-color:var(--b5);transform:translateY(-4px);}
 .journey-tab.active{
-  background:linear-gradient(135deg,#2d5a40,#3e7249);
-  color:#fff;box-shadow:0 12px 35px rgba(30,68,48,.6),inset 0 2px 0 rgba(255,255,255,.5);
-  animation:tabGlow 3s ease-in-out infinite;
+  background:linear-gradient(130deg,var(--g7),var(--g5));color:#fff;border-color:transparent;
+  box-shadow:0 12px 32px rgba(36,72,45,.40),0 0 28px rgba(86,140,98,.22);
+  animation:tabPl 3s ease-in-out infinite;
 }
-@keyframes tabGlow{
-  0%,100%{box-shadow:0 12px 35px rgba(30,68,48,.6),inset 0 2px 0 rgba(255,255,255,.5);}
-  50%    {box-shadow:0 15px 45px rgba(30,68,48,.8),inset 0 2px 0 rgba(255,255,255,.7);}
+@keyframes tabPl{
+  0%,100%{box-shadow:0 12px 32px rgba(36,72,45,.40),0 0 28px rgba(86,140,98,.22);}
+  50%    {box-shadow:0 12px 40px rgba(36,72,45,.62),0 0 42px rgba(86,140,98,.42);}
 }
 .day-content{display:none;}
 .day-content.active{display:block;animation:pageFade .8s ease;}
 @keyframes pageFade{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 
-/* ── JOURNEY CARD ── */
-.journey-card{
-  display:grid;grid-template-columns:1.2fr 1fr;gap:50px;
-  padding:48px;
-  background:
-    repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(30,68,48,.03) 10px,rgba(30,68,48,.03) 20px),
-    linear-gradient(135deg,rgba(249,247,240,.95),rgba(249,247,240,.8));
-  border-radius:18px;margin-bottom:40px;align-items:center;
-  transition:all .6s ease;border:2px solid rgba(30,68,48,.3);
-  box-shadow:0 12px 40px rgba(30,68,48,.15);
+/* ── ALBUM (doc2 style) ── */
+.awrap{position:relative;margin-bottom:32px;}
+.atrack{
+  display:flex;gap:26px;overflow-x:auto;padding:20px 14px 36px;
+  scroll-snap-type:x mandatory;scrollbar-width:thin;
+  scrollbar-color:rgba(86,140,98,.36) transparent;cursor:grab;
 }
-.journey-card:hover{transform:translateX(10px) rotate(-.5deg);box-shadow:0 20px 60px rgba(30,68,48,.25);border-color:rgba(30,68,48,.5);}
-.journey-image{
-  position:relative;border-radius:12px;overflow:hidden;aspect-ratio:3/2;
-  box-shadow:0 12px 40px rgba(30,68,48,.25),inset 0 0 0 10px rgba(250,246,240,.9),inset 0 0 0 12px rgba(30,68,48,.4);
-  border:4px solid var(--beige);
+.atrack:active{cursor:grabbing;}
+.atrack::-webkit-scrollbar{height:5px;}
+.atrack::-webkit-scrollbar-thumb{background:rgba(86,140,98,.34);border-radius:3px;}
+.aarr{
+  position:absolute;top:50%;transform:translateY(-58%);
+  width:44px;height:44px;background:rgba(255,255,255,.88);
+  border:2px solid rgba(86,140,98,.26);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;color:var(--g7);cursor:pointer;z-index:9;
+  box-shadow:0 2px 10px rgba(14,30,20,.07);backdrop-filter:blur(10px);user-select:none;transition:all .3s;
 }
-.journey-image img{width:100%;height:100%;object-fit:cover;transition:all .8s ease;cursor:pointer;filter:sepia(.08) contrast(1.05);}
-.journey-card:hover .journey-image img{transform:scale(1.06) rotate(1deg);filter:sepia(.15) contrast(1.1);}
-.journey-text h4{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--forest-dark);margin-bottom:16px;font-weight:600;}
-.journey-text p{font-size:1.1rem;line-height:1.85;color:var(--ink-dark);font-family:'Lora',serif;}
+.aarr:hover{background:rgba(158,206,172,.30);border-color:rgba(86,140,98,.54);transform:translateY(-58%) scale(1.12);}
+.aarr.ap{left:4px;}.aarr.an{right:4px;}
 
-/* ═══════════════════════════════════════════════════════════
-   ── MEANING CARDS – KHUNG OVAL QUAY ĐẸP HƠN ──
-   ═══════════════════════════════════════════════════════════ */
+/* polaroid in album (doc2 style) */
+.pola{
+  flex:0 0 auto;background:#fff;padding:14px 14px 54px;
+  box-shadow:0 10px 32px rgba(14,30,20,.15),0 0 0 .5px rgba(0,0,0,.05);
+  border-radius:3px;cursor:pointer;position:relative;
+  transition:all .50s cubic-bezier(.16,.84,.44,1);scroll-snap-align:start;
+}
+.pola::before{content:'';position:absolute;top:-10px;left:50%;
+  transform:translateX(-50%) rotate(-1.5deg);
+  width:68px;height:20px;background:rgba(184,220,240,.70);
+  border:1px solid rgba(128,202,228,.48);border-radius:2px;box-shadow:0 1px 6px rgba(0,0,0,.07);}
+.pola:nth-child(1){transform:rotate(-2.2deg);}
+.pola:nth-child(2){transform:rotate( 1.9deg);}
+.pola:nth-child(3){transform:rotate(-1.6deg);}
+.pola:nth-child(4){transform:rotate( 2.4deg);}
+.pola:hover{transform:rotate(0) scale(1.08) translateY(-14px)!important;
+  box-shadow:0 24px 60px rgba(14,30,20,.26),0 0 0 3px rgba(86,140,98,.32);z-index:20;}
+.pola img{width:210px;height:184px;object-fit:cover;display:block;border-radius:2px;
+  filter:saturate(1.05) contrast(1.03);transition:filter .5s;}
+.pola.wide img{width:270px;height:205px;}
+.pola:hover img{filter:saturate(1.18) contrast(1.06);}
+.pcap{position:absolute;bottom:13px;left:0;right:0;text-align:center;
+  font-family:'Dancing Script',cursive;font-size:1.08rem;color:var(--g7);padding:0 12px;font-weight:600;}
+
+/* diary note (doc2 style) */
+.dnote{
+  padding:28px 36px;
+  background:linear-gradient(135deg,rgba(178,222,192,.26),rgba(162,204,226,.16));
+  border-left:5px solid var(--b5);border-radius:0 16px 16px 0;
+  margin-bottom:18px;position:relative;overflow:hidden;transition:all .42s ease;
+}
+.dnote::before{content:'✦';position:absolute;left:-12px;top:16px;
+  font-size:1.2rem;color:var(--b5);animation:stTw 3.2s ease-in-out infinite;}
+@keyframes stTw{0%,100%{opacity:.40;transform:scale(1) rotate(0);}50%{opacity:1;transform:scale(1.6) rotate(28deg);}}
+.dnote:hover{transform:translateX(10px);border-left-color:var(--g5);}
+.nlbl{font-family:'Dancing Script',cursive;font-size:1.10rem;color:var(--g6);margin-bottom:10px;display:block;font-weight:600;}
+.ntxt{font-size:1.16rem;line-height:1.92;color:var(--ink-dark);}
+
+/* ── MEANING CARDS ── */
 .meaning-grid{
   display:flex;
   justify-content:center;
@@ -479,7 +518,6 @@ body::after{
   overflow:visible;
 }
 
-/* Khung oval quay bên ngoài - gradient xoay */
 .meaning-card::before{
   content:'';
   position:absolute;
@@ -505,7 +543,6 @@ body::after{
   box-shadow:0 0 40px rgba(62,114,73,.5);
 }
 
-/* Khung oval quay bên trong - đổi chiều */
 .meaning-card::after{
   content:'';
   position:absolute;
@@ -528,19 +565,16 @@ body::after{
   opacity:.6;
 }
 
-/* Animation xoay thuận */
 @keyframes rotateBorder{
   from{transform:rotate(0deg);}
   to{transform:rotate(360deg);}
 }
 
-/* Animation xoay ngược */
 @keyframes rotateBorderReverse{
   from{transform:rotate(360deg);}
   to{transform:rotate(0deg);}
 }
 
-/* Hiệu ứng ánh sáng chạy */
 .meaning-card:hover{
   transform:translateY(-16px) scale(1.04);
   box-shadow:
@@ -639,6 +673,30 @@ body::after{
   color:var(--forest-dark);font-style:italic;
 }
 
+/* ── CLOSING CARDS (doc2 style) ── */
+.cgrid{display:flex;flex-direction:column;gap:36px;margin:32px 0;}
+.ccard{
+  display:flex;flex-direction:column;gap:26px;
+  padding:34px 32px;background:rgba(255,255,255,.56);backdrop-filter:blur(12px);
+  border-radius:20px;border:2px solid rgba(86,140,98,.14);
+  box-shadow:0 8px 30px rgba(14,30,20,.12);transition:all .52s cubic-bezier(.16,.84,.44,1);
+  position:relative;overflow:hidden;
+}
+.ccard::after{content:'';position:absolute;top:0;right:0;width:0;height:0;
+  border-style:solid;border-width:0;
+  border-color:transparent rgba(86,140,98,.24) transparent transparent;
+  transition:border-width .4s,opacity .4s;opacity:0;}
+.ccard:hover::after{border-width:0 62px 62px 0;opacity:1;}
+.ccard:hover{transform:translateY(-5px);box-shadow:0 36px 90px rgba(14,30,20,.24);border-color:rgba(86,140,98,.32);}
+.ci{border-radius:14px;overflow:hidden;aspect-ratio:3/2;
+  box-shadow:0 8px 30px rgba(14,30,20,.12),0 0 0 8px #fff,0 0 0 10px rgba(86,140,98,.18);
+  border:2px solid rgba(86,140,98,.36);background:var(--beige);}
+.ci img{width:100%;height:100%;object-fit:cover;cursor:pointer;
+  transition:all .74s cubic-bezier(.16,.84,.44,1);filter:saturate(1.05);}
+.ccard:hover .ci img{transform:scale(1.08);filter:saturate(1.16);}
+.ct p{font-size:1.12rem;line-height:1.96;color:var(--ink-dark);margin-bottom:14px;}
+.ct p:last-child{margin-bottom:0;}
+
 /* ── PAGE NAV ── */
 .page-nav{display:flex;justify-content:space-between;align-items:center;margin-top:70px;padding-top:45px;border-top:3px solid rgba(30,68,48,.3);}
 .nav-btn{
@@ -725,7 +783,7 @@ body::after{
   .cover-subtitle{font-size:1.8rem;}
   .page{padding:60px 35px;border-left:40px solid rgba(30,68,48,.08);}
   .section-title{font-size:3rem;}
-  .story-card,.journey-card{grid-template-columns:1fr!important;gap:32px;}
+  .story-card{grid-template-columns:1fr!important;gap:32px;}
   .story-card:nth-child(even) .story-image{order:0;}
   .photo-grid{grid-template-columns:1fr;}
   .journey-tabs{flex-direction:column;}
@@ -733,6 +791,7 @@ body::after{
   .meaning-grid{flex-direction:column;align-items:center;}
   .meaning-card{border-radius:24px;width:100%;max-width:420px;min-height:auto;height:auto;padding:40px 35px;}
   .meaning-card p{max-width:100%;}
+  .cgrid{gap:24px;}
 }
 @media(max-width:480px){
   .page{padding:44px 22px;}
@@ -877,82 +936,82 @@ body::after{
         
         <!-- Day 1 -->
         <div id="day1" class="day-content active">
-          <div class="album-container">
-            <div class="album-arrow left" data-album="album1">‹</div>
-            <div class="album-scroll" id="album1">
-              <div class="polaroid wide">
+          <div class="awrap">
+            <div class="aarr ap" data-album="album1">‹</div>
+            <div class="atrack" id="album1">
+              <div class="pola wide">
                 <img src="images/lenxe.jpg" alt="Lên xe">
-                <div class="polaroid-caption">🚌 Khởi hành từ Bình Dương</div>
+                <div class="pcap">🚌 Khởi hành từ Bình Dương</div>
               </div>
-              <div class="polaroid">
+              <div class="pola">
                 <img src="images/truongdh.jpg" alt="Trường ĐH Đà Lạt">
-                <div class="polaroid-caption">🏛️ ĐH Đà Lạt</div>
+                <div class="pcap">🏛️ ĐH Đà Lạt</div>
               </div>
-              <div class="polaroid">
+              <div class="pola">
                 <img src="images/khachsan.jpg" alt="Khách sạn">
-                <div class="polaroid-caption">🏨 Nhận phòng</div>
+                <div class="pcap">🏨 Nhận phòng</div>
               </div>
             </div>
-            <div class="album-arrow right" data-album="album1">›</div>
+            <div class="aarr an" data-album="album1">›</div>
           </div>
           
-          <div class="journal-note">
-            <span class="note-label">☀️ Ngày đầu tiên — Khởi hành</span>
-            <p class="note-text">Sau chặng đường dài từ Bình Dương, lớp 11L bắt đầu hành trình trong sự háo hức và mong chờ. Điểm dừng chân đầu tiên là Trường Đại học Đà Lạt – nơi tri thức và kiến trúc giao hòa, gieo vào lòng chúng tôi niềm kính trọng đối với con đường học vấn.</p>
+          <div class="dnote">
+            <span class="nlbl">☀️ Ngày đầu tiên — Khởi hành</span>
+            <p class="ntxt">Sau chặng đường dài từ Bình Dương, lớp 11L bắt đầu hành trình trong sự háo hức và mong chờ. Điểm dừng chân đầu tiên là Trường Đại học Đà Lạt – nơi tri thức và kiến trúc giao hòa, gieo vào lòng chúng tôi niềm kính trọng đối với con đường học vấn.</p>
           </div>
         </div>
         
         <!-- Day 2 -->
         <div id="day2" class="day-content">
-          <div class="album-container">
-            <div class="album-arrow left" data-album="album2">‹</div>
-            <div class="album-scroll" id="album2">
-              <div class="polaroid wide">
+          <div class="awrap">
+            <div class="aarr ap" data-album="album2">‹</div>
+            <div class="atrack" id="album2">
+              <div class="pola wide">
                 <img src="images/caugo.jpg" alt="Cầu Gỗ">
-                <div class="polaroid-caption">☁️ Biển mây Cầu Gỗ</div>
+                <div class="pcap">☁️ Biển mây Cầu Gỗ</div>
               </div>
-              <div class="polaroid">
+              <div class="pola">
                 <img src="images/puppy.jpg" alt="Puppy Farm">
-                <div class="polaroid-caption">🐕 Puppy Farm</div>
+                <div class="pcap">🐕 Puppy Farm</div>
               </div>
-              <div class="polaroid">
+              <div class="pola">
                 <img src="images/quangtruong.jpg" alt="Quảng trường">
-                <div class="polaroid-caption">🏙️ Lâm Viên</div>
+                <div class="pcap">🏙️ Lâm Viên</div>
               </div>
             </div>
-            <div class="album-arrow right" data-album="album2">›</div>
+            <div class="aarr an" data-album="album2">›</div>
           </div>
           
-          <div class="journal-note">
-            <span class="note-label">☁️ Ngày thứ hai — Trải nghiệm</span>
-            <p class="note-text">Buổi sáng, Cầu Gỗ đón chúng tôi bằng biển mây trắng xóa, mang đến cảm giác như chạm tay vào bầu trời. Tại Puppy Farm, tiếng cười hòa cùng ánh nắng và những chú cún nhỏ, đưa chúng tôi trở về với sự hồn nhiên thuần khiết.</p>
+          <div class="dnote">
+            <span class="nlbl">☁️ Ngày thứ hai — Trải nghiệm</span>
+            <p class="ntxt">Buổi sáng, Cầu Gỗ đón chúng tôi bằng biển mây trắng xóa, mang đến cảm giác như chạm tay vào bầu trời. Tại Puppy Farm, tiếng cười hòa cùng ánh nắng và những chú cún nhỏ, đưa chúng tôi trở về với sự hồn nhiên thuần khiết.</p>
           </div>
         </div>
         
         <!-- Day 3 -->
         <div id="day3" class="day-content">
-          <div class="album-container">
-            <div class="album-arrow left" data-album="album3">‹</div>
-            <div class="album-scroll" id="album3">
-              <div class="polaroid">
+          <div class="awrap">
+            <div class="aarr ap" data-album="album3">‹</div>
+            <div class="atrack" id="album3">
+              <div class="pola">
                 <img src="images/ansang.jpg" alt="Ăn sáng">
-                <div class="polaroid-caption">☕ Bữa sáng cuối</div>
+                <div class="pcap">☕ Bữa sáng cuối</div>
               </div>
-              <div class="polaroid wide">
+              <div class="pola wide">
                 <img src="images/dinh3.jpg" alt="Dinh Bảo Đại">
-                <div class="polaroid-caption">🏯 Dinh III</div>
+                <div class="pcap">🏯 Dinh III</div>
               </div>
-              <div class="polaroid">
+              <div class="pola">
                 <img src="images/roidal.jpg" alt="Rời Đà Lạt">
-                <div class="polaroid-caption">👋 Tạm biệt!</div>
+                <div class="pcap">👋 Tạm biệt!</div>
               </div>
             </div>
-            <div class="album-arrow right" data-album="album3">›</div>
+            <div class="aarr an" data-album="album3">›</div>
           </div>
           
-          <div class="journal-note">
-            <span class="note-label">🌅 Ngày cuối — Tạm biệt</span>
-            <p class="note-text">Buổi sáng cuối cùng trôi qua chậm rãi trong sự lưu luyến khó gọi tên. Dinh III – Dinh Bảo Đại khép lại hành trình bằng vẻ đẹp trầm mặc, cổ kính giữa rừng thông xanh mát. Khi bánh xe lăn bánh, thành phố dần lùi xa, nhưng ký ức thì ở lại.</p>
+          <div class="dnote">
+            <span class="nlbl">🌅 Ngày cuối — Tạm biệt</span>
+            <p class="ntxt">Buổi sáng cuối cùng trôi qua chậm rãi trong sự lưu luyến khó gọi tên. Dinh III – Dinh Bảo Đại khép lại hành trình bằng vẻ đẹp trầm mặc, cổ kính giữa rừng thông xanh mát. Khi bánh xe lăn bánh, thành phố dần lùi xa, nhưng ký ức thì ở lại.</p>
           </div>
         </div>
         
@@ -973,22 +1032,22 @@ body::after{
         <div class="dclouds">☁️ &nbsp;&nbsp; ☁️ &nbsp;&nbsp;&nbsp; ☁️</div>
         <h3 class="section-title">🌸 Đà Lạt – Miền Ký Ức Của 11L</h3>
         
-        <div class="closing-layout">
-          <div class="closing-card">
-            <div class="closing-img">
+        <div class="cgrid">
+          <div class="ccard">
+            <div class="ci">
               <img src="images/final.jpg" alt="Tập thể 11L" loading="lazy">
             </div>
-            <div class="closing-text">
+            <div class="ct">
               <p>Chuyến tham quan học tập tại Đà Lạt không chỉ mang đến kiến thức và trải nghiệm, mà còn đánh dấu một đoạn đẹp trong hành trình trưởng thành của lớp 11L.</p>
               <p>Ở đó, chúng tôi đã cùng nhau học cách sống chậm, học cách lắng nghe, học cách trân trọng hiện tại và học cách giữ gìn những điều nhỏ bé nhưng quý giá.</p>
             </div>
           </div>
           
-          <div class="closing-card reverse">
-            <div class="closing-img">
+          <div class="ccard">
+            <div class="ci">
               <img src="images/memory.jpg" alt="Kỷ niệm" loading="lazy">
             </div>
-            <div class="closing-text">
+            <div class="ct">
               <p>Nhiều năm sau, khi những con đường đời đã rẽ sang nhiều hướng khác nhau, có thể chúng tôi sẽ quên đi vài chi tiết nhỏ, nhưng chắc chắn Đà Lạt vẫn còn ở lại.</p>
               <p>Trong những bức ảnh cũ, trong những câu chuyện được kể lại và trong một góc rất sâu của ký ức tuổi học trò – nơi rừng thông vẫn mãi xanh tươi.</p>
             </div>
@@ -1099,15 +1158,15 @@ document.querySelectorAll('.journey-tab').forEach(tab=>{
 
 // Album scroll arrows
 document.addEventListener('click', e => {
-  const arrow = e.target.closest('.album-arrow');
+  const arrow = e.target.closest('.aarr');
   if (!arrow) return;
   const album = document.getElementById(arrow.dataset.album);
-  const scrollAmount = arrow.classList.contains('left') ? -380 : 380;
+  const scrollAmount = arrow.classList.contains('ap') ? -380 : 380;
   album.scrollBy({ left: scrollAmount, behavior: 'smooth' });
 });
 
 // Album drag to scroll
-document.querySelectorAll('.album-scroll').forEach(album => {
+document.querySelectorAll('.atrack').forEach(album => {
   let isDown = false, startX, scrollLeft;
   
   album.addEventListener('mousedown', e => {
@@ -1138,7 +1197,7 @@ document.querySelectorAll('.album-scroll').forEach(album => {
 
 const modal=document.getElementById('imageModal'), modalImg=document.getElementById('modalImg');
 function closeModal(){modal.classList.remove('active');document.body.style.overflow='';}
-document.querySelectorAll('.polaroid img,.story-image img,.journey-image img').forEach(img=>{
+document.querySelectorAll('.pola img,.story-image img,.ci img').forEach(img=>{
   img.addEventListener('click',e=>{e.stopPropagation();modal.classList.add('active');modalImg.src=img.src;modalImg.alt=img.alt;document.body.style.overflow='hidden';});
 });
 document.getElementById('imageModal').addEventListener('click',e=>{if(e.target===modal)closeModal();});
@@ -1164,7 +1223,7 @@ function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
 const rv=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});
 },{threshold:.06,rootMargin:'0px 0px -36px 0px'});
-document.querySelectorAll('.story-card,.meaning-card,.polaroid,.journey-card,.quote-box,.callout').forEach((el,i)=>{
+document.querySelectorAll('.story-card,.meaning-card,.pola,.dnote,.quote-box,.callout,.ccard').forEach((el,i)=>{
   el.style.opacity='0';el.style.transform='translateY(28px)';
   el.style.transition=`opacity .72s ease ${i*.054}s,transform .72s ease ${i*.054}s`;
   rv.observe(el);
