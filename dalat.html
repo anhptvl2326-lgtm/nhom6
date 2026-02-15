@@ -297,7 +297,7 @@ body::after{
 }
 .section-intro{
   text-align:center;max-width:750px;margin:0 auto 60px;
-  font-size:1.35rem;line-height:2;color:var(--forest-green);font-style:italic;
+  font-size:1.5rem;line-height:2.1;color:var(--forest-green);font-style:italic;
   font-family:'EB Garamond',serif;animation:fU 1s ease .5s both;
 }
 
@@ -353,10 +353,10 @@ body::after{
 }
 .story-image img{width:100%;height:100%;object-fit:cover;transition:all .8s cubic-bezier(.4,0,.2,1);filter:sepia(.05) contrast(1.05);cursor:pointer;}
 .story-card:hover .story-image img{transform:scale(1.08) rotate(-1deg);filter:sepia(.12) contrast(1.1);}
-.story-text{font-size:1.15rem;line-height:1.9;color:var(--ink-dark);font-family:'EB Garamond',serif;}
+.story-text{font-size:1.25rem;line-height:2;color:var(--ink-dark);font-family:'EB Garamond',serif;}
 .story-text p{margin-bottom:16px;font-family:'EB Garamond',serif;}
 .story-text p:last-child{margin-bottom:0;}
-.story-text .lead{font-size:1.3rem;font-style:italic;font-family:'EB Garamond',serif;color:var(--ink-dark);margin-bottom:20px;line-height:1.9;font-weight:500;}
+.story-text .lead{font-size:1.4rem;font-style:italic;font-family:'EB Garamond',serif;color:var(--ink-dark);margin-bottom:20px;line-height:2;font-weight:500;}
 
 /* ── POLAROID PHOTOS ── */
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:50px;margin:60px 0;}
@@ -462,12 +462,12 @@ body::after{
 .pola:nth-child(4){transform:rotate( 2.4deg);}
 .pola:hover{transform:rotate(0) scale(1.08) translateY(-14px)!important;
   box-shadow:0 24px 60px rgba(14,30,20,.26),0 0 0 3px rgba(62,114,73,.32);z-index:20;}
-.pola img{width:280px;height:240px;object-fit:cover;display:block;border-radius:2px;
+.pola img{width:300px;height:240px;object-fit:cover;display:block;border-radius:2px;
   filter:saturate(1.05) contrast(1.03);transition:filter .5s;}
-.pola.wide img{width:360px;height:270px;}
+.pola.wide img{width:300px;height:240px;}
 .pola:hover img{filter:saturate(1.18) contrast(1.06);}
 .pcap{position:absolute;bottom:16px;left:0;right:0;text-align:center;
-  font-family:'Dancing Script',cursive;font-size:1.15rem;color:var(--g7);padding:0 12px;font-weight:600;}
+  font-family:'Dancing Script',cursive;font-size:1.2rem;color:var(--g7);padding:0 12px;font-weight:600;}
 
 /* diary note (doc2 style) */
 .dnote{
@@ -480,8 +480,8 @@ body::after{
   font-size:1.2rem;color:var(--g5);animation:stTw 3.2s ease-in-out infinite;}
 @keyframes stTw{0%,100%{opacity:.40;transform:scale(1) rotate(0);}50%{opacity:1;transform:scale(1.6) rotate(28deg);}}
 .dnote:hover{transform:translateX(10px);border-left-color:var(--g6);}
-.nlbl{font-family:'Dancing Script',cursive;font-size:1.10rem;color:var(--g6);margin-bottom:10px;display:block;font-weight:600;}
-.ntxt{font-size:1.16rem;line-height:1.92;color:var(--ink-dark);font-family:'EB Garamond',serif;}
+.nlbl{font-family:'Dancing Script',cursive;font-size:1.25rem;color:var(--g6);margin-bottom:10px;display:block;font-weight:600;}
+.ntxt{font-size:1.28rem;line-height:2;color:var(--ink-dark);font-family:'EB Garamond',serif;}
 
 /* ── MEANING CARDS ── */
 .meaning-grid{
@@ -542,36 +542,9 @@ body::after{
   box-shadow:0 0 40px rgba(62,114,73,.5);
 }
 
-.meaning-card::after{
-  content:'';
-  position:absolute;
-  inset:8px;
-  background:conic-gradient(
-    from 180deg,
-    rgba(201,169,97,.4) 0deg,
-    rgba(62,114,73,.3) 90deg,
-    rgba(201,169,97,.4) 180deg,
-    rgba(62,114,73,.3) 270deg,
-    rgba(201,169,97,.4) 360deg
-  );
-  border-radius:50%;
-  opacity:0;
-  transition:opacity .5s ease;
-  z-index:-1;
-  animation:rotateBorderReverse 6s linear infinite;
-}
-.meaning-card:hover::after{ 
-  opacity:.6;
-}
-
 @keyframes rotateBorder{
   from{transform:rotate(0deg);}
   to{transform:rotate(360deg);}
-}
-
-@keyframes rotateBorderReverse{
-  from{transform:rotate(360deg);}
-  to{transform:rotate(0deg);}
 }
 
 .meaning-card:hover{
@@ -628,7 +601,7 @@ body::after{
 
 .meaning-card h4{
   font-family:'Playfair Display',serif;
-  font-size:1.75rem;
+  font-size:1.9rem;
   color:var(--forest-dark);
   margin-bottom:16px;
   font-weight:800;
@@ -644,8 +617,8 @@ body::after{
 }
 
 .meaning-card p{
-  font-size:1.1rem;
-  line-height:1.75;
+  font-size:1.2rem;
+  line-height:1.85;
   color:var(--ink-dark);
   position:relative;
   z-index:2;
@@ -663,12 +636,12 @@ body::after{
 }
 @keyframes quoteReveal{from{opacity:0;transform:scale(.92);}to{opacity:1;transform:scale(1);}}
 .quote-box::before{content:'"';position:absolute;top:-30px;left:30px;font-size:10rem;line-height:1;font-family:'Playfair Display',serif;color:#3e7249;opacity:.3;}
-.quote-text{font-family:'EB Garamond',serif;font-size:2.2rem;color:var(--forest-dark);line-height:1.8;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:500;}
+.quote-text{font-family:'EB Garamond',serif;font-size:2.4rem;color:var(--forest-dark);line-height:1.9;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:500;}
 
 .callout{
   padding:22px 34px;margin:28px 0;
   background:rgba(62,114,73,.18);border-left:6px solid #2d5a40;border-radius:0 14px 14px 0;
-  font-family:'EB Garamond',serif;font-size:1.8rem;line-height:1.8;
+  font-family:'EB Garamond',serif;font-size:1.95rem;line-height:1.9;
   color:var(--forest-dark);font-style:italic;
 }
 
@@ -693,7 +666,7 @@ body::after{
 .ci img{width:100%;height:100%;object-fit:cover;cursor:pointer;
   transition:all .74s cubic-bezier(.16,.84,.44,1);filter:saturate(1.05);}
 .ccard:hover .ci img{transform:scale(1.08);filter:saturate(1.16);}
-.ct p{font-size:1.12rem;line-height:1.96;color:var(--ink-dark);margin-bottom:14px;font-family:'EB Garamond',serif;}
+.ct p{font-size:1.25rem;line-height:2.1;color:var(--ink-dark);margin-bottom:14px;font-family:'EB Garamond',serif;}
 .ct p:last-child{margin-bottom:0;}
 
 /* ── PAGE NAV ── */
