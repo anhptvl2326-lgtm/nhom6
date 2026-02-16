@@ -109,8 +109,8 @@ canvas#sparkle {
 
 .wood-tag {
   position: relative;
-  width: 70px;
-  padding: 12px 8px 10px;
+  width: 80px;
+  padding: 14px 10px 12px;
   background: linear-gradient(160deg, #d4a060 0%, #b07838 40%, #8a5c28 80%, #704820 100%);
   border-radius: 0 5px 5px 0;
   cursor: pointer;
@@ -149,7 +149,7 @@ canvas#sparkle {
 .wood-tag-text {
   display: block;
   font-family: 'Playfair Display', serif;
-  font-size: 13.5px;
+  font-size: 14.5px;
   font-weight: 600;
   color: rgba(255,238,200,0.92);
   text-align: center;
@@ -162,7 +162,7 @@ canvas#sparkle {
 
 .wood-tag-dot {
   display: block;
-  width: 10px; height: 10px;
+  width: 11px; height: 11px;
   border-radius: 50%;
   margin: 6px auto 0;
   box-shadow: 0 0 6px currentColor;
@@ -193,7 +193,7 @@ canvas#sparkle {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .h-top-line .rule {
   width: 65px; height: 1px;
@@ -225,7 +225,7 @@ canvas#sparkle {
   align-items: center;
   gap: 12px;
   justify-content: center;
-  margin: 8px 0;
+  margin: 12px 0;
 }
 .h-divider .d-rule {
   width: 60px; height: 1px;
@@ -247,7 +247,7 @@ canvas#sparkle {
   font-weight: 400;
   color: rgba(55,32,10,0.8);
   line-height: 1.7;
-  margin-top: 6px;
+  margin-top: 10px;
 }
 
 /* ─── BOOKS SHELF CONTAINER ─── */
@@ -429,8 +429,8 @@ canvas#sparkle {
   background: linear-gradient(90deg, rgba(255,220,150,0.35), rgba(255,220,150,0.1));
   z-index: 3;
 }
-.spine-line-top { top: 30px; }
-.spine-line-bot { bottom: 30px; }
+.spine-line-top { top: 52px; }
+.spine-line-bot { bottom: 52px; }
 
 /* Glow ring on hover */
 .book-glow {
@@ -531,7 +531,7 @@ canvas#sparkle {
   gap: 12px;
   justify-content: center;
   font-family: 'Lora', serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: rgba(55,30,8,0.75);
   letter-spacing: 3px;
@@ -547,7 +547,7 @@ canvas#sparkle {
   align-items: flex-start;
   justify-content: center;
   gap: 0;
-  width: min(720px, 82vw);
+  width: min(820px, 88vw);
   margin: 0 auto;
   position: relative;
 }
@@ -556,7 +556,7 @@ canvas#sparkle {
 .tl-row::before {
   content:"";
   position:absolute;
-  top:14px; left:calc(100%/12); right:calc(100%/12);
+  top:16px; left:calc(100%/12); right:calc(100%/12);
   height:1.5px;
   background: linear-gradient(90deg,
     #c8989a, #5a7090 20%, #888550 40%, #c0a055 60%, #587060 80%, #904040
@@ -569,7 +569,7 @@ canvas#sparkle {
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:6px;
+  gap:8px;
   flex:1;
   cursor:pointer;
   position:relative; z-index:1;
@@ -577,7 +577,7 @@ canvas#sparkle {
 
 .tl-lbl {
   font-family: 'Playfair Display', serif;
-  font-size: 12.5px;
+  font-size: 13.5px;
   font-weight: 600;
   color: rgba(55,30,8,0.7);
   letter-spacing: 0.6px;
@@ -587,11 +587,11 @@ canvas#sparkle {
 }
 
 .tl-dot {
-  width: 28px; height: 28px;
+  width: 32px; height: 32px;
   border-radius:50%;
   background: var(--c);
   display:flex; align-items:center; justify-content:center;
-  font-size: 14px;
+  font-size: 15px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 0 0 2.5px rgba(210,180,120,0.7);
   transition: transform 0.25s cubic-bezier(.34,1.6,.64,1), box-shadow 0.25s;
 }
