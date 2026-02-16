@@ -41,10 +41,10 @@ body {
   z-index: 0;
 }
 
-/* Paper noise grain texture */
+/* Paper noise grain texture - ENHANCED */
 .grain {
   position: fixed; inset: 0;
-  opacity: 0.055;
+  opacity: 0.08;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23f)'/%3E%3C/svg%3E");
   z-index: 1; pointer-events: none;
 }
@@ -62,6 +62,26 @@ body {
 canvas#sparkle {
   position: fixed; inset: 0;
   z-index: 3; pointer-events: none;
+}
+
+/* NEW: Light flare effect */
+.light-flare {
+  position: fixed;
+  top: 10%;
+  right: 15%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,240,200,0.12) 0%, transparent 60%);
+  border-radius: 50%;
+  filter: blur(50px);
+  animation: flareMove 8s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes flareMove {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  50% { transform: translate(-30px, 20px) scale(1.15); opacity: 0.7; }
 }
 
 /* Decorative foliage corners (SVG inline) */
@@ -92,9 +112,10 @@ canvas#sparkle {
   align-items: center;
   justify-content: center;
   gap: 0;
+  padding-top: 40px;
 }
 
-/* ─── SIDE WOOD TAGS ─── */
+/* ─── SIDE WOOD TAGS - ENHANCED ─── */
 .side-tags {
   position: fixed;
   top: 50%;
@@ -111,7 +132,7 @@ canvas#sparkle {
   position: relative;
   width: 80px;
   padding: 14px 10px 12px;
-  background: linear-gradient(160deg, #d4a060 0%, #b07838 40%, #8a5c28 80%, #704820 100%);
+  background: linear-gradient(160deg, #b89050 0%, #9a6c30 40%, #7a5020 80%, #604018 100%);
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   text-decoration: none;
@@ -132,6 +153,18 @@ canvas#sparkle {
   content: "";
   position: absolute; inset: 0;
   background: repeating-linear-gradient(92deg, transparent 0, transparent 6px, rgba(0,0,0,0.05) 6px, rgba(0,0,0,0.05) 7px);
+}
+
+/* NEW: Hanging rope effect */
+.wood-tag-rope {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 15px;
+  background: linear-gradient(180deg, rgba(100,70,40,0.6), rgba(100,70,40,0.3));
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
 /* Nail/pin at top */
@@ -175,11 +208,11 @@ canvas#sparkle {
   box-shadow: 5px 4px 20px rgba(0,0,0,0.55), inset 1px 0 2px rgba(255,255,255,0.22), 0 0 12px rgba(220,170,80,0.35);
 }
 
-/* ─── HEADER ─── */
+/* ─── HEADER - ENHANCED ─── */
 .header {
   text-align: center;
   padding: 0 20px;
-  margin-bottom: 18px;
+  margin-bottom: 30px;
   animation: fadeDown 1s ease 0.1s both;
 }
 
@@ -216,6 +249,7 @@ canvas#sparkle {
   line-height: 0.95;
   letter-spacing: -1px;
   text-shadow:
+    0 2px 6px rgba(0,0,0,0.15),
     1px 3px 8px rgba(100,60,20,0.25),
     0 1px 0 rgba(255,255,255,0.15);
 }
@@ -235,19 +269,28 @@ canvas#sparkle {
   font-family: 'Playfair Display', serif;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 4.5px;
+  letter-spacing: 5px;
   color: rgba(80,50,18,0.75);
   text-transform: uppercase;
 }
 
+/* ENHANCED QUOTE with background blur box */
 .h-quote {
   font-family: 'Lora', serif;
   font-style: italic;
   font-size: clamp(15px, 2vw, 18px);
-  font-weight: 400;
-  color: rgba(55,32,10,0.8);
+  font-weight: 500;
+  color: rgba(45,25,8,0.85);
   line-height: 1.7;
   margin-top: 10px;
+  padding: 12px 24px;
+  background: rgba(255,250,240,0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ─── BOOKS SHELF CONTAINER ─── */
@@ -272,7 +315,7 @@ canvas#sparkle {
   position: relative;
 }
 
-/* ── Individual book ── */
+/* ── Individual book - ENHANCED HOVER ── */
 .book {
   position: relative;
   cursor: pointer;
@@ -301,8 +344,18 @@ canvas#sparkle {
   to   { opacity:1; transform:translateY(0) scale(1); }
 }
 
-.book:hover { transform: translateY(-20px); }
-.book:hover .book-spine { box-shadow: -5px 0 rgba(0,0,0,0.28), 0 0 35px var(--glow,rgba(200,150,100,0.6)), 6px 10px 28px rgba(0,0,0,0.5); filter: brightness(1.08); }
+/* ENHANCED HOVER EFFECT */
+.book:hover { 
+  transform: translateY(-8px) scale(1.02); 
+}
+.book:hover .book-spine { 
+  box-shadow: 
+    -5px 0 rgba(0,0,0,0.28), 
+    0 0 35px var(--glow,rgba(200,150,100,0.6)), 
+    0 15px 30px rgba(0,0,0,0.35),
+    inset -2px 2px 20px rgba(255,255,255,0.15);
+  filter: brightness(1.08); 
+}
 .book:hover .book-glow  { opacity: 1; }
 
 /* Spine – the main book face */
@@ -314,7 +367,7 @@ canvas#sparkle {
   background: var(--col);
   border-radius: 2px 5px 5px 2px;
   overflow: hidden;
-  transition: box-shadow 0.32s ease, filter 0.25s ease;
+  transition: box-shadow 0.32s ease, filter 0.25s ease, transform 0.32s ease;
   box-shadow:
     -5px 0 rgba(0,0,0,0.26),
     4px 8px 22px rgba(0,0,0,0.45),
@@ -393,11 +446,11 @@ canvas#sparkle {
   line-height: 1.25;
 }
 
-/* Center icon / embossed symbol */
+/* Center icon / embossed symbol - ENHANCED */
 .spine-icon {
   font-size: clamp(26px, 3.2vw, 34px);
   text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4));
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
   flex: 1;
   display: flex;
   align-items: center;
@@ -432,7 +485,7 @@ canvas#sparkle {
 .spine-line-top { top: 52px; }
 .spine-line-bot { bottom: 52px; }
 
-/* Glow ring on hover */
+/* Glow ring on hover - ENHANCED */
 .book-glow {
   position:absolute; inset:-3px;
   border-radius:4px 7px 7px 4px;
@@ -443,7 +496,7 @@ canvas#sparkle {
   z-index:10;
 }
 
-/* Drop shadow under book */
+/* Drop shadow under book - ENHANCED */
 .book-shadow {
   position:absolute;
   bottom:-6px; left:5%; right:5%;
@@ -451,11 +504,15 @@ canvas#sparkle {
   background: radial-gradient(ellipse, rgba(0,0,0,0.38) 0%, transparent 70%);
   border-radius:50%;
   pointer-events:none;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
-.book:hover .book-shadow { transform: scaleX(1.3); opacity:0.5; }
+.book:hover .book-shadow { 
+  transform: scaleX(1.3); 
+  opacity:0.6;
+  bottom: -10px;
+}
 
-/* ─── WOOD SHELF ─── */
+/* ─── WOOD SHELF - ENHANCED 3D EFFECT ─── */
 .shelf {
   position: relative;
   width: 100%;
@@ -506,19 +563,33 @@ canvas#sparkle {
   background: linear-gradient(180deg, #5a3010 0%, #3a1c08 60%, #2a1006 100%);
   border-radius: 0 0 4px 4px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.55);
+  position: relative;
 }
 
-/* Shelf cast shadow on wall behind */
+/* NEW: 3D gradient on shelf face */
+.shelf-face::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, 
+    rgba(255,255,255,0.08) 0%, 
+    transparent 40%, 
+    rgba(0,0,0,0.2) 100%
+  );
+  border-radius: inherit;
+}
+
+/* Shelf cast shadow on wall behind - ENHANCED */
 .shelf-wall-shadow {
   position: absolute;
   bottom: -20px; left: -5%; right: -5%;
-  height: 22px;
-  background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(0,0,0,0.28), transparent);
+  height: 28px;
+  background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(0,0,0,0.35), transparent);
   border-radius: 0 0 50% 50%;
   pointer-events: none;
 }
 
-/* ─── TIMELINE ─── */
+/* ─── TIMELINE - ENHANCED WITH TOOLTIPS ─── */
 .timeline {
   margin-top: 26px;
   text-align: center;
@@ -586,6 +657,7 @@ canvas#sparkle {
   transition: color 0.2s;
 }
 
+/* ENHANCED TIMELINE DOT */
 .tl-dot {
   width: 38px; height: 38px;
   border-radius:50%;
@@ -596,10 +668,46 @@ canvas#sparkle {
   transition: transform 0.25s cubic-bezier(.34,1.6,.64,1), box-shadow 0.25s;
 }
 .tl-item:hover .tl-dot {
-  transform: scale(1.35);
+  transform: scale(1.1);
   box-shadow: 0 3px 14px rgba(0,0,0,0.35), 0 0 0 3px rgba(230,200,140,0.9), 0 0 14px var(--c);
 }
 .tl-item:hover .tl-lbl { color: rgba(40,20,4,0.95); font-weight:700; }
+
+/* NEW: TOOLTIP */
+.tl-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: rgba(40,25,10,0.95);
+  color: rgba(255,245,220,0.95);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: 'Lora', serif;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+.tl-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(40,25,10,0.95);
+}
+
+.tl-item:hover .tl-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-12px);
+}
 
 /* Bottom sparkle diamond */
 .diamond {
@@ -764,7 +872,7 @@ canvas#sparkle {
   .book-spine { min-height:150px !important; }
   .h-title    { font-size:48px; }
   .h-top-line span { font-size: 13px; }
-  .h-quote { font-size: 14px; }
+  .h-quote { font-size: 14px; padding: 10px 16px; }
   .modal-book { grid-template-columns:55px 1fr; }
   .modal-page { padding:28px 20px 24px; }
   .m-body { font-size: 16px; line-height: 1.75; }
@@ -776,6 +884,7 @@ canvas#sparkle {
 <div class="bg"></div>
 <div class="grain"></div>
 <div class="vignette"></div>
+<div class="light-flare"></div>
 <canvas id="sparkle"></canvas>
 
 <!-- Corner foliage SVGs -->
@@ -793,14 +902,17 @@ canvas#sparkle {
 <!-- Side tags LEFT -->
 <nav class="side-tags left">
   <a class="wood-tag" href="#" onclick="openModal(0);return false;">
+    <div class="wood-tag-rope"></div>
     <span class="wood-tag-text">20<br>/10</span>
     <span class="wood-tag-dot" style="background:#c8989a;color:#c8989a"></span>
   </a>
   <a class="wood-tag" href="#" onclick="openModal(1);return false;">
+    <div class="wood-tag-rope"></div>
     <span class="wood-tag-text">19/11</span>
     <span class="wood-tag-dot" style="background:#5a7090"></span>
   </a>
   <a class="wood-tag" href="#" onclick="openModal(2);return false;">
+    <div class="wood-tag-rope"></div>
     <span class="wood-tag-text">20<br>/11</span>
     <span class="wood-tag-dot" style="background:#a68250"></span>
   </a>
@@ -809,14 +921,17 @@ canvas#sparkle {
 <!-- Side tags RIGHT -->
 <nav class="side-tags right" style="align-items:flex-end">
   <a class="wood-tag" href="#" onclick="openModal(3);return false;" style="border-radius:5px 0 0 5px">
+    <div class="wood-tag-rope"></div>
     <span class="wood-tag-text">Giai<br>Điệu</span>
     <span class="wood-tag-dot" style="background:#9d8ab5"></span>
   </a>
   <a class="wood-tag" href="#" onclick="openModal(4);return false;" style="border-radius:5px 0 0 5px">
+    <div class="wood-tag-rope"></div>
     <span class="wood-tag-text">Đà<br>Lạt</span>
     <span class="wood-tag-dot" style="background:#587060"></span>
   </a>
   <a class="wood-tag" href="#" onclick="openModal(5);return false;" style="border-radius:5px 0 0 5px">
+    <div class="wood-tag-rope"></div>
     <span class="wood-tag-text">Giỗ<br>Tổ</span>
     <span class="wood-tag-dot" style="background:#904040"></span>
   </a>
@@ -975,26 +1090,32 @@ canvas#sparkle {
       <div class="tl-item" onclick="openModal(0)">
         <div class="tl-lbl">20/10</div>
         <div class="tl-dot" style="--c:#c8989a">💗</div>
+        <div class="tl-tooltip">20/10 – Ngày Phụ nữ Việt Nam</div>
       </div>
       <div class="tl-item" onclick="openModal(1)">
         <div class="tl-lbl">19/11</div>
         <div class="tl-dot" style="--c:#5a7090">👔</div>
+        <div class="tl-tooltip">19/11 – Ngày Quốc tế Đàn Ông</div>
       </div>
       <div class="tl-item" onclick="openModal(2)">
         <div class="tl-lbl">20/11</div>
         <div class="tl-dot" style="--c:#a68250">💌</div>
+        <div class="tl-tooltip">20/11 – Ngày Nhà giáo Việt Nam</div>
       </div>
       <div class="tl-item" onclick="openModal(3)">
         <div class="tl-lbl">Giai Điệu</div>
         <div class="tl-dot" style="--c:#9d8ab5">🎵</div>
+        <div class="tl-tooltip">Giai Điệu Tuổi Hồng & Thanh Lịch</div>
       </div>
       <div class="tl-item" onclick="openModal(4)">
         <div class="tl-lbl">Đà Lạt</div>
         <div class="tl-dot" style="--c:#587060">🌲</div>
+        <div class="tl-tooltip">Chuyến Tham Quan Đà Lạt</div>
       </div>
       <div class="tl-item" onclick="openModal(5)">
         <div class="tl-lbl">Giỗ Tổ</div>
         <div class="tl-dot" style="--c:#904040">🎋</div>
+        <div class="tl-tooltip">Giỗ Tổ Hùng Vương</div>
       </div>
     </div>
   </div>
@@ -1023,7 +1144,7 @@ canvas#sparkle {
 </div>
 
 <script>
-/* ── SPARKLE DUST PARTICLES ── */
+/* ── SPARKLE DUST PARTICLES - ENHANCED ── */
 (function(){
   const cv = document.getElementById('sparkle');
   const cx = cv.getContext('2d');
@@ -1031,14 +1152,14 @@ canvas#sparkle {
   const resize = () => { W = cv.width = innerWidth; H = cv.height = innerHeight; };
   addEventListener('resize', resize); resize();
 
-  const N = 70;
+  const N = 80; // Increased particle count
   const pts = Array.from({length:N}, () => ({
     x: Math.random()*1000, y: Math.random()*700,
     vx:(Math.random()-.5)*.15, vy:-(Math.random()*.28+.07),
     r: Math.random()*1.8+.3,
     a: Math.random()*.45+.08,
     life:Math.random()*500, max:Math.random()*460+180,
-    bright: Math.random()>.6   /* some brighter sparkles */
+    bright: Math.random()>.55   /* More bright sparkles */
   }));
 
   function frame(){
