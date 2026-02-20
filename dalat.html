@@ -61,7 +61,6 @@ body::after{
 @keyframes particlesDrift{from{transform:translateY(0) translateX(0);}to{transform:translateY(-90px) translateX(50px);}}
 @keyframes particlesTwinkle{0%,100%{opacity:.5;}50%{opacity:.7;}}
 
-/* FIX 1: cursor trail z-index cao hơn */
 .cursor-trail {
   position: fixed;
   width: 8px;height: 8px;border-radius: 50%;
@@ -84,7 +83,6 @@ body::after{
   box-shadow: 0 0 10px rgba(62,114,73,.6);
 }
 
-/* FIX 2: breadcrumb + home-btn không chồng nhau ở mobile */
 .breadcrumb {
   position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
   background: rgba(255,255,255,.9); backdrop-filter: blur(10px);
@@ -115,7 +113,6 @@ body::after{
   transform: translateY(-2px); box-shadow: 0 8px 20px rgba(30,68,48,.2);
 }
 
-/* FIX 3: aria-live region cho thông báo chuyển trang */
 .sr-announce {
   position: absolute; left: -9999px; width: 1px; height: 1px;
   overflow: hidden; clip: rect(0,0,0,0);
@@ -146,6 +143,11 @@ body::after{
   animation:bookEntrance 1.8s cubic-bezier(.4,0,.2,1);
   overflow:visible;
   transition: box-shadow .3s ease;
+}
+/* ── BUG FIX: bìa sách ẩn hoàn toàn khi mở sách ── */
+.book-cover.hidden {
+  display: none !important;
+  margin-bottom: 0 !important;
 }
 .book-cover:hover{
   box-shadow:0 35px 90px rgba(0,0,0,.65),inset 0 0 160px rgba(0,0,0,.45),inset 2px 2px 10px rgba(255,255,255,.15),inset -2px -2px 10px rgba(0,0,0,.45);
@@ -321,7 +323,6 @@ body::after{
   transform-origin:left center;
   box-shadow:inset 0 0 100px rgba(30,68,48,.05);
 }
-/* FIX 4: smoother page entry animation */
 @keyframes pageTurn{
   0%  {opacity:0;transform:perspective(2000px) rotateY(-8deg) translateY(16px);filter:blur(2px);}
   60% {transform:perspective(2000px) rotateY(2deg) translateY(-4px);filter:blur(0);}
@@ -478,8 +479,6 @@ body::after{
 .story-card:hover::after{opacity:1;}
 .story-card:nth-child(even) .story-image{order:2;}
 .story-card:nth-child(even) .story-text{order:1;}
-
-/* FIX 5: giảm hover effect trên story-card để không giật */
 .story-card:hover{
   transform:translateY(-8px) scale(1.015);
   box-shadow:0 20px 60px rgba(30,68,48,.18),0 8px 24px rgba(62,114,73,.12);
@@ -502,6 +501,7 @@ body::after{
   font-size: 1.8rem; transform: rotate(18deg);
   box-shadow: 0 4px 12px rgba(196,69,54,0.5); z-index: 5;
   animation: stampBounce 6s ease-in-out infinite; transition: all .4s ease;
+  pointer-events: none;
 }
 .story-card:nth-child(2) .stamp {
   background: linear-gradient(142deg, #2d5a40, #3e7249, #305c3a);
@@ -513,9 +513,7 @@ body::after{
   0%, 100% { transform: rotate(18deg) scale(1); }
   50% { transform: rotate(16deg) scale(1.08); }
 }
-
-/* FIX 6: image skeleton placeholder trước khi ảnh load */
-.story-image img, .ci img, .pola img, .pola img {
+.story-image img, .ci img, .pola img {
   width:100%;height:100%;object-fit:cover;
   transition:all .8s cubic-bezier(.4,0,.2,1);
   filter:sepia(.05) contrast(1.05) brightness(1);
@@ -622,7 +620,6 @@ body::after{
 
 /* ── ALBUM ── */
 .awrap{position:relative;margin-bottom:28px;}
-/* FIX 7: thêm visual cue cuộn ngang + gradient fade hai bên */
 .awrap::before, .awrap::after {
   content: '';
   position: absolute;
@@ -648,7 +645,6 @@ body::after{
 .atrack::-webkit-scrollbar{height:5px;}
 .atrack::-webkit-scrollbar-thumb{background:rgba(62,114,73,.34);border-radius:3px;}
 
-/* FIX 8: Scroll hint indicator */
 .scroll-hint {
   text-align: center;
   font-family: 'Dancing Script', cursive;
@@ -722,7 +718,6 @@ body::after{
   display:flex; justify-content:center; align-items:center;
   gap:36px; margin:48px 0; flex-wrap:wrap;
 }
-/* FIX 9: meaning-card text contrast cải thiện đáng kể */
 .meaning-card{
   background:
     radial-gradient(ellipse at 30% 20%, rgba(205,230,212,.45), transparent 55%),
@@ -746,8 +741,7 @@ body::after{
 .meaning-card::before{
   content:'';position:absolute;top:50%;left:50%;width:200%;height:200%;
   transform:translate(-50%, -50%);
-  background:
-    conic-gradient(from 0deg at 50% 50%,#568c62 0deg,#7aaa88 40deg,#aeceba 80deg,#568c62 120deg,#7aaa88 160deg,#aeceba 200deg,#568c62 240deg,#7aaa88 280deg,#aeceba 320deg,#568c62 360deg);
+  background:conic-gradient(from 0deg at 50% 50%,#568c62 0deg,#7aaa88 40deg,#aeceba 80deg,#568c62 120deg,#7aaa88 160deg,#aeceba 200deg,#568c62 240deg,#7aaa88 280deg,#aeceba 320deg,#568c62 360deg);
   border-radius:50%;z-index:0;opacity:0;
   animation:rotateBorder 8s linear infinite;
   transition:opacity .45s ease;filter:blur(8px);
@@ -779,48 +773,33 @@ body::after{
 .meaning-card:hover .meaning-icon{ animation:iconSpinFloat 1.5s ease-in-out infinite; filter:drop-shadow(0 8px 20px rgba(30,68,48,.5)); }
 .meaning-card:nth-child(2) .meaning-icon{ animation-delay:.5s; }
 .meaning-card:nth-child(3) .meaning-icon{ animation-delay:1s; }
-@keyframes iconBounce{
-  0%,100%{transform:translateY(0) scale(1);}
-  50%{transform:translateY(-12px) scale(1.04);}
-}
+@keyframes iconBounce{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-12px) scale(1.04);}}
 @keyframes iconSpinFloat{
   0%,100%{transform:rotate(0deg) scale(1) translateY(0);}
   25%{transform:rotate(10deg) scale(1.08) translateY(-6px);}
   50%{transform:rotate(0deg) scale(1.12) translateY(-10px);}
   75%{transform:rotate(-10deg) scale(1.08) translateY(-6px);}
 }
-/* FIX 9b: tăng độ tương phản text trong meaning-card */
 .meaning-card h4{
   font-family:'Playfair Display',serif;font-size:1.45rem;
   color:#0f2018;
   margin-bottom:12px;font-weight:800;position:relative;z-index:2;
-  line-height:1.3;
-  text-shadow:0 1px 3px rgba(255,255,255,.6);
+  line-height:1.3;text-shadow:0 1px 3px rgba(255,255,255,.6);
   transition:all .3s ease;
 }
-.meaning-card:hover h4{
-  color:#0a170f;
-  transform:scale(1.03);
-}
+.meaning-card:hover h4{ color:#0a170f; transform:scale(1.03); }
 .meaning-card p{
-  font-size:1.05rem;line-height:1.82;
-  color:#1a3424;
+  font-size:1.05rem;line-height:1.82;color:#1a3424;
   position:relative;z-index:2;font-family:'Lora',serif;font-weight:500;
   max-width:242px;transition:all .3s ease;
 }
-.meaning-card:hover p{
-  color:#0d1f12;
-  transform:scale(1.01);
-}
+.meaning-card:hover p{ color:#0d1f12; transform:scale(1.01); }
 
 /* ── QUOTE BOX ── */
-/* FIX 10: quote box — dấu " không bị che ở mobile */
 .quote-box{
   background:linear-gradient(135deg,rgba(249,247,240,.9),rgba(249,247,240,.7));
   border-left:5px solid #2d5a40;border-right:5px solid #3e7249;
-  padding:36px 50px;
-  margin:48px 0;
-  position:relative;
+  padding:36px 50px;margin:48px 0;position:relative;
   animation:quoteReveal 1.2s ease;
   border-radius:8px; box-shadow:0 6px 20px rgba(30,68,48,.12);
   transition:all .5s cubic-bezier(.4,0,.2,1);
@@ -832,12 +811,9 @@ body::after{
   to{opacity:1;transform:scale(1) translateY(0);}
 }
 .quote-box::before{
-  content:'"';
-  position:absolute;top:-18px;left:18px;
-  font-size:6rem;line-height:1;
-  font-family:'Playfair Display',serif;
-  color:#3e7249;opacity:.22;
-  pointer-events:none;
+  content:'"';position:absolute;top:-18px;left:18px;
+  font-size:6rem;line-height:1;font-family:'Playfair Display',serif;
+  color:#3e7249;opacity:.22;pointer-events:none;
 }
 .quote-text{font-family:'Lora',serif;font-size:1.55rem;color:var(--forest-dark);line-height:1.85;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:400;}
 
@@ -850,7 +826,7 @@ body::after{
 }
 .callout:hover{ transform:translateX(7px); box-shadow:0 5px 18px rgba(30,68,48,.12); border-left-color:#3e7249; }
 
-/* ── FINAL PAGE LAYOUT ── */
+/* ── FINAL PAGE ── */
 .cgrid{ display:flex;flex-direction:column;gap:60px;margin:42px 0; }
 .ccard{
   display:flex;flex-direction:column;gap:32px;padding:40px 38px;
@@ -971,19 +947,6 @@ body::after{
 }
 .modal-close:focus { outline: 3px solid rgba(201,169,97,.8); outline-offset: 4px; }
 .modal-close:hover{background:rgba(62,114,73,.6);transform:rotate(90deg) scale(1.12);}
-
-/* FIX 11: modal navigation arrows */
-.modal-nav {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 48px; height: 48px;
-  background: rgba(255,255,255,.18); border: 2px solid rgba(122,170,136,.5);
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; color: #fff; cursor: pointer;
-  transition: all .3s; backdrop-filter: blur(8px); z-index: 1001;
-}
-.modal-nav:hover { background: rgba(62,114,73,.5); }
-.modal-nav.prev { left: 20px; }
-.modal-nav.next { right: 80px; }
 .modal-caption {
   position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
   font-family: 'Dancing Script', cursive; font-size: 1.1rem;
@@ -1001,10 +964,7 @@ body::after{
 }
 .scroll-top:focus { outline: 3px solid rgba(201,169,97,.8); outline-offset: 4px; }
 .scroll-top.visible{opacity:1;pointer-events:auto;animation:scrollTopBounce 2s ease-in-out infinite;}
-@keyframes scrollTopBounce{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-7px);}
-}
+@keyframes scrollTopBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
 .scroll-top:hover{transform:translateY(-7px) scale(1.1);box-shadow:0 16px 44px rgba(30,68,48,.75);}
 
 .loading-spinner{
@@ -1046,7 +1006,7 @@ body::after{
   .section-intro{font-size:1rem;}
   .story-card{grid-template-columns:1fr!important;gap:26px;}
   .story-card:nth-child(even) .story-image{order:0;}
-  .story-card:hover{transform:translateY(-5px) scale(1.008);} /* FIX mobile hover */
+  .story-card:hover{transform:translateY(-5px) scale(1.008);}
   .story-text{font-size:1rem;}
   .journey-tabs{flex-direction:column;}
   .journey-tab{width:100%;}
@@ -1058,7 +1018,6 @@ body::after{
   .ct p{font-size:1.05rem;}
   .ntxt{font-size:1rem;}
   .quote-text{font-size:1.3rem;}
-  /* FIX: breadcrumb ở mobile — ẩn bớt để không chồng home-btn */
   .breadcrumb{
     top:auto; bottom:20px; left:50%; right:auto;
     transform:translateX(-50%);
@@ -1070,14 +1029,13 @@ body::after{
   .page-selector { gap: 5px; padding: 10px 8px; }
   .page-select-btn { min-width: 55px; padding: 7px 10px; }
   .home-btn { font-size: 0.76rem; padding: 7px 12px; }
-  .awrap::before, .awrap::after { display: none; } /* không cần fade ở mobile */
-  .scroll-hint { display: block; } /* hiện hint kéo ngang ở mobile */
+  .awrap::before, .awrap::after { display: none; }
+  .scroll-hint { display: block; }
 }
 @media(max-width:480px){
   .page{padding:38px 14px 80px;}
   .section-title{font-size:1.75rem;}
   .section-intro{font-size:0.92rem;}
-  /* FIX 12: body text không bị quá lớn gây overflow trên mobile nhỏ */
   .story-text{font-size:0.92rem;}
   .ntxt{font-size:0.92rem;}
   .ct p{font-size:0.94rem;line-height:1.9;}
@@ -1094,15 +1052,12 @@ body::after{
   .page-number{font-size:1.1rem;bottom:18px;right:20px;}
   .quote-box::before{font-size:4rem;top:-12px;left:10px;}
 }
-
-/* FIX 13: prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  /* vẫn giữ transition cho tương tác */
   .nav-btn, .open-book-btn, .meaning-card, .story-card {
     transition: opacity .2s, box-shadow .2s !important;
   }
@@ -1111,7 +1066,6 @@ body::after{
 </head>
 <body>
 
-<!-- FIX 3: aria-live region để screen reader thông báo chuyển trang -->
 <div class="sr-announce" aria-live="polite" aria-atomic="true" id="srAnnounce"></div>
 
 <div class="progress-bar-container" id="progressBarContainer">
@@ -1122,7 +1076,6 @@ body::after{
   🏠 <span>Trang Chủ</span>
 </a>
 
-<!-- FIX 2: breadcrumb chuyển xuống dưới ở mobile via CSS -->
 <div class="breadcrumb" id="breadcrumb" role="navigation" aria-label="Vị trí hiện tại">
   <span class="breadcrumb-icon" aria-hidden="true">📖</span>
   <span id="breadcrumbText">Bìa sách</span>
@@ -1201,7 +1154,6 @@ body::after{
           Có những miền đất ta chỉ ghé qua một lần trong đời, nhưng lại ở lại rất lâu trong ký ức.<br>
           Đà Lạt của lớp 11L là một miền như thế.
         </p>
-        
         <div class="story-grid">
           <article class="story-card">
             <div class="story-image">
@@ -1212,7 +1164,6 @@ body::after{
               <p>Đó là nơi sương sớm giăng mờ trên những triền đồi, nơi rừng thông thì thầm trong gió, nơi nhịp sống chậm rãi mở ra những khoảng lặng hiếm hoi giữa những ngày học tập vội vã.</p>
             </div>
           </article>
-          
           <article class="story-card">
             <div class="story-image">
               <div class="stamp" aria-hidden="true">👥</div>
@@ -1240,12 +1191,10 @@ body::after{
           <span class="title-text">Ý Nghĩa Của Một Chuyến Đi</span>
         </h3>
         <p class="section-intro">Giữa những tiết học nối tiếp nhau, giữa những bài kiểm tra và áp lực vô hình, chuyến đi Đà Lạt đến như một khoảng thở dịu dàng.</p>
-
         <div class="callout">
           Mỗi điểm đến đều là một trang sách sống động.<br>
           Mỗi bước chân đều mở ra một bài học không nằm trong giáo trình.
         </div>
-
         <div class="meaning-grid">
           <article class="meaning-card">
             <div class="meaning-icon" aria-hidden="true">📚</div>
@@ -1263,11 +1212,8 @@ body::after{
             <p>Qua những bữa ăn giản dị, những khoảnh khắc cười đùa vô tư, chúng tôi học cách lắng nghe, thấu hiểu và trân trọng nhau hơn.</p>
           </article>
         </div>
-
         <blockquote class="quote-box">
-          <p class="quote-text">
-            Quan trọng hơn cả, chuyến đi là sợi dây vô hình kết nối những tâm hồn tuổi mười bảy...
-          </p>
+          <p class="quote-text">Quan trọng hơn cả, chuyến đi là sợi dây vô hình kết nối những tâm hồn tuổi mười bảy...</p>
         </blockquote>
       </div>
       <div class="page-number" aria-label="Trang 2 trên 4">~ Trang 2 ~</div>
@@ -1285,56 +1231,34 @@ body::after{
           <span class="title-icon" aria-hidden="true">📍</span>
           <span class="title-text">Hành Trình Ba Ngày – Một Miền Ký Ức</span>
         </h3>
-        
         <div class="journey-tabs" role="tablist" aria-label="Chọn ngày trong hành trình">
           <button class="journey-tab active" data-day="day1" id="tab-day1" role="tab" aria-selected="true" aria-controls="day1">🗓️ Ngày 01</button>
           <button class="journey-tab" data-day="day2" id="tab-day2" role="tab" aria-selected="false" aria-controls="day2">🗓️ Ngày 02</button>
           <button class="journey-tab" data-day="day3" id="tab-day3" role="tab" aria-selected="false" aria-controls="day3">🗓️ Ngày 03</button>
         </div>
-        
         <div id="day1" class="day-content active" role="tabpanel" aria-labelledby="tab-day1">
           <div class="awrap">
             <button class="aarr ap" data-album="album1" aria-label="Cuộn sang trái">‹</button>
             <div class="atrack" id="album1" role="region" aria-label="Album ảnh ngày 1">
-              <figure class="pola wide">
-                <img src="images/lenxe.jpg" alt="Học sinh lớp 11L lên xe khởi hành từ Bình Dương" loading="lazy">
-                <figcaption class="pcap">🚌 Khởi hành từ Bình Dương</figcaption>
-              </figure>
-              <figure class="pola">
-                <img src="images/truongdh.jpg" alt="Trường Đại học Đà Lạt" loading="lazy">
-                <figcaption class="pcap">🏛️ ĐH Đà Lạt</figcaption>
-              </figure>
-              <figure class="pola">
-                <img src="images/khachsan.jpg" alt="Khách sạn nơi lưu trú" loading="lazy">
-                <figcaption class="pcap">🏨 Nhận phòng</figcaption>
-              </figure>
+              <figure class="pola wide"><img src="images/lenxe.jpg" alt="Học sinh lớp 11L lên xe khởi hành từ Bình Dương" loading="lazy"><figcaption class="pcap">🚌 Khởi hành từ Bình Dương</figcaption></figure>
+              <figure class="pola"><img src="images/truongdh.jpg" alt="Trường Đại học Đà Lạt" loading="lazy"><figcaption class="pcap">🏛️ ĐH Đà Lạt</figcaption></figure>
+              <figure class="pola"><img src="images/khachsan.jpg" alt="Khách sạn nơi lưu trú" loading="lazy"><figcaption class="pcap">🏨 Nhận phòng</figcaption></figure>
             </div>
             <button class="aarr an" data-album="album1" aria-label="Cuộn sang phải">›</button>
           </div>
-          <!-- FIX 8: scroll hint -->
           <p class="scroll-hint" aria-hidden="true">← vuốt để xem thêm ảnh →</p>
           <aside class="dnote">
             <span class="nlbl">☀️ Ngày đầu tiên — Khởi hành</span>
             <p class="ntxt">Sau chặng đường dài từ Bình Dương, lớp 11L bắt đầu hành trình trong sự háo hức và mong chờ. Điểm dừng chân đầu tiên là Trường Đại học Đà Lạt – nơi tri thức và kiến trúc giao hòa, gieo vào lòng chúng tôi niềm kính trọng đối với con đường học vấn.</p>
           </aside>
         </div>
-        
         <div id="day2" class="day-content" role="tabpanel" aria-labelledby="tab-day2">
           <div class="awrap">
             <button class="aarr ap" data-album="album2" aria-label="Cuộn sang trái">‹</button>
             <div class="atrack" id="album2" role="region" aria-label="Album ảnh ngày 2">
-              <figure class="pola wide">
-                <img src="images/caugo.jpg" alt="Cầu Gỗ với biển mây trắng xóa" loading="lazy">
-                <figcaption class="pcap">☁️ Biển mây Cầu Gỗ</figcaption>
-              </figure>
-              <figure class="pola">
-                <img src="images/puppy.jpg" alt="Puppy Farm Đà Lạt" loading="lazy">
-                <figcaption class="pcap">🐕 Puppy Farm</figcaption>
-              </figure>
-              <figure class="pola">
-                <img src="images/quangtruong.jpg" alt="Quảng trường Lâm Viên" loading="lazy">
-                <figcaption class="pcap">🏙️ Lâm Viên</figcaption>
-              </figure>
+              <figure class="pola wide"><img src="images/caugo.jpg" alt="Cầu Gỗ với biển mây trắng xóa" loading="lazy"><figcaption class="pcap">☁️ Biển mây Cầu Gỗ</figcaption></figure>
+              <figure class="pola"><img src="images/puppy.jpg" alt="Puppy Farm Đà Lạt" loading="lazy"><figcaption class="pcap">🐕 Puppy Farm</figcaption></figure>
+              <figure class="pola"><img src="images/quangtruong.jpg" alt="Quảng trường Lâm Viên" loading="lazy"><figcaption class="pcap">🏙️ Lâm Viên</figcaption></figure>
             </div>
             <button class="aarr an" data-album="album2" aria-label="Cuộn sang phải">›</button>
           </div>
@@ -1344,23 +1268,13 @@ body::after{
             <p class="ntxt">Buổi sáng, Cầu Gỗ đón chúng tôi bằng biển mây trắng xóa, mang đến cảm giác như chạm tay vào bầu trời. Tại Puppy Farm, tiếng cười hòa cùng ánh nắng và những chú cún nhỏ, đưa chúng tôi trở về với sự hồn nhiên thuần khiết.</p>
           </aside>
         </div>
-        
         <div id="day3" class="day-content" role="tabpanel" aria-labelledby="tab-day3">
           <div class="awrap">
             <button class="aarr ap" data-album="album3" aria-label="Cuộn sang trái">‹</button>
             <div class="atrack" id="album3" role="region" aria-label="Album ảnh ngày 3">
-              <figure class="pola">
-                <img src="images/ansang.jpg" alt="Bữa ăn sáng cuối cùng tại Đà Lạt" loading="lazy">
-                <figcaption class="pcap">☕ Bữa sáng cuối</figcaption>
-              </figure>
-              <figure class="pola wide">
-                <img src="images/dinh3.jpg" alt="Dinh III Bảo Đại" loading="lazy">
-                <figcaption class="pcap">🏯 Dinh III</figcaption>
-              </figure>
-              <figure class="pola">
-                <img src="images/roidal.jpg" alt="Chia tay Đà Lạt" loading="lazy">
-                <figcaption class="pcap">👋 Tạm biệt!</figcaption>
-              </figure>
+              <figure class="pola"><img src="images/ansang.jpg" alt="Bữa ăn sáng cuối cùng tại Đà Lạt" loading="lazy"><figcaption class="pcap">☕ Bữa sáng cuối</figcaption></figure>
+              <figure class="pola wide"><img src="images/dinh3.jpg" alt="Dinh III Bảo Đại" loading="lazy"><figcaption class="pcap">🏯 Dinh III</figcaption></figure>
+              <figure class="pola"><img src="images/roidal.jpg" alt="Chia tay Đà Lạt" loading="lazy"><figcaption class="pcap">👋 Tạm biệt!</figcaption></figure>
             </div>
             <button class="aarr an" data-album="album3" aria-label="Cuộn sang phải">›</button>
           </div>
@@ -1370,7 +1284,6 @@ body::after{
             <p class="ntxt">Buổi sáng cuối cùng trôi qua chậm rãi trong sự lưu luyến khó gọi tên. Dinh III – Dinh Bảo Đại khép lại hành trình bằng vẻ đẹp trầm mặc, cổ kính giữa rừng thông xanh mát. Khi bánh xe lăn bánh, thành phố dần lùi xa, nhưng ký ức thì ở lại.</p>
           </aside>
         </div>
-        
         <blockquote class="quote-box">
           <p class="quote-text">Đó là một phần thanh xuân mang tên 11L...</p>
         </blockquote>
@@ -1390,35 +1303,25 @@ body::after{
           <span class="title-icon" aria-hidden="true">🌸</span>
           <span class="title-text">Đà Lạt – Miền Ký Ức Của 11L</span>
         </h3>
-        
         <div class="cgrid">
           <article class="ccard">
-            <figure class="ci">
-              <img src="images/final.jpg" alt="Toàn bộ học sinh lớp 11L tại Đà Lạt" loading="lazy">
-            </figure>
+            <figure class="ci"><img src="images/final.jpg" alt="Toàn bộ học sinh lớp 11L tại Đà Lạt" loading="lazy"></figure>
             <div class="ct">
               <p>Chuyến tham quan học tập tại Đà Lạt không chỉ mang đến kiến thức và trải nghiệm, mà còn đánh dấu một đoạn đẹp trong hành trình trưởng thành của lớp 11L.</p>
               <p>Ở đó, chúng tôi đã cùng nhau học cách sống chậm, học cách lắng nghe, học cách trân trọng hiện tại và học cách giữ gìn những điều nhỏ bé nhưng quý giá.</p>
             </div>
           </article>
-          
           <article class="ccard">
-            <figure class="ci">
-              <img src="images/memory.jpg" alt="Những khoảnh khắc đáng nhớ tại Đà Lạt" loading="lazy">
-            </figure>
+            <figure class="ci"><img src="images/memory.jpg" alt="Những khoảnh khắc đáng nhớ tại Đà Lạt" loading="lazy"></figure>
             <div class="ct">
               <p>Nhiều năm sau, khi những con đường đời đã rẽ sang nhiều hướng khác nhau, có thể chúng tôi sẽ quên đi vài chi tiết nhỏ, nhưng chắc chắn Đà Lạt vẫn còn ở lại.</p>
               <p>Trong những bức ảnh cũ, trong những câu chuyện được kể lại và trong một góc rất sâu của ký ức tuổi học trò – nơi rừng thông vẫn mãi xanh tươi.</p>
             </div>
           </article>
         </div>
-        
         <blockquote class="quote-box">
-          <p class="quote-text">
-            Bởi đó không chỉ là một chuyến đi, đó là một phần thanh xuân, đó là miền nhớ mang tên lớp 11L 🌲
-          </p>
+          <p class="quote-text">Bởi đó không chỉ là một chuyến đi, đó là một phần thanh xuân, đó là miền nhớ mang tên lớp 11L 🌲</p>
         </blockquote>
-        
         <div class="rdiv" aria-hidden="true"><span>🌲</span><span>☁️</span><span>🌿</span></div>
         <div class="sig" aria-label="Kết thúc nhật ký">🌲 ~ Hết ~ 🌲</div>
       </div>
@@ -1432,7 +1335,6 @@ body::after{
   </div>
 </div>
 
-<!-- FIX 11: modal với caption và navigation -->
 <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="Xem ảnh phóng to">
   <button class="modal-close" onclick="closeModal()" aria-label="Đóng ảnh">×</button>
   <img id="modalImg" alt="">
@@ -1442,10 +1344,8 @@ body::after{
 
 <script>
 let currentPage = 1;
-let touchStartX = 0;
-let touchEndX = 0;
+let touchStartX = 0, touchStartY = 0, isTouchingAlbum = false;
 
-// FIX 3: announce page changes to screen readers
 function announce(msg) {
   const el = document.getElementById('srAnnounce');
   el.textContent = '';
@@ -1484,15 +1384,11 @@ function animateProgressBar(duration) {
     bar.style.width = progress + '%';
     if (progress >= 100) {
       clearInterval(interval);
-      setTimeout(() => {
-        container.classList.remove('active');
-        bar.style.width = '0%';
-      }, 200);
+      setTimeout(() => { container.classList.remove('active'); bar.style.width = '0%'; }, 200);
     }
   }, duration / 50);
 }
 
-// FIX 1: cursor trail ít hơn để giảm DOM clutter
 let lastTrailTime = 0;
 document.addEventListener('mousemove', (e) => {
   const now = Date.now();
@@ -1540,18 +1436,15 @@ function syncDots(n){
 
 document.querySelectorAll('.pdot').forEach(d => {
   d.addEventListener('click', () => turnPage(+d.dataset.p));
-  d.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); turnPage(+d.dataset.p); }
-  });
+  d.addEventListener('keydown', (e) => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); turnPage(+d.dataset.p); } });
 });
 
 document.querySelectorAll('.page-select-btn').forEach(btn => {
   btn.addEventListener('click', () => turnPage(+btn.dataset.page));
-  btn.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); turnPage(+btn.dataset.page); }
-  });
+  btn.addEventListener('keydown', (e) => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); turnPage(+btn.dataset.page); } });
 });
 
+// ── BUG FIX: dùng classList thay vì style.display để bìa không hiện lại ──
 document.getElementById('openBookBtn').addEventListener('click', function(e) {
   e.preventDefault(); e.stopPropagation();
   if (this.dataset.processing === 'true') return;
@@ -1566,10 +1459,11 @@ document.getElementById('openBookBtn').addEventListener('click', function(e) {
   cover.style.transform = 'scale(0.97)';
 
   setTimeout(() => {
-    cover.style.display = 'none';
+    cover.style.transition = '';
     cover.style.opacity = '';
     cover.style.transform = '';
-    cover.style.transition = '';
+    cover.classList.add('hidden'); // ← FIX: class thay vì style.display
+
     pages.style.display = 'block';
     page1.style.display = 'block';
     pages.style.opacity = '0';
@@ -1607,21 +1501,22 @@ function turnPage(n){
     syncDots(n);
     updateBreadcrumb(n);
     updatePageSelector(n);
-    // FIX 3: announce page change
-    const titles = ['Miền Ký Ức Mở Ra','Ý Nghĩa Của Một Chuyến Đi','Hành Trình Ba Ngày','Đà Lạt – Miền Ký Ức'];
+    const titles=['Miền Ký Ức Mở Ra','Ý Nghĩa Của Một Chuyến Đi','Hành Trình Ba Ngày','Đà Lạt – Miền Ký Ức'];
     announce(`Trang ${n}: ${titles[n-1]}`);
     document.getElementById('loadingSpinner').classList.remove('active');
     window.scrollTo({top:0,behavior:'smooth'});
   },350);
 }
 
+// ── BUG FIX: classList thay vì style.display khi quay về bìa ──
 function closePage(){
   document.getElementById('loadingSpinner').classList.add('active');
   animateProgressBar(350);
   setTimeout(()=>{
     document.getElementById('bookPages').style.display='none';
-    document.getElementById('bookCover').style.display='block';
     document.getElementById('page'+currentPage).style.display='none';
+    const cover = document.getElementById('bookCover');
+    cover.classList.remove('hidden'); // ← FIX
     document.getElementById('loadingSpinner').classList.remove('active');
     updateBreadcrumb(0);
     announce('Đã đóng nhật ký, quay về bìa sách');
@@ -1631,111 +1526,95 @@ function closePage(){
 
 document.querySelectorAll('.journey-tab').forEach(tab=>{
   const clickHandler = () => {
-    document.querySelectorAll('.journey-tab').forEach(t => {
-      t.classList.remove('active');
-      t.setAttribute('aria-selected', 'false');
-    });
+    document.querySelectorAll('.journey-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
     document.querySelectorAll('.day-content').forEach(c=>c.classList.remove('active'));
     tab.classList.add('active');
-    tab.setAttribute('aria-selected', 'true');
+    tab.setAttribute('aria-selected','true');
     document.getElementById(tab.dataset.day).classList.add('active');
     announce(`Đang xem ${tab.textContent.trim()}`);
   };
   tab.addEventListener('click', clickHandler);
-  tab.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); clickHandler(); }
-  });
+  tab.addEventListener('keydown', (e) => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); clickHandler(); } });
 });
 
 document.addEventListener('click', e => {
   const arrow = e.target.closest('.aarr');
   if (!arrow) return;
   const album = document.getElementById(arrow.dataset.album);
-  const scrollAmount = arrow.classList.contains('ap') ? -340 : 340;
-  album.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  album.scrollBy({ left: arrow.classList.contains('ap') ? -340 : 340, behavior: 'smooth' });
 });
 
-function handleSwipe() {
-  const diff = touchStartX - touchEndX;
-  if (Math.abs(diff) > 50) {
-    if (diff > 0 && currentPage < 4) turnPage(currentPage + 1);
-    else if (diff < 0 && currentPage > 1) turnPage(currentPage - 1);
+// Swipe — không trigger khi vuốt trong album
+document.getElementById('bookPages').addEventListener('touchstart', e => {
+  isTouchingAlbum = !!e.target.closest('.atrack');
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, {passive:true});
+document.getElementById('bookPages').addEventListener('touchend', e => {
+  if (isTouchingAlbum) return;
+  const dx = e.changedTouches[0].screenX - touchStartX;
+  const dy = e.changedTouches[0].screenY - touchStartY;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+    if (dx < 0 && currentPage < 4) turnPage(currentPage + 1);
+    else if (dx > 0 && currentPage > 1) turnPage(currentPage - 1);
   }
-}
-document.getElementById('bookPages').addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive:true});
-document.getElementById('bookPages').addEventListener('touchend', e => { touchEndX = e.changedTouches[0].screenX; handleSwipe(); }, {passive:true});
+}, {passive:true});
 
+// Album drag-to-scroll
 document.querySelectorAll('.atrack').forEach(album => {
-  let isDown = false, startX, scrollLeft;
-  album.addEventListener('mousedown', e => { isDown = true; album.style.cursor = 'grabbing'; startX = e.pageX - album.offsetLeft; scrollLeft = album.scrollLeft; });
-  album.addEventListener('mouseleave', () => { isDown = false; album.style.cursor = 'grab'; });
-  album.addEventListener('mouseup', () => { isDown = false; album.style.cursor = 'grab'; });
+  let isDown=false, startX, scrollLeft, hasDragged=false;
+  album.addEventListener('mousedown', e => { isDown=true; hasDragged=false; album.style.cursor='grabbing'; startX=e.pageX-album.offsetLeft; scrollLeft=album.scrollLeft; });
+  album.addEventListener('mouseleave', () => { isDown=false; album.style.cursor='grab'; });
+  album.addEventListener('mouseup', () => { isDown=false; album.style.cursor='grab'; });
   album.addEventListener('mousemove', e => {
-    if (!isDown) return; e.preventDefault();
-    const x = e.pageX - album.offsetLeft;
-    const walk = (x - startX) * 2.8;
-    album.scrollLeft = scrollLeft - walk;
+    if(!isDown) return; e.preventDefault();
+    const walk=(e.pageX-album.offsetLeft-startX)*2.8;
+    if(Math.abs(walk)>5) hasDragged=true;
+    album.scrollLeft=scrollLeft-walk;
   });
+  album.addEventListener('click', e => { if(hasDragged) { e.stopPropagation(); hasDragged=false; } });
 });
 
-// FIX 11: modal với caption
 const modal=document.getElementById('imageModal'), modalImg=document.getElementById('modalImg');
-let allModalImages = [];
-let currentModalIndex = 0;
-
-function openModal(img, index, images) {
-  allModalImages = images;
-  currentModalIndex = index;
-  modal.classList.add('active');
-  modalImg.src = img.src;
-  modalImg.alt = img.alt;
-  document.getElementById('modalCaption').textContent = img.alt || '';
-  document.body.style.overflow='hidden';
-}
-
 function closeModal(){
   modal.classList.remove('active');
   document.body.style.overflow='';
-  setTimeout(() => { document.getElementById('modalImg').removeAttribute('src'); }, 500);
+  setTimeout(() => { modalImg.removeAttribute('src'); }, 500);
 }
-
-document.querySelectorAll('.pola img,.story-image img,.ci img').forEach((img, i, arr) => {
+document.querySelectorAll('.pola img,.story-image img,.ci img').forEach(img=>{
   img.addEventListener('click', e => {
     e.stopPropagation();
-    openModal(img, i, [...arr]);
+    modal.classList.add('active');
+    modalImg.src=img.src;
+    modalImg.alt=img.alt;
+    document.getElementById('modalCaption').textContent=img.alt||'';
+    document.body.style.overflow='hidden';
   });
 });
 document.getElementById('imageModal').addEventListener('click', e => { if(e.target===modal) closeModal(); });
 
-// FIX: keyboard navigation trong modal
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape') closeModal();
-  if(!modal.classList.contains('active')) {
-    if(document.getElementById('bookPages').style.display!=='block') return;
-    if(e.key==='ArrowRight'&&currentPage<4) turnPage(currentPage+1);
-    if(e.key==='ArrowLeft'&&currentPage>1) turnPage(currentPage-1);
-  }
+  if(modal.classList.contains('active')) return;
+  if(document.getElementById('bookPages').style.display!=='block') return;
+  if(e.key==='ArrowRight'&&currentPage<4) turnPage(currentPage+1);
+  if(e.key==='ArrowLeft'&&currentPage>1) turnPage(currentPage-1);
 });
 
 document.querySelectorAll('.story-card').forEach(card => {
   card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    card.style.setProperty('--mouse-x', x + '%');
-    card.style.setProperty('--mouse-y', y + '%');
+    const rect=card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x',((e.clientX-rect.left)/rect.width*100)+'%');
+    card.style.setProperty('--mouse-y',((e.clientY-rect.top)/rect.height*100)+'%');
   });
 });
 
 const scrollTopBtn=document.getElementById('scrollTop');
-window.addEventListener('scroll',()=>{ scrollTopBtn.classList.toggle('visible',window.scrollY>300); }, {passive:true});
+window.addEventListener('scroll',()=>{ scrollTopBtn.classList.toggle('visible',window.scrollY>300); },{passive:true});
 function scrollToTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
 
-// FIX 6: intersection observer với image loading shimmer
 const rv=new IntersectionObserver(es=>{
-  es.forEach(e=>{
-    if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; rv.unobserve(e.target); }
-  });
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; rv.unobserve(e.target); } });
 },{threshold:.06,rootMargin:'0px 0px -36px 0px'});
 
 document.querySelectorAll('.story-card,.meaning-card,.pola,.dnote,.quote-box,.callout,.ccard').forEach((el,i)=>{
@@ -1745,13 +1624,11 @@ document.querySelectorAll('.story-card,.meaning-card,.pola,.dnote,.quote-box,.ca
   rv.observe(el);
 });
 
-// FIX 6: image load handler với shimmer class
 function handleImageLoad(img) {
-  if (img.complete && img.naturalWidth > 0) {
-    img.classList.add('loaded');
-  } else {
-    img.addEventListener('load', () => img.classList.add('loaded'));
-    img.addEventListener('error', () => { img.style.opacity = '.3'; img.classList.add('loaded'); });
+  if(img.complete && img.naturalWidth>0) { img.classList.add('loaded'); }
+  else {
+    img.addEventListener('load', ()=>img.classList.add('loaded'));
+    img.addEventListener('error', ()=>{ img.style.opacity='.3'; img.classList.add('loaded'); });
   }
 }
 
@@ -1759,32 +1636,11 @@ window.addEventListener('load',()=>{
   buildFireflies();
   buildLeaves('lf1');
   buildLeaves('lf3');
-
-  document.querySelectorAll('img').forEach(img => handleImageLoad(img));
-
-  // FIX: lazy-load images khi vào viewport
-  if ('IntersectionObserver' in window) {
-    const imgObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
-          imgObs.unobserve(img);
-        }
-      });
-    }, { rootMargin: '200px' });
-    document.querySelectorAll('img[loading="lazy"]').forEach(img => imgObs.observe(img));
-  }
-
-  const dots = document.querySelectorAll('.pdot');
-  setInterval(() => {
-    dots.forEach(dot => {
-      if(dot.classList.contains('on')) {
-        dot.style.transform = 'scale(1.15)';
-        setTimeout(() => dot.style.transform = 'scale(1)', 300);
-      }
-    });
-  }, 3000);
+  document.querySelectorAll('img').forEach(img=>handleImageLoad(img));
+  const dots=document.querySelectorAll('.pdot');
+  setInterval(()=>{
+    dots.forEach(dot=>{ if(dot.classList.contains('on')){ dot.style.transform='scale(1.15)'; setTimeout(()=>dot.style.transform='scale(1)',300); } });
+  },3000);
 });
 </script>
 </body>
