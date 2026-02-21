@@ -392,36 +392,22 @@ body::after{
 @keyframes dcWv{0%,100%{transform:translateY(0);opacity:.22;}50%{transform:translateY(-6px);opacity:.42;}}
 
 /* ══ ZOOM CURSOR & HINT ══ */
+.teacher-img-wrap,
+.image-frame {
+  cursor: zoom-in;
+}
+
 .teacher-img-wrap img,
 .image-frame img {
   cursor: zoom-in;
 }
 
-/* zoom hint icon hiện khi hover vào ảnh */
-.zoom-hint {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(60,25,5,.0);
-  transition: background .25s ease;
-  pointer-events: none; z-index: 6; border-radius: inherit;
+/* sticker không chặn click */
+.sticker {
+  pointer-events: none;
 }
-.zoom-hint::after {
-  content: '🔍';
-  font-size: 2.2rem;
-  opacity: 0;
-  transform: scale(.5) translateY(8px);
-  transition: opacity .25s ease, transform .25s cubic-bezier(.22,1,.36,1);
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,.5));
-}
-.teacher-img-wrap:hover .zoom-hint,
-.image-frame:hover .zoom-hint {
-  background: rgba(60,25,5,.28);
-}
-.teacher-img-wrap:hover .zoom-hint::after,
-.image-frame:hover .zoom-hint::after {
-  opacity: 1;
-  transform: scale(1) translateY(0);
-}
+
+
 
 /* ══ MODAL ══ */
 .image-modal {
@@ -656,7 +642,7 @@ body::after{
           <figure class="image-frame">
             <span class="sticker sticker-1" aria-hidden="true">🌻</span>
             <img src="20.11.jpg" alt="Lớp 11L tặng hoa các thầy cô nhân ngày 20/11" loading="lazy">
-            <div class="zoom-hint"></div>
+
             <span class="sticker sticker-2" aria-hidden="true">🎓</span>
           </figure>
           <figcaption class="image-caption">
@@ -696,7 +682,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">💻</div>
             <div class="teacher-img-wrap">
               <img src="tSuyen.jpg" alt="Thầy Tôn Thất Suyền - Tin học" loading="lazy">
-              <div class="zoom-hint"></div>
+
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Thầy Tôn Thất Suyền</div>
@@ -708,7 +694,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">⚡</div>
             <div class="teacher-img-wrap">
               <img src="cTuyen.jpg" alt="Cô Nguyễn Thị Kim Tuyên - Vật lý" loading="lazy">
-              <div class="zoom-hint"></div>
+
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Cô Nguyễn Thị Kim Tuyên</div>
@@ -720,7 +706,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">🎖️</div>
             <div class="teacher-img-wrap">
               <img src="cMen.jpg" alt="Cô Trần Thị Triều Mến - GDQP" loading="lazy">
-              <div class="zoom-hint"></div>
+
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Cô Trần Thị Triều Mến</div>
@@ -732,7 +718,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">📐</div>
             <div class="teacher-img-wrap">
               <img src="cN.Anh.jpg" alt="Cô Trần Nguyễn Ngọc Anh - Toán" loading="lazy">
-              <div class="zoom-hint"></div>
+
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Cô Trần Nguyễn Ngọc Anh</div>
@@ -744,7 +730,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">📜</div>
             <div class="teacher-img-wrap">
               <img src="cAnh.jpg" alt="Cô Lê Thị Yến Anh - Lịch sử" loading="lazy">
-              <div class="zoom-hint"></div>
+
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Cô Lê Thị Yến Anh</div>
@@ -756,7 +742,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">🏃</div>
             <div class="teacher-img-wrap">
               <img src="tChinh.jpg" alt="Thầy Trần Trung Chính - Thể dục" loading="lazy">
-              <div class="zoom-hint"></div>
+
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Thầy Trần Trung Chính</div>
@@ -768,7 +754,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">🔧</div>
             <div class="teacher-img-wrap">
               <img src="tCuong.jpg" alt="Thầy Cường - Công nghệ" loading="lazy">
-              <div class="zoom-hint"></div>
+
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Thầy Cường</div>
@@ -780,7 +766,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">🏆</div>
             <div class="teacher-img-wrap">
               <img src="tThang.jpg" alt="Thầy Phạm Quốc Thắng - Mr.Win" loading="lazy">
-              <div class="zoom-hint"></div>
+
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Thầy Phạm Quốc Thắng</div>
@@ -811,7 +797,7 @@ body::after{
           <figure class="image-frame">
             <span class="sticker sticker-1" aria-hidden="true">🌼</span>
             <img src="20.11b.jpg" alt="Khoảnh khắc tặng hoa và chụp hình kỷ niệm ngày 20/11" loading="lazy">
-            <div class="zoom-hint"></div>
+
             <span class="sticker sticker-2" aria-hidden="true">💛</span>
           </figure>
           <figcaption class="image-caption">
@@ -1064,12 +1050,16 @@ modalNext.addEventListener('click', e => { e.stopPropagation(); navigateModal(1)
 modalImg.addEventListener('click', e => { e.stopPropagation(); closeModal(); });
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 
-// Click handler — event delegation đơn giản
+// Click handler — bắt click trên toàn bộ wrapper
 document.addEventListener('click', e => {
-  if (e.target.tagName !== 'IMG') return;
-  const inTeacher = e.target.closest('.teacher-img-wrap');
-  const inFrame = e.target.closest('.image-frame');
-  if (inTeacher || inFrame) { e.stopPropagation(); openModal(e.target); }
+  if (e.target.closest('.modal-arrow, .modal-close')) return;
+
+  const wrapper = e.target.closest('.teacher-img-wrap, .image-frame');
+  if (!wrapper) return;
+
+  // Nếu click trúng img thì dùng luôn, không thì querySelector
+  const img = (e.target.tagName === 'IMG') ? e.target : wrapper.querySelector('img');
+  if (img && img.src) { e.stopPropagation(); openModal(img); }
 });
 
 // Keyboard
