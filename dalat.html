@@ -516,7 +516,6 @@ body::after{
 
 /* ══════════════════════════════════════════════
    MEANING CARDS — Redesigned: Luxury Journal
-   Horizontal stacked rows, editorial feel
    ══════════════════════════════════════════════ */
 .meaning-grid{
   display:flex;
@@ -649,7 +648,7 @@ body::after{
 
 .meaning-card h4{
   font-family:'Playfair Display',serif;
-  font-size:1.22rem;
+  font-size:1.42rem;
   color:#f0e8d0;
   font-weight:700;
   line-height:1.3;
@@ -671,16 +670,16 @@ body::after{
 .meaning-card:hover .meaning-divider{ width:56px; }
 
 .meaning-card p{
-  font-size:.97rem;
-  line-height:1.8;
-  color:rgba(174,206,186,.80);
+  font-size:1.15rem;
+  line-height:1.85;
+  color:rgba(174,206,186,.85);
   font-family:'Lora',serif;
   font-weight:400;
   margin:0;
   position:static;
   transition:color .2s ease;
 }
-.meaning-card:hover p{ color:rgba(174,206,186,.92); }
+.meaning-card:hover p{ color:rgba(174,206,186,.95); }
 
 /* ══ END REDESIGN ══ */
 
@@ -714,13 +713,11 @@ body::after{
   position:relative;overflow:hidden;align-items:center;
   will-change:transform;
 }
-/* Glow overlay — opacity only, GPU composite */
 .ccard::before{
   content:'';position:absolute;inset:0;border-radius:18px;
   background:rgba(122,170,136,.08);
   opacity:0;transition:opacity .2s ease;pointer-events:none;
 }
-/* Corner triangle */
 .ccard::after{
   content:'';position:absolute;top:0;right:0;
   width:0;height:0;border-style:solid;
@@ -791,7 +788,6 @@ body::after{
 .modal-close:active{transform:rotate(90deg) scale(.95);}
 .modal-caption { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: rgba(255,255,255,.8); text-align: center; background: rgba(0,0,0,.3); padding: 6px 20px; border-radius: 20px; backdrop-filter: blur(8px); }
 
-/* ── CONTENT ANIMATION — simple stagger on appear, no scroll observer ── */
 .story-card, .meaning-card, .dnote, .quote-box, .callout {
   animation: contentIn .28s cubic-bezier(.4,0,.2,1) both;
 }
@@ -801,7 +797,6 @@ body::after{
 .dnote { animation-delay:.08s; }
 .quote-box { animation-delay:.1s; }
 .callout { animation-delay:.04s; }
-/* ccard dùng riêng — không dùng animation để tránh re-trigger khi hover */
 .ccard { opacity:1; }
 @keyframes contentIn {
   from { opacity:0; transform:translateY(8px); }
@@ -838,6 +833,8 @@ body::after{
   .meaning-icon-col{ width:56px; }
   .meaning-icon{ width:40px; height:40px; font-size:1.6rem; }
   .meaning-card-body{ padding:24px 24px; }
+  .meaning-card h4{ font-size:1.28rem; }
+  .meaning-card p{ font-size:1.08rem; }
 }
 @media(max-width:768px){
   body{padding:22px 10px;}
@@ -859,8 +856,8 @@ body::after{
   .meaning-icon-col{ width:44px; }
   .meaning-icon{ width:34px; height:34px; font-size:1.3rem; }
   .meaning-card-body{ padding:20px 18px; gap:8px; }
-  .meaning-card h4{ font-size:1.05rem; }
-  .meaning-card p{ font-size:.88rem; }
+  .meaning-card h4{ font-size:1.15rem; }
+  .meaning-card p{ font-size:.98rem; }
   .cgrid{gap:34px;}
   .ci{width:92%;}
   .ct p{font-size:1.05rem;}
@@ -899,8 +896,8 @@ body::after{
   .meaning-icon-col{ width:36px; }
   .meaning-icon{ width:28px; height:28px; font-size:1.1rem; }
   .meaning-card-body{ padding:16px 14px; gap:6px; }
-  .meaning-card h4{ font-size:.95rem; }
-  .meaning-card p{ font-size:.82rem; line-height:1.65; }
+  .meaning-card h4{ font-size:1.05rem; }
+  .meaning-card p{ font-size:.92rem; line-height:1.7; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1044,7 +1041,7 @@ body::after{
           Mỗi bước chân đều mở ra một bài học không nằm trong giáo trình.
         </div>
 
-        <!-- ══ MEANING CARDS — Redesigned ══ -->
+        <!-- ══ MEANING CARDS ══ -->
         <div class="meaning-grid">
           <article class="meaning-card">
             <div class="meaning-card-num">01</div>
