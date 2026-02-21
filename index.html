@@ -123,7 +123,7 @@ canvas#sparkle { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
 /* ─── HEADER ─── */
 .header {
   text-align: center; padding: 0 20px;
-  margin-bottom: 23.75px; /* -5% từ 25px */
+  margin-bottom: 23.75px;
   animation: fadeDown 1s ease 0.1s both;
 }
 @keyframes fadeDown {
@@ -136,7 +136,6 @@ canvas#sparkle { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
 .h-top-line .rule.r { background: linear-gradient(90deg, rgba(80,50,20,0.5), transparent); }
 .h-top-line span { font-family: 'Lora', serif; font-size: 14px; font-weight: 600; letter-spacing: 2px; color: rgba(60,35,12,0.8); }
 
-/* -5% từ clamp(58px, 9vw, 88px) */
 .h-title {
   font-family: 'Dancing Script', cursive;
   font-size: clamp(55.1px, 8.55vw, 83.6px);
@@ -148,7 +147,6 @@ canvas#sparkle { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
 .h-divider .d-rule { width: 45px; height: 1px; background: rgba(100,65,25,0.45); }
 .h-divider span { font-family: 'Playfair Display', serif; font-size: 12px; font-weight: 600; letter-spacing: 4px; color: rgba(80,50,18,0.75); text-transform: uppercase; }
 
-/* -5% từ font clamp(15px,2.2vw,18px), padding 12px 24px, margin-top 12px */
 .h-quote {
   font-family: 'Lora', serif; font-style: italic;
   font-size: clamp(14.25px, 2.09vw, 17.1px);
@@ -159,7 +157,6 @@ canvas#sparkle { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
   max-width: 650px; margin-left: auto; margin-right: auto;
 }
 
-/* -5% từ min(900px, 85vw) */
 .shelf-container {
   position: relative; animation: fadeUp 1s ease 0.35s both;
   width: min(855px, 80.75vw);
@@ -225,7 +222,6 @@ canvas#sparkle { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
 
 .spine-date { font-family: 'Playfair Display', serif; font-size: clamp(12px, 1.4vw, 14px); font-weight: 600; color: rgba(255,240,200,0.92); letter-spacing: 1.2px; text-shadow: 0 1px 6px rgba(0,0,0,0.55), 0 0 12px rgba(0,0,0,0.3); text-align: center; line-height: 1.2; }
 
-/* -5% từ clamp(28px, 3.5vw, 36px) */
 .spine-icon {
   font-size: clamp(26.6px, 3.325vw, 34.2px);
   text-shadow: 0 2px 10px rgba(0,0,0,0.5); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
@@ -267,15 +263,13 @@ canvas#sparkle { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
 .shelf-wall-shadow { position: absolute; bottom: -16px; left: -5%; right: -5%; height: 22px; background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(0,0,0,0.35), transparent); border-radius: 0 0 50% 50%; pointer-events: none; }
 
 /* ─── TIMELINE ─── */
-/* -5% từ 35px */
 .timeline { margin-top: 33.25px; text-align: center; animation: fadeUp 1s ease 0.7s both; position: relative; z-index: 15; }
 
 .tl-title { display: flex; align-items: center; gap: 12px; justify-content: center; font-family: 'Lora', serif; font-size: 16px; font-weight: 600; color: rgba(55,30,8,0.75); letter-spacing: 3px; margin-bottom: 16px; }
 .tl-title::before, .tl-title::after { content:""; width:60px; height:1px; background: rgba(55,30,8,0.3); }
 
-/* -5% từ min(850px, 88vw) */
 .tl-row { display: flex; align-items: flex-start; justify-content: center; gap: 0; width: min(807.5px, 83.6vw); margin: 0 auto; position: relative; }
-.tl-row::before { content:""; position:absolute; top:20px; left:calc(100%/12); right:calc(100%/12); height:1.5px; background: linear-gradient(90deg, #c8989a, #5a7090 20%, #888550 40%, #c0a055 60%, #587060 80%, #904040); opacity: 0.45; z-index:0; }
+.tl-row::before { content:""; position:absolute; top:20px; left:calc(100%/12); right:calc(100%/12); height:1.5px; background: linear-gradient(90deg, #d4607e, #4a607e 20%, #a68250 40%, #9d8ab5 60%, #2d5a40 80%, #823838); opacity: 0.5; z-index:0; }
 
 .tl-item { display:flex; flex-direction:column; align-items:center; gap:8px; flex:1; cursor:pointer; position:relative; z-index:1; }
 .tl-lbl { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: rgba(55,30,8,0.7); letter-spacing: 0.6px; text-align: center; white-space: nowrap; transition: color 0.2s; }
@@ -295,12 +289,11 @@ canvas#sparkle { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
 .modal-overlay.open { opacity:1; pointer-events:all; }
 .modal-book { width: min(88vw, 600px); max-height: 80vh; display:grid; grid-template-columns: 65px 1fr; border-radius: 2px 10px 10px 2px; overflow:hidden; box-shadow: -10px 0 rgba(0,0,0,0.32), 0 36px 100px rgba(0,0,0,0.7); transform: perspective(1000px) rotateY(-12deg) scale(0.9); transform-origin: left center; transition: transform 0.46s cubic-bezier(.34,1.3,.64,1); }
 .modal-overlay.open .modal-book { transform: perspective(1000px) rotateY(0deg) scale(1); }
-.modal-spine { background: var(--mc, #c8989a); display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 18px 6px; position: relative; overflow:hidden; }
+.modal-spine { background: var(--mc, #d4607e); display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 18px 6px; position: relative; overflow:hidden; }
 .modal-spine::before { content:""; position:absolute; inset:0; background: linear-gradient(112deg, rgba(255,255,255,0.22) 0%, transparent 45%, rgba(0,0,0,0.14) 100%); }
 .ms-icon  { font-size:32px; z-index:1; margin-bottom:12px; }
 .ms-label { font-family:'Playfair Display',serif; font-size:12px; font-weight:600; color:rgba(255,242,210,0.95); writing-mode:vertical-rl; transform:rotate(180deg); letter-spacing:2px; text-shadow:0 1px 5px rgba(0,0,0,0.6); z-index:1; text-align:center; }
 
-/* overflow:auto đã bỏ */
 .modal-page { background: linear-gradient(170deg, #f5ead0 0%, #ede0c0 100%); padding: 28px 30px 24px; position:relative; }
 .modal-page::before { content:""; position:absolute; inset:0; background: repeating-linear-gradient(180deg, transparent 0, transparent 24px, rgba(150,110,50,0.1) 24px, rgba(150,110,50,0.1) 25px); pointer-events:none; }
 .modal-page::after { content:""; position:absolute; top:0; left:50px; bottom:0; width:1px; background: rgba(160,60,40,0.18); }
@@ -348,14 +341,17 @@ canvas#sparkle { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
   <path d="M200 0 C180 30, 160 20, 140 60 C120 100, 130 130, 100 150 C70 170, 40 160, 20 180 C40 155, 60 130, 55 100 C50 70, 30 50, 50 30 C70 10, 110 20, 140 10 C160 3, 185 -5, 200 0Z" fill="rgba(60,40,15,0.5)"/>
 </svg>
 
+<!-- ─── SIDE WOOD TAGS ─── -->
 <nav class="side-tags left">
-  <a class="wood-tag" href="#" onclick="openModal(0);return false;"><div class="wood-tag-rope"></div><span class="wood-tag-text">20<br>/10</span><span class="wood-tag-dot" style="background:#c8989a;color:#c8989a"></span></a>
-  <a class="wood-tag" href="#" onclick="openModal(1);return false;"><div class="wood-tag-rope"></div><span class="wood-tag-text">19/11</span><span class="wood-tag-dot" style="background:#5a7090"></span></a>
+  <!-- 20/10: hồng đậm #d4607e -->
+  <a class="wood-tag" href="#" onclick="openModal(0);return false;"><div class="wood-tag-rope"></div><span class="wood-tag-text">20<br>/10</span><span class="wood-tag-dot" style="background:#d4607e;color:#d4607e"></span></a>
+  <a class="wood-tag" href="#" onclick="openModal(1);return false;"><div class="wood-tag-rope"></div><span class="wood-tag-text">19/11</span><span class="wood-tag-dot" style="background:#4a607e"></span></a>
   <a class="wood-tag" href="#" onclick="openModal(2);return false;"><div class="wood-tag-rope"></div><span class="wood-tag-text">20<br>/11</span><span class="wood-tag-dot" style="background:#a68250"></span></a>
 </nav>
 <nav class="side-tags right" style="align-items:flex-end">
   <a class="wood-tag" href="#" onclick="openModal(3);return false;" style="border-radius:5px 0 0 5px"><div class="wood-tag-rope"></div><span class="wood-tag-text">Giai<br>Điệu</span><span class="wood-tag-dot" style="background:#9d8ab5"></span></a>
-  <a class="wood-tag" href="#" onclick="openModal(4);return false;" style="border-radius:5px 0 0 5px"><div class="wood-tag-rope"></div><span class="wood-tag-text">Đà<br>Lạt</span><span class="wood-tag-dot" style="background:#587060"></span></a>
+  <!-- Đà Lạt: xanh lá #2d5a40 -->
+  <a class="wood-tag" href="#" onclick="openModal(4);return false;" style="border-radius:5px 0 0 5px"><div class="wood-tag-rope"></div><span class="wood-tag-text">Đà<br>Lạt</span><span class="wood-tag-dot" style="background:#2d5a40;color:#2d5a40"></span></a>
   <a class="wood-tag" href="#" onclick="openModal(5);return false;" style="border-radius:5px 0 0 5px"><div class="wood-tag-rope"></div><span class="wood-tag-text">Giỗ<br>Tổ</span><span class="wood-tag-dot" style="background:#904040"></span></a>
 </nav>
 
@@ -369,30 +365,43 @@ canvas#sparkle { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
 
   <div class="shelf-container">
     <div class="books" id="booksRow">
-      <div class="book" onclick="openModal(0)" style="--glow:rgba(200,150,152,0.7)">
-        <div class="book-spine" style="--col:#bf8e90"><div class="spine-top-light"></div><div class="spine-wear"></div><div class="spine-line-top"></div><div class="spine-line-bot"></div><div class="spine-inner"><div class="spine-date">20/10</div><div class="spine-icon">💗</div><div class="spine-stamp">20/10</div></div></div>
+
+      <!-- Sách 1 — 20/10: #d4607e (rose deep từ 2010.html) -->
+      <div class="book" onclick="openModal(0)" style="--glow:rgba(212,96,126,0.7)">
+        <div class="book-spine" style="--col:#d4607e"><div class="spine-top-light"></div><div class="spine-wear"></div><div class="spine-line-top"></div><div class="spine-line-bot"></div><div class="spine-inner"><div class="spine-date">20/10</div><div class="spine-icon">💗</div><div class="spine-stamp">20/10</div></div></div>
         <div class="book-glow"></div><div class="book-shadow"></div>
       </div>
+
+      <!-- Sách 2 — 19/11: giữ nguyên #4a607e -->
       <div class="book" onclick="openModal(1)" style="--glow:rgba(80,105,140,0.7)">
         <div class="book-spine" style="--col:#4a607e"><div class="spine-top-light"></div><div class="spine-wear"></div><div class="spine-line-top"></div><div class="spine-line-bot"></div><div class="spine-inner"><div class="spine-date">19/11</div><div class="spine-icon">👔</div><div class="spine-stamp">19/11</div></div></div>
         <div class="book-glow"></div><div class="book-shadow"></div>
       </div>
+
+      <!-- Sách 3 — 20/11: giữ nguyên #a68250 -->
       <div class="book" onclick="openModal(2)" style="--glow:rgba(160,130,70,0.7)">
         <div class="book-spine" style="--col:#a68250"><div class="spine-top-light"></div><div class="spine-wear"></div><div class="spine-line-top"></div><div class="spine-line-bot"></div><div class="spine-inner"><div class="spine-date">20/11</div><div class="spine-icon">💌</div><div class="spine-stamp">20/11</div></div></div>
         <div class="book-glow"></div><div class="book-shadow"></div>
       </div>
+
+      <!-- Sách 4 — Giai Điệu: giữ nguyên #9d8ab5 -->
       <div class="book" onclick="openModal(3)" style="--glow:rgba(160,140,180,0.7)">
         <div class="book-spine" style="--col:#9d8ab5"><div class="spine-top-light"></div><div class="spine-wear"></div><div class="spine-line-top"></div><div class="spine-line-bot"></div><div class="spine-inner"><div class="spine-date">Giai Điệu</div><div class="spine-icon">🎵</div><div class="spine-stamp">Giai Điệu</div></div></div>
         <div class="book-glow"></div><div class="book-shadow"></div>
       </div>
-      <div class="book" onclick="openModal(4)" style="--glow:rgba(80,108,85,0.7)">
-        <div class="book-spine" style="--col:#4e6855"><div class="spine-top-light"></div><div class="spine-wear"></div><div class="spine-line-top"></div><div class="spine-line-bot"></div><div class="spine-inner"><div class="spine-date">Đà Lạt</div><div class="spine-icon">🌲</div><div class="spine-stamp">Đà Lạt</div></div></div>
+
+      <!-- Sách 5 — Đà Lạt: #2d5a40 (mint chính từ dalat.html) -->
+      <div class="book" onclick="openModal(4)" style="--glow:rgba(45,90,64,0.7)">
+        <div class="book-spine" style="--col:#2d5a40"><div class="spine-top-light"></div><div class="spine-wear"></div><div class="spine-line-top"></div><div class="spine-line-bot"></div><div class="spine-inner"><div class="spine-date">Đà Lạt</div><div class="spine-icon">🌲</div><div class="spine-stamp">Đà Lạt</div></div></div>
         <div class="book-glow"></div><div class="book-shadow"></div>
       </div>
+
+      <!-- Sách 6 — Giỗ Tổ: giữ nguyên #823838 -->
       <div class="book" onclick="openModal(5)" style="--glow:rgba(140,55,55,0.7)">
         <div class="book-spine" style="--col:#823838"><div class="spine-top-light"></div><div class="spine-wear"></div><div class="spine-line-top"></div><div class="spine-line-bot"></div><div class="spine-inner"><div class="spine-date">Giỗ Tổ</div><div class="spine-icon">🎋</div><div class="spine-stamp">Giỗ Tổ</div></div></div>
         <div class="book-glow"></div><div class="book-shadow"></div>
       </div>
+
     </div>
     <div class="shelf"><div class="shelf-top"></div><div class="shelf-face"></div><div class="shelf-wall-shadow"></div></div>
   </div>
@@ -400,11 +409,17 @@ canvas#sparkle { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
   <div class="timeline">
     <div class="tl-title">+ Dòng Thời Gian +</div>
     <div class="tl-row">
-      <div class="tl-item" onclick="openModal(0)"><div class="tl-lbl">20/10</div><div class="tl-dot" style="--c:#c8989a">💗</div><div class="tl-tooltip">20/10 – Ngày Phụ nữ Việt Nam</div></div>
-      <div class="tl-item" onclick="openModal(1)"><div class="tl-lbl">19/11</div><div class="tl-dot" style="--c:#5a7090">👔</div><div class="tl-tooltip">19/11 – Ngày Quốc tế Đàn Ông</div></div>
+      <!-- 20/10: #d4607e -->
+      <div class="tl-item" onclick="openModal(0)"><div class="tl-lbl">20/10</div><div class="tl-dot" style="--c:#d4607e">💗</div><div class="tl-tooltip">20/10 – Ngày Phụ nữ Việt Nam</div></div>
+      <!-- 19/11: giữ nguyên -->
+      <div class="tl-item" onclick="openModal(1)"><div class="tl-lbl">19/11</div><div class="tl-dot" style="--c:#4a607e">👔</div><div class="tl-tooltip">19/11 – Ngày Quốc tế Đàn Ông</div></div>
+      <!-- 20/11: giữ nguyên -->
       <div class="tl-item" onclick="openModal(2)"><div class="tl-lbl">20/11</div><div class="tl-dot" style="--c:#a68250">💌</div><div class="tl-tooltip">20/11 – Ngày Nhà giáo Việt Nam</div></div>
+      <!-- Giai Điệu: giữ nguyên -->
       <div class="tl-item" onclick="openModal(3)"><div class="tl-lbl">Giai Điệu</div><div class="tl-dot" style="--c:#9d8ab5">🎵</div><div class="tl-tooltip">Giai Điệu Tuổi Hồng & Thanh Lịch</div></div>
-      <div class="tl-item" onclick="openModal(4)"><div class="tl-lbl">Đà Lạt</div><div class="tl-dot" style="--c:#587060">🌲</div><div class="tl-tooltip">Chuyến Tham Quan Đà Lạt</div></div>
+      <!-- Đà Lạt: #2d5a40 -->
+      <div class="tl-item" onclick="openModal(4)"><div class="tl-lbl">Đà Lạt</div><div class="tl-dot" style="--c:#2d5a40">🌲</div><div class="tl-tooltip">Chuyến Tham Quan Đà Lạt</div></div>
+      <!-- Giỗ Tổ: giữ nguyên -->
       <div class="tl-item" onclick="openModal(5)"><div class="tl-lbl">Giỗ Tổ</div><div class="tl-dot" style="--c:#904040">🎋</div><div class="tl-tooltip">Giỗ Tổ Hùng Vương</div></div>
     </div>
   </div>
@@ -459,16 +474,18 @@ canvas#sparkle { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
   frame();
 })();
 
-/* Chiều cao sách giảm 5% so với gốc [200,225,240,230,220,210] */
+/* Chiều cao sách */
 const bh = [190,214,228,218,209,200];
 document.querySelectorAll('.book-spine').forEach((s,i)=>{ s.style.height = bh[i]+'px'; });
 
 const data = [
-  { col:'#bf8e90', icon:'💗', label:'20/10', num:'Nhật Ký · I', title:'20/10 – Ngày Phụ nữ Việt Nam', body:'Những năm tháng cuối cấp trôi qua rất nhanh, nhưng có những kỉ niệm vẫn ở lại nguyên vẹn trong tim mỗi người. Ngày Phụ nữ Việt Nam 20/10 năm lớp 11 là một trong những khoảnh khắc như thế – giản dị thôi nhưng đầy ắp yêu thương, tiếng cười và sự gắn kết của cả tập thể.', href:'2010.html' },
+  /* ── Màu đồng nhất với 2010.html: #d4607e ── */
+  { col:'#d4607e', icon:'💗', label:'20/10', num:'Nhật Ký · I', title:'20/10 – Ngày Phụ nữ Việt Nam', body:'Những năm tháng cuối cấp trôi qua rất nhanh, nhưng có những kỉ niệm vẫn ở lại nguyên vẹn trong tim mỗi người. Ngày Phụ nữ Việt Nam 20/10 năm lớp 11 là một trong những khoảnh khắc như thế – giản dị thôi nhưng đầy ắp yêu thương, tiếng cười và sự gắn kết của cả tập thể.', href:'2010.html' },
   { col:'#4a607e', icon:'👔', label:'19/11', num:'Nhật Ký · II', title:'19/11 – Ngày Quốc tế Đàn Ông', body:'Có những ngày đến rất nhẹ, nhưng khi đi qua rồi mới nhận ra mình đã lưu giữ được thêm một kỷ niệm đẹp. Những nụ cười, những lời chúc chân thành – tất cả in lại trong cuốn nhật ký tuổi 16 của chúng mình.', href:'1911.html' },
   { col:'#a68250', icon:'💌', label:'20/11', num:'Nhật Ký · III', title:'20/11 – Ngày Nhà giáo Việt Nam', body:'Thầy cô là những người đã âm thầm gieo từng con chữ, nâng đỡ từng ước mơ và kiên nhẫn dìu dắt chúng em trên con đường tri thức. Ngày 20/11 là dịp để học sinh bày tỏ lòng kính trọng với những người đã thắp sáng tương lai.', href:'2011.html' },
   { col:'#9d8ab5', icon:'🎵', label:'Giai Điệu', num:'Nhật Ký · IV', title:'Giai Điệu Tuổi Hồng & Thanh Lịch', body:'Lớp chúng mình đã cùng nhau tạo nên dấu ấn riêng qua sân chơi lớn đầy ý nghĩa: "Giai Điệu Tuổi Hồng" và "Hùng Vương Những Mùa Nhớ". Đó là hành trình của sự đoàn kết, sáng tạo và những nỗ lực không ngừng.', href:'giaidieu.html' },
-  { col:'#4e6855', icon:'🌲', label:'Đà Lạt', num:'Nhật Ký · V', title:'Chuyến Tham Quan Đà Lạt', body:'Không chỉ là một chuyến đi, hành trình Đà Lạt của tập thể lớp 11L là sự kết hợp giữa học tập, trải nghiệm và gắn kết – nơi những ký ức thanh xuân được lưu giữ trọn vẹn giữa sương mù và thông xanh.', href:'dalat.html' },
+  /* ── Màu đồng nhất với dalat.html: #2d5a40 ── */
+  { col:'#2d5a40', icon:'🌲', label:'Đà Lạt', num:'Nhật Ký · V', title:'Chuyến Tham Quan Đà Lạt', body:'Không chỉ là một chuyến đi, hành trình Đà Lạt của tập thể lớp 11L là sự kết hợp giữa học tập, trải nghiệm và gắn kết – nơi những ký ức thanh xuân được lưu giữ trọn vẹn giữa sương mù và thông xanh.', href:'dalat.html' },
   { col:'#823838', icon:'🎋', label:'Giỗ Tổ', num:'Nhật Ký · VI', title:'Giỗ Tổ Hùng Vương', body:'Giỗ Tổ hôm ấy là ngày của sự biết ơn công lao dựng nước của Vua Hùng – là ngày đám trẻ 11L nháo nhào chuẩn bị cho cuộc thi gói bánh chưng, và là ngày đã giữ cho chúng mình những kỉ niệm đẹp đẽ chẳng thể quên.', href:'banhchung.html' }
 ];
 
