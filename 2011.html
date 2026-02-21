@@ -391,14 +391,131 @@ body::after{
 .dclouds{text-align:center;font-size:1.3rem;letter-spacing:18px;opacity:.24;margin:12px 0;animation:dcWv 8s ease-in-out infinite;}
 @keyframes dcWv{0%,100%{transform:translateY(0);opacity:.22;}50%{transform:translateY(-6px);opacity:.42;}}
 
+/* ══ ZOOM CURSOR & HINT ══ */
+.teacher-img-wrap img,
+.image-frame img {
+  cursor: zoom-in;
+}
+
+/* zoom hint icon hiện khi hover vào ảnh */
+.zoom-hint {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(60,25,5,.0);
+  transition: background .25s ease;
+  pointer-events: none; z-index: 6; border-radius: inherit;
+}
+.zoom-hint::after {
+  content: '🔍';
+  font-size: 2.2rem;
+  opacity: 0;
+  transform: scale(.5) translateY(8px);
+  transition: opacity .25s ease, transform .25s cubic-bezier(.22,1,.36,1);
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.5));
+}
+.teacher-img-wrap:hover .zoom-hint,
+.image-frame:hover .zoom-hint {
+  background: rgba(60,25,5,.28);
+}
+.teacher-img-wrap:hover .zoom-hint::after,
+.image-frame:hover .zoom-hint::after {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
 /* ══ MODAL ══ */
-.image-modal{position:fixed;inset:0;background:rgba(60,25,5,.96);backdrop-filter:blur(15px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;z-index:1000;}
-.image-modal.active{opacity:1;pointer-events:auto;}
-.image-modal img{max-width:92%;max-height:92%;box-shadow:0 38px 95px rgba(0,0,0,.82),0 0 0 16px #fff,0 0 0 18px rgba(212,133,58,.58);animation:modalZoom .45s cubic-bezier(.4,0,.2,1);border-radius:8px;}
-@keyframes modalZoom{from{opacity:0;transform:scale(.65) rotate(-6deg);}to{opacity:1;transform:scale(1) rotate(0);}}
-.modal-close{position:absolute;top:30px;right:30px;width:48px;height:48px;background:rgba(255,255,255,.2);border:2px solid rgba(212,133,58,.7);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;color:#fff;cursor:pointer;transition:background .15s,transform .15s;backdrop-filter:blur(10px);z-index:1001;}
-.modal-close:hover{background:rgba(212,133,58,.6);transform:rotate(90deg) scale(1.1);}
-.modal-caption{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:'Dancing Script',cursive;font-size:1.1rem;color:rgba(255,255,255,.8);background:rgba(0,0,0,.32);padding:6px 20px;border-radius:20px;backdrop-filter:blur(8px);}
+.image-modal {
+  position: fixed; inset: 0;
+  background: rgba(30,12,2,.0);
+  backdrop-filter: blur(0px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s ease, background .35s ease, backdrop-filter .35s ease;
+  z-index: 10000;
+}
+.image-modal.active {
+  opacity: 1; pointer-events: auto;
+  background: rgba(30,12,2,.95);
+  backdrop-filter: blur(18px);
+}
+
+.modal-inner {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  max-width: 94vw; max-height: 94vh;
+}
+
+.image-modal img {
+  max-width: min(92vw, 1000px);
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow:
+    0 40px 100px rgba(0,0,0,.85),
+    0 0 0 14px #fff,
+    0 0 0 17px rgba(212,133,58,.55),
+    0 0 60px rgba(212,133,58,.18);
+  transform: scale(.6) rotate(-5deg);
+  opacity: 0;
+  transition: transform .42s cubic-bezier(.22,1,.36,1), opacity .35s ease;
+  will-change: transform, opacity;
+  cursor: zoom-out;
+}
+.image-modal.active img {
+  transform: scale(1) rotate(0deg);
+  opacity: 1;
+}
+
+/* prev / next arrows trong modal */
+.modal-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 46px; height: 46px;
+  background: rgba(255,255,255,.15); border: 2px solid rgba(212,133,58,.5);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; color: #fff; cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background .15s, transform .15s;
+  z-index: 10001;
+}
+.modal-arrow:hover { background: rgba(212,133,58,.5); transform: translateY(-50%) scale(1.12); }
+.modal-arrow.prev { left: -64px; }
+.modal-arrow.next { right: -64px; }
+@media(max-width:768px){
+  .modal-arrow.prev { left: 8px; top: auto; bottom: 14px; transform: none; }
+  .modal-arrow.next { right: 8px; top: auto; bottom: 14px; transform: none; }
+  .modal-arrow:hover { transform: scale(1.12); }
+}
+
+.modal-close {
+  position: fixed; top: 24px; right: 24px;
+  width: 50px; height: 50px;
+  background: rgba(255,255,255,.18); border: 2px solid rgba(212,133,58,.6);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; color: #fff; cursor: pointer;
+  backdrop-filter: blur(10px); z-index: 10002;
+  transition: background .15s, transform .15s, border-color .15s;
+}
+.modal-close:hover { background: rgba(212,133,58,.55); border-color: rgba(212,133,58,1); transform: rotate(90deg) scale(1.12); }
+
+.modal-caption {
+  font-family: 'Dancing Script', cursive; font-size: 1.05rem;
+  color: rgba(255,255,255,.82); text-align: center;
+  background: rgba(0,0,0,.35); padding: 7px 22px; border-radius: 20px;
+  backdrop-filter: blur(8px); max-width: 80vw;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .3s ease .2s, transform .3s ease .2s;
+}
+.image-modal.active .modal-caption { opacity: 1; transform: translateY(0); }
+
+/* ESC hint */
+.modal-esc-hint {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  font-family: 'Lora', serif; font-size: .78rem;
+  color: rgba(255,255,255,.38); letter-spacing: .1em;
+  pointer-events: none; z-index: 10001;
+  opacity: 0; transition: opacity .4s ease .4s;
+}
+.image-modal.active .modal-esc-hint { opacity: 1; }
 
 .scroll-top{position:fixed;bottom:38px;right:38px;width:55px;height:55px;background:linear-gradient(135deg,#c47a35,#e8ad6e);border:2px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;cursor:pointer;box-shadow:0 10px 30px var(--sh-m);transition:opacity .2s,transform .18s cubic-bezier(.4,0,.2,1);z-index:100;opacity:0;pointer-events:none;color:#fff;}
 .scroll-top.visible{opacity:1;pointer-events:auto;animation:scrollBounce 2.2s ease-in-out infinite;}
@@ -539,6 +656,7 @@ body::after{
           <figure class="image-frame">
             <span class="sticker sticker-1" aria-hidden="true">🌻</span>
             <img src="20.11.jpg" alt="Lớp 11L tặng hoa các thầy cô nhân ngày 20/11" loading="lazy">
+            <div class="zoom-hint"></div>
             <span class="sticker sticker-2" aria-hidden="true">🎓</span>
           </figure>
           <figcaption class="image-caption">
@@ -578,7 +696,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">💻</div>
             <div class="teacher-img-wrap">
               <img src="tSuyen.jpg" alt="Thầy Tôn Thất Suyền - Tin học" loading="lazy">
-              <div class="teacher-img-overlay"><span class="overlay-icon">🔍</span></div>
+              <div class="zoom-hint"></div>
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Thầy Tôn Thất Suyền</div>
@@ -590,7 +708,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">⚡</div>
             <div class="teacher-img-wrap">
               <img src="cTuyen.jpg" alt="Cô Nguyễn Thị Kim Tuyên - Vật lý" loading="lazy">
-              <div class="teacher-img-overlay"><span class="overlay-icon">🔍</span></div>
+              <div class="zoom-hint"></div>
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Cô Nguyễn Thị Kim Tuyên</div>
@@ -602,7 +720,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">🎖️</div>
             <div class="teacher-img-wrap">
               <img src="cMen.jpg" alt="Cô Trần Thị Triều Mến - GDQP" loading="lazy">
-              <div class="teacher-img-overlay"><span class="overlay-icon">🔍</span></div>
+              <div class="zoom-hint"></div>
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Cô Trần Thị Triều Mến</div>
@@ -614,7 +732,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">📐</div>
             <div class="teacher-img-wrap">
               <img src="cN.Anh.jpg" alt="Cô Trần Nguyễn Ngọc Anh - Toán" loading="lazy">
-              <div class="teacher-img-overlay"><span class="overlay-icon">🔍</span></div>
+              <div class="zoom-hint"></div>
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Cô Trần Nguyễn Ngọc Anh</div>
@@ -626,7 +744,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">📜</div>
             <div class="teacher-img-wrap">
               <img src="cAnh.jpg" alt="Cô Lê Thị Yến Anh - Lịch sử" loading="lazy">
-              <div class="teacher-img-overlay"><span class="overlay-icon">🔍</span></div>
+              <div class="zoom-hint"></div>
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Cô Lê Thị Yến Anh</div>
@@ -638,7 +756,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">🏃</div>
             <div class="teacher-img-wrap">
               <img src="tChinh.jpg" alt="Thầy Trần Trung Chính - Thể dục" loading="lazy">
-              <div class="teacher-img-overlay"><span class="overlay-icon">🔍</span></div>
+              <div class="zoom-hint"></div>
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Thầy Trần Trung Chính</div>
@@ -650,7 +768,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">🔧</div>
             <div class="teacher-img-wrap">
               <img src="tCuong.jpg" alt="Thầy Cường - Công nghệ" loading="lazy">
-              <div class="teacher-img-overlay"><span class="overlay-icon">🔍</span></div>
+              <div class="zoom-hint"></div>
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Thầy Cường</div>
@@ -662,7 +780,7 @@ body::after{
             <div class="card-stamp" aria-hidden="true">🏆</div>
             <div class="teacher-img-wrap">
               <img src="tThang.jpg" alt="Thầy Phạm Quốc Thắng - Mr.Win" loading="lazy">
-              <div class="teacher-img-overlay"><span class="overlay-icon">🔍</span></div>
+              <div class="zoom-hint"></div>
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Thầy Phạm Quốc Thắng</div>
@@ -693,6 +811,7 @@ body::after{
           <figure class="image-frame">
             <span class="sticker sticker-1" aria-hidden="true">🌼</span>
             <img src="20.11b.jpg" alt="Khoảnh khắc tặng hoa và chụp hình kỷ niệm ngày 20/11" loading="lazy">
+            <div class="zoom-hint"></div>
             <span class="sticker sticker-2" aria-hidden="true">💛</span>
           </figure>
           <figcaption class="image-caption">
@@ -729,8 +848,13 @@ body::after{
 <!-- ══ IMAGE MODAL ══ -->
 <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="Xem ảnh phóng to">
   <button class="modal-close" onclick="closeModal()" aria-label="Đóng ảnh">×</button>
-  <img id="modalImg" alt="">
-  <div class="modal-caption" id="modalCaption"></div>
+  <div class="modal-inner">
+    <button class="modal-arrow prev" id="modalPrev" aria-label="Ảnh trước">‹</button>
+    <img id="modalImg" alt="">
+    <button class="modal-arrow next" id="modalNext" aria-label="Ảnh sau">›</button>
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+  <div class="modal-esc-hint">Nhấn ESC để đóng &nbsp;·&nbsp; ← → để chuyển ảnh</div>
 </div>
 <button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Cuộn lên đầu trang">↑</button>
 
@@ -850,35 +974,136 @@ function handleSwipe(){const d=touchStartX-touchEndX;if(Math.abs(d)>45){if(d>0&&
 document.getElementById('bookPages').addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;},{passive:true});
 document.getElementById('bookPages').addEventListener('touchend',e=>{touchEndX=e.changedTouches[0].screenX;handleSwipe();},{passive:true});
 
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape')closeModal();
-  if(document.getElementById('bookPages').style.display!=='block')return;
-  if(e.key==='ArrowRight'&&currentPage<3)turnPage(currentPage+1);
-  if(e.key==='ArrowLeft'&&currentPage>1)turnPage(currentPage-1);
-});
+// ══ MODAL với gallery navigation ══
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImg');
+const modalCaption = document.getElementById('modalCaption');
+const modalPrev = document.getElementById('modalPrev');
+const modalNext = document.getElementById('modalNext');
 
-// Modal — mở được từ cả teacher-card img lẫn image-frame img
-const modal=document.getElementById('imageModal'),modalImg=document.getElementById('modalImg');
-function openModal(img){modal.classList.add('active');modalImg.src=img.src;modalImg.alt=img.alt;document.getElementById('modalCaption').textContent=img.alt||'';document.body.style.overflow='hidden';}
-function closeModal(){modal.classList.remove('active');document.body.style.overflow='';setTimeout(()=>{document.getElementById('modalImg').removeAttribute('src');},320);}
+let allImgs = [];
+let currentModalIdx = 0;
 
-document.addEventListener('click',e=>{
-  const img=e.target.closest('.teacher-img-wrap img, .image-frame img');
-  if(img){e.stopPropagation();openModal(img);}
-});
-document.getElementById('imageModal').addEventListener('click',e=>{if(e.target===modal)closeModal();});
-
-const stBtn=document.getElementById('scrollTop');
-window.addEventListener('scroll',()=>{stBtn.classList.toggle('visible',window.scrollY>300);},{passive:true});
-function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
-
-window.addEventListener('load',()=>{
-  buildFireflies();buildLeaves('lf1');buildLeaves('lf2');buildLeaves('lf3');
-  document.querySelectorAll('img').forEach(img=>{
-    if(img.complete&&img.naturalWidth>0)img.classList.add('loaded');
-    else{img.addEventListener('load',()=>img.classList.add('loaded'));img.addEventListener('error',()=>{img.style.opacity='.3';img.classList.add('loaded');});}
+function collectImages() {
+  allImgs = Array.from(
+    document.querySelectorAll('.teacher-img-wrap img, .image-frame img')
+  ).filter(img => {
+    const page = img.closest('.page');
+    return !page || page.style.display !== 'none';
   });
-  setInterval(()=>{document.querySelectorAll('.pdot.on').forEach(d=>{d.style.transform='scale(1.18)';setTimeout(()=>d.style.transform='',280);});},3000);
+}
+
+function openModal(img) {
+  collectImages();
+  currentModalIdx = allImgs.indexOf(img);
+  if (currentModalIdx === -1) { allImgs = [img]; currentModalIdx = 0; }
+
+  modalImg.style.transition = 'none';
+  modalImg.style.transform = 'scale(.6) rotate(-5deg)';
+  modalImg.style.opacity = '0';
+  modalImg.src = img.src;
+  modalImg.alt = img.alt;
+  modalCaption.textContent = img.alt || '';
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      modalImg.style.transition = '';
+    });
+  });
+  updateArrows();
+}
+
+function closeModal() {
+  modalImg.style.transform = 'scale(.6) rotate(5deg)';
+  modalImg.style.opacity = '0';
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+  setTimeout(() => {
+    modalImg.removeAttribute('src');
+    modalImg.style.transform = '';
+    modalImg.style.opacity = '';
+  }, 400);
+}
+
+function navigateModal(dir) {
+  const next = currentModalIdx + dir;
+  if (next < 0 || next >= allImgs.length) return;
+  currentModalIdx = next;
+  modalImg.style.transform = `scale(.85) translateX(${dir > 0 ? '-60px' : '60px'})`;
+  modalImg.style.opacity = '0';
+  setTimeout(() => {
+    const target = allImgs[currentModalIdx];
+    modalImg.src = target.src;
+    modalImg.alt = target.alt;
+    modalCaption.textContent = target.alt || '';
+    modalImg.style.transition = 'none';
+    modalImg.style.transform = `scale(.85) translateX(${dir > 0 ? '60px' : '-60px'})`;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        modalImg.style.transition = '';
+        modalImg.style.transform = 'scale(1) translateX(0)';
+        modalImg.style.opacity = '1';
+      });
+    });
+    updateArrows();
+  }, 220);
+}
+
+function updateArrows() {
+  modalPrev.style.opacity = currentModalIdx <= 0 ? '.25' : '1';
+  modalPrev.style.pointerEvents = currentModalIdx <= 0 ? 'none' : 'auto';
+  modalNext.style.opacity = currentModalIdx >= allImgs.length - 1 ? '.25' : '1';
+  modalNext.style.pointerEvents = currentModalIdx >= allImgs.length - 1 ? 'none' : 'auto';
+}
+
+modalPrev.addEventListener('click', e => { e.stopPropagation(); navigateModal(-1); });
+modalNext.addEventListener('click', e => { e.stopPropagation(); navigateModal(1); });
+modalImg.addEventListener('click', e => { e.stopPropagation(); closeModal(); });
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+// Click handler — event delegation đơn giản
+document.addEventListener('click', e => {
+  if (e.target.tagName !== 'IMG') return;
+  const inTeacher = e.target.closest('.teacher-img-wrap');
+  const inFrame = e.target.closest('.image-frame');
+  if (inTeacher || inFrame) { e.stopPropagation(); openModal(e.target); }
+});
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (modal.classList.contains('active')) {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') navigateModal(-1);
+    if (e.key === 'ArrowRight') navigateModal(1);
+    return;
+  }
+  if (document.getElementById('bookPages').style.display !== 'block') return;
+  if (e.key === 'ArrowRight' && currentPage < 3) turnPage(currentPage + 1);
+  if (e.key === 'ArrowLeft' && currentPage > 1) turnPage(currentPage - 1);
+});
+
+const stBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => { stBtn.classList.toggle('visible', window.scrollY > 300); }, { passive: true });
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+window.addEventListener('load', () => {
+  buildFireflies(); buildLeaves('lf1'); buildLeaves('lf2'); buildLeaves('lf3');
+  document.querySelectorAll('img').forEach(img => {
+    if (img.complete && img.naturalWidth > 0) img.classList.add('loaded');
+    else {
+      img.addEventListener('load', () => img.classList.add('loaded'));
+      img.addEventListener('error', () => { img.style.opacity = '.3'; img.classList.add('loaded'); });
+    }
+  });
+  setInterval(() => {
+    document.querySelectorAll('.pdot.on').forEach(d => {
+      d.style.transform = 'scale(1.18)';
+      setTimeout(() => d.style.transform = '', 280);
+    });
+  }, 3000);
 });
 </script>
 </body>
