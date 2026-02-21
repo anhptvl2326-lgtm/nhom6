@@ -1004,6 +1004,17 @@ body::after{
   backdrop-filter: blur(8px);
 }
 
+/* ── SCROLL-IN ANIMATION ── */
+.will-animate {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .6s ease, transform .6s cubic-bezier(.4,0,.2,1);
+}
+.will-animate.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ── SCROLL TO TOP ── */
 .scroll-top{
   position:fixed;bottom:38px;right:38px;width:55px;height:55px;
@@ -1598,6 +1609,7 @@ document.getElementById('openBookBtn').addEventListener('click', function(e) {
     announce('Đã mở nhật ký. Đang ở trang 1: Miền Ký Ức Mở Ra');
     this.dataset.processing = 'false';
     window.scrollTo({top: 0, behavior: 'smooth'});
+    setupScrollAnim();
     setTimeout(() => {
       pages.style.transition = '';
       pages.style.opacity = '';
@@ -1622,6 +1634,7 @@ function turnPage(n){
     announce(`Trang ${n}: ${titles[n-1]}`);
     spinner.classList.remove('active');
     window.scrollTo({top:0,behavior:'smooth'});
+    setupScrollAnim();
   },280);
 }
 
@@ -1740,23 +1753,39 @@ const scrollTopBtn=document.getElementById('scrollTop');
 window.addEventListener('scroll',()=>{ scrollTopBtn.classList.toggle('visible',window.scrollY>300); }, {passive:true});
 function scrollToTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
 
-// Intersection observer for scroll-in animations
-const rv=new IntersectionObserver(es=>{
-  es.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.style.opacity='1';
-      e.target.style.transform='translateY(0)';
-      rv.unobserve(e.target);
-    }
-  });
-},{threshold:.06,rootMargin:'0px 0px -30px 0px'});
+// ── SCROLL-IN ANIMATION: fade in khi scroll đến ──
+const ANIM_SELECTOR = '.story-card, .meaning-card, .pola, .dnote, .quote-box, .callout, .ccard';
 
-document.querySelectorAll('.story-card,.meaning-card,.pola,.dnote,.quote-box,.callout,.ccard').forEach((el,i)=>{
-  el.style.opacity='0';
-  el.style.transform='translateY(24px)';
-  el.style.transition=`opacity .6s ease ${i*.045}s, transform .6s cubic-bezier(.4,0,.2,1) ${i*.045}s`;
-  rv.observe(el);
-});
+function setupScrollAnim() {
+  // Lấy tất cả element trong trang hiện tại
+  const targets = document.querySelectorAll('#page' + currentPage + ' ' + ANIM_SELECTOR);
+
+  // Ẩn ngay tất cả trước — synchronous để không flash
+  targets.forEach(el => {
+    el.classList.remove('in-view');
+    el.classList.add('will-animate');
+  });
+
+  // Observe từng element, reveal khi scroll đến
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const allTargets = Array.from(document.querySelectorAll('#page' + currentPage + ' ' + ANIM_SELECTOR));
+        const idx = allTargets.indexOf(el);
+        setTimeout(() => {
+          el.classList.add('in-view');
+        }, idx * 80);
+        obs.unobserve(el);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  targets.forEach(el => obs.observe(el));
+}
 
 function handleImageLoad(img) {
   if (img.complete && img.naturalWidth > 0) {
