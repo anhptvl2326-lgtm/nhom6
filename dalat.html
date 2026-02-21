@@ -700,8 +700,8 @@ body::after{
 .quote-box::before{ content:'"'; position:absolute;top:-18px;left:18px; font-size:6rem;line-height:1; font-family:'Playfair Display',serif; color:#3e7249;opacity:.22; pointer-events:none; }
 .quote-text{font-family:'Lora',serif;font-size:1.55rem;color:var(--forest-dark);line-height:1.85;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:400;}
 
-.callout{ padding:22px 32px;margin:28px auto;max-width:840px; background:rgba(62,114,73,.16);border-left:5px solid #2d5a40;border-radius:0 12px 12px 0; font-family:'Lora',serif;font-size:1.3rem;line-height:1.9; color:var(--forest-dark);font-style:italic;font-weight:400; transition:transform .18s ease, box-shadow .18s ease, border-left-color .18s ease; }
-.callout:hover{ transform:translateX(7px); box-shadow:0 5px 18px rgba(30,68,48,.12); border-left-color:#3e7249; }
+.callout{ padding:22px 32px;margin:28px auto;max-width:840px; background:rgba(62,114,73,.16);border-left:5px solid #2d5a40;border-radius:0 12px 12px 0; font-family:'Lora',serif;font-size:1.5rem;line-height:1.9; color:var(--forest-dark);font-style:italic;font-weight:400; transition:transform .18s ease, border-left-color .18s ease; }
+.callout:hover{ transform:translateX(7px); border-left-color:#3e7249; }
 
 .cgrid{ display:flex;flex-direction:column;gap:60px;margin:42px 0; }
 .ccard{
@@ -710,29 +710,28 @@ body::after{
   border-radius:20px;
   border:3px solid rgba(62,114,73,.2);
   box-shadow:0 10px 35px rgba(30,68,48,.13),inset 0 2px 8px rgba(255,255,255,.5);
-  transition:transform .2s cubic-bezier(.4,0,.2,1), border-color .2s ease, opacity .2s ease;
+  transition:transform .2s cubic-bezier(.4,0,.2,1), border-color .2s ease;
   position:relative;overflow:hidden;align-items:center;
   will-change:transform;
 }
-/* Glow overlay — dùng opacity thay backdrop-filter, GPU-only */
+/* Glow overlay — opacity only, GPU composite */
 .ccard::before{
   content:'';position:absolute;inset:0;border-radius:18px;
-  background:radial-gradient(ellipse at 20% 30%, rgba(122,170,136,.18), transparent 55%),
-             radial-gradient(ellipse at 80% 70%, rgba(62,114,73,.12), transparent 55%);
-  opacity:0;transition:opacity .22s ease;pointer-events:none;
+  background:rgba(122,170,136,.08);
+  opacity:0;transition:opacity .2s ease;pointer-events:none;
 }
-/* Corner triangle — GPU composite (border trick) */
+/* Corner triangle */
 .ccard::after{
   content:'';position:absolute;top:0;right:0;
   width:0;height:0;border-style:solid;
   border-width:0 0 0 0;
-  border-color:transparent rgba(62,114,73,.25) transparent transparent;
-  transition:border-width .22s cubic-bezier(.4,0,.2,1);
+  border-color:transparent rgba(62,114,73,.22) transparent transparent;
+  transition:border-width .2s cubic-bezier(.4,0,.2,1);
   pointer-events:none;
 }
 .ccard:hover{ transform:translateY(-7px) scale(1.01); border-color:rgba(62,114,73,.38); }
 .ccard:hover::before{ opacity:1; }
-.ccard:hover::after{ border-width:0 58px 58px 0; }
+.ccard:hover::after{ border-width:0 55px 55px 0; }
 .ccard:active{transform:translateY(-2px) scale(1.003);}
 
 .ci{
@@ -740,14 +739,12 @@ body::after{
   box-shadow:0 10px 30px rgba(30,68,48,.14),0 0 0 9px rgba(255,255,255,.8),0 0 0 11px rgba(62,114,73,.22);
   border:3px solid rgba(62,114,73,.38);background:var(--beige);
   max-height:400px;width:80%;
-  /* Không transition box-shadow — dùng transform thay */
-  transition:transform .22s cubic-bezier(.4,0,.2,1);
+  transition:transform .2s cubic-bezier(.4,0,.2,1);
   position:relative;
 }
 .ci img{
   width:100%;height:100%;object-fit:cover;cursor:pointer;
-  transition:transform .4s cubic-bezier(.4,0,.2,1);
-  /* Bỏ filter transition — gây repaint */
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
   filter:saturate(1.05) contrast(1.05);
 }
 .ccard:hover .ci{ transform:scale(1.025); }
@@ -795,15 +792,17 @@ body::after{
 .modal-caption { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: rgba(255,255,255,.8); text-align: center; background: rgba(0,0,0,.3); padding: 6px 20px; border-radius: 20px; backdrop-filter: blur(8px); }
 
 /* ── CONTENT ANIMATION — simple stagger on appear, no scroll observer ── */
-.story-card, .meaning-card, .dnote, .quote-box, .callout, .ccard {
+.story-card, .meaning-card, .dnote, .quote-box, .callout {
   animation: contentIn .28s cubic-bezier(.4,0,.2,1) both;
 }
-.story-card:nth-child(2), .meaning-card:nth-child(2), .ccard:nth-child(2) { animation-delay:.06s; }
-.story-card:nth-child(3), .meaning-card:nth-child(3), .ccard:nth-child(3) { animation-delay:.12s; }
+.story-card:nth-child(2), .meaning-card:nth-child(2) { animation-delay:.06s; }
+.story-card:nth-child(3), .meaning-card:nth-child(3) { animation-delay:.12s; }
 .meaning-card:nth-child(1) { animation-delay:.04s; }
 .dnote { animation-delay:.08s; }
 .quote-box { animation-delay:.1s; }
 .callout { animation-delay:.04s; }
+/* ccard dùng riêng — không dùng animation để tránh re-trigger khi hover */
+.ccard { opacity:1; }
 @keyframes contentIn {
   from { opacity:0; transform:translateY(8px); }
   to   { opacity:1; transform:translateY(0); }
