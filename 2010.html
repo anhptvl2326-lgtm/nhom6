@@ -384,28 +384,28 @@ body::after{
 
 .section-intro{ text-align:center;max-width:820px;margin:0 auto 48px; font-size:1.28rem;line-height:1.95;color:var(--ink-dark);font-style:italic; font-family:'Lora',serif;animation:fU .9s ease .4s both;font-weight:400; }
 
+/* ══ IMAGE CARD - NO zoom on hover ══ */
 .image-card {
   display: flex; flex-direction: column; align-items: center; gap: 30px;
   padding: 40px 38px;
   background: linear-gradient(145deg, rgba(255,250,252,.9), rgba(254,250,245,.75));
   border-radius: 20px; border: 2px solid rgba(232,164,180,.3);
   box-shadow: 0 10px 35px rgba(232,164,180,.13),inset 0 2px 8px rgba(255,255,255,.5);
-  transition: transform .2s cubic-bezier(.4,0,.2,1), border-color .2s ease, box-shadow .2s ease;
+  transition: border-color .2s ease, box-shadow .2s ease;
   position: relative; overflow: hidden; margin-bottom: 40px; align-items: center;
-  will-change: transform;
 }
-.image-card:hover { transform: translateY(-7px) scale(1.012); border-color: rgba(232,164,180,.48); box-shadow: 0 20px 50px rgba(232,164,180,.2),inset 0 2px 10px rgba(255,255,255,.7); }
-.image-card:active { transform: translateY(-3px) scale(1.005); }
+.image-card:hover { border-color: rgba(232,164,180,.48); box-shadow: 0 20px 50px rgba(232,164,180,.2),inset 0 2px 10px rgba(255,255,255,.7); }
 
+/* ══ IMAGE FRAME - larger, no zoom ══ */
 .image-frame {
   border-radius: 14px; overflow: hidden; aspect-ratio: 4/3;
   box-shadow: 0 10px 30px rgba(232,164,180,.2),0 0 0 9px rgba(255,255,255,.9),0 0 0 11px rgba(232,164,180,.25);
   border: 3px solid rgba(245,205,215,.8);
-  max-height: 460px; width: 85%;
-  transition: transform .2s cubic-bezier(.4,0,.2,1), box-shadow .2s ease;
+  max-height: 580px; width: 95%;
+  transition: box-shadow .2s ease;
   position: relative; cursor: zoom-in;
 }
-.image-card:hover .image-frame { transform: scale(1.025); box-shadow: 0 14px 42px rgba(232,164,180,.28),0 0 0 9px rgba(255,255,255,1),0 0 0 11px rgba(232,164,180,.38); }
+.image-card:hover .image-frame { box-shadow: 0 14px 42px rgba(232,164,180,.28),0 0 0 9px rgba(255,255,255,1),0 0 0 11px rgba(232,164,180,.38); }
 
 .sticker {
   position: absolute; font-size: 2.8rem; z-index: 5;
@@ -418,19 +418,17 @@ body::after{
 
 .image-frame img {
   width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;
-  transition: transform .5s cubic-bezier(.4,0,.2,1), filter .5s ease;
+  transition: filter .5s ease;
   filter: sepia(.04) contrast(1.05) brightness(1) saturate(1.05);
   display: block;
 }
-.image-card:hover .image-frame img { transform: scale(1.07); filter: sepia(.1) contrast(1.08) brightness(1.04) saturate(1.1); }
+.image-card:hover .image-frame img { filter: sepia(.1) contrast(1.08) brightness(1.04) saturate(1.1); }
 
 .image-caption { width: 100%; max-width: 860px; text-align: center; }
 .image-caption p {
   font-size: 1.28rem; line-height: 2.1; color: var(--ink-dark);
   font-family: 'Lora', serif; font-weight: 400; margin-bottom: 14px;
-  transition: transform .2s ease;
 }
-.image-card:hover .image-caption p { transform: translateX(3px); }
 .image-caption p:last-child { margin-bottom: 0; }
 
 .video-card {
@@ -514,7 +512,7 @@ body::after{
 .dclouds{text-align:center;font-size:1.3rem;letter-spacing:18px;opacity:.26;margin:12px 0;animation:dcWv 8s ease-in-out infinite;}
 @keyframes dcWv{0%,100%{transform:translateY(0);opacity:.24;}50%{transform:translateY(-6px);opacity:.44;}}
 
-/* ══ IMAGE MODAL — nâng cấp giống 20/11 ══ */
+/* ══ IMAGE MODAL ══ */
 .image-modal{
   position:fixed;inset:0;
   background:rgba(20,0,8,0);
@@ -597,7 +595,7 @@ body::after{
   .page{padding:50px 24px 90px;border-left:30px solid rgba(232,164,180,.08);}
   .section-title{font-size:2.2rem;}
   .section-intro{font-size:1rem;}
-  .image-frame{width:96%;}
+  .image-frame{width:98%;}
   .image-caption p,.video-description p{font-size:1.1rem;}
   .quote-text{font-size:1.3rem;}
   .handwrite{font-size:1.6rem;}
@@ -817,7 +815,7 @@ body::after{
   </div>
 </div>
 
-<!-- ══ IMAGE MODAL — nâng cấp giống 20/11 ══ -->
+<!-- ══ IMAGE MODAL ══ -->
 <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="Xem ảnh phóng to">
   <button class="modal-close" id="modalClose" aria-label="Đóng ảnh">×</button>
   <div class="modal-inner">
@@ -996,7 +994,7 @@ function handleSwipe(){
 document.getElementById('bookPages').addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;},{passive:true});
 document.getElementById('bookPages').addEventListener('touchend',e=>{touchEndX=e.changedTouches[0].screenX;handleSwipe();},{passive:true});
 
-/* ══ MODAL — nâng cấp với prev/next ══ */
+/* ══ MODAL ══ */
 const modal = document.getElementById('imageModal');
 const modalImg = document.getElementById('modalImg');
 const modalCaption = document.getElementById('modalCaption');
