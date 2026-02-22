@@ -90,7 +90,6 @@ body::after{
   box-shadow: 0 0 8px rgba(232,164,180,.5);
 }
 
-/* ── HOME BUTTON (giống Đà Lạt) ── */
 .home-btn {
   position: fixed; top: 20px; left: 20px;
   display: flex; align-items: center; gap: 6px;
@@ -108,7 +107,6 @@ body::after{
   transform: translateY(-2px); box-shadow: 0 8px 20px rgba(232,164,180,.18);
 }
 
-/* ── BREADCRUMB (giống Đà Lạt) ── */
 .breadcrumb {
   position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
   background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
@@ -123,7 +121,6 @@ body::after{
 }
 .breadcrumb.visible { opacity: 1; pointer-events: auto; }
 
-/* SR announce */
 .sr-announce {
   position: absolute; left: -9999px; width: 1px; height: 1px;
   overflow: hidden; clip: rect(0,0,0,0);
@@ -139,7 +136,6 @@ body::after{
   to{opacity:1;transform:translateY(0) scale(1);}
 }
 
-/* ── BOOK COVER ── */
 .book-cover{
   position:relative;
   background:
@@ -258,7 +254,6 @@ body::after{
 @keyframes fU{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 .open-book-btn span{position:relative;z-index:1;}
 
-/* ── BOOK PAGES ── */
 .book-pages{
   position:relative;
   background:linear-gradient(135deg,#fefaf5 0%,#fff5f8 50%,#fffcf9 100%);
@@ -269,7 +264,6 @@ body::after{
 }
 @keyframes bookPagesOpen{ from{opacity:0;transform:perspective(1000px) rotateY(-12deg) scale(.97);} to{opacity:1;transform:perspective(1000px) rotateY(0) scale(1);} }
 
-/* ── PAGE SELECTOR (giống Đà Lạt) ── */
 .page-selector {
   display: flex; align-items: center; justify-content: center;
   gap: 8px; padding: 12px 16px;
@@ -297,7 +291,6 @@ body::after{
 .page-select-btn.active .ps-title { opacity: 1; }
 .selector-divider { color: rgba(232,164,180,.3); font-size: 1rem; margin: 0 1px; }
 
-/* ── PAGE ── */
 .page{
   background:
     repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(232,164,180,.06) 31px,rgba(232,164,180,.06) 32px),
@@ -362,7 +355,6 @@ body::after{
 }
 @keyframes pageNumPulse{ 0%,100%{opacity:.6;} 50%{opacity:.95;} }
 
-/* ── SECTION TITLE ── */
 .section-title{
   font-family:'Playfair Display',serif;
   font-size:3.4rem; font-weight:700;
@@ -392,7 +384,6 @@ body::after{
 
 .section-intro{ text-align:center;max-width:820px;margin:0 auto 48px; font-size:1.28rem;line-height:1.95;color:var(--ink-dark);font-style:italic; font-family:'Lora',serif;animation:fU .9s ease .4s both;font-weight:400; }
 
-/* ── IMAGE CARD ── */
 .image-card {
   display: flex; flex-direction: column; align-items: center; gap: 30px;
   padding: 40px 38px;
@@ -412,7 +403,7 @@ body::after{
   border: 3px solid rgba(245,205,215,.8);
   max-height: 460px; width: 85%;
   transition: transform .2s cubic-bezier(.4,0,.2,1), box-shadow .2s ease;
-  position: relative;
+  position: relative; cursor: zoom-in;
 }
 .image-card:hover .image-frame { transform: scale(1.025); box-shadow: 0 14px 42px rgba(232,164,180,.28),0 0 0 9px rgba(255,255,255,1),0 0 0 11px rgba(232,164,180,.38); }
 
@@ -426,9 +417,10 @@ body::after{
 @keyframes stickerFloat { 0%, 100% { transform: rotate(-8deg) scale(1); } 50% { transform: rotate(8deg) scale(1.1); } }
 
 .image-frame img {
-  width: 100%; height: 100%; object-fit: cover; cursor: pointer;
+  width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;
   transition: transform .5s cubic-bezier(.4,0,.2,1), filter .5s ease;
   filter: sepia(.04) contrast(1.05) brightness(1) saturate(1.05);
+  display: block;
 }
 .image-card:hover .image-frame img { transform: scale(1.07); filter: sepia(.1) contrast(1.08) brightness(1.04) saturate(1.1); }
 
@@ -441,7 +433,6 @@ body::after{
 .image-card:hover .image-caption p { transform: translateX(3px); }
 .image-caption p:last-child { margin-bottom: 0; }
 
-/* ── VIDEO CARD ── */
 .video-card {
   display: flex; flex-direction: column; align-items: center; gap: 24px;
   padding: 40px 38px;
@@ -472,7 +463,6 @@ body::after{
 .video-description { width:100%; max-width:860px; text-align:center; }
 .video-description p { font-size:1.28rem; line-height:2.1; color:var(--ink-dark); font-family:'Lora',serif; font-weight:400; }
 
-/* ── QUOTE BOX ── */
 .quote-box {
   background:linear-gradient(135deg,rgba(253,232,239,.5),rgba(255,240,245,.4));
   border-left:5px solid #e8a4b4; border-right:5px solid #f5cdd7;
@@ -491,7 +481,6 @@ body::after{
 .callout{ padding:22px 32px;margin:28px auto;max-width:840px; background:rgba(232,164,180,.18);border-left:5px solid #e8a4b4;border-radius:0 12px 12px 0; font-family:'Lora',serif;font-size:1.28rem;line-height:1.9; color:var(--ink-dark);font-style:italic;font-weight:400; transition:transform .18s ease, border-left-color .18s ease; }
 .callout:hover{ transform:translateX(7px); border-left-color:#f5cdd7; }
 
-/* ── PAGE NAV (giống Đà Lạt) ── */
 .page-nav{display:flex;justify-content:space-between;align-items:center;margin-top:56px;padding-top:36px;border-top:2px solid rgba(232,164,180,.28);position:relative;z-index:100;}
 .nav-btn{
   padding:11px 28px;background:linear-gradient(135deg,#e8a4b4,#f5cdd7);
@@ -511,10 +500,8 @@ body::after{
 .nav-btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(232,164,180,.56);}
 .nav-btn:active{transform:translateY(0);}
 .nav-btn.disabled{opacity:.3;pointer-events:none;}
-/* Cover btn — rose darker */
 .nav-btn.cover-btn { background: linear-gradient(135deg, #d4607e, #c75b7a); border-color: rgba(255,182,193,.4); }
 
-/* ── PROGRESS DOTS ── */
 .prog{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px;}
 .pdot{width:8px;height:8px;border-radius:50%;cursor:pointer;background:rgba(232,164,180,.22);border:1.5px solid rgba(232,164,180,.30); transition:all .18s cubic-bezier(.4,0,.2,1);}
 .pdot:focus { outline: 2px solid rgba(232,164,180,.6); outline-offset: 3px; }
@@ -527,15 +514,69 @@ body::after{
 .dclouds{text-align:center;font-size:1.3rem;letter-spacing:18px;opacity:.26;margin:12px 0;animation:dcWv 8s ease-in-out infinite;}
 @keyframes dcWv{0%,100%{transform:translateY(0);opacity:.24;}50%{transform:translateY(-6px);opacity:.44;}}
 
-/* ── MODAL ── */
-.image-modal{position:fixed;inset:0;background:rgba(200,70,100,.96);backdrop-filter:blur(15px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:1000;}
-.image-modal.active{opacity:1;pointer-events:auto;}
-.image-modal img{max-width:92%;max-height:92%;box-shadow:0 35px 90px rgba(0,0,0,.8),0 0 0 16px #fff,0 0 0 18px rgba(232,164,180,.6);animation:modalZoom .45s cubic-bezier(.4,0,.2,1);border-radius:8px;}
-@keyframes modalZoom{from{opacity:0;transform:scale(.65) rotate(-6deg);}to{opacity:1;transform:scale(1) rotate(0);}}
-.modal-close{position:absolute;top:30px;right:30px;width:48px;height:48px;background:rgba(255,255,255,.22);border:2px solid rgba(232,164,180,.7);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;color:#fff;cursor:pointer;transition:background .15s ease, transform .15s ease;backdrop-filter:blur(10px);z-index:1001;}
-.modal-close:focus { outline: 3px solid rgba(255,182,193,.8); outline-offset: 4px; }
-.modal-close:hover{background:rgba(232,164,180,.6);transform:rotate(90deg) scale(1.1);}
-.modal-caption { position:absolute; bottom:24px; left:50%; transform:translateX(-50%); font-family:'Dancing Script',cursive; font-size:1.1rem; color:rgba(255,255,255,.8); background:rgba(0,0,0,.3); padding:6px 20px; border-radius:20px; backdrop-filter:blur(8px); }
+/* ══ IMAGE MODAL — nâng cấp giống 20/11 ══ */
+.image-modal{
+  position:fixed;inset:0;
+  background:rgba(20,0,8,0);
+  backdrop-filter:blur(0px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  z-index:10000;
+  transition:opacity .3s ease,background .3s ease,backdrop-filter .3s ease;
+}
+.image-modal.active{
+  opacity:1;pointer-events:auto;
+  background:rgba(180,50,80,.96);
+  backdrop-filter:blur(20px);
+}
+
+.modal-inner{
+  position:relative;
+  display:flex;flex-direction:column;align-items:center;gap:18px;
+  max-width:94vw;max-height:94vh;
+}
+
+.image-modal img{
+  max-width:min(90vw,1000px);max-height:80vh;
+  object-fit:contain;border-radius:10px;
+  box-shadow:0 40px 100px rgba(0,0,0,.85),0 0 0 12px #fff,0 0 0 15px rgba(232,164,180,.55),0 0 60px rgba(232,164,180,.18);
+  cursor:zoom-out;will-change:transform,opacity;display:block;
+}
+
+.modal-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:46px;height:46px;background:rgba(255,255,255,.12);border:2px solid rgba(232,164,180,.5);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;color:#fff;cursor:pointer;backdrop-filter:blur(8px);
+  transition:background .15s,transform .15s;z-index:10001;
+}
+.modal-arrow:hover{background:rgba(232,164,180,.5);transform:translateY(-50%) scale(1.12);}
+.modal-arrow.prev{left:-64px;}
+.modal-arrow.next{right:-64px;}
+
+.modal-close{
+  position:fixed;top:24px;right:24px;width:50px;height:50px;
+  background:rgba(255,255,255,.15);border:2px solid rgba(232,164,180,.6);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;color:#fff;cursor:pointer;backdrop-filter:blur(10px);z-index:10002;
+  transition:background .15s,transform .15s,border-color .15s;
+}
+.modal-close:hover{background:rgba(232,164,180,.55);border-color:rgba(232,164,180,1);transform:rotate(90deg) scale(1.12);}
+.modal-close:focus{outline:3px solid rgba(255,182,193,.8);outline-offset:4px;}
+
+.modal-caption{
+  font-family:'Dancing Script',cursive;font-size:1.1rem;
+  color:rgba(255,255,255,.88);text-align:center;
+  background:rgba(0,0,0,.4);padding:8px 24px;border-radius:20px;
+  backdrop-filter:blur(8px);max-width:80vw;
+}
+
+.modal-esc-hint{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  font-family:'Lora',serif;font-size:.78rem;
+  color:rgba(255,255,255,.4);letter-spacing:.1em;
+  pointer-events:none;z-index:10001;
+}
 
 .scroll-top{position:fixed;bottom:38px;right:38px;width:55px;height:55px;background:linear-gradient(135deg,#e8a4b4,#f5cdd7);border:2px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;cursor:pointer;box-shadow:0 10px 30px rgba(232,164,180,.55);transition:opacity .2s ease, transform .18s cubic-bezier(.4,0,.2,1), box-shadow .18s ease;z-index:100;opacity:0;pointer-events:none;color:#fff;will-change:transform;}
 .scroll-top:focus { outline: 3px solid rgba(255,182,193,.8); outline-offset: 4px; }
@@ -548,7 +589,6 @@ body::after{
 .loading-spinner::after{content:'🌸';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.8rem;}
 @keyframes spinnerRotate{to{transform:translate(-50%,-50%) rotate(360deg);}}
 
-/* ── RESPONSIVE ── */
 @media(max-width:768px){
   body{padding:22px 10px;}
   .book-cover{padding:44px 30px;border:5px solid rgba(232,164,180,.4);}
@@ -568,6 +608,9 @@ body::after{
   .page-select-btn { min-width: 55px; padding: 7px 10px; }
   .home-btn { font-size: 0.76rem; padding: 7px 12px; }
   .selector-divider { display: none; }
+  .modal-arrow.prev{left:8px;top:auto;bottom:14px;transform:none;}
+  .modal-arrow.next{right:8px;top:auto;bottom:14px;transform:none;}
+  .modal-arrow:hover{transform:scale(1.12);}
 }
 @media(max-width:480px){
   .page{padding:38px 14px 80px;}
@@ -627,7 +670,6 @@ body::after{
   <!-- ══ PAGES ══ -->
   <div class="book-pages" id="bookPages" style="display:none;">
 
-    <!-- Page Selector (giống Đà Lạt) -->
     <nav class="page-selector" role="navigation" aria-label="Chọn trang">
       <button class="page-select-btn active" data-page="1" aria-label="Trang 1: Ngày Của Yêu Thương" aria-current="page">
         <span class="ps-icon" aria-hidden="true">🌸</span>
@@ -775,11 +817,18 @@ body::after{
   </div>
 </div>
 
+<!-- ══ IMAGE MODAL — nâng cấp giống 20/11 ══ -->
 <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="Xem ảnh phóng to">
-  <button class="modal-close" onclick="closeModal()" aria-label="Đóng ảnh">×</button>
-  <img id="modalImg" alt="">
-  <div class="modal-caption" id="modalCaption"></div>
+  <button class="modal-close" id="modalClose" aria-label="Đóng ảnh">×</button>
+  <div class="modal-inner">
+    <button class="modal-arrow prev" id="modalPrev" aria-label="Ảnh trước">‹</button>
+    <img id="modalImg" alt="" src="">
+    <button class="modal-arrow next" id="modalNext" aria-label="Ảnh sau">›</button>
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+  <div class="modal-esc-hint">Nhấn ESC để đóng &nbsp;·&nbsp; ← → để chuyển ảnh</div>
 </div>
+
 <button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Cuộn lên đầu trang">↑</button>
 
 <script>
@@ -937,7 +986,6 @@ function closePage(){
   },260);
 }
 
-// Touch swipe
 function handleSwipe(){
   const diff=touchStartX-touchEndX;
   if(Math.abs(diff)>45){
@@ -948,40 +996,128 @@ function handleSwipe(){
 document.getElementById('bookPages').addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;},{passive:true});
 document.getElementById('bookPages').addEventListener('touchend',e=>{touchEndX=e.changedTouches[0].screenX;handleSwipe();},{passive:true});
 
-// Keyboard nav
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape') closeModal();
-  if(document.getElementById('bookPages').style.display!=='block') return;
-  if(e.key==='ArrowRight'&&currentPage<3) turnPage(currentPage+1);
-  if(e.key==='ArrowLeft'&&currentPage>1) turnPage(currentPage-1);
-});
+/* ══ MODAL — nâng cấp với prev/next ══ */
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImg');
+const modalCaption = document.getElementById('modalCaption');
+const modalPrev = document.getElementById('modalPrev');
+const modalNext = document.getElementById('modalNext');
+const modalClose = document.getElementById('modalClose');
+let allImgs = [], currentModalIdx = 0;
 
-// Image modal
-const modal=document.getElementById('imageModal'), modalImg=document.getElementById('modalImg');
-function openModal(img){
-  modal.classList.add('active'); modalImg.src=img.src; modalImg.alt=img.alt;
-  document.getElementById('modalCaption').textContent=img.alt||'';
-  document.body.style.overflow='hidden';
-}
-function closeModal(){ modal.classList.remove('active'); document.body.style.overflow=''; setTimeout(()=>{document.getElementById('modalImg').removeAttribute('src');},320); }
-document.querySelectorAll('.image-frame img').forEach(img=>{
-  img.addEventListener('click',e=>{e.stopPropagation();openModal(img);});
-});
-document.getElementById('imageModal').addEventListener('click',e=>{if(e.target===modal)closeModal();});
-
-// Scroll top
-const scrollTopBtn=document.getElementById('scrollTop');
-window.addEventListener('scroll',()=>{scrollTopBtn.classList.toggle('visible',window.scrollY>300);},{passive:true});
-function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
-
-window.addEventListener('load',()=>{
-  buildFireflies(); buildLeaves('lf1'); buildLeaves('lf2'); buildLeaves('lf3');
-  document.querySelectorAll('img').forEach(img=>{
-    if(img.complete&&img.naturalWidth>0){img.classList.add('loaded');}
-    else{img.addEventListener('load',()=>img.classList.add('loaded'));img.addEventListener('error',()=>{img.style.opacity='.3';img.classList.add('loaded');});}
+function collectImages() {
+  allImgs = Array.from(document.querySelectorAll('.image-frame img')).filter(img => {
+    const page = img.closest('.page');
+    if (!page) return true;
+    return getComputedStyle(page).display !== 'none';
   });
-  const dots=document.querySelectorAll('.pdot');
-  setInterval(()=>{dots.forEach(dot=>{if(dot.classList.contains('on')){dot.style.transform='scale(1.18)';setTimeout(()=>dot.style.transform='',280);}});},3000);
+}
+
+function openModal(img) {
+  collectImages();
+  currentModalIdx = allImgs.findIndex(i => i.src === img.src);
+  if (currentModalIdx === -1) { allImgs = [img]; currentModalIdx = 0; }
+  modalImg.style.transition = 'none';
+  modalImg.style.opacity = '0';
+  modalImg.style.transform = 'scale(0.7) rotate(-6deg)';
+  modalImg.src = img.src;
+  modalImg.alt = img.alt;
+  modalCaption.textContent = img.alt || '';
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
+    modalImg.style.transition = 'transform 0.42s cubic-bezier(0.22,1,0.36,1), opacity 0.35s ease';
+    modalImg.style.opacity = '1';
+    modalImg.style.transform = 'scale(1) rotate(0deg)';
+  }); });
+  updateArrows();
+}
+
+function closeModal() {
+  modalImg.style.transition = 'transform 0.3s ease, opacity 0.25s ease';
+  modalImg.style.transform = 'scale(0.7) rotate(5deg)';
+  modalImg.style.opacity = '0';
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+  setTimeout(() => {
+    modalImg.removeAttribute('src');
+    modalImg.style.transition = 'none';
+    modalImg.style.transform = '';
+    modalImg.style.opacity = '';
+  }, 320);
+}
+
+function navigateModal(dir) {
+  const next = currentModalIdx + dir;
+  if (next < 0 || next >= allImgs.length) return;
+  modalImg.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
+  modalImg.style.transform = `scale(0.88) translateX(${dir > 0 ? '-60px' : '60px'})`;
+  modalImg.style.opacity = '0';
+  setTimeout(() => {
+    currentModalIdx = next;
+    const target = allImgs[currentModalIdx];
+    modalImg.src = target.src;
+    modalImg.alt = target.alt;
+    modalCaption.textContent = target.alt || '';
+    modalImg.style.transition = 'none';
+    modalImg.style.transform = `scale(0.88) translateX(${dir > 0 ? '60px' : '-60px'})`;
+    modalImg.style.opacity = '0';
+    requestAnimationFrame(() => { requestAnimationFrame(() => {
+      modalImg.style.transition = 'transform 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease';
+      modalImg.style.transform = 'scale(1) translateX(0)';
+      modalImg.style.opacity = '1';
+    }); });
+    updateArrows();
+  }, 220);
+}
+
+function updateArrows() {
+  const atStart = currentModalIdx <= 0;
+  const atEnd = currentModalIdx >= allImgs.length - 1;
+  modalPrev.style.opacity = atStart ? '.25' : '1';
+  modalPrev.style.pointerEvents = atStart ? 'none' : 'auto';
+  modalNext.style.opacity = atEnd ? '.25' : '1';
+  modalNext.style.pointerEvents = atEnd ? 'none' : 'auto';
+}
+
+modalPrev.addEventListener('click', e => { e.stopPropagation(); navigateModal(-1); });
+modalNext.addEventListener('click', e => { e.stopPropagation(); navigateModal(1); });
+modalClose.addEventListener('click', e => { e.stopPropagation(); closeModal(); });
+modalImg.addEventListener('click', e => { e.stopPropagation(); closeModal(); });
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+document.addEventListener('click', e => {
+  if (e.target.closest('#modalPrev, #modalNext, #modalClose, #modalImg')) return;
+  const wrapper = e.target.closest('.image-frame');
+  if (!wrapper) return;
+  const img = (e.target.tagName === 'IMG') ? e.target : wrapper.querySelector('img');
+  if (img && img.src) { e.stopPropagation(); openModal(img); }
+});
+
+document.addEventListener('keydown', e => {
+  if (modal.classList.contains('active')) {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') navigateModal(-1);
+    if (e.key === 'ArrowRight') navigateModal(1);
+    return;
+  }
+  if (document.getElementById('bookPages').style.display !== 'block') return;
+  if (e.key === 'ArrowRight' && currentPage < 3) turnPage(currentPage + 1);
+  if (e.key === 'ArrowLeft' && currentPage > 1) turnPage(currentPage - 1);
+});
+
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => { scrollTopBtn.classList.toggle('visible', window.scrollY > 300); }, { passive: true });
+function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+window.addEventListener('load', () => {
+  buildFireflies(); buildLeaves('lf1'); buildLeaves('lf2'); buildLeaves('lf3');
+  document.querySelectorAll('img').forEach(img => {
+    if(img.complete && img.naturalWidth > 0){ img.classList.add('loaded'); }
+    else { img.addEventListener('load', () => img.classList.add('loaded')); img.addEventListener('error', () => { img.style.opacity = '.3'; img.classList.add('loaded'); }); }
+  });
+  const dots = document.querySelectorAll('.pdot');
+  setInterval(() => { dots.forEach(dot => { if(dot.classList.contains('on')){ dot.style.transform='scale(1.18)'; setTimeout(() => dot.style.transform='', 280); } }); }, 3000);
 });
 </script>
 </body>
