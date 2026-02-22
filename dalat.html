@@ -134,9 +134,7 @@ body::after{content:'';position:fixed;inset:0;background-image:radial-gradient(2
 /* ── ALBUM ── */
 .album-label{font-family:'Dancing Script',cursive;font-size:1.1rem;color:var(--g6);margin-bottom:10px;margin-left:4px;margin-top:18px;display:block;}
 .awrap{position:relative;margin-bottom:28px;}
-.awrap::before,.awrap::after{content:'';position:absolute;top:0;bottom:34px;width:48px;z-index:20;pointer-events:none;}
-.awrap::before{left:44px;background:linear-gradient(to right,rgba(249,247,240,.85),transparent);}
-.awrap::after{right:44px;background:linear-gradient(to left,rgba(249,247,240,.85),transparent);}
+.awrap::before,.awrap::after{display:none;}
 .atrack{display:flex;gap:22px;overflow-x:auto;padding:20px 56px 34px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:rgba(62,114,73,.36) transparent;cursor:grab;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;}
 .atrack:active{cursor:grabbing;}
 .atrack::-webkit-scrollbar{height:5px;}
