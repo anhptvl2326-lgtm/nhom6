@@ -1,39 +1,828 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giỗ Tổ Hùng Vương </title>
-    <link rel="stylesheet"  href="trangtonghop.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Nhật ký Giỗ Tổ Hùng Vương - Lớp 11L - Mốc kỷ niệm số 6">
+<title>Giỗ Tổ Hùng Vương · Bánh Chưng Xanh · Lớp 11L</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red-deep:#8b1a1a;
+  --red-mid:#b52a2a;
+  --red-light:#d45a5a;
+  --red-pale:#f5c8c8;
+  --gold:#c9a961;
+  --gold-pale:#e0c478;
+  --green-rice:#4a7c3f;
+  --green-leaf:#2d5e24;
+  --ink-dark:#3a1e10;
+  --ink-mid:#5c3018;
+  --cream:#fffaf0;
+  --sh-d:rgba(80,20,10,.55);
+  --sh-m:rgba(80,20,10,.28);
+  --sh-s:rgba(80,20,10,.12);
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+
+body{
+  cursor:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="8" fill="%23b52a2a" opacity="0.28"/></svg>') 10 10, auto;
+  font-family:'Lora',serif;
+  background:
+    radial-gradient(ellipse at 50% 15%, rgba(180,60,40,.12), transparent 58%),
+    radial-gradient(ellipse at 80% 75%, rgba(139,26,26,.08), transparent 52%),
+    radial-gradient(ellipse at 18% 82%, rgba(212,90,90,.09), transparent 55%),
+    linear-gradient(168deg, #fdf0e8 0%, #f8e4d4 18%, #f2d8c0 36%, #f5dfc8 55%, #f8e6d0 75%, #fdf2e4 100%);
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;
+  padding:40px 20px;
+  position:relative;overflow-x:hidden;
+}
+
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(180,60,40,.014) 2px,rgba(180,60,40,.014) 3px),
+    repeating-linear-gradient(90deg,transparent,transparent 2px,rgba(180,60,40,.012) 2px,rgba(180,60,40,.012) 3px),
+    radial-gradient(circle at 15% 25%,rgba(180,60,40,.05),transparent 42%),
+    radial-gradient(circle at 85% 78%,rgba(201,169,97,.05),transparent 42%);
+  opacity:.9;animation:paperGrain 13s ease-in-out infinite;
+}
+@keyframes paperGrain{0%,100%{opacity:.9;}50%{opacity:.65;}}
+
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:
+    radial-gradient(2px 2px at 12% 18%,rgba(201,169,97,.22),transparent),
+    radial-gradient(1px 1px at 28% 45%,rgba(255,240,200,.14),transparent),
+    radial-gradient(2px 2px at 58% 12%,rgba(180,60,40,.18),transparent),
+    radial-gradient(1px 1px at 78% 68%,rgba(255,240,200,.16),transparent),
+    radial-gradient(1px 1px at 22% 82%,rgba(201,169,97,.20),transparent),
+    radial-gradient(2px 2px at 88% 38%,rgba(255,240,200,.18),transparent);
+  animation:particlesDrift 36s linear infinite,particlesTwinkle 4.5s ease-in-out infinite;
+  opacity:.45;
+}
+@keyframes particlesDrift{from{transform:translateY(0) translateX(0);}to{transform:translateY(-88px) translateX(48px);}}
+@keyframes particlesTwinkle{0%,100%{opacity:.45;}50%{opacity:.68;}}
+
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:0;box-shadow:inset 0 0 110px rgba(80,20,10,.16);}
+
+.cursor-trail{position:fixed;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle,rgba(180,60,40,.58),rgba(201,169,97,.22));pointer-events:none;z-index:9999;will-change:transform,opacity;animation:trailFade .55s cubic-bezier(.4,0,.2,1) forwards;box-shadow:0 0 7px rgba(180,60,40,.3);transform:translate(-50%,-50%);}
+@keyframes trailFade{to{opacity:0;transform:translate(-50%,-50%) scale(.18);}}
+
+.progress-bar-container{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(180,60,40,.08);z-index:10000;opacity:0;transition:opacity .2s;}
+.progress-bar-container.active{opacity:1;}
+.progress-bar{height:100%;background:linear-gradient(90deg,#8b1a1a,#b52a2a,#c9a961);width:0%;transition:width .3s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(180,60,40,.5);}
+
+.home-btn{position:fixed;top:20px;left:20px;display:flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:2px solid rgba(180,60,40,.28);border-radius:30px;font-family:'Playfair Display',serif;font-size:.82rem;color:var(--red-deep);cursor:pointer;z-index:9999;text-decoration:none;box-shadow:0 4px 14px var(--sh-s);transition:background .18s,border-color .18s,transform .18s,box-shadow .18s;}
+.home-btn:hover{background:rgba(180,60,40,.1);border-color:rgba(180,60,40,.5);transform:translateY(-2px);box-shadow:0 8px 22px var(--sh-m);}
+
+.breadcrumb{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.92);backdrop-filter:blur(12px);padding:7px 22px;border-radius:30px;border:2px solid rgba(180,60,40,.22);font-family:'Playfair Display',serif;font-size:.8rem;color:var(--red-deep);z-index:9998;opacity:0;pointer-events:none;transition:opacity .25s;box-shadow:0 4px 14px var(--sh-s);white-space:nowrap;max-width:calc(100vw - 180px);overflow:hidden;text-overflow:ellipsis;}
+.breadcrumb.visible{opacity:1;pointer-events:auto;}
+
+.sr-announce{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+
+.book-container{position:relative;max-width:1200px;width:100%;perspective:2000px;z-index:10;animation:containerIn .9s cubic-bezier(.22,1,.36,1) both;}
+@keyframes containerIn{from{opacity:0;transform:translateY(36px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+
+/* ══ COVER ══ */
+.book-cover{
+  position:relative;
+  background:
+    repeating-linear-gradient(46deg,rgba(139,26,26,.07),rgba(139,26,26,.07) 2px,transparent 2px,transparent 7px),
+    linear-gradient(140deg,#5c0e0e 0%,#4a0a0a 28%,#6e1414 52%,#8b1a1a 68%,#5c0e0e 85%,#380808 100%);
+  border-radius:8px;
+  padding:70px 60px;
+  box-shadow:
+    0 38px 95px var(--sh-d),
+    0 14px 36px var(--sh-m),
+    inset 0 0 160px rgba(0,0,0,.42),
+    inset 2px 2px 10px rgba(201,169,97,.12),
+    inset -2px -2px 10px rgba(0,0,0,.42);
+  border:1px solid rgba(201,169,97,.38);
+  outline:7px solid rgba(40,8,8,.82);
+  outline-offset:0;
+  margin-bottom:40px;
+  transform-style:preserve-3d;will-change:transform;
+  animation:bookEntrance 1.1s cubic-bezier(.22,1,.36,1) both;
+  overflow:visible;
+  transition:transform .18s cubic-bezier(.22,1,.36,1),box-shadow .18s;
+}
+.book-cover::after{
+  content:'';position:absolute;inset:20px;
+  border:2px double rgba(201,169,97,.62);border-radius:4px;
+  box-shadow:inset 0 0 65px rgba(201,169,97,.28),0 0 42px rgba(201,169,97,.42),inset 2px 2px 5px rgba(255,255,255,.1),inset -2px -2px 5px rgba(0,0,0,.3);
+  animation:embossGlow 3.8s ease-in-out infinite;pointer-events:none;
+}
+@keyframes embossGlow{0%,100%{opacity:.6;}50%{opacity:1;}}
+.book-cover::before{content:'';position:absolute;left:-14px;top:5%;bottom:5%;width:24px;background:linear-gradient(90deg,rgba(0,0,0,.65),rgba(60,10,10,.45) 35%,transparent);border-radius:4px 0 0 4px;box-shadow:inset 2px 0 5px rgba(0,0,0,.55);}
+
+.book-cover:hover{transform:translateY(-5px) scale(1.009);box-shadow:0 50px 115px var(--sh-d),0 18px 44px var(--sh-m),inset 0 0 160px rgba(0,0,0,.42),0 0 38px rgba(201,169,97,.14);}
+.book-cover:active{transform:translateY(-2px) scale(1.003);transition-duration:.08s;}
+@keyframes bookEntrance{0%{opacity:0;transform:rotateX(-28deg) translateY(-90px) scale(.86);}55%{opacity:1;transform:rotateX(6deg) translateY(10px) scale(1.03);}75%{transform:rotateX(-2deg) translateY(-4px) scale(1.01);}100%{opacity:1;transform:rotateX(0) translateY(0) scale(1);}}
+
+.ff-wrap{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+.ff{position:absolute;border-radius:50%;pointer-events:none;will-change:transform,opacity;animation:ffRise var(--dur) var(--del) cubic-bezier(.4,0,.6,1) infinite;opacity:0;}
+@keyframes ffRise{0%{opacity:0;transform:translateY(0) translateX(0) scale(1);}15%{opacity:.88;}80%{opacity:.32;}100%{opacity:0;transform:translateY(-130px) translateX(var(--dx)) scale(.2);}}
+
+.bookmark{
+  position:absolute;top:0;right:12%;width:56px;height:172px;
+  background:linear-gradient(135deg,#8b1a1a,#c9a961);
+  clip-path:polygon(0 0,100% 0,100% 76%,50% 100%,0 76%);
+  box-shadow:0 12px 32px rgba(139,26,26,.58),inset 0 2px 0 rgba(255,255,255,.38);
+  z-index:3;will-change:transform;
+  animation:bookmarkSway 4.2s cubic-bezier(.45,.05,.55,.95) infinite;
+}
+.bookmark::before{content:'🏺';position:absolute;top:18px;left:50%;transform:translateX(-50%);font-size:1.7rem;animation:leafSpin 8s linear infinite;will-change:transform;}
+@keyframes bookmarkSway{0%,100%{transform:rotate(0) translateY(0);}50%{transform:rotate(3.2deg) translateY(-2px);}}
+@keyframes leafSpin{from{transform:translateX(-50%) rotate(0);}to{transform:translateX(-50%) rotate(360deg);}}
+
+.cover-content{position:relative;z-index:2;text-align:center;color:#fdf0d8;}
+
+.cover-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(201,169,97,.15);
+  border:1px solid rgba(201,169,97,.38);
+  backdrop-filter:blur(10px);
+  color:rgba(240,210,150,.92);padding:8px 28px;border-radius:50px;
+  font-size:.82rem;font-family:'Playfair Display',serif;letter-spacing:.18em;
+  margin-bottom:22px;
+  box-shadow:0 0 24px rgba(201,169,97,.32),inset 0 1px 0 rgba(255,255,255,.08);
+  animation:fU .7s cubic-bezier(.22,1,.36,1) .05s both,badgeShimmer 2.6s ease-in-out infinite;
+}
+@keyframes badgeShimmer{0%,100%{opacity:.78;}50%{opacity:1;}}
+
+.cover-icon{font-size:7rem;margin-bottom:28px;display:inline-block;animation:iconFloat 5s ease-in-out infinite,fU .7s cubic-bezier(.22,1,.36,1) .18s both;filter:drop-shadow(0 8px 20px rgba(201,169,97,.7)) drop-shadow(0 0 28px rgba(180,60,40,.42));}
+@keyframes iconFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+
+.cover-title{font-family:'Playfair Display',serif;font-size:3.8rem;font-weight:800;margin-bottom:18px;letter-spacing:.07em;color:#fff;text-shadow:0 0 34px rgba(201,169,97,.9),0 6px 22px rgba(0,0,0,.82),0 0 88px rgba(180,60,40,.48),2px 2px 0 rgba(0,0,0,.32);animation:titleFloat 5.5s cubic-bezier(.45,.05,.55,.95) infinite,fU .7s cubic-bezier(.22,1,.36,1) .3s both;}
+@keyframes titleFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+
+.cover-divider{width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,97,.65),transparent);margin:16px auto 18px;animation:dividerDraw 1.4s cubic-bezier(.4,0,.2,1) .5s forwards;}
+@keyframes dividerDraw{to{width:180px;}}
+
+.cover-subtitle{font-family:'Dancing Script',cursive;font-size:2.2rem;margin-bottom:34px;opacity:.95;text-shadow:0 4px 15px rgba(0,0,0,.7);animation:fU .7s cubic-bezier(.22,1,.36,1) .44s both;}
+.cover-quote{font-size:1.05rem;line-height:1.9;max-width:680px;margin:0 auto 44px;opacity:.92;font-style:italic;font-family:'Lora',serif;text-shadow:0 2px 10px rgba(0,0,0,.5);animation:fU .7s cubic-bezier(.22,1,.36,1) .56s both;}
+
+.open-book-btn{
+  display:inline-block;padding:15px 45px;
+  background:linear-gradient(135deg,#8b1a1a,#c9a961);
+  color:#fff;font-weight:700;font-size:1.05rem;border-radius:50px;
+  box-shadow:0 14px 40px rgba(139,26,26,.62),0 0 44px rgba(201,169,97,.38),inset 0 2px 0 rgba(255,255,255,.5);
+  transition:transform .13s cubic-bezier(.22,1,.36,1),letter-spacing .13s,box-shadow .13s;
+  animation:fU .7s cubic-bezier(.22,1,.36,1) .68s both,btnPulse 2.8s ease-in-out infinite;
+  font-family:'Playfair Display',serif;letter-spacing:.06em;
+  border:3px solid rgba(201,169,97,.52);
+  position:relative;overflow:hidden;cursor:pointer;
+}
+.open-book-btn:hover{transform:translateY(-6px) scale(1.07);border-color:rgba(201,169,97,1);letter-spacing:.09em;box-shadow:0 18px 50px rgba(139,26,26,.72),0 0 55px rgba(201,169,97,.45),inset 0 2px 0 rgba(255,255,255,.5);}
+.open-book-btn:active{transform:translateY(-2px) scale(1.02);transition-duration:.07s;}
+.open-book-btn:focus{outline:3px solid rgba(201,169,97,.8);outline-offset:4px;}
+.open-book-btn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:radial-gradient(circle,rgba(255,255,255,.55),transparent 70%);border-radius:50%;transform:translate(-50%,-50%);transition:width .45s,height .45s;}
+.open-book-btn:hover::before{width:420px;height:420px;}
+@keyframes btnPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.025);}}
+@keyframes fU{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+.open-book-btn span{position:relative;z-index:1;}
+
+/* ══ BOOK PAGES ══ */
+.book-pages{
+  position:relative;
+  background:linear-gradient(135deg,#fffaf0 0%,#fdf3e0 50%,#fffcf5 100%);
+  border-radius:12px;
+  box-shadow:0 28px 75px var(--sh-m),0 8px 20px var(--sh-s),inset 0 0 120px rgba(253,240,224,.6);
+  border-top:1px solid rgba(201,169,97,.2);
+  overflow:hidden;
+  animation:bookPagesOpen .85s cubic-bezier(.4,0,.2,1);
+}
+@keyframes bookPagesOpen{from{opacity:0;transform:perspective(1000px) rotateY(-12deg) scale(.97);}to{opacity:1;transform:perspective(1000px) rotateY(0) scale(1);}}
+
+/* ══ PAGE SELECTOR ══ */
+.page-selector{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;background:rgba(253,240,224,.92);backdrop-filter:blur(10px);border-bottom:2px solid rgba(180,60,40,.12);flex-wrap:wrap;position:sticky;top:0;z-index:50;}
+.page-select-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 14px;background:rgba(255,255,255,.72);border:2px solid rgba(180,60,40,.2);border-radius:10px;font-family:'Playfair Display',serif;font-size:.78rem;color:var(--ink-dark);cursor:pointer;transition:background .14s,border-color .14s,transform .14s cubic-bezier(.4,0,.2,1),box-shadow .14s;min-width:88px;text-align:center;line-height:1.3;will-change:transform;}
+.page-select-btn:hover{background:rgba(180,60,40,.1);border-color:rgba(180,60,40,.44);transform:translateY(-2px);box-shadow:0 5px 14px var(--sh-s);}
+.page-select-btn:active{transform:translateY(0) scale(.97);}
+.page-select-btn.active{background:linear-gradient(135deg,#8b1a1a,#c9a961);color:#fff;border-color:transparent;box-shadow:0 6px 20px var(--sh-m);transform:translateY(-2px);}
+.page-select-btn .ps-num{font-size:1.05rem;font-weight:700;}
+.page-select-btn .ps-icon{font-size:1rem;}
+.page-select-btn .ps-title{font-size:.68rem;opacity:.85;max-width:82px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.page-select-btn.active .ps-title{opacity:1;}
+.selector-divider{color:rgba(180,60,40,.3);font-size:1rem;margin:0 1px;}
+
+/* ══ PAGE ══ */
+.page{
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(180,60,40,.045) 31px,rgba(180,60,40,.045) 32px),
+    linear-gradient(135deg,#fffaf0 0%,#fdf3e0 50%,#fffcf5 100%);
+  padding:70px 90px 100px;min-height:600px;position:relative;
+  border-left:58px solid rgba(180,60,40,.08);
+  animation:pageTurn .75s cubic-bezier(.4,0,.2,1);
+  transform-origin:left center;will-change:opacity,transform;
+}
+@keyframes pageTurn{0%{opacity:0;transform:perspective(1800px) rotateY(-6deg) translateY(12px);}55%{transform:perspective(1800px) rotateY(1.5deg) translateY(-3px);}100%{opacity:1;transform:perspective(1800px) rotateY(0) translateY(0);}}
+.page::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 20%,rgba(180,60,40,.06),transparent 35%),radial-gradient(ellipse at 85% 80%,rgba(201,169,97,.05),transparent 40%);pointer-events:none;animation:agingSpots 15s ease-in-out infinite;}
+@keyframes agingSpots{0%,100%{opacity:.6;}50%{opacity:.82;}}
+.page::after{content:'';position:absolute;left:22px;top:50%;transform:translateY(-50%);width:10px;height:85%;background:radial-gradient(circle,rgba(180,60,40,.22) 40%,rgba(0,0,0,.07) 40%,transparent 45%),radial-gradient(circle,rgba(180,60,40,.22) 40%,rgba(0,0,0,.07) 40%,transparent 45%),radial-gradient(circle,rgba(180,60,40,.22) 40%,rgba(0,0,0,.07) 40%,transparent 45%);background-size:10px 10px;background-position:0 0,0 50%,0 100%;background-repeat:no-repeat;}
+
+.leaf-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
+.lf{position:absolute;font-size:var(--lsz);pointer-events:none;animation:lfDrift var(--ldur) var(--ldel) ease-in-out infinite;opacity:0;will-change:transform,opacity;}
+@keyframes lfDrift{0%{opacity:0;transform:translateY(20px) translateX(0) rotate(0deg) scale(1);}18%{opacity:.52;}82%{opacity:.25;}100%{opacity:0;transform:translateY(-140px) translateX(var(--lx)) rotate(200deg) scale(.3);}}
+
+.page-content{position:relative;z-index:1;}
+
+.page-number{position:absolute;bottom:28px;right:45px;font-family:'Dancing Script',cursive;font-size:1.35rem;color:var(--red-mid);background:rgba(253,240,224,.62);padding:6px 16px;border-radius:50px;border:2px solid rgba(180,60,40,.26);box-shadow:0 4px 12px var(--sh-s);animation:pageNumPulse 3s ease-in-out infinite;z-index:100;}
+@keyframes pageNumPulse{0%,100%{opacity:.58;}50%{opacity:.95;}}
+
+/* ══ SECTION TITLE ══ */
+.section-title{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:700;text-align:center;margin-bottom:36px;position:relative;display:inline-block;width:100%;animation:writeIn 1.2s cubic-bezier(.4,0,.2,1),titleFloat2 6s ease-in-out infinite;filter:drop-shadow(0 5px 16px rgba(139,26,26,.22));}
+.section-title .title-text{background:linear-gradient(118deg,#8b1a1a 0%,#c9a961 45%,#6e1414 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.section-title .title-icon{display:inline-block;margin-right:10px;filter:drop-shadow(0 3px 8px rgba(139,26,26,.3));}
+@keyframes writeIn{from{opacity:0;transform:translateX(-60px) rotateY(-12deg);}to{opacity:1;transform:translateX(0) rotateY(0);}}
+@keyframes titleFloat2{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.section-title::after{content:'';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);width:0;height:4px;background:linear-gradient(90deg,transparent,#8b1a1a 20%,#c9a961 50%,#8b1a1a 80%,transparent);animation:lineDraw 1.8s cubic-bezier(.4,0,.2,1) forwards;box-shadow:0 3px 20px rgba(180,60,40,.4);border-radius:3px;}
+@keyframes lineDraw{from{width:0;opacity:0;}to{width:240px;opacity:1;}}
+
+.section-intro{text-align:center;max-width:820px;margin:0 auto 48px;font-size:1.25rem;line-height:2;color:var(--ink-dark);font-style:italic;font-family:'Lora',serif;animation:fU .9s ease .4s both;font-weight:400;}
+
+/* ══ QUOTE BOX ══ */
+.quote-box{background:linear-gradient(135deg,rgba(245,200,180,.4),rgba(253,240,224,.35));border-left:5px solid #8b1a1a;border-right:5px solid #c9a961;padding:36px 50px;margin:40px 0;position:relative;animation:quoteReveal 1s ease;border-radius:8px;box-shadow:0 6px 22px var(--sh-s);transition:box-shadow .2s,transform .2s;}
+.quote-box:hover{box-shadow:0 10px 30px var(--sh-m);transform:translateY(-3px);}
+@keyframes quoteReveal{from{opacity:0;transform:scale(.94) translateY(24px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.quote-box::before{content:'"';position:absolute;top:-18px;left:18px;font-size:6rem;line-height:1;font-family:'Playfair Display',serif;color:#c9a961;opacity:.28;pointer-events:none;}
+.quote-text{font-family:'Lora',serif;font-size:1.5rem;color:var(--red-deep);line-height:1.85;text-align:center;position:relative;z-index:1;font-style:italic;font-weight:400;}
+
+/* ══ CALLOUT ══ */
+.callout{padding:22px 32px;margin:28px auto;max-width:840px;background:rgba(180,60,40,.1);border-left:5px solid #8b1a1a;border-radius:0 12px 12px 0;font-family:'Lora',serif;font-size:1.25rem;line-height:1.9;color:var(--ink-dark);font-style:italic;font-weight:400;transition:transform .18s,border-left-color .18s,box-shadow .18s;box-shadow:0 3px 12px var(--sh-s);}
+.callout:hover{transform:translateX(7px);border-left-color:#c9a961;box-shadow:0 5px 18px var(--sh-s);}
+
+/* ══ IMAGE CARD ══ */
+.image-card{display:flex;flex-direction:column;align-items:center;gap:30px;padding:40px 38px;background:linear-gradient(145deg,rgba(253,245,230,.92),rgba(248,232,200,.78));border-radius:18px;border:2px solid rgba(180,60,40,.25);box-shadow:0 10px 38px var(--sh-m),0 3px 10px var(--sh-s),inset 0 2px 8px rgba(255,255,255,.52);transition:transform .2s cubic-bezier(.4,0,.2,1),border-color .2s,box-shadow .2s;position:relative;overflow:hidden;margin-bottom:40px;will-change:transform;}
+.image-card::before{content:'';position:absolute;left:0;top:8%;bottom:8%;width:3px;background:linear-gradient(180deg,transparent,var(--gold) 38%,var(--gold-pale) 62%,transparent);opacity:.45;border-radius:1px;transition:opacity .2s;}
+.image-card:hover{transform:translateY(-7px) scale(1.012);border-color:rgba(180,60,40,.46);box-shadow:0 22px 55px var(--sh-m),0 0 28px rgba(180,60,40,.1);}
+.image-card:hover::before{opacity:.82;}
+
+.image-frame{border-radius:14px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 10px 32px var(--sh-m),0 0 0 9px rgba(255,255,255,.92),0 0 0 11px rgba(180,60,40,.22);border:3px solid rgba(201,169,97,.8);max-height:460px;width:85%;transition:transform .2s,box-shadow .2s;position:relative;cursor:zoom-in;}
+.image-card:hover .image-frame{transform:scale(1.025);}
+
+.sticker{position:absolute;font-size:2.8rem;z-index:5;filter:drop-shadow(0 4px 10px rgba(180,60,40,.38));animation:stickerFloat 4s ease-in-out infinite;pointer-events:none;}
+.sticker-1{top:-14px;right:-14px;animation-delay:0s;}
+.sticker-2{bottom:-14px;left:-14px;animation-delay:1.5s;}
+@keyframes stickerFloat{0%,100%{transform:rotate(-8deg) scale(1);}50%{transform:rotate(8deg) scale(1.1);}}
+
+.image-frame img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.4,0,.2,1),filter .5s;filter:sepia(.05) contrast(1.05) brightness(1) saturate(1.05);cursor:zoom-in;display:block;}
+.image-card:hover .image-frame img{transform:scale(1.07);}
+
+.image-caption{width:100%;max-width:860px;text-align:center;}
+.image-caption p{font-size:1.25rem;line-height:2.05;color:var(--ink-dark);font-family:'Lora',serif;font-weight:400;margin-bottom:14px;transition:transform .2s;}
+.image-card:hover .image-caption p{transform:translateX(3px);}
+.image-caption p:last-child{margin-bottom:0;}
+
+/* ══ HANDWRITE ══ */
+.handwrite{font-family:'Dancing Script',cursive;font-size:2rem;color:var(--red-deep);text-align:center;margin:44px auto;max-width:760px;line-height:1.8;animation:fU 1s ease .5s both;}
+
+/* ══ PRIZE BADGE ══ */
+.prize-badge{display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,rgba(201,169,97,.18),rgba(224,196,120,.1));border:1.5px solid rgba(201,169,97,.55);padding:12px 30px;border-radius:50px;font-family:'Playfair Display',serif;font-size:1.06rem;color:#6b4e12;font-weight:700;letter-spacing:.05em;box-shadow:0 4px 18px rgba(201,169,97,.26),inset 0 1px 0 rgba(255,255,255,.36);margin:20px auto 32px;max-width:fit-content;animation:badgeGold 3.2s ease-in-out infinite;}
+@keyframes badgeGold{0%,100%{box-shadow:0 4px 18px rgba(201,169,97,.26);}50%{box-shadow:0 6px 32px rgba(201,169,97,.52),0 0 24px rgba(201,169,97,.16);}}
+
+/* ══ HIGHLIGHT BOX ══ */
+.hbox{display:flex;align-items:flex-start;gap:20px;padding:24px 32px;background:linear-gradient(135deg,rgba(180,60,40,.08),rgba(201,169,97,.05));border:1.5px solid rgba(180,60,40,.18);border-radius:14px;margin:30px 0;box-shadow:0 5px 20px var(--sh-s);transition:transform .2s,border-color .2s;}
+.hbox:hover{transform:translateY(-3px);border-color:rgba(180,60,40,.38);}
+.hico{font-size:2.4rem;flex-shrink:0;filter:drop-shadow(0 2px 7px rgba(180,60,40,.32));margin-top:4px;}
+.htxt{font-family:'Lora',serif;font-size:1.18rem;line-height:1.88;color:var(--ink-dark);font-style:italic;}
+.htxt strong{color:var(--red-deep);font-style:normal;}
+
+/* ══ DNOTE ══ */
+.dnote{padding:26px 34px;background:linear-gradient(135deg,rgba(245,200,180,.28),rgba(248,220,190,.20));border-left:4px solid var(--red-mid);border-radius:0 14px 14px 0;margin-bottom:16px;position:relative;overflow:hidden;transition:transform .2s,border-left-color .2s,box-shadow .2s;}
+.dnote::before{content:'✦';position:absolute;left:-10px;top:14px;font-size:1.1rem;color:var(--red-mid);animation:stTw 3.2s ease-in-out infinite;}
+@keyframes stTw{0%,100%{opacity:.40;transform:scale(1) rotate(0);}50%{opacity:1;transform:scale(1.6) rotate(28deg);}}
+.dnote:hover{transform:translateX(7px);border-left-color:#c9a961;box-shadow:0 6px 20px var(--sh-s);}
+.nlbl{font-family:'Dancing Script',cursive;font-size:1.2rem;color:var(--red-deep);margin-bottom:10px;display:block;font-weight:600;}
+.ntxt{font-size:1.22rem;line-height:1.95;color:var(--ink-dark);font-family:'Lora',serif;font-weight:400;}
+
+/* ══ PAGE NAV ══ */
+.page-nav{display:flex;justify-content:space-between;align-items:center;margin-top:56px;padding-top:36px;border-top:2px solid rgba(139,26,26,.22);position:relative;z-index:100;}
+.nav-btn{padding:11px 28px;background:linear-gradient(135deg,#8b1a1a,#c9a961);color:#fff;font-weight:700;border-radius:50px;box-shadow:0 5px 18px var(--sh-m);transition:transform .15s cubic-bezier(.4,0,.2,1),box-shadow .15s;font-family:'Playfair Display',serif;font-size:.9rem;border:2px solid rgba(201,169,97,.55);cursor:pointer;position:relative;overflow:hidden;z-index:100;}
+.nav-btn:focus{outline:3px solid rgba(201,169,97,.8);outline-offset:4px;}
+.nav-btn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:radial-gradient(circle,rgba(255,255,255,.55),transparent 70%);border-radius:50%;transform:translate(-50%,-50%);transition:width .5s,height .5s;}
+.nav-btn:hover::before{width:360px;height:360px;}
+.nav-btn:hover{transform:translateY(-3px);box-shadow:0 8px 22px var(--sh-m);}
+.nav-btn:active{transform:translateY(0);}
+.nav-btn.cover-btn{background:linear-gradient(135deg,#5c0e0e,#380808);border-color:rgba(201,169,97,.42);}
+
+.prog{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px;}
+.pdot{width:8px;height:8px;border-radius:50%;cursor:pointer;background:rgba(139,26,26,.22);border:1.5px solid rgba(139,26,26,.3);transition:all .18s cubic-bezier(.4,0,.2,1);}
+.pdot:focus{outline:2px solid rgba(180,60,40,.6);outline-offset:3px;}
+.pdot.on{width:26px;border-radius:5px;background:linear-gradient(90deg,#8b1a1a,#c9a961);border-color:transparent;box-shadow:0 2px 10px var(--sh-s);}
+.pdot:hover:not(.on){background:rgba(139,26,26,.4);transform:scale(1.3);}
+
+.rdiv{display:flex;align-items:center;gap:15px;margin:36px 0;opacity:.26;}
+.rdiv::before,.rdiv::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,transparent,#8b1a1a,transparent);}
+.sig{text-align:center;font-family:'Dancing Script',cursive;font-size:2.4rem;color:var(--red-deep);opacity:.68;margin:6px 0 36px;}
+.dclouds{text-align:center;font-size:1.3rem;letter-spacing:18px;opacity:.24;margin:12px 0;animation:dcWv 8s ease-in-out infinite;}
+@keyframes dcWv{0%,100%{transform:translateY(0);opacity:.22;}50%{transform:translateY(-6px);opacity:.42;}}
+
+/* ══ MODAL ══ */
+.image-modal{position:fixed;inset:0;background:rgba(20,5,0,0);backdrop-filter:blur(0px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;z-index:10000;transition:opacity .3s ease,background .3s ease,backdrop-filter .3s ease;}
+.image-modal.active{opacity:1;pointer-events:auto;background:rgba(40,8,8,.97);backdrop-filter:blur(20px);}
+.modal-inner{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px;max-width:94vw;max-height:94vh;}
+.image-modal img{max-width:min(90vw,1000px);max-height:80vh;object-fit:contain;border-radius:10px;box-shadow:0 40px 100px rgba(0,0,0,.85),0 0 0 12px #fff,0 0 0 15px rgba(180,60,40,.55),0 0 60px rgba(201,169,97,.18);cursor:zoom-out;will-change:transform,opacity;display:block;}
+.modal-arrow{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;background:rgba(255,255,255,.12);border:2px solid rgba(201,169,97,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;cursor:pointer;backdrop-filter:blur(8px);transition:background .15s,transform .15s;z-index:10001;}
+.modal-arrow:hover{background:rgba(180,60,40,.5);transform:translateY(-50%) scale(1.12);}
+.modal-arrow.prev{left:-64px;}
+.modal-arrow.next{right:-64px;}
+.modal-close{position:fixed;top:24px;right:24px;width:50px;height:50px;background:rgba(255,255,255,.15);border:2px solid rgba(201,169,97,.6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#fff;cursor:pointer;backdrop-filter:blur(10px);z-index:10002;transition:background .15s,transform .15s,border-color .15s;}
+.modal-close:hover{background:rgba(180,60,40,.55);border-color:rgba(201,169,97,1);transform:rotate(90deg) scale(1.12);}
+.modal-caption{font-family:'Dancing Script',cursive;font-size:1.1rem;color:rgba(255,255,255,.88);text-align:center;background:rgba(0,0,0,.4);padding:8px 24px;border-radius:20px;backdrop-filter:blur(8px);max-width:80vw;}
+.modal-esc-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:'Lora',serif;font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:.1em;pointer-events:none;z-index:10001;}
+
+/* ══ SCROLL TOP ══ */
+.scroll-top{position:fixed;bottom:38px;right:38px;width:55px;height:55px;background:linear-gradient(135deg,#8b1a1a,#c9a961);border:2px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;cursor:pointer;box-shadow:0 10px 30px var(--sh-m);transition:opacity .2s,transform .18s cubic-bezier(.4,0,.2,1);z-index:100;opacity:0;pointer-events:none;color:#fff;}
+.scroll-top.visible{opacity:1;pointer-events:auto;animation:scrollBounce 2.2s ease-in-out infinite;}
+@keyframes scrollBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+.scroll-top:hover{transform:translateY(-6px) scale(1.08)!important;}
+
+.loading-spinner{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;border:5px solid rgba(180,60,40,.2);border-top-color:#8b1a1a;border-radius:50%;animation:spinnerRotate 1s linear infinite;z-index:10000;display:none;}
+.loading-spinner.active{display:block;}
+.loading-spinner::after{content:'🏺';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.8rem;}
+@keyframes spinnerRotate{to{transform:translate(-50%,-50%) rotate(360deg);}}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:768px){
+  body{padding:22px 10px;}
+  .book-cover{padding:44px 30px;}
+  .cover-title{font-size:2.6rem;}
+  .cover-subtitle{font-size:1.6rem;}
+  .page{padding:50px 24px 90px;border-left:30px solid rgba(180,60,40,.08);}
+  .section-title{font-size:2rem;}
+  .section-intro{font-size:1rem;}
+  .image-frame{width:96%;}
+  .image-caption p{font-size:1.05rem;}
+  .quote-text{font-size:1.28rem;}
+  .handwrite{font-size:1.6rem;}
+  .callout{font-size:1rem;}
+  .breadcrumb{top:auto;bottom:20px;left:50%;right:auto;transform:translateX(-50%);font-size:.72rem;padding:5px 14px;max-width:calc(100vw - 40px);}
+  .page-select-btn .ps-title{display:none;}
+  .page-selector{gap:5px;padding:10px 8px;}
+  .page-select-btn{min-width:55px;padding:7px 10px;}
+  .home-btn{font-size:.76rem;padding:7px 12px;}
+  .selector-divider{display:none;}
+  .hbox{flex-direction:column;gap:14px;}
+  .modal-arrow.prev{left:8px;top:auto;bottom:14px;transform:none;}
+  .modal-arrow.next{right:8px;top:auto;bottom:14px;transform:none;}
+  .modal-arrow:hover{transform:scale(1.12);}
+}
+@media(max-width:480px){
+  .page{padding:38px 14px 80px;}
+  .section-title{font-size:1.72rem;}
+  .quote-box{padding:28px 18px;}
+  .quote-text{font-size:1.12rem;}
+  .sig{font-size:2rem;}
+  .cover-title{font-size:2.1rem;}
+  .cover-subtitle{font-size:1.35rem;}
+}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}}
+</style>
 </head>
 <body>
- </div>
-    <div class="container">
-        <h1 class="title">NGÀY GIỖ TỔ HÙNG VƯƠNG ĐÁNG NHỚ CỦA CHÚNG MÌNH</h1>
-        <p class="t1"><em>Giỗ Tổ hôm ấy là ngày của sự biết ơn công lao dựng nước của Vua Hùng, là ngày của những đứa trẻ vẫn quen nghịch ngợm 11L nháo nhào chuẩn bị cho cuộc thi gói bánh chưng, là ngày đã giữ cho chúng mình những kỉ niệm đẹp đẽ chẳng thể quên.</em></p>   
-        <p class="t2"><strong>SỰ CHUẨN BỊ GẤP RÚT</strong></p>
-        <p class="t1">Ngày 5/4 bọn mình tham gia cuộc thi gói bánh chưng của các lớp khối 11, nhưng vào một tuần trước đó cả lớp vẫn chưa chọn ra được những gương mặt sáng giá nhất , khéo tay nhất để trực tiếp gói bánh. Thế rồi trong tình thế "nước đến chân mới nhảy", mọi người bàn nhau mua nguyên liệu và mang nồi niêu nấu nướng tới trong một ngày trước hôm thi. Bên cạnh đó, những thành viên trong lớp cũng rất nhiệt tình tham gia gói bánh và phụ giúp, bao gồm có Khánh Ly, hai bạn Vân Anh, Hoàng Cường, Hải Đăng, Thuận, Hồng Phú, Huy Tiến, Tuấn Tú, Quang Chiến, Duy Phương, Như Hảo và Danh Huy. Đặc biệt có Hồng Phú và Duy Phương đóng vai trò quan trọng vô cùng với nhiệm vụ mang nồi nấu bánh, chuẩn bị nếp, thịt heo ướp sẵn, đậu xanh và học hỏi kinh nghiệm của mẹ. </p>
-        <p class="t2"><strong>ĐẤU TRƯỜNG CỦA NHỮNG "NGƯỜI ĐẦU BẾP TÀI BA"</strong></p>
-        <p class="t1">Sáng sớm, tụi mình hẹn nhau đi ăn sáng ở quán bún chả dưới dốc để lấy năng lượng trước khi thi nấu bánh. Khi trở về trường để chuẩn bị thì nhận ra lớp nào cũng đã dọn đồ ra sẵn xong xuôi, chỉ còn 11L vẫn còn chưa chuẩn bị gì. Sau đó, chúng mình nhận ra còn thiếu bạt trải và củi đốt, thế là đám trai tráng lại ra sức chạy đi mua để kịp giờ thi.</p>
-        <p class="t1">9h30 là tất cả bắt đầu công đoạn gói bánh. Với sự vụng về và kinh nghiệm ít ỏi, bọn mình lóng ngóng vừa xem video hướng dẫn vừa túm tụm làm cùng nhau. Sau hai tiếng rối như tơ vò với những chiếc bánh bị fail, bọn mình cuối cùng cũng gói xong ba chiếc bánh chưng xinh iu nhất có thể cùng với những chiếc bánh tét ú nụ khác để vét hết nguyên liệu.</p>
-         <div class="image-container2">
-            <img src="bc1.jpg" alt="Canva"style="width: 50%;height: auto;">
-        </div>  
-        <p class="t1">Sau đó, mọi người cùng nhóm lửa nấu nước nấu bánh, cùng cười đùa với thành quả của cả đội.</p>    
-        <div class="image-container2">
-            <img src="bc2.jpg" alt="Canva"style="width: 50%;height: auto;">
-        </div>  
-        <p class="t1">Và cả ngóng chờ mấy lần được quay phim như thế này</p>
-        <div class="image-container2">
-            <img src="bc3.jpg" alt="Hình chụp ở trường" style="width: 50%">
-        </div>
-        <p class="t1">Rồi cuối cùng sau cả nửa ngày chờ đợi, thành phẩm của 11L cũng đã ra lò và vượt ngoài mong đợi!</p>
-        <div class="image-container2">
-            <img src="bc4.jpg" alt="Hình thi thanh lịch" style="display: inline-block;width:50%;height:auto;">
-        </div>
-        <p class="t2"><strong>KẾT QUẢ ĐẦY BẤT NGỜ</strong></p>
-        <p class="t1">Mọi người hôm đó đã rất vui vì cuối cùng đã nấu ra những chiếc bánh "thành hình, thành dạng" - mong muốn tuy có phần "ngố tàu" nhưng đầy chân thật của cả đám ngay lúc đó. Và wao, chiếc bánh chưng để đời của 11L đã dành được hạng ba- tuy chẳng lớn lao nhưng đủ để chúng mình tự hào ra phết!!!</p> 
+
+<div class="vignette" aria-hidden="true"></div>
+<div class="sr-announce" aria-live="polite" aria-atomic="true" id="srAnnounce"></div>
+<div class="progress-bar-container" id="progressBarContainer"><div class="progress-bar" id="progressBar"></div></div>
+<a href="index.html" class="home-btn" aria-label="Quay về trang chủ">🏠 <span>Trang Chủ</span></a>
+<div class="breadcrumb" id="breadcrumb" role="navigation" aria-label="Vị trí hiện tại"><span aria-hidden="true">🏺</span> <span id="breadcrumbText">Bìa sách</span></div>
+<div class="loading-spinner" id="loadingSpinner" role="status" aria-label="Đang tải..."></div>
+
+<div class="book-container" id="bookContainer">
+
+  <!-- ══ COVER ══ -->
+  <div class="book-cover" id="bookCover">
+    <div class="bookmark" aria-hidden="true"></div>
+    <div class="ff-wrap" id="ffWrap" aria-hidden="true"></div>
+    <div class="cover-content">
+      <div class="cover-badge" aria-label="Mốc kỷ niệm thứ 6 trên 6">✦ &nbsp;Mốc Kỷ Niệm Thứ 6 / 6&nbsp; ✦</div>
+      <div class="cover-icon" aria-hidden="true">🏺</div>
+      <h1 class="cover-title">GIỖ TỔ HÙNG VƯƠNG</h1>
+      <div class="cover-divider"></div>
+      <h2 class="cover-subtitle">Bánh Chưng Xanh & Những Kỷ Niệm Vàng · Lớp 11L</h2>
+      <p class="cover-quote">
+        Giỗ Tổ hôm ấy là ngày của sự biết ơn công lao dựng nước,<br>
+        là ngày của những đứa trẻ vẫn quen nghịch ngợm<br>
+        nháo nhào chuẩn bị cho một cuộc thi chẳng thể quên...
+      </p>
+      <button class="open-book-btn" id="openBookBtn" aria-label="Mở nhật ký Giỗ Tổ Hùng Vương">
+        <span>🍃 &nbsp;Mở Nhật Ký&nbsp; 🍃</span>
+      </button>
     </div>
-       <div id="Top2" style="color: none">.</div>
+  </div>
+
+  <!-- ══ PAGES ══ -->
+  <div class="book-pages" id="bookPages" style="display:none;">
+
+    <nav class="page-selector" role="navigation" aria-label="Chọn trang">
+      <button class="page-select-btn active" data-page="1" aria-label="Trang 1" aria-current="page">
+        <span class="ps-icon" aria-hidden="true">⚡</span>
+        <span class="ps-num">01</span>
+        <span class="ps-title">Chuẩn Bị</span>
+      </button>
+      <span class="selector-divider" aria-hidden="true">›</span>
+      <button class="page-select-btn" data-page="2" aria-label="Trang 2">
+        <span class="ps-icon" aria-hidden="true">🍀</span>
+        <span class="ps-num">02</span>
+        <span class="ps-title">Gói Bánh</span>
+      </button>
+      <span class="selector-divider" aria-hidden="true">›</span>
+      <button class="page-select-btn" data-page="3" aria-label="Trang 3">
+        <span class="ps-icon" aria-hidden="true">🏆</span>
+        <span class="ps-num">03</span>
+        <span class="ps-title">Kết Quả</span>
+      </button>
+    </nav>
+
+    <div class="prog" style="padding-top:20px;" role="navigation" aria-label="Điều hướng trang">
+      <button class="pdot on" data-p="1" aria-label="Trang 1" aria-current="true"></button>
+      <button class="pdot" data-p="2" aria-label="Trang 2"></button>
+      <button class="pdot" data-p="3" aria-label="Trang 3"></button>
+    </div>
+
+    <!-- ══ PAGE 1: Sự Chuẩn Bị Gấp Rút ══ -->
+    <div class="page" id="page1" role="main">
+      <div class="leaf-layer" id="lf1" aria-hidden="true"></div>
+      <div class="page-content">
+        <div class="dclouds" aria-hidden="true">🏺 &nbsp;&nbsp; 🍃 &nbsp;&nbsp;&nbsp;&nbsp; 🔥</div>
+        <h3 class="section-title">
+          <span class="title-icon" aria-hidden="true">⚡</span>
+          <span class="title-text">Sự Chuẩn Bị Gấp Rút</span>
+        </h3>
+        <p class="section-intro">
+          Ngày 5/4, lớp 11L tham gia cuộc thi gói bánh chưng của khối 11 —<br>
+          và cả lớp thì... vẫn chưa chuẩn bị gì cả đến tận ngày trước!
+        </p>
+
+        <blockquote class="quote-box">
+          <p class="quote-text">
+            "Nước đến chân mới nhảy" — câu thành ngữ tưởng chỉ nghe qua,<br>
+            hóa ra lại là kim chỉ nam của 11L trong kỳ Giỗ Tổ năm ấy.
+          </p>
+        </blockquote>
+
+        <div class="hbox">
+          <div class="hico" aria-hidden="true">📋</div>
+          <p class="htxt">Vào một tuần trước đó, cả lớp vẫn chưa chọn ra được những gương mặt sáng giá nhất, khéo tay nhất để trực tiếp gói bánh. Thế rồi trong tình thế cấp bách, mọi người bàn nhau mua nguyên liệu và chuẩn bị vào ngay ngày hôm trước.</p>
+        </div>
+
+        <aside class="dnote">
+          <span class="nlbl">🌿 Những người hùng của 11L</span>
+          <p class="ntxt">Khánh Ly, hai bạn Vân Anh, Hoàng Cường, Hải Đăng, Thuận, Hồng Phú, Huy Tiến, Tuấn Tú, Quang Chiến, Duy Phương, Như Hảo và Danh Huy đã nhiệt tình chung tay. Đặc biệt <strong>Hồng Phú</strong> và <strong>Duy Phương</strong> giữ vai trò quan trọng: mang nồi, chuẩn bị nếp, thịt ướp sẵn, đậu xanh — và cả kinh nghiệm học hỏi từ mẹ!</p>
+        </aside>
+
+        <div class="callout">
+          Sáng sớm ngày thi, cả đám rủ nhau đi ăn bún chả dưới dốc để lấy năng lượng. Trở về trường mới phát hiện lớp nào cũng đã bày đồ xong xuôi — chỉ còn 11L vẫn chưa có gì. 😅
+        </div>
+      </div>
+      <div class="page-number" aria-label="Trang 1 trên 3">~ Trang 1 ~</div>
+      <nav class="page-nav" aria-label="Điều hướng giữa các trang">
+        <button class="nav-btn cover-btn" onclick="closePage()" aria-label="Quay về bìa sách">🏺 Về Bìa Sách</button>
+        <button class="nav-btn" onclick="turnPage(2)" aria-label="Đến trang 2">Trang sau →</button>
+      </nav>
+    </div>
+
+    <!-- ══ PAGE 2: Đấu Trường Bánh Chưng ══ -->
+    <div class="page" id="page2" style="display:none;" role="main">
+      <div class="leaf-layer" id="lf2" aria-hidden="true"></div>
+      <div class="page-content">
+        <div class="dclouds" aria-hidden="true">🍀 &nbsp;&nbsp; 🔥 &nbsp;&nbsp;&nbsp;&nbsp; 😄</div>
+        <h3 class="section-title">
+          <span class="title-icon" aria-hidden="true">👨‍🍳</span>
+          <span class="title-text">Đấu Trường Bánh Chưng</span>
+        </h3>
+        <p class="section-intro">
+          9h30 — hiệu lệnh bắt đầu vang lên. Cả đám tay vụng, mắt sáng,<br>
+          vừa coi video hướng dẫn vừa túm tụm gói cùng nhau.
+        </p>
+
+        <article class="image-card">
+          <figure class="image-frame">
+            <span class="sticker sticker-1" aria-hidden="true">🍃</span>
+            <img src="bc1.jpg" alt="Lớp 11L tập trung gói bánh chưng trong ngày thi" loading="lazy">
+            <span class="sticker sticker-2" aria-hidden="true">🎋</span>
+          </figure>
+          <figcaption class="image-caption">
+            <p>Sau hai tiếng rối như tơ vò với những chiếc bánh bị fail đủ kiểu, 11L cuối cùng cũng gói xong được ba chiếc bánh chưng xinh iu nhất có thể — cùng với những chiếc bánh tét ú nụ để vét sạch nguyên liệu!</p>
+          </figcaption>
+        </article>
+
+        <article class="image-card">
+          <figure class="image-frame">
+            <span class="sticker sticker-1" aria-hidden="true">🔥</span>
+            <img src="bc2.jpg" alt="Mọi người nhóm lửa nấu bánh chưng cùng nhau" loading="lazy">
+            <span class="sticker sticker-2" aria-hidden="true">💨</span>
+          </figure>
+          <figcaption class="image-caption">
+            <p>Sau đó, mọi người cùng nhau nhóm lửa nấu bánh — cười đùa, chụp ảnh và ngóng từng bọt sôi như thể đó là điều kỳ diệu nhất trên đời.</p>
+          </figcaption>
+        </article>
+
+        <article class="image-card">
+          <figure class="image-frame">
+            <span class="sticker sticker-1" aria-hidden="true">🎬</span>
+            <img src="bc3.jpg" alt="Khoảnh khắc được quay phim ghi lại kỷ niệm" loading="lazy">
+            <span class="sticker sticker-2" aria-hidden="true">📸</span>
+          </figure>
+          <figcaption class="image-caption">
+            <p>Và cả những lần ngóng chờ được quay phim — khoảnh khắc ai cũng muốn mình xuất hiện thật ngầu trên màn hình! 😄</p>
+          </figcaption>
+        </article>
+      </div>
+      <div class="page-number" aria-label="Trang 2 trên 3">~ Trang 2 ~</div>
+      <nav class="page-nav" aria-label="Điều hướng giữa các trang">
+        <button class="nav-btn" onclick="turnPage(1)" aria-label="Về trang 1">← Trang trước</button>
+        <button class="nav-btn" onclick="turnPage(3)" aria-label="Đến trang 3">Trang sau →</button>
+      </nav>
+    </div>
+
+    <!-- ══ PAGE 3: Kết Quả Đầy Bất Ngờ ══ -->
+    <div class="page" id="page3" style="display:none;" role="main">
+      <div class="leaf-layer" id="lf3" aria-hidden="true"></div>
+      <div class="page-content">
+        <div class="dclouds" aria-hidden="true">🏆 &nbsp;&nbsp; 🌟 &nbsp;&nbsp;&nbsp;&nbsp; 🎉</div>
+        <h3 class="section-title">
+          <span class="title-icon" aria-hidden="true">🏆</span>
+          <span class="title-text">Kết Quả Đầy Bất Ngờ</span>
+        </h3>
+
+        <article class="image-card">
+          <figure class="image-frame">
+            <span class="sticker sticker-1" aria-hidden="true">🥉</span>
+            <img src="bc4.jpg" alt="Thành phẩm bánh chưng đẹp của lớp 11L" loading="lazy">
+            <span class="sticker sticker-2" aria-hidden="true">🏺</span>
+          </figure>
+          <figcaption class="image-caption">
+            <p>Sau cả nửa ngày chờ đợi, thành phẩm của 11L ra lò và vượt ngoài mong đợi của cả lớp! Những chiếc bánh chưng "thành hình, thành dạng" — mong muốn tuy có phần ngố nhưng đầy chân thật.</p>
+          </figcaption>
+        </article>
+
+        <div class="prize-badge" aria-label="Giải Ba cuộc thi gói bánh chưng">🥉 &nbsp; Hạng Ba · Cuộc Thi Gói Bánh Chưng Khối 11 &nbsp; 🥉</div>
+
+        <blockquote class="quote-box">
+          <p class="quote-text">
+            Tuy chẳng lớn lao, nhưng đủ để 11L tự hào ra phết!
+          </p>
+        </blockquote>
+
+        <div class="hbox">
+          <div class="hico" aria-hidden="true">💛</div>
+          <p class="htxt">Mọi người hôm đó đã rất vui — không chỉ vì chiếc bánh đẹp hay giải thưởng, mà vì đã cùng nhau trải qua một ngày thật buồn cười và đáng nhớ. Từ chạy đi mua củi phút chót, đến vừa gói vừa xem tutorial... tất cả đều trở thành ký ức vàng của lớp 11L.</p>
+        </div>
+
+        <p class="handwrite">
+          Giỗ Tổ hôm ấy là ngày của những đứa trẻ vẫn quen nghịch ngợm —<br>
+          nháo nhào, vụng về, nhưng đong đầy tình bạn và niềm vui. 🏺❤️
+        </p>
+
+        <div class="rdiv" aria-hidden="true"><span>🏺</span><span>🍃</span><span>🔥</span></div>
+        <div class="sig" aria-label="Kết thúc nhật ký">🏺 ~ Hết ~ 🏺</div>
+      </div>
+      <div class="page-number" aria-label="Trang 3 trên 3">~ Trang 3 ~</div>
+      <nav class="page-nav" aria-label="Điều hướng giữa các trang">
+        <button class="nav-btn" onclick="turnPage(2)" aria-label="Về trang 2">← Trang trước</button>
+        <button class="nav-btn cover-btn" onclick="closePage()" aria-label="Đóng sách">🍃 Đóng sách</button>
+      </nav>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ IMAGE MODAL ══ -->
+<div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="Xem ảnh phóng to">
+  <button class="modal-close" id="modalClose" aria-label="Đóng ảnh">×</button>
+  <div class="modal-inner">
+    <button class="modal-arrow prev" id="modalPrev" aria-label="Ảnh trước">‹</button>
+    <img id="modalImg" alt="" src="">
+    <button class="modal-arrow next" id="modalNext" aria-label="Ảnh sau">›</button>
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+  <div class="modal-esc-hint">Nhấn ESC để đóng &nbsp;·&nbsp; ← → để chuyển ảnh</div>
+</div>
+
+<button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Cuộn lên đầu trang">↑</button>
+
+<script>
+let currentPage=1,touchStartX=0,touchEndX=0;
+
+function announce(msg){const el=document.getElementById('srAnnounce');el.textContent='';requestAnimationFrame(()=>{el.textContent=msg;});}
+
+function updateBreadcrumb(n){
+  const bc=document.getElementById('breadcrumb'),bt=document.getElementById('breadcrumbText');
+  if(n===0){bt.textContent='Bìa sách';bc.classList.remove('visible');}
+  else{const t=['Sự Chuẩn Bị Gấp Rút','Đấu Trường Bánh Chưng','Kết Quả Đầy Bất Ngờ'];bt.textContent=`Trang ${n}: ${t[n-1]}`;bc.classList.add('visible');}
+}
+
+function updatePageSelector(n){
+  document.querySelectorAll('.page-select-btn').forEach(btn=>{
+    const a=+btn.dataset.page===n;btn.classList.toggle('active',a);btn.setAttribute('aria-current',a?'page':'false');
+  });
+}
+
+function animateProgressBar(dur){
+  const c=document.getElementById('progressBarContainer'),b=document.getElementById('progressBar');
+  c.classList.add('active');b.style.transition='none';b.style.width='0%';
+  requestAnimationFrame(()=>{b.style.transition=`width ${dur}ms cubic-bezier(.4,0,.2,1)`;b.style.width='100%';setTimeout(()=>{c.classList.remove('active');b.style.transition='none';b.style.width='0%';},dur+80);});
+}
+
+let lastTrail=0;
+document.addEventListener('mousemove',e=>{
+  const now=Date.now();if(now-lastTrail<100)return;if(Math.random()>.5)return;
+  lastTrail=now;const t=document.createElement('div');t.className='cursor-trail';
+  t.style.cssText=`left:${e.clientX}px;top:${e.clientY}px`;document.body.appendChild(t);
+  setTimeout(()=>t.remove(),620);
+},{passive:true});
+
+function buildFireflies(){
+  const w=document.getElementById('ffWrap');
+  for(let i=0;i<22;i++){
+    const f=document.createElement('div');f.className='ff';
+    const sz=2+Math.random()*4;
+    const col=Math.random()<.55?`rgba(201,169,97,${.55+Math.random()*.3})`:`rgba(180,60,40,${.3+Math.random()*.3})`;
+    f.style.cssText=`width:${sz}px;height:${sz}px;left:${8+Math.random()*84}%;bottom:${5+Math.random()*42}%;background:${col};box-shadow:0 0 ${sz*2.4}px ${col};--dx:${(Math.random()-.5)*75}px;--dur:${3.5+Math.random()*4.5}s;--del:${Math.random()*7}s;`;
+    w.appendChild(f);
+  }
+}
+
+const LEAVES=['🍃','🌿','🎋','🍀','✨'];
+function buildLeaves(id){
+  const el=document.getElementById(id);if(!el)return;
+  for(let i=0;i<10;i++){
+    const l=document.createElement('div');l.className='lf';
+    const sz=10+Math.random()*8,dur=5+Math.random()*6,del=Math.random()*9;
+    l.textContent=LEAVES[i%LEAVES.length];
+    l.style.cssText=`left:${Math.random()*95}%;bottom:${Math.random()*18}%;--lsz:${sz}px;--ldur:${dur}s;--ldel:${del}s;--lx:${(Math.random()-.5)*90}px;`;
+    el.appendChild(l);
+  }
+}
+
+function syncDots(n){document.querySelectorAll('.pdot').forEach(d=>{const a=+d.dataset.p===n;d.classList.toggle('on',a);d.setAttribute('aria-current',a?'true':'false');});}
+
+document.querySelectorAll('.pdot').forEach(d=>{
+  d.addEventListener('click',()=>turnPage(+d.dataset.p));
+  d.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();turnPage(+d.dataset.p);}});
+});
+document.querySelectorAll('.page-select-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>turnPage(+btn.dataset.page));
+  btn.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();turnPage(+btn.dataset.page);}});
+});
+
+document.getElementById('openBookBtn').addEventListener('click',function(e){
+  e.preventDefault();e.stopPropagation();
+  if(this.dataset.processing==='true')return;
+  this.dataset.processing='true';
+  const cover=document.getElementById('bookCover'),pages=document.getElementById('bookPages');
+  cover.style.transition='opacity .22s cubic-bezier(.4,0,.2,1),transform .22s';
+  cover.style.opacity='0';cover.style.transform='scale(.97) translateY(-8px)';
+  setTimeout(()=>{
+    cover.style.display='none';cover.style.opacity='';cover.style.transform='';cover.style.transition='';
+    pages.style.display='block';document.getElementById('page1').style.display='block';
+    pages.style.opacity='0';pages.style.transform='translateY(10px)';
+    pages.style.transition='opacity .28s cubic-bezier(.22,1,.36,1),transform .28s cubic-bezier(.22,1,.36,1)';
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{pages.style.opacity='1';pages.style.transform='translateY(0)';}));
+    currentPage=1;syncDots(1);updateBreadcrumb(1);updatePageSelector(1);
+    announce('Đã mở nhật ký. Đang ở trang 1: Sự Chuẩn Bị Gấp Rút');
+    this.dataset.processing='false';
+    window.scrollTo({top:0,behavior:'smooth'});
+    setTimeout(()=>{pages.style.transition='';pages.style.opacity='';pages.style.transform='';},300);
+  },200);
+});
+
+function turnPage(n){
+  if(n<1||n>3||currentPage===n)return;
+  animateProgressBar(280);document.getElementById('loadingSpinner').classList.add('active');
+  setTimeout(()=>{
+    document.getElementById('page'+currentPage).style.display='none';
+    document.getElementById('page'+n).style.display='block';
+    currentPage=n;syncDots(n);updateBreadcrumb(n);updatePageSelector(n);
+    const t=['Sự Chuẩn Bị Gấp Rút','Đấu Trường Bánh Chưng','Kết Quả Đầy Bất Ngờ'];
+    announce(`Trang ${n}: ${t[n-1]}`);
+    document.getElementById('loadingSpinner').classList.remove('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  },280);
+}
+
+function closePage(){
+  animateProgressBar(260);document.getElementById('loadingSpinner').classList.add('active');
+  setTimeout(()=>{
+    document.getElementById('bookPages').style.display='none';
+    document.getElementById('bookCover').style.display='block';
+    document.getElementById('page'+currentPage).style.display='none';
+    document.getElementById('loadingSpinner').classList.remove('active');
+    updateBreadcrumb(0);announce('Đã đóng nhật ký, quay về bìa sách');
+    window.scrollTo({top:0,behavior:'smooth'});
+  },260);
+}
+
+function handleSwipe(){const d=touchStartX-touchEndX;if(Math.abs(d)>45){if(d>0&&currentPage<3)turnPage(currentPage+1);else if(d<0&&currentPage>1)turnPage(currentPage-1);}}
+document.getElementById('bookPages').addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;},{passive:true});
+document.getElementById('bookPages').addEventListener('touchend',e=>{touchEndX=e.changedTouches[0].screenX;handleSwipe();},{passive:true});
+
+/* ══ MODAL ══ */
+const modal=document.getElementById('imageModal');
+const modalImg=document.getElementById('modalImg'),modalCaption=document.getElementById('modalCaption');
+const modalPrev=document.getElementById('modalPrev'),modalNext=document.getElementById('modalNext');
+const modalClose=document.getElementById('modalClose');
+let allImgs=[],currentModalIdx=0;
+
+function collectImages(){
+  allImgs=Array.from(document.querySelectorAll('.image-frame img')).filter(img=>{
+    const page=img.closest('.page');
+    if(!page)return true;
+    return getComputedStyle(page).display!=='none';
+  });
+}
+
+function openModal(img){
+  collectImages();
+  currentModalIdx=allImgs.findIndex(i=>i.src===img.src);
+  if(currentModalIdx===-1){allImgs=[img];currentModalIdx=0;}
+  modalImg.style.transition='none';modalImg.style.opacity='0';modalImg.style.transform='scale(0.7) rotate(-6deg)';
+  modalImg.src=img.src;modalImg.alt=img.alt;modalCaption.textContent=img.alt||'';
+  modal.classList.add('active');document.body.style.overflow='hidden';
+  requestAnimationFrame(()=>{requestAnimationFrame(()=>{
+    modalImg.style.transition='transform 0.42s cubic-bezier(0.22,1,0.36,1),opacity 0.35s ease';
+    modalImg.style.opacity='1';modalImg.style.transform='scale(1) rotate(0deg)';
+  });});
+  updateArrows();
+}
+
+function closeModal(){
+  modalImg.style.transition='transform 0.3s ease,opacity 0.25s ease';
+  modalImg.style.transform='scale(0.7) rotate(5deg)';modalImg.style.opacity='0';
+  modal.classList.remove('active');document.body.style.overflow='';
+  setTimeout(()=>{modalImg.removeAttribute('src');modalImg.style.transition='none';modalImg.style.transform='';modalImg.style.opacity='';},320);
+}
+
+function navigateModal(dir){
+  const next=currentModalIdx+dir;if(next<0||next>=allImgs.length)return;
+  modalImg.style.transition='transform 0.2s ease,opacity 0.2s ease';
+  modalImg.style.transform=`scale(0.88) translateX(${dir>0?'-60px':'60px'})`;modalImg.style.opacity='0';
+  setTimeout(()=>{
+    currentModalIdx=next;const target=allImgs[currentModalIdx];
+    modalImg.src=target.src;modalImg.alt=target.alt;modalCaption.textContent=target.alt||'';
+    modalImg.style.transition='none';
+    modalImg.style.transform=`scale(0.88) translateX(${dir>0?'60px':'-60px'})`;modalImg.style.opacity='0';
+    requestAnimationFrame(()=>{requestAnimationFrame(()=>{
+      modalImg.style.transition='transform 0.35s cubic-bezier(0.22,1,0.36,1),opacity 0.3s ease';
+      modalImg.style.transform='scale(1) translateX(0)';modalImg.style.opacity='1';
+    });});
+    updateArrows();
+  },220);
+}
+
+function updateArrows(){
+  const s=currentModalIdx<=0,e=currentModalIdx>=allImgs.length-1;
+  modalPrev.style.opacity=s?'.25':'1';modalPrev.style.pointerEvents=s?'none':'auto';
+  modalNext.style.opacity=e?'.25':'1';modalNext.style.pointerEvents=e?'none':'auto';
+}
+
+modalPrev.addEventListener('click',e=>{e.stopPropagation();navigateModal(-1);});
+modalNext.addEventListener('click',e=>{e.stopPropagation();navigateModal(1);});
+modalClose.addEventListener('click',e=>{e.stopPropagation();closeModal();});
+modalImg.addEventListener('click',e=>{e.stopPropagation();closeModal();});
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+
+document.addEventListener('click',e=>{
+  if(e.target.closest('#modalPrev,#modalNext,#modalClose,#modalImg'))return;
+  const wrapper=e.target.closest('.image-frame');if(!wrapper)return;
+  const img=(e.target.tagName==='IMG')?e.target:wrapper.querySelector('img');
+  if(img&&img.src){e.stopPropagation();openModal(img);}
+});
+
+document.addEventListener('keydown',e=>{
+  if(modal.classList.contains('active')){
+    if(e.key==='Escape')closeModal();
+    if(e.key==='ArrowLeft')navigateModal(-1);
+    if(e.key==='ArrowRight')navigateModal(1);
+    return;
+  }
+  if(document.getElementById('bookPages').style.display!=='block')return;
+  if(e.key==='ArrowRight'&&currentPage<3)turnPage(currentPage+1);
+  if(e.key==='ArrowLeft'&&currentPage>1)turnPage(currentPage-1);
+});
+
+const stBtn=document.getElementById('scrollTop');
+window.addEventListener('scroll',()=>{stBtn.classList.toggle('visible',window.scrollY>300);},{passive:true});
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+
+window.addEventListener('load',()=>{
+  buildFireflies();
+  buildLeaves('lf1');buildLeaves('lf2');buildLeaves('lf3');
+  document.querySelectorAll('img').forEach(img=>{
+    if(img.complete&&img.naturalWidth>0)img.classList.add('loaded');
+    else{img.addEventListener('load',()=>img.classList.add('loaded'));img.addEventListener('error',()=>{img.style.opacity='.3';img.classList.add('loaded');});}
+  });
+  setInterval(()=>{document.querySelectorAll('.pdot.on').forEach(d=>{d.style.transform='scale(1.18)';setTimeout(()=>d.style.transform='',280);});},3000);
+});
+</script>
 </body>
 </html>
