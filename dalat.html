@@ -21,11 +21,9 @@ body::after{content:'';position:fixed;inset:0;background-image:radial-gradient(2
 .progress-bar-container.active{opacity:1;}
 .progress-bar{height:100%;background:linear-gradient(90deg,#2d5a40,#3e7249,#568c62);width:0%;transition:width .3s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(62,114,73,.5);}
 
-/* ══ BREADCRUMB — lớn hơn ══ */
 .breadcrumb{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.92);backdrop-filter:blur(12px);padding:11px 28px;border-radius:30px;border:2px solid rgba(62,114,73,.22);font-family:'Playfair Display',serif;font-size:1rem;color:var(--forest-dark);z-index:9998;opacity:0;pointer-events:none;transition:opacity .25s ease;box-shadow:0 4px 14px rgba(30,68,48,.12);white-space:nowrap;max-width:calc(100vw - 180px);overflow:hidden;text-overflow:ellipsis;}
 .breadcrumb.visible{opacity:1;pointer-events:auto;}
 
-/* ══ HOME BTN — lớn hơn ══ */
 .home-btn{position:fixed;top:20px;left:20px;display:flex;align-items:center;gap:8px;padding:11px 22px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:2px solid rgba(62,114,73,.28);border-radius:30px;font-family:'Playfair Display',serif;font-size:1rem;color:var(--forest-dark);cursor:pointer;z-index:9999;text-decoration:none;box-shadow:0 4px 14px rgba(30,68,48,.12);transition:background .18s,border-color .18s,transform .18s,box-shadow .18s;}
 .home-btn:hover{background:rgba(62,114,73,.12);border-color:rgba(62,114,73,.55);transform:translateY(-2px);box-shadow:0 8px 20px rgba(30,68,48,.18);}
 
@@ -78,7 +76,6 @@ body::after{content:'';position:fixed;inset:0;background-image:radial-gradient(2
 .page-number{position:absolute;bottom:28px;right:45px;font-family:'Dancing Script',cursive;font-size:1.35rem;color:var(--g5);background:rgba(249,247,240,.6);padding:6px 16px;border-radius:50px;border:2px solid rgba(62,114,73,.25);box-shadow:0 4px 12px rgba(30,68,48,.15);animation:pageNumPulse 3s ease-in-out infinite;z-index:100;}
 @keyframes pageNumPulse{0%,100%{opacity:.6;}50%{opacity:.95;}}
 
-/* ══ PAGE SELECTOR — lớn hơn ══ */
 .page-selector{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;background:rgba(249,247,240,.88);backdrop-filter:blur(10px);border-bottom:2px solid rgba(62,114,73,.12);flex-wrap:wrap;position:sticky;top:0;z-index:50;}
 .page-select-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 20px;background:rgba(255,255,255,.7);border:2px solid rgba(62,114,73,.2);border-radius:12px;font-family:'Playfair Display',serif;font-size:.92rem;color:var(--forest-dark);cursor:pointer;transition:background .14s,border-color .14s,transform .14s cubic-bezier(.4,0,.2,1),box-shadow .14s;min-width:108px;text-align:center;line-height:1.3;}
 .page-select-btn:hover{background:rgba(62,114,73,.12);border-color:rgba(62,114,73,.48);transform:translateY(-2px);box-shadow:0 5px 12px rgba(30,68,48,.11);}
@@ -97,7 +94,6 @@ body::after{content:'';position:fixed;inset:0;background-image:radial-gradient(2
 @keyframes lineDraw{from{width:0;opacity:0;}to{width:240px;opacity:1;}}
 .section-intro{text-align:center;max-width:820px;margin:0 auto 48px;font-size:1.25rem;line-height:2;color:var(--forest-green);font-style:italic;font-family:'Lora',serif;animation:fU .9s ease .4s both;font-weight:400;}
 
-/* ══ STORY CARDS — no zoom ══ */
 .story-grid{display:grid;gap:36px;margin-top:48px;}
 .story-card{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:32px;background:linear-gradient(135deg,rgba(249,247,240,.8),rgba(255,254,249,.6));border-radius:14px;transition:border-color .2s;border:2px solid rgba(30,68,48,.3);position:relative;overflow:hidden;box-shadow:0 6px 24px rgba(30,68,48,.1);}
 .story-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(122,170,136,.1),transparent 50%);opacity:0;transition:opacity .25s;pointer-events:none;}
@@ -106,7 +102,6 @@ body::after{content:'';position:fixed;inset:0;background-image:radial-gradient(2
 .story-card:nth-child(even) .story-text{order:1;}
 .story-card:hover{border-color:rgba(62,114,73,.48);}
 
-/* ══ STORY IMAGE — no zoom ══ */
 .story-image{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 6px 24px rgba(30,68,48,.22),inset 0 0 0 7px rgba(250,246,240,.8),inset 0 0 0 9px rgba(30,68,48,.3);border:3px solid var(--beige);cursor:zoom-in;}
 .story-image .stamp{display:none;}
 .story-image img{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;object-fit:cover;object-position:center center;filter:sepia(.05) contrast(1.05);cursor:zoom-in;display:block;}
