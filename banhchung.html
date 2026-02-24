@@ -78,11 +78,9 @@ body::after{
 .progress-bar-container.active{opacity:1;}
 .progress-bar{height:100%;background:linear-gradient(90deg,#8b1a1a,#b52a2a,#c9a961);width:0%;transition:width .3s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(180,60,40,.5);}
 
-/* ══ HOME BTN — lớn hơn ══ */
 .home-btn{position:fixed;top:20px;left:20px;display:flex;align-items:center;gap:8px;padding:11px 22px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:2px solid rgba(180,60,40,.28);border-radius:30px;font-family:'Playfair Display',serif;font-size:1rem;color:var(--red-deep);cursor:pointer;z-index:9999;text-decoration:none;box-shadow:0 4px 14px var(--sh-s);transition:background .18s,border-color .18s,transform .18s,box-shadow .18s;}
 .home-btn:hover{background:rgba(180,60,40,.1);border-color:rgba(180,60,40,.5);transform:translateY(-2px);box-shadow:0 8px 22px var(--sh-m);}
 
-/* ══ BREADCRUMB — lớn hơn ══ */
 .breadcrumb{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.92);backdrop-filter:blur(12px);padding:11px 28px;border-radius:30px;border:2px solid rgba(180,60,40,.22);font-family:'Playfair Display',serif;font-size:1rem;color:var(--red-deep);z-index:9998;opacity:0;pointer-events:none;transition:opacity .25s;box-shadow:0 4px 14px var(--sh-s);white-space:nowrap;max-width:calc(100vw - 180px);overflow:hidden;text-overflow:ellipsis;}
 .breadcrumb.visible{opacity:1;pointer-events:auto;}
 
@@ -347,7 +345,7 @@ body::after{
   .page{padding:50px 24px 90px;border-left:30px solid rgba(180,60,40,.08);}
   .section-title{font-size:2rem;}
   .section-intro{font-size:1rem;}
-  .image-frame{width:98%;}
+  .image-frame{width:100%;}
   .image-caption p{font-size:1.05rem;}
   .quote-text{font-size:1.28rem;}
   .handwrite{font-size:1.6rem;}
