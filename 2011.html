@@ -78,11 +78,9 @@ body::after{
 .progress-bar-container.active{opacity:1;}
 .progress-bar{height:100%;background:linear-gradient(90deg,#b5651d,#d4853a,#e8ad6e);width:0%;transition:width .3s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(212,133,58,.5);}
 
-/* ══ HOME BTN — lớn hơn ══ */
 .home-btn{position:fixed;top:20px;left:20px;display:flex;align-items:center;gap:8px;padding:11px 22px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:2px solid rgba(212,133,58,.28);border-radius:30px;font-family:'Playfair Display',serif;font-size:1rem;color:var(--amber-deep);cursor:pointer;z-index:9999;text-decoration:none;box-shadow:0 4px 14px var(--sh-s);transition:background .18s,border-color .18s,transform .18s,box-shadow .18s;}
 .home-btn:hover{background:rgba(212,133,58,.12);border-color:rgba(212,133,58,.55);transform:translateY(-2px);box-shadow:0 8px 22px var(--sh-m);}
 
-/* ══ BREADCRUMB — lớn hơn ══ */
 .breadcrumb{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.92);backdrop-filter:blur(12px);padding:11px 28px;border-radius:30px;border:2px solid rgba(212,133,58,.22);font-family:'Playfair Display',serif;font-size:1rem;color:var(--amber-deep);z-index:9998;opacity:0;pointer-events:none;transition:opacity .25s;box-shadow:0 4px 14px var(--sh-s);white-space:nowrap;max-width:calc(100vw - 180px);overflow:hidden;text-overflow:ellipsis;}
 .breadcrumb.visible{opacity:1;pointer-events:auto;}
 
@@ -91,7 +89,6 @@ body::after{
 .book-container{position:relative;max-width:1200px;width:100%;perspective:2000px;z-index:10;animation:containerIn .9s cubic-bezier(.22,1,.36,1) both;}
 @keyframes containerIn{from{opacity:0;transform:translateY(36px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
 
-/* ══ COVER ══ */
 .book-cover{
   position:relative;
   background:
@@ -191,7 +188,6 @@ body::after{
 @keyframes fU{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 .open-book-btn span{position:relative;z-index:1;}
 
-/* ══ BOOK PAGES ══ */
 .book-pages{
   position:relative;
   background:linear-gradient(135deg,#fffbf5 0%,#fdf6ea 50%,#fffcf5 100%);
@@ -333,7 +329,6 @@ body::after{
 .teacher-card:hover .card-stamp{transform:rotate(18deg) scale(1.1);}
 @keyframes stampBounce{0%,100%{transform:rotate(14deg) scale(1);}50%{transform:rotate(12deg) scale(1.08);}}
 
-/* ══ IMAGE CARD — no zoom, larger frame ══ */
 .image-card{
   display:flex;flex-direction:column;align-items:center;gap:30px;
   padding:40px 38px;
@@ -352,7 +347,7 @@ body::after{
   border-radius:14px;overflow:hidden;aspect-ratio:4/3;
   box-shadow:0 10px 32px var(--sh-m),0 0 0 9px rgba(255,255,255,.92),0 0 0 11px rgba(212,133,58,.24);
   border:3px solid rgba(232,173,110,.8);
-  max-height:580px;width:95%;
+  max-height:580px;width:100%;
   transition:box-shadow .2s;
   position:relative;
   cursor:zoom-in;
@@ -371,14 +366,14 @@ body::after{
   cursor:zoom-in;
   display:block;
 }
-/* No zoom on image frame img hover */
+
 .image-card:hover .image-frame img{filter:sepia(.1) contrast(1.08) brightness(1.04) saturate(1.1);}
 
 .image-caption{width:100%;max-width:860px;text-align:center;}
 .image-caption p{font-size:1.25rem;line-height:2.05;color:var(--ink-dark);font-family:'Lora',serif;font-weight:400;margin-bottom:14px;}
 .image-caption p:last-child{margin-bottom:0;}
 
-/* ══ PAGE NAV ══ */
+
 .page-nav{display:flex;justify-content:space-between;align-items:center;margin-top:56px;padding-top:36px;border-top:2px solid rgba(181,101,29,.24);position:relative;z-index:100;}
 .nav-btn{padding:11px 28px;background:linear-gradient(135deg,#c47a35,#e8ad6e);color:#fff;font-weight:700;border-radius:50px;box-shadow:0 5px 18px var(--sh-m);transition:transform .15s cubic-bezier(.4,0,.2,1),box-shadow .15s;font-family:'Playfair Display',serif;font-size:.9rem;border:2px solid rgba(212,133,58,.6);cursor:pointer;position:relative;overflow:hidden;z-index:100;}
 .nav-btn:focus{outline:3px solid rgba(232,173,110,.8);outline-offset:4px;}
@@ -401,7 +396,6 @@ body::after{
 .dclouds{text-align:center;font-size:1.3rem;letter-spacing:18px;opacity:.24;margin:12px 0;animation:dcWv 8s ease-in-out infinite;}
 @keyframes dcWv{0%,100%{transform:translateY(0);opacity:.22;}50%{transform:translateY(-6px);opacity:.42;}}
 
-/* ══ MODAL ══ */
 .image-modal{
   position:fixed;inset:0;
   background:rgba(20,8,0,0);
@@ -497,7 +491,7 @@ body::after{
   .section-title{font-size:2rem;}
   .section-intro{font-size:1rem;}
   .teacher-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px;}
-  .image-frame{width:98%;}
+  .image-frame{width:100%;}
   .image-caption p{font-size:1.05rem;}
   .quote-text{font-size:1.3rem;}
   .handwrite{font-size:1.6rem;}
@@ -730,7 +724,7 @@ body::after{
               <img src="tCuong.jpg" alt="Thầy Cường - Công nghệ" loading="lazy">
             </div>
             <div class="teacher-info">
-              <div class="teacher-name">Thầy Cường</div>
+              <div class="teacher-name">Thầy Nguyễn Văn Cường</div>
               <div class="teacher-subject">✦ Công nghệ ✦</div>
             </div>
           </div>
@@ -742,7 +736,7 @@ body::after{
             </div>
             <div class="teacher-info">
               <div class="teacher-name">Thầy Phạm Quốc Thắng</div>
-              <div class="teacher-subject">✦ Mr.Win của tụi em ✦</div>
+              <div class="teacher-subject">✦ Hóa học ✦</div>
             </div>
           </div>
 
